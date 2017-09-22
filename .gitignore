@@ -1,0 +1,4 @@
+# ignore these files
+
+# documentation
+documentation/*/*.{aux,log,toc,synctex.gz}
