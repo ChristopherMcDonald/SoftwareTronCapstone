@@ -1,14 +1,14 @@
-# SoftwareTronCapstone
-[need to rename] Software and Mechatronics Capstone 2017/18
+# SmartServe
+An autonomous table tennis trainer
 
 ## Team Members
 Christopher McDonald
-Sharon Platkin
 Harit Patel
-Nîsarg Patel
-Sam Hamel
 Janak Patel
 Jared Rayner
+Nisarg Patel
+Sam Hamel
+Sharon Platkin
 
 ## Project Description
-TODO
+The solution will consist of mechanisms to shoot the ball, systems to detect if a return was legal and apply reinforcement learning algorithms to expose the user's weakest points.
