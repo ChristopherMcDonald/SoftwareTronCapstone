@@ -10,5 +10,7 @@ Nisarg Patel
 Sam Hamel
 Sharon Platkin
 
+## Overview
+
 ## Project Description
 The solution will consist of mechanisms to shoot the ball, systems to detect if a return was legal and apply reinforcement learning algorithms to expose the user's weakest points.
