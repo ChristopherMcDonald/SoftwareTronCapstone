@@ -5,6 +5,15 @@
 \usepackage{graphicx}   
 \usepackage{amssymb}
 \usepackage{tabularx}
+\usepackage{array}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
 
 \usepackage[english]{babel}
 
@@ -59,7 +68,7 @@
 \vfill
 \begin{figure}[htbp]
    \centering
-   \noindent\begin{tabularx}{\textwidth}{|X|p{2cm}|X|X|}
+   \noindent\begin{tabularx}{\textwidth}{| >{\centering\arraybackslash}m{0.2\textwidth} | >{\centering\arraybackslash}m{0.2\textwidth} | >{\centering\arraybackslash}m{0.2\textwidth} | >{\centering\arraybackslash}m{0.285\textwidth} |}
    \hline 
    \textbf{Date} & \textbf{Revision} & \textbf{Comments} & \textbf{Author(s)} \\
    \hline 
