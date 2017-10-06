@@ -63,7 +63,7 @@
    \hline 
    \textbf{Date} & \textbf{Revision} & \textbf{Comments} & \textbf{Author(s)} \\
    \hline 
-   09/26/17 & 0 & Made document structure and template & Christopher McDonald \\
+   10/05/17 & 0 & First revision of document completed & Christopher McDonald \& Sharon Platkin \\
    \hline
    \end{tabularx}
    \caption{Revision History}
@@ -72,10 +72,38 @@
 \newpage
 
 \section{Project Summary}
-The project will be an automated table tennis trainer
+The project will be a table tennis trainer, comprising of a shooting mechanism, computer vision system and machine learning recommendation algorithm.
 \section{Success Criteria}
+The following items are required to be completed for this project to be a success:
+\begin{itemize}
+\item The system can detect the boundaries of the table to determine valid returns on the system's side
+\item The system can detect valid returns from the user with an accuracy of 90\%
+\item The system can hit each square of a 4x4 grid with an accuracy of 75\%
+\item The system can apply a reinforcement learning algorithm to aid in the shot decision
+\item The system can pause and resume operation
+\item The system can calibrate its position and orientation
+\item The system can adjust the shooting frequency
+\end{itemize}
 \section{Mid-Level Goals}
+\begin{itemize}
+\item The system can detect the boundaries of the table to determine valid shot locations on the user's side
+\item The system can hit each square of a 8x8 grid with an accuracy of 75\%
+\item The system can calibrate its shooting parametres
+\item The system can notify the user of their performance after each shot is taken
+\item The system has multiple modes including `single-shot' and random
+\item The system has leaderboards for all users
+\item The system's state persists after shutting down
+\item The system can apply spin to the shot on one axis
+\item The system can shoot at various speeds
+\end{itemize}
 \section{High-Level Goals}
+\begin{itemize}
+\item The system can hit each square of a 16x16 grid with an accuracy of 75\%
+\item The system can apply spin to the shot on a combination of two axes
+\item The system can track the ball throughout the complete path travelled across the table
+\item The system can collect the balls returned by the user
+\item The system can shoot from different heights
+\end{itemize}
 
 
 
