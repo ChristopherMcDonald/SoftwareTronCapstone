@@ -59,11 +59,12 @@
 \vfill
 \begin{figure}[htbp]
    \centering
-   \noindent\begin{tabularx}{\textwidth}{|l|l|X|l|}
+   \noindent\begin{tabularx}{\textwidth}{|X|p{2cm}|X|X|}
    \hline 
    \textbf{Date} & \textbf{Revision} & \textbf{Comments} & \textbf{Author(s)} \\
    \hline 
-   10/05/17 & 0 & First revision of document completed & Christopher McDonald \& Sharon Platkin \\
+   10/05/17 & 0 & First revision of document completed & Christopher McDonald \& Sharon Platkin \\ \hline
+   10/06/17 & 1 & Second revision to add more sections and text & Christopher McDonald \& Nisarg Patel \& Harit Patel \\
    \hline
    \end{tabularx}
    \caption{Revision History}
@@ -78,7 +79,8 @@ Our solution to solve the above problem will consist of a shooting mechanism, a 
 The system will consist of a electromechanical system to shoot the ball and a computer vision system to track the ball's location during flight. A server will also be added to store data, provide diagnostics and recommend shots given the user's past performance.
 \section{Success Criteria}
 To judge how well the system meets the problem described above, several aspects of the system will need to be measured. The first major part is the accuracy and precision of the shooting mechanism with respect to how well it shoots the ball. The second will be how many degrees of freedom can be applied to a shot to vary its characteristics. Lastly, including features in order to better solve the problem in areas like usability, performance and quality. However, for the project to be deemed successful in solving the problem, only the low-level goals will need to be satisfied. 
-\section{Low-Level Goals}
+\section{Goals}
+\subsection{Low-Level Goals}
 The following items encompass the low-level goals of the system:
 \begin{itemize}
 \item The system can detect the boundaries of the table to determine valid returns on the system's side
@@ -89,7 +91,7 @@ The following items encompass the low-level goals of the system:
 \item The system can calibrate its position and orientation
 \item The system can adjust the shooting frequency
 \end{itemize}
-\section{Mid-Level Goals}
+\subsection{Mid-Level Goals}
 The following items encompass the mid-level goals of the system:
 \begin{itemize}
 \item The system can detect the boundaries of the table to determine valid shot locations on the user's side
@@ -102,7 +104,7 @@ The following items encompass the mid-level goals of the system:
 \item The system can apply spin to the shot on one axis
 \item The system can shoot at various speeds
 \end{itemize}
-\section{High-Level Goals}
+\subsection{High-Level Goals}
 The following items encompass the high-level goals of the system:
 \begin{itemize}
 \item The system can hit each square of a 16x16 grid with an accuracy of 75\%
