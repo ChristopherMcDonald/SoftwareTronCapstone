@@ -90,23 +90,23 @@ When a player wants to improve their table tennis game, a typical solution is to
 \subsubsection{Client}
 % may omit, as we are the client
 The client for this project comprises of the core development team as both the idea and the project execution will be undertaken by the team. It is also important to note the the project adviser, Dr. Alan Wassyng as well as his teaching assistants, will also be involved in the project execution in order to provide guidance and critical feedback to the project team.
-\subsubsection{Ideal Users}
+\subsubsection{Users}
 % players or coaches 
-The primary users of this project are table tennis players. Our proposed system will adapt to various playing styles and levels, and hence segmenting those players down further is not required. The primary customers are more likely to play competitively, but could also play recreationally with friends or within a club focused around the sport. \\\\
+The primary users of this project are table tennis players. Our proposed system will adapt to various playing styles and levels, and hence segmenting those players down further is not required. These users are more likely to play competitively, but could also play recreationally with friends or within a club focused around the sport. \\\\
 The secondary users of this project are table tennis coaches. Although this system could replace a coach, a coach could find value in using this system to aid in training and assist multiple players at one time. The system will provide analytics on players performance that can be very useful when training someone over a long period of time.
 % omitted > \subsubsection{Other Stakeholders}
 \subsection{Mandated Constraints}
 % anything which constrains our solutions from external parties
-The first constraint placed on the project is time. The deliverable dates and presentation dates have been set, with the last day commencing on April 28, 2018. Therefore, the team must successfully submit all of the deliverables and complete the project by April 28th, 2018. Additionally, a budget constraint of \$750 on the Bill of Materials (BOM) of the final product is also implied.
+The first constraint placed on the project is time. The deliverable dates and presentation dates have been set, with the last day commencing on April 28, 2018. Therefore, the team must successfully submit all of the deliverables and complete the project by April 28th, 2018. Additionally, a budget constraint of \$750 on the Bill of Materials (BOM) of the final product is also enforced.
 % TODO add more
 \subsection{Naming Conventions and Terminology}
 % how we plan to name things
 The following terms and definitions will be used throughout this document:
 \begin{itemize}
-\item \textbf{System}: Includes both the hardware and software aspects of the project.
-\item \textbf{Team}: All team members of the core capstone project team. The members are Christopher McDonald, Harit Patel, Janak Patel, Jared Rayner, Nisarg Patel, Sam Hamel, Sharon Platkin.
-\item \textbf{User Side}: The side of the table where the user (player) is standing.
-\item \textbf{System Side}: The side of the table where the electromechanical system is placed. It is the opposite side of the User Side.
+\item \textbf{System}: includes both the hardware and software aspects of the project
+\item \textbf{Team}: all team members of the core capstone project team, as noted in the list of Authors
+\item \textbf{User Side}: the side of the table where the user (player) is standing
+\item \textbf{System Side}: the side of the table where the electromechanical system is placed; it is the opposite side of the User Side
 \end{itemize}
 \begin{figure}[htbp]
    \centering
@@ -115,7 +115,7 @@ The following terms and definitions will be used throughout this document:
    \label{fig:table-tennis-top-view}
 \end{figure}
 \subsection{Relevant Facts and Assumptions}
-According to the International Table Tennis Federation (ITTF), the regulation table size is as follows: 2.74m long, 1.525m wide and 0.76m high off the ground. The table must be a uniformly dark in colour with a 2cm-thick white line along the edge of the table, as well one running parallel to the 2.74m side in the middle of the table. The net in the middle of the table must be 15.25cm vertically high from the table. A 3D representation of the table setup is illustrate in Figure \ref{fig:table-tennis-dim}.
+According to the International Table Tennis Federation (ITTF), the regulation table size is as follows: 2.74m long, 1.525m wide and 0.76m high off the ground. The table must be a uniformly dark colour with a 2cm-thick white line along the edge of the table, as well one running parallel to the 2.74m side in the middle of the table. The net in the middle of the table must be 15.25cm vertically high from the table. A 3D representation of the table setup is illustrate in Figure \ref{fig:table-tennis-dim}.
 \begin{figure}[htbp]
    \centering
    \includegraphics[width=0.7\textwidth]{../img/table-tennis-dim.png} % requires the graphicx package
@@ -123,7 +123,7 @@ According to the International Table Tennis Federation (ITTF), the regulation ta
    \label{fig:table-tennis-dim}
    % The Laws of Table Tennis. ITTF Handbook 2016. www.ittf.com/ittf_handbook/ittf_hb.html
 \end{figure} \\
-During a singles gameplay, a valid serve must hit the server's side first, and then bounce once on the other player's side before being returned. After that is done, a valid return would be when the ball is hit by a player, after bouncing exactly once on their side, and bounces at least one time on the opposing player's side. If a serve touches the net and lands on the opposing player's side, it is a \textit{let}. No points are allocated and the turn must be re-served.
+During a gameplay, a valid serve must hit the server's side first, and then bounce once on the other player's side before being returned. After that is done, a valid return would be when the ball is hit by a player, after bouncing exactly once on their side, and bounces at least one time on the opposing player's side. If a serve touches the net and lands on the opposing player's side, it is a \textit{let}. No points are allocated and the turn must be re-served.
 % TODO add user chars?
 \section{Functional Requirements}
 
