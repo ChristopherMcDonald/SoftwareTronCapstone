@@ -4,8 +4,9 @@
 
 \usepackage{graphicx}   
 \usepackage{amssymb}
+\usepackage{float}
 \usepackage{tabularx}
-\usepackage{../latex/framed}
+\usepackage{framed}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -75,6 +76,7 @@
    10/06/2017 & 0 & Made Template, added sections and comments & Christopher McDonald \\ \hline
    10/13/2017 & 1 & Added Overview and reviewed & Christopher McDonald \& Sharon Platkin \\ \hline
    10/13/2017 & 2 & Reviewed and Corrected Project Drivers section & Nisarg Patel \\ \hline
+   10/20/2017 & 3 & Functional Requirements & Christopher McDonald \& Sharon Platkin \\ \hline
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -110,7 +112,7 @@ The following terms and definitions will be used throughout this document:
 \end{itemize}
 \begin{figure}[htbp]
    \centering
-   \includegraphics[width=1\textwidth]{../img/Table-Tennis-Top-View.png} % requires the graphicx package
+   \includegraphics[width=1\textwidth]{img/Table-Tennis-Top-View.png} % requires the graphicx package
    \caption{Top View of the Tennis Table}
    \label{fig:table-tennis-top-view}
 \end{figure}
@@ -118,7 +120,7 @@ The following terms and definitions will be used throughout this document:
 According to the International Table Tennis Federation (ITTF), the regulation table size is as follows: 2.74m long, 1.525m wide and 0.76m high off the ground. The table must be a uniformly dark colour with a 2cm-thick white line along the edge of the table, as well one running parallel to the 2.74m side in the middle of the table. The net in the middle of the table must be 15.25cm vertically high from the table. A 3D representation of the table setup is illustrate in Figure \ref{fig:table-tennis-dim}.
 \begin{figure}[htbp]
    \centering
-   \includegraphics[width=0.7\textwidth]{../img/table-tennis-dim.png} % requires the graphicx package
+   \includegraphics[width=0.7\textwidth]{img/table-tennis-dim.png} % requires the graphicx package
    \caption{3D Tennis Table with Dimensions}
    \label{fig:table-tennis-dim}
    % The Laws of Table Tennis. ITTF Handbook 2016. www.ittf.com/ittf_handbook/ittf_hb.html
@@ -128,25 +130,210 @@ During a gameplay, a valid serve must hit the server's side first, and then boun
 \section{Functional Requirements}
 
 \subsection{The Scope of the Work and the Product}
-
+In order to make the project feasible within the time constraint imposed on the team, it will need to be scoped accordingly. One way we are scoping the project is by limiting the types of shots the system can take. A return by the system would first contact the table on the \textit{User's side} where a serve would first contact the table on the \textit{System's side}. We are limiting the system to only preform returns which excludes serves. The system will also make no attempt at returning any shots returned by the user. \\\\
+After the user has returned a shot from the system, the system will not make any attempts to return a shot that is likely to be returned given the user's returns. This is to give the system the ability to focus on a particular type of shot the user is the least proficient at returning.
 \subsubsection{The Context of the Work}
 % no idea what this means tbh
 \subsubsection{Work Partitioning}
-% what works gets done where, really to do with third parties
+% what works gets done where, really to do with third parties I think
 \subsubsection{Individual Product Use Cases}
+The actors which will be interacting with the system are the \textbf{trainee}, the \textbf{coach} and the \textbf{system administrator}. It is not necessary for a coach to be present, but they will have the ability to use the system alongside the trainee. See Figure \ref{fig:usecase} for the use case diagram. The following list contains all primary use cases:
+\begin{itemize}
+\item A trainee enters their login information
+\item If the login information is correct, a trainee opens their training session on the system
+\item A trainee begins the training session
+\item A trainee selects a training mode
+\item A trainee pauses the training session
+\item When the system is paused, a trainee ends the training session
+\item A trainee inspects their performance
+\end{itemize}
+The following are secondary use cases:
+\begin{itemize}
+\item A coach inspects trainee's performance
+\item A coach adjusts training parameters during training session
+\item A system administrator calibrates the system for new tables of a non-regulation size
+\end{itemize}
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.7\textwidth]{diagrams/UseCase.png}
+   \caption{Use Case Diagram}
+   \label{fig:usecase}
+\end{figure}
 
 \subsection{Functional Requirements}
-
+%list of FR: shoot ball, analyze return, 
+%template, don't remove for now:
 \begin{framed}
-	\noindent\textbf{Requirement \#}: -5 \hfill \textbf{Requirement Type}: F \hfill\\\\
-	\noindent\textbf{Description}: This is an example, TODO remove!  \\
-	\textbf{Rationale}: Why does this req exist, why is it REQUIRED? \\
-	\textbf{Fit Criterion}: When is it satisfied? \\\\
-	\textbf{Originator}: Christopher McDonald \\\\
+	\noindent\textbf{Requirement \#}: 0 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Description}:  \\
+	\textbf{Rationale}: \\
+	\textbf{Fit Criterion}: \\\\
+	\textbf{Originator}: \\\\
 	\textbf{Priority}: High/Med/Low \hfill \\
-	\noindent\textbf{History}: Created 13-OCT-2017
+	\noindent\textbf{History}: Created 
 \end{framed}
 
+%Shooting the ball
+\begin{framed}
+	\noindent\textbf{Requirement \#}: 0 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Description}: The system shoots the table tennis ball towards the user's side of table at various locations \\
+	\textbf{Rationale}: Provides variability in the shots made towards the user \\
+	\textbf{Fit Criterion}: The system can hit a specified element on a 4x4 grid with an accuracy of 75\%\\\\
+	\textbf{Originator}: Sharon Platkin \\\\
+	\textbf{Priority}: High \hfill \\
+	\noindent\textbf{History}: Created Oct. 20, 2017
+\end{framed}
+
+\begin{framed}
+	\noindent\textbf{Requirement \#}: 1 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Description}: The system shoots the table tennis ball towards the user's side of table at various speeds \\
+	\textbf{Rationale}: Provides variability in the shots made towards the user \\
+	\textbf{Fit Criterion}: The system can shoot at speeds ranging from 3 to 6 m/s at discrete increments of 0.25 \\\\
+	\textbf{Originator}: Sharon Platkin \\\\
+	\textbf{Priority}: High \hfill \\
+	\noindent\textbf{History}: Created Oct. 20, 2017
+\end{framed}
+
+\begin{framed}
+	\noindent\textbf{Requirement \#}: 2 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Description}: The system shoots the table tennis ball towards the user's side of table at various degrees of yaw \\
+	\textbf{Rationale}: Provides variability in the shots made towards the user \\
+	\textbf{Fit Criterion}: The system can shoot the ball at -45 and 45 degrees relative to the longest bisection of the table\\\\ % TODO maybe reword
+	\textbf{Originator}: Sharon Platkin \\\\
+	\textbf{Priority}: High \hfill \\
+	\noindent\textbf{History}: Created Oct. 20, 2017
+\end{framed}
+
+\begin{framed} % TODO renumber everything
+	\noindent\textbf{Requirement \#}: 2 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Description}: The system shoots the table tennis ball towards the user's side of table at various degrees of pitch \\
+	\textbf{Rationale}: Provides variability in the shots made towards the user \\
+	\textbf{Fit Criterion}: The system can shoot the ball at 0 to 55 degrees relative to the table's surface\\\\
+	\textbf{Originator}: Sharon Platkin \\\\
+	\textbf{Priority}: High \hfill \\
+	\noindent\textbf{History}: Created Oct. 20, 2017
+\end{framed}
+
+\begin{framed} % TODO add figure for x, y and z
+	\noindent\textbf{Requirement \#}: 3 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Description}: The system shoots the table tennis ball towards the user's side of the table with spin along 2 axes \\
+	\textbf{Rationale}: Provides variability in the shots made towards the user \\
+	\textbf{Fit Criterion}: The system can spin the ball at 0 to 360 degrees at discrete increments of 45 degrees along the face of the x-axis \\\\
+	\textbf{Originator}: Sharon Platkin \\\\
+	\textbf{Priority}: High \hfill \\
+	\noindent\textbf{History}: Created Oct. 20, 2017
+\end{framed}
+
+\begin{framed}
+	\noindent\textbf{Requirement \#}: 4 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Description}: The system can detect a successful return by the user \\
+	\textbf{Rationale}: Allows quantitative information to be collected on the user's performance \\
+	\textbf{Fit Criterion}: The system must detect 90\% of all successful returns made by the user\\\\
+	\textbf{Originator}: Sharon Platkin \\\\
+	\textbf{Priority}: High \hfill \\
+	\noindent\textbf{History}: Created Oct. 20, 2017
+\end{framed}
+
+\begin{framed}
+	\noindent\textbf{Requirement \#}: 5 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Description}: The system saves the details for each shot taken by the shooting mechanism \\
+	\textbf{Rationale}: Serves the purpose of giving feedback and resuming sessions over time \\
+	\textbf{Fit Criterion}: After each shot is returned, a durable save is performed \\\\
+	\textbf{Originator}: Christopher McDonald \\\\
+	\textbf{Priority}: TODO \hfill \\
+	\noindent\textbf{History}: Created Oct. 20, 2017
+\end{framed}
+
+\begin{framed}
+	\noindent\textbf{Requirement \#}: 6 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Description}: The system reads past performance details for the active user if they exist \\
+	\textbf{Rationale}: This will allow the user to continue a training session at different times, even if the system is powered down \\
+	\textbf{Fit Criterion}: \\\\
+	\textbf{Originator}: Christopher McDonald \\\\
+	\textbf{Priority}: TODO \hfill \\
+	\noindent\textbf{History}: Created Oct. 20, 2017
+\end{framed}
+
+\begin{framed}
+	\noindent\textbf{Requirement \#}: 7 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Description}: The system allows the creation of a new user \\
+	\textbf{Rationale}: This allows many users to use one system \\
+	\textbf{Fit Criterion}: A user must be able to be created, provided the information given is sufficient \\\\
+	\textbf{Originator}: Christopher McDonald \\\\
+	\textbf{Priority}: TODO \hfill \\
+	\noindent\textbf{History}: Created Oct. 20, 2017
+\end{framed}
+
+\begin{framed}
+	\noindent\textbf{Requirement \#}: 8 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Description}: The system must authenticate users \\
+	\textbf{Rationale}: This will ensure a user can access their profile and restrict other users from accessing their profile \\
+	\textbf{Fit Criterion}: \\\\
+	\textbf{Originator}: Christopher McDonald \\\\
+	\textbf{Priority}: TODO \hfill \\
+	\noindent\textbf{History}: Created Oct. 20, 2017
+\end{framed}
+
+\begin{framed}
+	\noindent\textbf{Requirement \#}: 9 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Description}: The system can pause the shooting mechanism \\
+	\textbf{Rationale}: A user may need to attend other matters during training or get real-time feedback from the system \\
+	\textbf{Fit Criterion}: After instantiating the pause process, the system does not shoot any more balls \\\\
+	\textbf{Originator}: Christopher McDonald \\\\
+	\textbf{Priority}: TODO \hfill \\
+	\noindent\textbf{History}: Created Oct. 20, 2017
+\end{framed}
+
+\begin{framed}
+	\noindent\textbf{Requirement \#}: 10 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Description}: The system can end the training session \\
+	\textbf{Rationale}: This will be used when a user is done training \\
+	\textbf{Fit Criterion}: \\\\
+	\textbf{Originator}: Christopher McDonald \\\\
+	\textbf{Priority}: TODO \hfill \\
+	\noindent\textbf{History}: Created Oct. 20, 2017
+\end{framed}
+
+\begin{framed}
+	\noindent\textbf{Requirement \#}: 11 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Description}: The system can display the user's performance over a determined time range \\
+	\textbf{Rationale}: \\
+	\textbf{Fit Criterion}: \\\\
+	\textbf{Originator}: Christopher McDonald \\\\
+	\textbf{Priority}: TODO \hfill \\
+	\noindent\textbf{History}: Created Oct. 20, 2017
+\end{framed}
+
+\begin{framed}
+	\noindent\textbf{Requirement \#}: 12 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Description}: The system has different training modes \\
+	\textbf{Rationale}: \\
+	\textbf{Fit Criterion}: \\\\
+	\textbf{Originator}: Christopher McDonald \\\\
+	\textbf{Priority}: TODO \hfill \\
+	\noindent\textbf{History}: Created Oct. 20, 2017
+\end{framed}
+
+\begin{framed}
+	\noindent\textbf{Requirement \#}: 13 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Description}: The system allows a user to adjust training parameters during a session which is active or paused \\
+	\textbf{Rationale}: A coach may want to push a player to train in a particular area \\
+	\textbf{Fit Criterion}:  \\\\
+	\textbf{Originator}: Christopher McDonald \\\\
+	\textbf{Priority}: TODO \hfill \\
+	\noindent\textbf{History}: Created Oct. 20, 2017
+\end{framed}
+
+\begin{framed}
+	\noindent\textbf{Requirement \#}: 14 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Description}: The system can be calibrated for the table tennis table \\
+	\textbf{Rationale}: \\
+	\textbf{Fit Criterion}: \\\\
+	\textbf{Originator}: Christopher McDonald \\\\
+	\textbf{Priority}: TODO \hfill \\
+	\noindent\textbf{History}: Created Oct. 20, 2017
+\end{framed}
 
 \section{Non-Functional Requirements}
 
