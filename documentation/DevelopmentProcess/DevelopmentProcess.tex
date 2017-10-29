@@ -1,0 +1,150 @@
+\documentclass[11pt]{article} 
+\usepackage{geometry}
+\geometry{letterpaper}
+
+\usepackage{graphicx}   
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{../latex/framed}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=blue
+}
+
+\usepackage[english]{babel}
+
+\begin{document}
+
+\begin{titlepage}
+	\newcommand{\HRule}{\rule{\linewidth}{0.2mm}}
+	\begin{center}
+	\textsc{\LARGE McMaster University}\\[1.5cm]
+	
+	\textsc{\Large SmartServe}\\[0.5cm]
+	\textsc{\large Software \& Mechatronics Capstone}\\[0.5cm] 
+
+	\HRule\\[0.4cm]
+		{\huge\bfseries Development Process \& Implementation}\\[0.4cm]
+	\HRule\\[0.4cm]
+	
+	\begin{minipage}[t][][t]{0.5\textwidth}
+		\begin{flushleft} \large
+			\emph{Authors:}\\
+			Christopher McDonald\\
+			Harit Patel \\
+			Janak Patel \\
+			Jared Rayner  \\
+			Nisarg Patel  \\
+			Sam Hamel \\
+			Sharon Platkin \\
+		\end{flushleft}
+	\end{minipage}
+	~
+	\begin{minipage}[t][][t]{0.4\textwidth}
+		\begin{flushright} \large
+			\emph{Professor:} \\
+			Dr. Alan Wassyng \\[0.4cm]
+			\emph{Teaching Assistants:} \\
+			Bennett Mackenzie \\ 
+			Nicholas Annable \\ 
+			Stephen Wynn-Williams \\ 
+			Viktor Smirnov
+		\end{flushright}
+	\end{minipage}\\[2cm]
+	
+	\includegraphics[width=0.3\textwidth]{logo.png} \\
+	{\large Last compiled on \today}
+	\end{center}
+
+\end{titlepage}
+
+\tableofcontents
+\listoffigures
+
+\vfill
+\begin{figure}[htbp]
+   \centering
+   \noindent\begin{tabularx}{\textwidth}{| >{\centering\arraybackslash}m{0.2\textwidth} | >{\centering\arraybackslash}m{0.2\textwidth} | >{\centering\arraybackslash}m{0.2\textwidth} | >{\centering\arraybackslash}m{0.285\textwidth} |}
+   \hline 
+   \textbf{Date} & \textbf{Revision} & \textbf{Comments} & \textbf{Author(s)} \\
+   \hline
+   October 28, 2017 & 1.0 & Added structure and content & Christopher McDonald \\ \hline
+   \end{tabularx}
+   \caption{Revision History}
+\end{figure}
+
+\newpage
+
+\section{Introduction}
+\subsection{Project Overview}
+\subsection{Naming Conventions \& Terminology}
+\begin{itemize}
+\item \textbf{Git}: a distributed versioning control system
+\item \textbf{Master Branch}: the main branch of the GitHub repository
+\item \textbf{Pull Request}: a request to add changes from one branch into another done via a merge commit or rebase
+\item \textbf{Slack}: a messaging platform for teams to subscribe and publish to channels or send messages between two or more team members
+\item \textbf{DevOps}: development operations
+\end{itemize}
+
+\section{Team Members}
+The team members are as follows:
+\begin{itemize}
+\item Christopher McDonald
+\item Harit Patel
+\item Janak Patel
+\item Jared Rayner
+\item Nisarg Patel
+\item Sam Hamel
+\item Sharon Platkin
+\end{itemize}
+In addition to the list above, Dr. Alan Wassyng will be the Project Advisor. He will be assisted by Bennett Mackenzie, Nicholas Annable, Stephen Wynn-Williams and Viktor Smirnov for marking and providing advice to the team.
+\subsection{Roles \& Responsibilities}
+See Table \ref{rr} for a breakdown of roles \& responsibilities.
+\begin{table}[H]
+\centering
+\caption{Roles \& Responsibilities Breakdown} 
+\label{rr}
+\begin{tabularx}{\textwidth}{| X | X | X |}
+\hline
+Role & Member(s) & Responsibility \\ \hline
+Scribe & Sharon Platkin & Taking notes for all meetings \newline Posting notes to Slack after meetings  \\ \hline
+DevOps Developer & Christopher McDonald & Solving issues related to GitHub \newline Configuring CI Tools \newline Merging code changes into the \textit{master} branch  \\ \hline
+Team Contact & Christopher McDonald & Handle a majority of communication with Project Advisor and Teaching Assistants \\ \hline
+Hardware Team Member & Janak Patel \newline Jared Rayner \newline Nisarg Patel & Handle most hardware focused work tasks \\ \hline
+Software Team Member & Christopher McDonald \newline Harit Patel \newline Sam Hamel \newline Sharon Platkin & Handle most software focused work tasks \\ \hline
+\end{tabularx}
+\end{table}
+\subsection{Meeting Schedule}
+The team currently has weekly meetings scheduled on Tuesdays at 16:30 and Fridays at 16:30 for a duration of 50 minutes. Every member of the team is expected to attend. Every other Tuesday meeting must cover reflecting on the previous 2 weeks and planning the following 2 weeks for what work needs to be done in that time. All other meetings will be for progress updates, clarifying any work going forward and removing roadblocks which inhibit optimal performance. \\ \\
+The Hardware and Software team will schedule meetings on an ad-hoc basis, inviting any members which have a stake in the content being discussed. In the event Sharon Platkin is not present and therefore cannot be the Scribe, a member will be elected by and among the attendees.
+\subsection{Communication Pipelines}
+All inter-team communication will be done through Slack. This will allow team members to communicate via channels or groups. Examples of the channels currently used are \textit{hardware}, \textit{software}, \textit{documentation}, \textit{meetings}, \textit{deliverables} and \textit{git}. The \textit{git} channel will give updates on open PRs and the \textit{deliverables} channel gives reminders 2 days ahead of all deliverable deadlines. Meeting notes will be posted in the \textit{meetings} channel. \\ \\
+When communicating with the TAs or Project Advisor, email will be used and the Team Contact will relay all relevant information to all other team members.
+\subsection{Handling Change}
+In the event any aspect of the project must be changed, all members can be involved in the decision making. In the absence of a unanimous decision, the team must decide if the change is paramount to the outcome of the project. If not, the decision will be left to a vote by all meeting attendees. If so, a teaching assistant will be involved in the decision making to aid in arriving to a unanimous decision. The Project Advisor will also be involved at the discretion of the teaching assistant. \\ \\
+Once the change has been decided, all documentation and code changes will be given the highest priority to reflect the change made. This will ensure no further work will be done using documentation or code that does not reflect the team's ideals.
+\section{Version Control}
+The technology used for version control will be \textit{git}. The \textit{git} repository will be hosted by GitHub and can be found \href{https://github.com/ChristopherMcDonald/SoftwareTronCapstone}{here}. The workflow we will be using is a feature-branch workflow with the addition of a two-stage release process. For all releases, changes will be made via a Pull Request (PR) into the \textit{master} branch from the \textit{dev} branch. Therefore, any demonstrations and deliverables can be found by checking out the \textit{master} branch. When making any changes, an ad-hoc branch will be made off the \textit{dev} branch. Once completed, a PR can be made from that branch into the \textit{dev} branch. This pertains to documentation and source code. A flowchart for this can be found in Figure \ref{fig:git}.
+\begin{figure}[htbp]
+   \centering
+   \includegraphics{img/git.png} % requires the graphicx package
+   \caption{Feature-Branch and Dev Git Workflow}
+   \label{fig:git}
+\end{figure}
+\section{Process Workflow}
+In order to facilitate the development of the system, work will be organized into 2-week long sessions. At the beginning of the week, the team will consider the next 2-3 deliverables and schedule them in accordingly. The team will attempt to finish each deliverable a week or more before the deadline. This allows the team to be ahead of schedule and gives them the ability to respond to other items should they arise. During meetings before the end of each 2-week session, any priorities will be adjusted as needed. When the work session is completed, items will be placed into the next session or placed in the backlog until the next session.
+\section{Onboarding Process}
+The following administrative work must be done to onboard another team member:
+\begin{itemize}
+\item Invite them to Slack team
+\item Share team's Google Calendar with them
+\item Add them as a collaborator on GitHub
+\item Add them to the list of authors on the documentation template
+\end{itemize}
+The new member will be expected to read all current revisions of documentation made for the project. Any questions which arise can be asked during meetings or on Slack. After a comprehensive understanding of the project, tasks can be assigned to them and any education will be done on an ad-hoc basis.
+\end{document}  
