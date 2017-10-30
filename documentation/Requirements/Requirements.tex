@@ -100,27 +100,31 @@
 
 \section{Introduction}
 \subsection{Project Overview}
-%TODO: write
+SmartServe is an autonomous table tennis training system for a wide range of table tennis players to aid in diagnosing and improving their performance. The system does so by shooting balls toward the player and detecting successful returns. It can then adapt to the player's weaknesses and expose them to the player over time. This alleviates problems of a player finding and working with a coach or a coach training many players in a short amount of time. The system will be deemed a success if table tennis players enjoy and can see value in using our system in place of or in tandem to a coach.\\\\
+The development started at the beginning of the Fall 2017 academic term and will conclude at the end of the Winter 2018 term. The team was assembled in the capstone course for both Software and Mechatronics Engineering disciplines. 
 \subsection{Naming Conventions and Terminology}
+\label{sec:definitions}
 % how we plan to name things
 The following terms and definitions will be used throughout this document:
 \begin{itemize}
-\item \textbf{System}: includes both the hardware and software aspects of the project
-\item \textbf{Team}: all team members of the core capstone project team, as noted in the list of Authors
+\item \textbf{System}: includes both the hardware and software aspects of SmartServe
+\item \textbf{Shooting Mechanism}: refers to the part of the system that shoots balls only
+\item \textbf{Team}: all team members of the core capstone project, as noted in the list of Authors
 \item \textbf{User Side}: the side of the table where the user (player) is standing
 \item \textbf{System Side}: the side of the table where the electromechanical system is placed; it is the opposite side of the User Side
 \item \textbf{ACID}: a database transaction which is atomic, consistent, isolated and durable
 \item \textbf{FPS}: frames per second
+\item \textbf{GUI}: graphical user interface
 \end{itemize}
 \begin{figure}[H]
    \centering
-   \includegraphics[width=\textwidth]{img/table-tennis-top-view.jpeg} %requires the graphicx package
+   \includegraphics[width=1\textwidth]{img/table-tennis-top-view.jpeg} %requires the graphicx package
    \caption{Top View of the Tennis Table}
    \label{fig:table-tennis-top-view}
 \end{figure}
 
 \subsection{Relevant Facts \& Assumptions}
-According to the International Table Tennis Federation (ITTF), the regulation table size is as follows: 2.74m long, 1.525m wide and 0.76m high off the ground. The table must be a uniformly dark colour with a 2cm-thick white line along the edge of the table, as well one running parallel to the 2.74m side in the middle of the table. The net in the middle of the table must be 15.25cm vertically high from the table. A 3D representation of the table setup is illustrate in Figure \ref{fig:table-tennis-dim}. The size of a regulated table tennis ball can be either 37mm or 40mm depending on the regulation body. For this project, the team will be using 40mm balls and recommends users to do the same for optimal performance. \\
+According to the International Table Tennis Federation (ITTF), the regulation table size is as follows: 2.74m long, 1.525m wide and 0.76m high off the ground. The table must be a uniformly dark colour with a 2cm-thick white line along the edge of the table, as well one running parallel to the 2.74m side in the middle of the table. The net in the middle of the table must be 15.25cm vertically high from the table. A 3D representation of the table setup is illustrate in Figure \ref{fig:table-tennis-dim}. The size of a regulated table tennis ball can be either 37mm or 40mm depending on the regulation body. For this project, the \hyperref[sec:definitions]{team} will be using 40mm balls and recommends users to do the same for optimal performance. \\
 \begin{figure}[htbp]
    \centering
    \includegraphics[width=0.7\textwidth]{img/table-tennis-dim.png} % requires the graphicx package
@@ -134,25 +138,25 @@ During gameplay, a valid serve must hit the server's side first, and then bounce
 \section{Project Drivers}
 \subsection{Purpose}
 % should include problem, lack of current solutions and ideal solution
-When a player wants to improve their table tennis game, a typical solution is to hire a coach. However, this does not come without its challenges. Some of these challenges include scheduling, focusing on particular shots and receiving in-depth statistical feedback. Our proposed solution will consist of a shooting mechanism, a way to identify successful returns and a system to recommend different shots. Throughout the training session, the system will provide the user with crucial feedback on the quality of their game. The system will consist of a electromechanical system to shoot the ball and a computer vision system to track the ball's location during flight. A server will also be added to store data, provide diagnostics and recommend shots given the user's past performance.
+When a player wants to improve their table tennis game, a typical solution is to hire a coach. However, this does not come without its challenges. Some of these challenges include scheduling, focusing on particular shots and receiving in-depth statistical feedback. Our proposed solution will consist of a shooting mechanism, a way to identify successful returns and a system to recommend different shots. Throughout the training session, the \hyperref[sec:definitions]{system} will provide the user with crucial feedback on the quality of their game. The \hyperref[sec:definitions]{system} will consist of a electromechanical system to shoot the ball and a computer vision system to track the ball's location during flight. A server will also be added to store data, provide diagnostics and recommend shots given the user's past performance.
 \subsection{Key Stakeholders}
 \subsubsection{Client}
-The client for this project comprises of the core development team as both the idea and the project execution will be undertaken by the team. It is also important to note that the project adviser, Dr. Alan Wassyng as well as his teaching assistants, will also be involved in the project execution in order to provide guidance and critical feedback to the project team.
+The client for this project comprises of the core development \hyperref[sec:definitions]{team} as both the idea and the project execution will be undertaken by the \hyperref[sec:definitions]{team}. It is also important to note that the project adviser, Dr. Alan Wassyng as well as his teaching assistants, will also be involved in the project execution in order to provide guidance and critical feedback to the project \hyperref[sec:definitions]{team}.
 \subsubsection{Users}
-The primary users of this project are table tennis players. Our proposed system will adapt to various playing styles and levels, and hence segmenting those players down further is not required at this stage. These users are more likely to play competitively, but could also play recreationally with friends or within a club focused around the sport. \\\\
-The secondary users of this project are table tennis coaches. Although this system could replace a coach, a coach could find value in using this system to aid in training and assisting multiple players at one time. The system will provide analytics on players performance that can be very useful when training someone over a long period of time.
+The primary users of this project are table tennis players. Our proposed \hyperref[sec:definitions]{system} will adapt to various playing styles and levels, and hence segmenting those players down further is not required at this stage. These users are more likely to play competitively, but could also play recreationally with friends or within a club focused around the sport. \\\\
+The secondary users of this project are table tennis coaches. Although this \hyperref[sec:definitions]{system} could replace a coach, a coach could find value in using this system to aid in training and assisting multiple players at one time. The system will provide analytics on players performance that can be very useful when training someone over a long period of time.
 \subsubsection{Faculty}
-The Department of Computing and Software is also a key stakeholder for this project. The development team are students of this department and would thus represent it through the work they perform. This project is also the amalgamation of the knowledge attained by the team over their undergraduate degrees. If the project is unsuccessful, the department loses the opportunity to showcase it for future students and donors.
+The Department of Computing and Software is also a key stakeholder for this project. The development \hyperref[sec:definitions]{team} are students of this department and would thus represent it through the work they perform. This project is also the amalgamation of the knowledge attained by the \hyperref[sec:definitions]{team} over their undergraduate degrees. If the project is unsuccessful, the department loses the opportunity to showcase it for future students and donors.
 
 \section{Project Scope}
 \subsection{The Scope of the Work and the Product}
-In order to make the project feasible within the time constraint imposed on the team, it will need to be scoped accordingly. One way we are scoping the project is by limiting the types of shots the system can take. A return by the system would first contact the table on the \textit{User's side} where a serve would first contact the table on the \textit{System's side}. We are limiting the system to only preform returns which excludes serves. The system will also make no attempt at returning any shots returned by the user. \\\\
+In order to make the project feasible within the time constraint imposed on the \hyperref[sec:definitions]{team}, it will need to be scoped accordingly. One way we are scoping the project is by limiting the types of shots the \hyperref[sec:definitions]{system} can take. A return by the system would first contact the table on the \textit{User's side} where a serve would first contact the table on the \textit{System's side}. We are limiting the system to only preform returns which excludes serves. The system will also make no attempt at returning any shots returned by the user. \\\\
 After the user has returned a shot from the system, the system will not make any attempts to return a shot that is likely to be returned given the user's returns. This is to give the system the ability to focus on a particular type of shot the user is the least proficient at returning. The characteristics of the shot following any return will be determined by the system's mode and the proficiency of the player if required and available.
 \subsubsection{Individual Product Use Cases}
 The actors which will be interacting with the system are the \textbf{trainee}, the \textbf{coach} and the \textbf{system administrator}. It is not necessary for a coach to be present, but they will have the ability to use the system alongside the trainee. See Figure \ref{fig:usecase} for the use case diagram. The following list contains all primary use cases:
 \begin{itemize}
 \item A trainee enters their login information
-\item If the login information is correct, a trainee opens their training session on the system
+\item If the login information is correct, a trainee opens their training session on the \hyperref[sec:definitions]{system}
 \item A trainee begins the training session
 \item A trainee selects a training mode
 \item A trainee pauses the training session
@@ -173,14 +177,20 @@ The following are secondary use cases:
    \label{fig:usecase}
 \end{figure}
 \subsection{Mandated Constraints}
-The first constraint placed on the project is time. The deliverable and presentation dates have been set, concluding with the presentations booked for April 28, 2018. Therefore, the team must successfully submit all of the deliverables and complete the project by April 28th, 2018. Additionally, a budget constraint of \$750 on the Bill of Materials (BOM) of the final product is also enforced.
+The first constraint placed on the project is time. The deliverable and presentation dates have been set, concluding with the presentations booked for April 28, 2018. Therefore, the \hyperref[sec:definitions]{team} must successfully submit all of the deliverables and complete the project by April 28th, 2018. Additionally, a budget constraint of \$750 on the Bill of Materials (BOM) of the final product is also enforced.
 \subsection{Unexpected Behaviour} 
-The shooting mechanism should not start, pause or end a session without the user triggering the event. The system must also refrain from shooting the ball outside the speed and angle ranges specified. Furthermore, the system is not expected to run out of balls to shoot in the middle of a shooting session. \\\\
-
+The shooting mechanism should not start, pause or end a session without the user triggering the event. The \hyperref[sec:definitions]{system} must also refrain from shooting the ball outside the speed and angle ranges specified. Furthermore, the system should not attempt to shoot balls. \\\\
+the system should attempt to shoot balls when the system runs out or something.
 
 
 
 \subsection{Context Diagram} %TODO: Harit
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=\textwidth]{diagrams/ContextDiagram.png}
+   \caption{Context Diagram}
+   \label{fig:ContextDiagram}
+\end{figure}
 
 
 \section{Functional Decomposition Diagram}
@@ -195,7 +205,7 @@ The shooting mechanism should not start, pause or end a session without the user
 
 \begin{framed}
 	\noindent\textbf{Requirement ID}: F1 \hfill \textbf{Requirement Type}: F \hfill\\\\
-	\noindent\textbf{Description}: The system shoots the table tennis ball towards the user's side of table at various locations \\
+	\noindent\textbf{Description}: The system shoots the table tennis ball towards the \hyperref[sec:definitions]{user side} at various locations \\
 	\textbf{Rationale}: Provides variability in the shots made towards the user \\
 	\textbf{Fit Criterion}: The system can hit a specified section of a 4x4 grid with an accuracy of 75\%\\\\
 	\textbf{Originator}: Sharon Platkin \\\\
@@ -205,7 +215,7 @@ The shooting mechanism should not start, pause or end a session without the user
 
 \begin{framed}
 	\noindent\textbf{Requirement ID}: F2 \hfill \textbf{Requirement Type}: F \hfill\\\\
-	\noindent\textbf{Description}: The system shoots the table tennis ball towards the user's side of table at various speeds \\
+	\noindent\textbf{Description}: The system shoots the table tennis ball towards the \hyperref[sec:definitions]{user side} at various speeds \\
 	\textbf{Rationale}: Provides variability in the shots made towards the user \\
 	\textbf{Fit Criterion}: The system can shoot at speeds ranging from 3 to 6 m/s at discrete increments of 0.25 \\\\
 	\textbf{Originator}: Sharon Platkin \\\\
@@ -215,7 +225,7 @@ The shooting mechanism should not start, pause or end a session without the user
 
 \begin{framed}
 	\noindent\textbf{Requirement ID}: F3 \hfill \textbf{Requirement Type}: F \hfill\\\\
-	\noindent\textbf{Description}: The system shoots the table tennis ball towards the user's side of table at various angles \\
+	\noindent\textbf{Description}: The system shoots the table tennis ball towards the \hyperref[sec:definitions]{user side} at various angles \\
 	\textbf{Rationale}: Provides variability in the shots made towards the user \\
 	\textbf{Fit Criterion}: The system can shoot the ball at -45 and 45 degrees relative to the longest bisection of the table at discrete increments of 1 degree\\\\
 	\textbf{Originator}: Sharon Platkin \\\\
@@ -225,7 +235,7 @@ The shooting mechanism should not start, pause or end a session without the user
 
 \begin{framed}
 	\noindent\textbf{Requirement ID}: F4 \hfill \textbf{Requirement Type}: F \hfill\\\\
-	\noindent\textbf{Description}: The system shoots the table tennis ball towards the user's side of table at various degrees of pitch \\
+	\noindent\textbf{Description}: The system shoots the table tennis ball towards the \hyperref[sec:definitions]{user side} at various degrees of pitch \\
 	\textbf{Rationale}: Provides variability in the shots made towards the user \\
 	\textbf{Fit Criterion}: The system can shoot the ball at 0 to 55 degrees relative to the table's surface at discrete increments of 1 degree\\\\
 	\textbf{Originator}: Sharon Platkin \\\\
@@ -257,7 +267,7 @@ The shooting mechanism should not start, pause or end a session without the user
 	\noindent\textbf{Requirement ID}: F7 \hfill \textbf{Requirement Type}: F \hfill\\\\
 	\noindent\textbf{Description}: The system saves the details for each shot taken by the shooting mechanism \\
 	\textbf{Rationale}: Serves the purpose of saving the state and resuming sessions over time \\
-	\textbf{Fit Criterion}: After each shot is returned, an ACID transaction takes place \\\\
+	\textbf{Fit Criterion}: After each shot is returned, an \hyperref[sec:definitions]{ACID} transaction takes place \\\\
 	\textbf{Originator}: Christopher McDonald \\\\
 	\textbf{Priority}: Medium \hfill \\
 	\noindent\textbf{History}: Created Oct. 20, 2017
@@ -365,7 +375,7 @@ The shooting mechanism should not start, pause or end a session without the user
 
 \begin{framed}
 	\noindent\textbf{Requirement ID}: F18 \hfill \textbf{Requirement Type}: F \hfill\\\\
-	\noindent\textbf{Description}: The system will shoot a ball once the previous has been returned to the system's side or 1.5 seconds after the previous shot, whichever happens first\\
+	\noindent\textbf{Description}: The system will shoot a ball once the previous has been returned to the \hyperref[sec:definitions]{system side} or 1.5 seconds after the previous shot, whichever happens first\\
 	\textbf{Rationale}: This will ensure the system is reasonably fast and keeps the user engaged, as well as compensates for more experienced players. \\
 	\textbf{Fit Criterion}: N/A \\\\
 	\textbf{Originator}: Christopher McDonald \\\\
@@ -374,14 +384,13 @@ The shooting mechanism should not start, pause or end a session without the user
 \end{framed}
 
 \section{Non-Functional Requirements}
-%TODO: FIX NUMBERS/IDS OF REQUIREMENTS
 
 \subsection{Look and Feel Requirements}
 \begin{framed}
-	\noindent\textbf{Requirement ID}: LF1 \hfill \textbf{Requirement Type}: LF \hfill\\\\
+	\noindent\textbf{Requirement ID}: LF1 \hfill\\\\
 	\noindent\textbf{Description}: The system will have a minimalist design that is easy to navigate through \\
-	\textbf{Rationale}: a minimilistic design will help with user discoverability of all the options and setup of the system  \\
-	\textbf{Fit Criterion}: The user must be able to navigate to any option from the home page in at most two steps.  \\\\
+	\textbf{Rationale}: A minimalistic design will help with user discover all the options and settings of the system  \\
+	\textbf{Fit Criterion}: The user must be able to navigate to any feature from the profile page in at most two steps.  \\\\
 	\textbf{Originator}: Sam Hamel \\\\
 	\textbf{Priority}: Medium \hfill \\
 	\noindent\textbf{History}: Created Oct. 27, 2017
@@ -389,7 +398,7 @@ The shooting mechanism should not start, pause or end a session without the user
 
 \subsection{Usability and Humanity Requirements}
 \begin{framed}
-	\noindent\textbf{Requirement ID}: UH1 \hfill \textbf{Requirement Type}: UH \hfill\\\\
+	\noindent\textbf{Requirement ID}: UH1 \hfill\\\\
 	\noindent\textbf{Description}: The system must be intuitive to use \\
 	\textbf{Rationale}: As the system is adding onto an existing process, it should not cause strain for the user to operate \\
 	\textbf{Fit Criterion}: The user must be able to create a user in less than 30 seconds. The user must be able to initiate \textit{one-shot} mode in less than 2 minutes from opening their profile.  \\\\
@@ -399,9 +408,9 @@ The shooting mechanism should not start, pause or end a session without the user
 \end{framed}
 
 \begin{framed}
-	\noindent\textbf{Requirement ID}: UH2 \hfill \textbf{Requirement Type}: UH \hfill\\\\
+	\noindent\textbf{Requirement ID}: UH2 \hfill\\\\
 	\noindent\textbf{Description}: The system will operate using the English language \\
-	\textbf{Rationale}: Development team only speaks English \\
+	\textbf{Rationale}: Development \hyperref[sec:definitions]{team} only speaks English \\
 	\textbf{Fit Criterion}: All outputs generated by the system will be in English  \\\\
 	\textbf{Originator}: Sharon Platkin \\\\
 	\textbf{Priority}: High \hfill \\
@@ -411,121 +420,88 @@ The shooting mechanism should not start, pause or end a session without the user
 \subsection{Performance Requirements}
 
 \begin{framed}
-	\noindent\textbf{Requirement ID}: P1 \hfill \textbf{Requirement Type}: P \hfill\\\\
-	\noindent\textbf{Description}: The response time of any input feedback in the gui must be at most 100ms \\
-	\textbf{Rationale}: 100 ms is the approximate maximum amount of time for the user to precieve the system is reacting instantaneously. 
+	\noindent\textbf{Requirement ID}: P1 \hfill\\\\
+	\noindent\textbf{Description}: The response time of feedback for user input must be less than or equal to 100ms \\
+	\textbf{Rationale}: 100ms is the approximate maximum amount of time for the user to perceive the system as reacting instantaneously. 
     \textit{Card et al. (1991), The information visualizer: An information workspace, Proc. ACH CHI'91 Conf. (New Orleans, LA, 28 April - 2 May), 181-188} Users should feel that all inputs have been registered by the system\\
-	\textbf{Fit Criterion}: Any click inputs that generate feedback must do so in at most 100ms. Example: a button click must indent the button in at most 100ms from the time it was clicked  \\\\
+	\textbf{Fit Criterion}: Any click inputs that generate feedback must do so in at most 100ms. Example: a button click must indent the button in at most 100ms from the time it was clicked.  \\\\
 	\textbf{Originator}: Sam Hamel \\\\
 	\textbf{Priority}: High \hfill \\
 	\noindent\textbf{History}: Created Oct. 27, 2017
 \end{framed}
 
 \begin{framed}
-	\noindent\textbf{Requirement ID}: UH3 \hfill \textbf{Requirement Type}: UH \hfill\\\\
-	\noindent\textbf{Description}: The response time of results to any gui input must be at most one second \\
-	\textbf{Rationale}: One second is the approximate limit for the user's flow of thought to stay uninterrupted
-    \textit{Card et al. (1991), The information visualizer: An information workspace, Proc. ACH CHI'91 Conf. (New Orleans, LA, 28 April - 2 May), 181-188}\\
-	\textbf{Fit Criterion}: Any click inputs by the user must generate the expected results in the gui in at most one second  \\\\
+	\noindent\textbf{Requirement ID}: P2 \hfill\\\\
+	\noindent\textbf{Description}: The update time of the user's performance must match gameplay  \\
+	\textbf{Rationale}: Live Performance feedback will allow users to see valuable information during their play sessions \\
+	\textbf{Fit Criterion}: Any results by any return from the player must be displayed on the \hyperref[sec:definitions]{GUI} before the player returns their next shot  \\\\
 	\textbf{Originator}: Sam Hamel \\\\
 	\textbf{Priority}: High \hfill \\
 	\noindent\textbf{History}: Created Oct. 27, 2017
 \end{framed}
 
 \begin{framed}
-	\noindent\textbf{Requirement ID}: UH1 \hfill \textbf{Requirement Type}: UH \hfill\\\\
-	\noindent\textbf{Description}:The display of user performance must keep up with the users actual gameplay  \\
-	\textbf{Rationale}:Live Performance feedback will allow users to see valuable information during their play sessions \\
-	\textbf{Fit Criterion}: Any results by any return from the player must be displayed on the gui before the player the player returns their next shot  \\\\
+	\noindent\textbf{Requirement ID}: P3 \hfill\\\\
+	\noindent\textbf{Description}: The shot frequency of the system shall not deviate from the users set shot frequency by more than 1 ball/s  \\
+	\textbf{Rationale}: If the shot frequency varies more than one second from what the user specified, they will be able to notice the difference \\
 	\textbf{Originator}: Sam Hamel \\\\
 	\textbf{Priority}: High \hfill \\
 	\noindent\textbf{History}: Created Oct. 27, 2017
 \end{framed}
 
 \begin{framed}
-	\noindent\textbf{Requirement ID}: UH1 \hfill \textbf{Requirement Type}: UH \hfill\\\\
-	\noindent\textbf{Description}: The shot frequncy of the system shall not vary above/below one second from the users set shot frequency  \\
-	\textbf{Rationale}:If the shot frequency varies more than one second from what the user specified, they will be able to notice the difference \\
-	\textbf{Fit Criterion}: The shooter must shoot a ball within +/- one second of the set shot frequency by the user\\\\
-	\textbf{Originator}: Sam Hamel \\\\
-	\textbf{Priority}: High \hfill \\
-	\noindent\textbf{History}: Created Oct. 27, 2017
-\end{framed}
-
-\begin{framed}
-	\noindent\textbf{Requirement ID}: UH1 \hfill \textbf{Requirement Type}: UH \hfill\\\\
-	\noindent\textbf{Description}:The system must be able to support a thousand users \\
-	\textbf{Rationale}:If the system is used by a company, they will have a large amount of users using the system  \\
-	\textbf{Fit Criterion}: The system can store up to a thousand user profiles and their accompanying performance history data  \\\\
+	\noindent\textbf{Requirement ID}: P4 \hfill\\\\
+	\noindent\textbf{Description}: The system must be able to support 1000 users \\
+	\textbf{Rationale}: If the system is used by a company, they will have a large amount of users using the system\\
+	\textbf{Fit Criterion}: The system can store up to a thousand user profiles and their accompanying performance history data \\\\
 	\textbf{Originator}: Sam Hamel \\\\
 	\textbf{Priority}: Medium \hfill \\
 	\noindent\textbf{History}: Created Oct. 27, 2017
 \end{framed}
 
 \begin{framed}
-	\noindent\textbf{Requirement ID}: UH1 \hfill \textbf{Requirement Type}: UH \hfill\\\\
-	\noindent\textbf{Description}:The system will be able to support only one user playing at a time \\
-	\textbf{Rationale}:The system will not be able to differentiate between player returns if they were more than one user playing at the same time \\
+	\noindent\textbf{Requirement ID}: P5 \\\\
+	\noindent\textbf{Description}: The system will be able to support only one user playing at a time \\
+	\textbf{Rationale}: The system will not be able to differentiate between player returns if they were more than one user playing at the same time \\
 	\textbf{Fit Criterion}: The system will work as expected for one player playing \\\\
 	\textbf{Originator}: Sam Hamel \\\\
 	\textbf{Priority}: High \hfill \\
 	\noindent\textbf{History}: Created Oct. 27, 2017
 \end{framed}
 
-\begin{framed}
-	\noindent\textbf{Requirement ID}: UH1 \hfill \textbf{Requirement Type}: UH \hfill\\\\
-	\noindent\textbf{Description}:The system will be able to perform all functions until the system is turned off\\
-	\textbf{Rationale}:Users should be able to continue using the system for however long they want\\
-	\textbf{Fit Criterion}: The system will work as expected until it is turned off or for as long as the batteries in the system will last \\\\
-	\textbf{Originator}: Sam Hamel \\\\
-	\textbf{Priority}: High \hfill \\
-	\noindent\textbf{History}: Created Oct. 27, 2017
-\end{framed}
-
-
 \subsection{Operational and Environmental Requirements}
 \begin{framed}
-	\noindent\textbf{Requirement ID}: UH1 \hfill \textbf{Requirement Type}: UH \hfill\\\\
-	\noindent\textbf{Description}:The software for the system will be able to be run on Linux, Windows and MacOS\\
+	\noindent\textbf{Requirement ID}: OE1 \hfill\\\\
+	\noindent\textbf{Description}: The software for the system will be able to be run on Linux, Windows and MacOS \\
 	\textbf{Originator}: Sam Hamel \\\\
 	\textbf{Priority}: High \hfill \\
 	\noindent\textbf{History}: Created Oct. 27, 2017
 \end{framed}
 
 \begin{framed}
-	\noindent\textbf{Requirement ID}: UH1 \hfill \textbf{Requirement Type}: UH \hfill\\\\
-	\noindent\textbf{Description}:The system will be able to be run in indoor settings with bright flourecent lighting in the room\\
+	\noindent\textbf{Requirement ID}: OE2 \\\\
+	\noindent\textbf{Description}: The system will be functional in indoor settings with bright florescent lighting in the room \\
 	\textbf{Originator}: Sam Hamel \\\\
 	\textbf{Priority}: High \hfill \\
 	\noindent\textbf{History}: Created Oct. 27, 2017
 \end{framed}
-
 
 \subsection{Maintainability and Support Requirements}
 \begin{framed}
-	\noindent\textbf{Requirement ID}: UH1 \hfill \textbf{Requirement Type}: UH \hfill\\\\
-	\noindent\textbf{Description}:The system will be able to support adding different modes to the system\\
-	\textbf{Rationale}: New modes might be deemed necessary later in development, and should be easily added into the system\\
+	\noindent\textbf{Requirement ID}: MS1 \\\\
+	\noindent\textbf{Description}: The system will be able to support adding different modes to the system\\
+	\textbf{Rationale}: New modes might be deemed necessary later in development, and should be easily added into the system \\
 	\textbf{Fit Criterion}: The system will be able to add new shooting modes into the system so long as no changes need to be made to the hardware \\\\
 	\textbf{Originator}: Sam Hamel \\\\
 	\textbf{Priority}: High \hfill \\
 	\noindent\textbf{History}: Created Oct. 27, 2017
 \end{framed}
-\begin{framed}
-	\noindent\textbf{Requirement ID}: UH1 \hfill \textbf{Requirement Type}: UH \hfill\\\\
-	\noindent\textbf{Description}:The system should be able to support swapping of computers\\
-	\textbf{Rationale}: In case something happens to the computer the system is currently using, there should be the ability to swap in a new one\\
-	\textbf{Fit Criterion}: Any computer that has the required software and that meets the same computer specifications as the one used by the system can be swapped in to be used\\\\
-	\textbf{Originator}: Sam Hamel \\\\
-	\textbf{Priority}: High \hfill \\
-	\noindent\textbf{History}: Created Oct. 27, 2017
-\end{framed}
 
 \begin{framed}
-	\noindent\textbf{Requirement ID}: UH1 \hfill \textbf{Requirement Type}: UH \hfill\\\\
-	\noindent\textbf{Description}:The system should be able to add new metrics to analyze performance\\
+	\noindent\textbf{Requirement ID}: MS2 \\\\
+	\noindent\textbf{Description}: The system should be able to add new metrics to analyze performance\\
 	\textbf{Rationale}: More efficient and appropriate methods may be found in order to analyze player performance\\
-	\textbf{Fit Criterion}: The system will be able to add new peformance metrics and analysis methods so long as no changes need to be made to the hardware\\\\
+	\textbf{Fit Criterion}: The system will be able to add new performance metrics and analysis methods so long as no changes need to be made to the hardware\\\\
 	\textbf{Originator}: Sam Hamel \\\\
 	\textbf{Priority}: High \hfill \\
 	\noindent\textbf{History}: Created Oct. 27, 2017
@@ -534,7 +510,7 @@ The shooting mechanism should not start, pause or end a session without the user
 
 \subsection{Security Requirements}
 \begin{framed}
-	\noindent\textbf{Requirement ID}: S1 \hfill \textbf{Requirement Type}: S \hfill\\\\
+	\noindent\textbf{Requirement ID}: S1 \hfill\\\\
 	\noindent\textbf{Description}: The system must hash all passwords for user profiles \\
 	\textbf{Rationale}: If the system is compromised, no person should be able to read user's passwords in plain text. \\
 	\textbf{Fit Criterion}: The system uses a hashing algorithm currently supported by NIST, the National Institute of Standards and Technology.\\\\
@@ -544,7 +520,7 @@ The shooting mechanism should not start, pause or end a session without the user
 \end{framed}
 
 \begin{framed}
-	\noindent\textbf{Requirement ID}: S2 \hfill \textbf{Requirement Type}: S \hfill\\\\
+	\noindent\textbf{Requirement ID}: S2 \hfill\\\\
 	\noindent\textbf{Description}: The system must encrypt all performance data for each user \\
 	\textbf{Rationale}: If the system is compromised, no person should be able to exploit an opponent's weaker aspects \\
 	\textbf{Fit Criterion}: The system uses an encrypting algorithm currently supported by NIST, the National Institute of Standards and Technology.\\\\
@@ -555,7 +531,7 @@ The shooting mechanism should not start, pause or end a session without the user
 
 \subsection{Political Requirements}
 \begin{framed}
-	\noindent\textbf{Requirement ID}: P1 \hfill \textbf{Requirement Type}: P \hfill\\\\
+	\noindent\textbf{Requirement ID}: P1\\\\
 	\noindent\textbf{Description}: The system must allow full read access for coaches \\
 	\textbf{Rationale}: If a coach purchases this system, they should be able to analyze all players information for training purposes \\
 	\textbf{Fit Criterion}: \\\\
@@ -563,9 +539,9 @@ The shooting mechanism should not start, pause or end a session without the user
 	\textbf{Priority}: Medium \hfill \\
 	\noindent\textbf{History}: Created Oct. 20, 2017
 \end{framed}
-\subsection{Legal Requirements}
+\subsection{Legal \& Compliance Requirements}
 \begin{framed}
-	\noindent\textbf{Requirement ID}: L1 \hfill \textbf{Requirement Type}: L \hfill\\\\
+	\noindent\textbf{Requirement ID}: LC1 \hfill\\\\
 	\noindent\textbf{Description}: The system must comply and operate for all ITTF rules and regulations \\
 	\textbf{Rationale}: ITTF mandates the acceptance of all table tennis equipment and the system should work with these to be used by professional players \\
 	\textbf{Fit Criterion}: The system must work for any 2 tables and nets which the ITTF has accepted \\\\
@@ -575,7 +551,7 @@ The shooting mechanism should not start, pause or end a session without the user
 \end{framed}
 \subsection{Health and Safety Requirements}
 \begin{framed}
-	\noindent\textbf{Requirement ID}: HS1 \hfill \textbf{Requirement Type}: HS \hfill\\\\
+	\noindent\textbf{Requirement ID}: HS1 \hfill\\\\
 	\noindent\textbf{Description}: The system will never shoot the ball without first hitting the table before hitting the table \\
 	\textbf{Rationale}: This will give the user more time and context to react to the shot \\
 	\textbf{Fit Criterion}: The system imposes limits for speed and pitch of the shot \\\\
@@ -594,9 +570,38 @@ The shooting mechanism should not start, pause or end a session without the user
 	\noindent\textbf{History}: Created Oct. 20, 2017
 \end{framed}
 
+\begin{framed}
+	\noindent\textbf{Requirement ID}: HS3 \hfill\\\\
+	\noindent\textbf{Description}: The system should have no exposed electronic wiring or components \\
+	\textbf{Rationale}: This will protect the user from electric shocks and the system from damage \\
+	\textbf{Fit Criterion}: Only by disassembling the system should wiring and components be exposed \\\\
+	\textbf{Originator}: Christopher McDonald \\\\
+	\textbf{Priority}: High \hfill \\
+	\noindent\textbf{History}: Created Oct. 28, 2017
+\end{framed}
+
+\begin{framed}
+	\noindent\textbf{Requirement ID}: HS4 \hfill\\\\
+	\noindent\textbf{Description}: The system will carry warnings around moving parts \\
+	\textbf{Rationale}: Moving parts can expose users to risk of pinching extremities \\
+	\textbf{Fit Criterion}: Warning signs are displayed at every point of risk \\\\
+	\textbf{Originator}: Christopher McDonald \\\\
+	\textbf{Priority}: High \hfill \\
+	\noindent\textbf{History}: Created Oct. 28, 2017
+\end{framed}
+
+\begin{framed}
+	\noindent\textbf{Requirement ID}: HS5 \hfill\\\\
+	\noindent\textbf{Description}: The system will have a button to cease all power to the system \\
+	\textbf{Rationale}: In the case of dangerous operation, the system must be able to be powered off \\
+	\textbf{Fit Criterion}: One button will shut down system and is labeled as such \\\\
+	\textbf{Originator}: Christopher McDonald \\\\
+	\textbf{Priority}: High \hfill \\
+	\noindent\textbf{History}: Created Oct. 28, 2017
+\end{framed}
+
 \section{Project Issues}
 \subsection{Open Issues}
-% things we know we will have a hard time doing
 Due to the nature of the project, all aspects of it must operate proficiently in order for it to be successful. For example, one potential issue would arise if no spin must be applied to the ball. This would most likely include more than one motor, all operating at the same speed. This accuracy will be difficult to achieve given the budget constraints. \\\\
 Some players may be able to hit the ball much faster than the solution we build to capture successful returns. For example, if some optical sensor is used it must be fast enough to capture the ball at the point of contact, or very close to it, in order to accurately determine if it did hit the table. \\\\
 Between shots of the system, it must determine where the next shot will be, get into the necessary position and shoot the ball. For some cases, the shot determination could take longer than usual or the distance between initial and final state could be far. This could jeopardize the system's ability to meet requirement F18.
@@ -606,12 +611,18 @@ For the second issue noted in the above section, a high speed camera could be us
 Additionally, a camera which can film up to 500fps costs as much as \$999.99.%http://www.allsportsystems.com/store_images/capturbundles.htm.php#640x480x500fps
 These would far constrain our budget, but would solve the issue should it arise. An alternative could be mat embedded with sensors, omitting all optical sensor requirements. A mat which is roughly one-quarter the size of what we would need to cover one side of table costs \$119.99, which includes a wireless pager and any markup costs done by the manufacturer. A total estimate for our materials can be estimated to be \$150.00.\\\\
 For the third issue, faster motors could be used to make the shooting mechanism move faster. However, these also must fit in the budget and will be adjusted accordingly to do so.
-% TODO add more to third OTS, if possible
 \subsection{New Problems}
 As of \today, no new problems exist.
 \subsection{Risks}
 The largest and only risk to note is potentially going over budget. This is mainly with respect to the proficiency of the sensors and motors used as it is typically positively correlated with price. 
 \subsection{User Documentation \& Training}
+The user should be informed on the following items in order to use the system effectively:
+\begin{itemize}
+\item Available training modes and their purpose
+\item How to read performance charts and data
+\item Load table tennis balls into the correct location
+\item Ensure system is positioned correctly
+\end{itemize}
 \section{Likely Changes}
 As noted in the Project Goals document, many of the anticipated changes include enhanced accuracy of some requirements. These include the following:
 \begin{itemize}
