@@ -74,6 +74,7 @@
    \textbf{Date} & \textbf{Revision} & \textbf{Comments} & \textbf{Author(s)} \\
    \hline
    October 28, 2017 & 1.0 & Added structure and content & Christopher McDonald \\ \hline
+   October 30, 2017 & 1.1 & Added detail into Version Control section and revised document & Sharon Platkin \& Christopher McDonald \\ \hline
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -88,7 +89,7 @@ The development started at the beginning of the Fall 2017 academic turn and will
 \begin{itemize}
 \item \textbf{Git}: a distributed versioning control system
 \item \textbf{Master Branch}: the main branch of the GitHub repository
-\item \textbf{Pull Request}: a request to add changes from one branch into another done via a merge commit or rebase
+\item \textbf{PR}: pull request, a request to add changes from one branch into another done via a merge commit or rebase
 \item \textbf{Slack}: a messaging platform for teams to subscribe and publish to channels or send messages between two or more team members
 \item \textbf{DevOps}: development operations
 \end{itemize}
@@ -106,15 +107,15 @@ The team members are as follows:
 \end{itemize}
 In addition to the list above, Dr. Alan Wassyng will be the Project Advisor. He will be assisted by Bennett Mackenzie, Nicholas Annable, Stephen Wynn-Williams and Viktor Smirnov for marking and providing advice to the team.
 \subsection{Roles \& Responsibilities}
-See Table \ref{rr} for a breakdown of roles \& responsibilities.
-\begin{table}[H]
+See Table \ref{rr} for a breakdown of roles and responsibilities.
+\begin{table}[H] % TODO maybe fix table?
 \centering
 \caption{Roles \& Responsibilities Breakdown} 
 \label{rr}
 \begin{tabularx}{\textwidth}{| X | X | X |}
 \hline
 Role & Member(s) & Responsibility \\ \hline
-Scribe & Sharon Platkin & Taking notes for all meetings \newline Posting notes to Slack after meetings  \\ \hline
+Scribe & Sharon Platkin & Taking notes for all meetings \newline Posting notes to Slack after meetings \newline Booking rooms for team meetings  \\ \hline
 DevOps Developer & Christopher McDonald & Solving issues related to GitHub \newline Configuring CI Tools \newline Merging code changes into the \textit{master} branch  \\ \hline
 Team Contact & Christopher McDonald & Handle a majority of communication with Project Advisor and Teaching Assistants \\ \hline
 Hardware Team Member & Janak Patel \newline Jared Rayner \newline Nisarg Patel & Handle most hardware focused work tasks \\ \hline
@@ -123,23 +124,60 @@ Software Team Member & Christopher McDonald \newline Harit Patel \newline Sam Ha
 \end{table}
 \subsection{Meeting Schedule}
 The team currently has weekly meetings scheduled on Tuesdays at 16:30 and Fridays at 16:30 for a duration of 50 minutes. Every member of the team is expected to attend. Every other Tuesday meeting must cover reflecting on the previous 2 weeks and planning the following 2 weeks for what work needs to be done in that time. All other meetings will be for progress updates, clarifying any work going forward and removing roadblocks which inhibit optimal performance. \\ \\
-The Hardware and Software team will schedule meetings on an ad-hoc basis, inviting any members which have a stake in the content being discussed. In the event Sharon Platkin is not present and therefore cannot be the Scribe, a member will be elected by and among the attendees.
+The Hardware and Software team will schedule meetings on an ad hoc basis, inviting any members which have a stake in the content being discussed. In the event Sharon Platkin is not present and therefore cannot be the Scribe, a member will be elected by and among the attendees.
 \subsection{Communication Pipelines}
-All inter-team communication will be done through Slack. This will allow team members to communicate via channels or groups. Examples of the channels currently used are \textit{hardware}, \textit{software}, \textit{documentation}, \textit{meetings}, \textit{deliverables} and \textit{git}. The \textit{git} channel will give updates on open PRs and the \textit{deliverables} channel gives reminders 2 days ahead of all deliverable deadlines. Meeting notes will be posted in the \textit{meetings} channel. \\ \\
+All inter-team communication will be done through Slack. This will allow team members to communicate via channels or groups. Examples of the channels currently used are \textit{hardware}, \textit{software}, \textit{documentation}, \textit{meetings}, \textit{deliverables} and \textit{git}. The \textit{git} channel will give updates on every open PR (Pull Request) and the \textit{deliverables} channel gives reminders 2 days prior to deliverable deadlines. Meeting notes will be posted in the \textit{meetings} channel. \\ \\
 When communicating with the TAs or Project Advisor, email will be used and the Team Contact will relay all relevant information to all other team members.
 \subsection{Handling Change}
 In the event any aspect of the project must be changed, all members can be involved in the decision making. In the absence of a unanimous decision, the team must decide if the change is paramount to the outcome of the project. If not, the decision will be left to a vote by all meeting attendees. If so, a teaching assistant will be involved in the decision making to aid in arriving to a unanimous decision. The Project Advisor will also be involved at the discretion of the teaching assistant. \\ \\
 Once the change has been decided, all documentation and code changes will be given the highest priority to reflect the change made. This will ensure no further work will be done using documentation or code that does not reflect the team's ideals.
 \section{Version Control}
-The technology used for version control will be \textit{git}. The \textit{git} repository will be hosted by GitHub and can be found \href{https://github.com/ChristopherMcDonald/SoftwareTronCapstone}{here}. The workflow we will be using is a feature-branch workflow with the addition of a two-stage release process. For all releases, changes will be made via a Pull Request (PR) into the \textit{master} branch from the \textit{dev} branch. Therefore, any demonstrations and deliverables can be found by checking out the \textit{master} branch. When making any changes, an ad-hoc branch will be made off the \textit{dev} branch. Once completed, a PR can be made from that branch into the \textit{dev} branch. This pertains to documentation and source code. A flowchart for this can be found in Figure \ref{fig:git}.
+\subsection{Technology}
+The technology used for version control will be \textit{git}. The \textit{git} repository will be hosted by GitHub and can be found \href{https://github.com/ChristopherMcDonald/SoftwareTronCapstone}{here}. \textit{Git} allows developers to host a decentralized version of the source code for any project. This is in addition to a copy hosted on a remote repository. This technology allows any number of developers to perform work on their own copy of the source without impeding on the other developers. Once a developer makes a complete set of changes, they can include these changes in a commit and push them to the remote repository.
+\subsection{Workflow}
+The workflow we will be using is a feature-branch workflow with the addition of a two-stage release process. For all releases, changes will be made via a PR into the \textit{master} branch from the \textit{develop} branch. Therefore, any demonstrations and deliverables can be found by checking out the \textit{master} branch. When making any changes, an ad hoc branch will be made off the \textit{dev} branch. Once completed, a PR can be made from that branch into the \textit{develop} branch. This pertains to documentation and source code. A flowchart for this can be found in Figure \ref{fig:git}. Once a developer begins working on any item, they will start by making a branch based off of \textit{develop}. \\\\
+In the event commits have been added to \textit{develop} after making your branch and before merging it into develop, a rebase will be required. This will effectively place all your commits made to your feature branch, onto the current \textit{develop} branch.
 \begin{figure}[htbp]
    \centering
    \includegraphics[width=0.7\textwidth]{img/git.png} % requires the graphicx package
-   \caption{Feature-Branch and Dev Git Workflow}
+   \caption{Feature-Branch and Develop Git Workflow}
    \label{fig:git}
 \end{figure}
+\subsection{Setup}
+The following steps must be taken to contribute to the source code.
+\begin{itemize}
+
+\item Clone the Project
+\begin{verbatim}
+git clone https://github.com/ChristopherMcDonald/SoftwareTronCapstone.git
+\end{verbatim}
+
+\item Add a Feature Branch
+\begin{verbatim}
+cd /path/to/repo
+git fetch --all
+git checkout develop
+git checkout -b BRANCH_NAME
+\end{verbatim}
+
+\item Push Changes to Repository
+\begin{verbatim}
+git add FILE_NAME
+git commit -m "MESSAGE"
+git push # for first push, git push --set-upstream origin BRANCH_NAME
+\end{verbatim}
+
+\item Rebase Against \textit{develop} Branch
+\begin{verbatim}
+git fetch --all
+git rebase develop
+# deal with any conflicts
+git push -f
+\end{verbatim}
+
+\end{itemize}
 \section{Process Workflow}
-In order to facilitate the development of the system, work will be organized into 2-week long sessions. At the beginning of the week, the team will consider the next 2-3 deliverables and schedule them in accordingly. The team will attempt to finish each deliverable a week or more before the deadline. This allows the team to be ahead of schedule and gives them the ability to respond to other items should they arise. During meetings before the end of each 2-week session, any priorities will be adjusted as needed. When the work session is completed, items will be placed into the next session or placed in the backlog until the next session.
+In order to facilitate the development of the system, work will be organized into 2-week long sessions. At the beginning of the week, the team will consider the next 2-3 deliverables and schedule them in accordingly. The team will attempt to finish each deliverable a week or more before the deadline. This allows the team to be ahead of schedule and gives them the ability to respond to other items should they arise. During meetings before the end of each 2-week session, any priorities will be adjusted as needed. When the work session is completed, items will be placed into the next session or placed in the backlog until the further consideration.
 \section{Onboarding Process}
 The following administrative work must be done to onboard another team member:
 \begin{itemize}
@@ -148,5 +186,10 @@ The following administrative work must be done to onboard another team member:
 \item Add them as a collaborator on GitHub
 \item Add them to the list of authors on the documentation template
 \end{itemize}
-The new member will be expected to read all current revisions of documentation made for the project. Any questions which arise can be asked during meetings or on Slack. After a comprehensive understanding of the project, tasks can be assigned to them and any education will be done on an ad-hoc basis.
+The new member will be expected to read all current revisions of documentation made for the project. Any questions which arise can be asked during meetings or on Slack. After a comprehensive understanding of the project, tasks can be assigned to them and any education will be done on an ad hoc basis. \\\\
+The following tools will need to be installed by the member with the help of the DevOps developer:
+\begin{itemize}
+\item Git version 2.14.0 found \href{https://git-scm.com}{here}
+\item LaTeX version \LaTeX  $2_\varepsilon$ found \href{https://www.latex-project.org/get/}{here}
+\end{itemize}
 \end{document}  
