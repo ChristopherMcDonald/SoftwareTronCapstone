@@ -15,8 +15,13 @@
     linkcolor=black,
     urlcolor=black
 }
-
+\usepackage{cleveref}
+%\usepackage[autostyle]{csquotes}
 \usepackage[english]{babel}
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+\addbibresource{cites.bib}
+
+\defbibheading{bibliography}[\refname]{}
 
 \begin{document}
 
@@ -76,7 +81,10 @@
    10/06/2017 & 0 & Made Template, added sections and comments & Christopher McDonald \\ \hline
    10/13/2017 & 1 & Added Overview and reviewed & Christopher McDonald \& Sharon Platkin \\ \hline
    10/13/2017 & 2 & Reviewed and Corrected Project Drivers section & Nisarg Patel \\ \hline
-   10/20/2017 & 3 & Functional Requirements & Christopher McDonald \& Sharon Platkin \\ \hline
+   10/20/2017 & 3 & Functional Requirements & Christopher McDonald \& Sharon Platkin \\ 
+\hline
+   11/05/2017 & 4 & Final Revision and Review & Nisarg Patel 
+  \& Christopher McDonald \\   \hline
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -100,30 +108,39 @@
 
 \section{Introduction}
 \subsection{Project Overview}
-SmartServe is an autonomous table tennis training system for a wide range of table tennis players to aid in diagnosing and improving their performance. The system does so by shooting balls toward the player and detecting successful returns. It can then adapt to the player's weaknesses and expose them to the player over time. This alleviates problems of a player finding and working with a coach or a coach training many players in a short amount of time. The system will be deemed a success if table tennis players enjoy and can see value in using our system in place of or in tandem to a coach.\\\\
-The development started at the beginning of the Fall 2017 academic term and will conclude at the end of the Winter 2018 term. The team was assembled in the capstone course for both Software and Mechatronics Engineering disciplines. 
+SmartServe is an autonomous table tennis training system for table tennis players with various skill levels. SmartServe aids in diagnosing and improving a player's performance over time. The system trains table tennis players by shooting table tennis balls towards the player and detects successful returns from the player. The system can further adapt to the player's weaknesses and help them overcome it through further training. Importantly, SmartServe alleviates the problems of finding and working with a coach for players, as well as coaches trying to train multiple players simultaneously. The system will be deemed a success if the table tennis players and coaches, can enjoy and see a value added by using SmartServe.\\\\
+The project started at the beginning of the Fall 2017 academic term and will conclude at the end of the Winter 2018 term. In addition, the core project team consists of final year Software and Mechatronics Engineering students who are enrolled in the MECHTRON 4TB6/SFWRENG 4G06 capstone project course.
 \subsection{Naming Conventions and Terminology}
 \label{sec:definitions}
 The following terms and definitions will be used throughout this document:
 \begin{itemize}
-\item \textbf{System}: includes both the hardware and software aspects of SmartServe
-\item \textbf{Shooting Mechanism}: refers to the part of the system that shoots balls only
+\item \textbf{System}: encompasses both the hardware and software parts of SmartServe
+\item \textbf{Shooting Mechanism}: refers to the part of the system that shoots the table tennis balls towards the user side (player)
 \item \textbf{Team}: all team members of the core capstone project, as noted in the list of Authors
 \item \textbf{User Side}: the side of the table where the user (player) is standing
 \item \textbf{System Side}: the side of the table where the electromechanical system is placed; it is the opposite side of the User Side
 \item \textbf{ACID}: a database transaction which is atomic, consistent, isolated and durable
 \item \textbf{FPS}: frames per second
 \item \textbf{GUI}: graphical user interface
+\item \textbf{Pitch}: rotation along the y-axis; this rotation angle primarily dictates the range of the ball from the net to the edge of the table on the user side
+\item \textbf{Yaw}: rotation along the z-axis; this rotation angle primarily dictates the panning functionality of the shooting mechanism from the right side to the left side of the table
+\item \textbf{Roll}: rotation along the x-axis
 \end{itemize}
 \begin{figure}[H]
    \centering
-   \includegraphics[width=1\textwidth]{img/table-tennis-top-view.jpeg} %requires the graphicx package
+   \includegraphics[width=0.75\textwidth]{img/Table-Tennis-Top-View.png} %requires the graphicx package
    \caption{Top View of the Tennis Table}
    \label{fig:table-tennis-top-view}
 \end{figure}
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.5\textwidth]{img/directions.jpg} %requires the graphicx package
+   \caption{Pitch, Yaw and Roll Illustration}
+   \label{fig:pitch_yaw_roll_diagram}
+\end{figure}
 
 \subsection{Relevant Facts \& Assumptions}
-According to the International Table Tennis Federation (ITTF), the regulation table size is as follows: 2.74m long, 1.525m wide and 0.76m high off the ground. The table must be a uniformly dark colour with a 2cm-thick white line along the edge of the table, as well one running parallel to the 2.74m side in the middle of the table. The net in the middle of the table must be 15.25cm vertically high from the table. A 3D representation of the table setup is illustrate in Figure \ref{fig:table-tennis-dim}. The size of a regulated table tennis ball can be either 37mm or 40mm depending on the regulation body. For this project, the \hyperref[sec:definitions]{team} will be using 40mm balls and recommends users to do the same for optimal performance. \\
+According to the International Table Tennis Federation (ITTF), the regulation table size is as follows: 2.74m long, 1.525m wide and 0.76m high off the ground. The table must be a uniformly dark colour with a 2cm-thick white line along the edge of the table, as well one running parallel to the 2.74m side in the middle of the table. The net in the middle of the table must be 15.25cm vertically high from the table~\autocite{ITTF}. A 3D representation of the table setup is illustrate in \Cref{fig:table-tennis-dim}. The size of a regulated table tennis ball is 40mm in diameter~\autocite{ITTF}. For this project, the \hyperref[sec:definitions]{team} will be using 40mm balls due to the ITTF regulation.\\
 \begin{figure}[htbp]
    \centering
    \includegraphics[width=0.7\textwidth]{img/table-tennis-dim.png} % requires the graphicx package
@@ -131,8 +148,7 @@ According to the International Table Tennis Federation (ITTF), the regulation ta
    \label{fig:table-tennis-dim}
    % The Laws of Table Tennis. ITTF Handbook 2016. www.ittf.com/ittf_handbook/ittf_hb.html
 \end{figure} \\
-During gameplay, a valid serve must hit the \hyperref[sec:definitions]{server side} first, and then bounce once on the other player's side before being returned. After that is done, a valid return would be when the ball is hit by a player, after bouncing exactly once on their side, and bounces at least one time on the opposing player's side. If a serve touches the net and lands on the opposing player's side, it is a \textit{let}. No points are allocated and the turn must be re-served. 
-
+During gameplay, a valid serve must hit the \hyperref[sec:definitions]{server side} first, and then bounce once on the other player's side before being returned. After that is done, a valid return would be when the ball is hit by a player, after bouncing exactly once on their side, and bounces at least one time on the opposing player's side. If a serve touches the net and lands on the opposing player's side, it is a \textit{let}. No points are allocated and the turn must be re-served. These rules change during \textit{Double's Gameplay} but will not be considered for this project as only one user will be supported during operation.
 
 \section{Project Drivers}
 \subsection{Purpose}
@@ -140,7 +156,7 @@ During gameplay, a valid serve must hit the \hyperref[sec:definitions]{server si
 When a player wants to improve their table tennis game, a typical solution is to hire a coach. However, this does not come without its challenges. Some of these challenges include scheduling, focusing on particular shots and receiving in-depth statistical feedback. Our proposed solution will consist of a shooting mechanism, a way to identify successful returns and a system to recommend different shots. Throughout the training session, the \hyperref[sec:definitions]{system} will provide the user with crucial feedback on the quality of their game. The system will consist of a electromechanical system to shoot the ball and a computer vision system to track the ball's location during flight. A server will also be added to store data, provide diagnostics and recommend shots given the user's past performance.
 \subsection{Key Stakeholders}
 \subsubsection{Client}
-The client for this project comprises of the core development \hyperref[sec:definitions]{team} as both the idea and the project execution will be undertaken by the \hyperref[sec:definitions]{team}. It is also important to note that the project adviser, Dr. Alan Wassyng as well as his teaching assistants, will also be involved in the project execution in order to provide guidance and critical feedback to the project \hyperref[sec:definitions]{team}.
+The client for this project comprises of the core development \hyperref[sec:definitions]{team} as both the idea and the project execution will be undertaken by the \hyperref[sec:definitions]{team}. It is also important to note that the project adviser, Dr. Alan Wassyng, as well as his teaching assistants will be involved in the project execution in order to provide guidance and critical feedback to the project \hyperref[sec:definitions]{team}.
 \subsubsection{Users}
 The primary users of this project are table tennis players. Our proposed \hyperref[sec:definitions]{system} will adapt to various playing styles and levels, and hence segmenting those players down further is not required at this stage. These users are more likely to play competitively, but could also play recreationally with friends or within a club focused around the sport. \\\\
 The secondary users of this project are table tennis coaches. Although this \hyperref[sec:definitions]{system} could replace a coach, a coach could find value in using this system to aid in training and assisting multiple players at one time. The system will provide analytics on players performance that can be very useful when training someone over a long period of time.
@@ -149,10 +165,10 @@ The Department of Computing and Software is also a key stakeholder for this proj
 
 \section{Project Scope}
 \subsection{The Scope of the Work and the Product}
-In order to make the project feasible within the time constraint imposed on the \hyperref[sec:definitions]{team}, it will need to be scoped accordingly. One way we are scoping the project is by limiting the types of shots the \hyperref[sec:definitions]{system} can take. A return by the system would first contact the table on the \hyperref[sec:definitions]{\textit{User side}} where a serve would first contact the table on the \hyperref[sec:definitions]{\textit{System side}}. We are limiting the system to only preform returns which excludes serves. The system will also make no attempt at returning any shots returned by the user. \\\\
-After the user has returned a shot from the system, the system will not make any attempts to return a shot that is likely to be returned given the user's returns. This is to give the system the ability to focus on a particular type of shot the user is the least proficient at returning. The characteristics of the shot following any return will be determined by the system's mode and the proficiency of the player if required and available.
+In order to make the project feasible within the time constraint imposed on the \hyperref[sec:definitions]{team}, it will need to be scoped accordingly. One way we are scoping the project is by limiting the types of shots the \hyperref[sec:definitions]{system} can take. A return by the system would first contact the table on the \hyperref[sec:definitions]{\textit{User side}} where a serve would first contact the table on the \hyperref[sec:definitions]{\textit{System side}}. We are limiting the system to only preform returns. The system will make no attempt at returning any shots from the user. \\\\
+After the user has returned a shot from the system, the system will not make any attempts to return a shot that is likely to be returned given the user's returns. This is to give the system the ability to focus on a particular type of shot the user is the least proficient at returning. The characteristics of the shot following any return will be determined by the system's mode and the proficiency of the player if available.
 \subsubsection{Individual Product Use Cases}
-The actors which will be interacting with the \hyperref[sec:definitions]{system} are the \textbf{trainee}, the \textbf{coach} and the \textbf{system administrator}. It is not necessary for a coach to be present, but they will have the ability to use the system alongside the trainee. See Figure \ref{fig:usecase} for the use case diagram. The following list contains all primary use cases:
+The actors which will be interacting with the \hyperref[sec:definitions]{system} are the \textbf{trainee}, the \textbf{coach} and the \textbf{system administrator}. It is not necessary for a coach to be present, but they will have the ability to use the system alongside the trainee. See \Cref{fig:usecase} for the use case diagram. The following list contains all primary use cases:
 \begin{itemize}
 \item A trainee enters their login information
 \item If the login information is correct, a trainee opens their training session on the \hyperref[sec:definitions]{system}
@@ -176,12 +192,26 @@ The following are secondary use cases:
    \label{fig:usecase}
 \end{figure}
 \subsection{Mandated Constraints}
-The first constraint placed on the project is time. The deliverable and presentation dates have been set, concluding with the presentations booked for April 28, 2018. Therefore, the \hyperref[sec:definitions]{team} must successfully submit all of the deliverables and complete the project by April 28th, 2018. Additionally, a budget constraint of \$750 on the Bill of Materials (BOM) of the final product is also enforced.
-\subsection{Unexpected Behaviour} 
-The shooting mechanism should not start, pause or end a session without the user triggering the event. The \hyperref[sec:definitions]{system} must also refrain from shooting the ball outside the speed and angle ranges specified. Furthermore, the system should not attempt to shoot balls. \\\\
-the system should attempt to shoot balls when the system runs out or something.
+The first constraint placed on the project is time. The deliverable and presentation dates have been set, concluding with the presentations booked for April 28, 2018. Therefore, the \hyperref[sec:definitions]{team} must successfully submit all of the deliverables and complete the project by April 28th, 2018. Additionally, a budget constraint of \$750 on the Bill of Materials (BOM) for the final product is also enforced.
+\subsection{Undesired Behaviour} 
+The shooting mechanism should not start, pause or end a session without the user triggering the event. The \hyperref[sec:definitions]{system} must also refrain from shooting the ball outside the speed and angle ranges specified. Furthermore, the system should not attempt to shoot balls when it runs out of balls. \\\\
 
-
+\subsection{Variables}
+\begin{figure}[H]
+   \centering
+   \noindent\begin{tabularx}{\textwidth}{| >{\centering\arraybackslash}m{0.2\textwidth} | >{\centering\arraybackslash}m{0.2\textwidth} | >{\centering\arraybackslash}m{0.2\textwidth} | >{\centering\arraybackslash}m{0.285\textwidth} |}
+   \hline 
+   \textbf{Variable Name} & \textbf{Type} & \textbf{Value} & \textbf{Description} \\ \hline
+   \textit{Table Length} & Final & 274cm & The longest edge of the table tennis table \\ \hline
+   \textit{Table Width} & Final & 152.5cm & Perpendicular to the \textit{Table Length} \\ \hline
+   \textit{Ball Diameter} & Final & 40mm & Diameter of the ball used by the system \\ \hline
+   \textit{Ball Location} & Monitored & X, Y and Z cm & Relative to the center of the table on its surface \\ \hline
+   \textit{Shooting Mechanism Position} & Monitored & $\alpha_p$ and $\alpha_y$ degrees & Pitch and Yaw of the shooting mechanism \\ \hline
+   \textit{User Performance} & Monitored & $\lambda_1$, $\lambda_2$, ... $\lambda_n$ & Return rates for n different shots from the user \\ \hline
+ 
+\end{tabularx}
+\caption{List of Variables}
+\end{figure}
 
 \subsection{Context Diagram}
 \begin{figure}[H]
@@ -216,7 +246,7 @@ the system should attempt to shoot balls when the system runs out or something.
 	\noindent\textbf{Requirement ID}: F2 \hfill \textbf{Requirement Type}: F \hfill\\\\
 	\noindent\textbf{Description}: The \hyperref[sec:definitions]{shooting mechanism} shoots the table tennis ball towards the \hyperref[sec:definitions]{user side} at various speeds \\
 	\textbf{Rationale}: Provides variability in the shots made towards the user \\
-	\textbf{Fit Criterion}: The \hyperref[sec:definitions]{shooting mechanism} can shoot at speeds ranging from 3 to 6 m/s at discrete increments of 0.25 \\\\
+	\textbf{Fit Criterion}: Since the fastest recorded speed of a table tennis ball is 31.25 m/s, the system should be able to match at least half this speed~\autocite{thoughtco}. Specifically, the \hyperref[sec:definitions]{shooting mechanism} must shoot at speeds ranging from 10 to 15 m/s at discrete increments of 0.5 \\\\
 	\textbf{Originator}: Sharon Platkin \\\\
 	\textbf{Priority}: High \hfill \\
 	\noindent\textbf{History}: Created Oct. 20, 2017
@@ -224,9 +254,9 @@ the system should attempt to shoot balls when the system runs out or something.
 
 \begin{framed}
 	\noindent\textbf{Requirement ID}: F3 \hfill \textbf{Requirement Type}: F \hfill\\\\
-	\noindent\textbf{Description}: The \hyperref[sec:definitions]{shooting mechanism} shoots the table tennis ball towards the \hyperref[sec:definitions]{user side} at various angles \\
+	\noindent\textbf{Description}: The \hyperref[sec:definitions]{shooting mechanism} shoots the table tennis ball towards the \hyperref[sec:definitions]{user side} at various degrees of \hyperref[sec:definitions]{Yaw} \\
 	\textbf{Rationale}: Provides variability in the shots made towards the user \\
-	\textbf{Fit Criterion}: The \hyperref[sec:definitions]{shooting mechanism} can shoot the ball at -45 and 45 degrees relative to the longest bisection of the table at discrete increments of 1 degree\\\\
+	\textbf{Fit Criterion}: The \hyperref[sec:definitions]{shooting mechanism} can shoot the ball at -30 to 30 degrees relative to the longest bisection of the table at discrete increments of 1 degree to have complete coverage of the \hyperref[sec:definitions]{User Side}, see \Cref{fig:calc} for calculations \\\\
 	\textbf{Originator}: Sharon Platkin \\\\
 	\textbf{Priority}: High \hfill \\
 	\noindent\textbf{History}: Created Oct. 20, 2017
@@ -234,16 +264,6 @@ the system should attempt to shoot balls when the system runs out or something.
 
 \begin{framed}
 	\noindent\textbf{Requirement ID}: F4 \hfill \textbf{Requirement Type}: F \hfill\\\\
-	\noindent\textbf{Description}: The \hyperref[sec:definitions]{shooting mechanism} shoots the table tennis ball towards the \hyperref[sec:definitions]{user side} at various degrees of pitch \\
-	\textbf{Rationale}: Provides variability in the shots made towards the user \\
-	\textbf{Fit Criterion}: The \hyperref[sec:definitions]{shooting mechanism} can shoot the ball at 0 to 55 degrees relative to the table's surface at discrete increments of 1 degree\\\\
-	\textbf{Originator}: Sharon Platkin \\\\
-	\textbf{Priority}: High \hfill \\
-	\noindent\textbf{History}: Created Oct. 20, 2017
-\end{framed}
-
-\begin{framed}
-	\noindent\textbf{Requirement ID}: F5 \hfill \textbf{Requirement Type}: F \hfill\\\\
 	\noindent\textbf{Description}: The \hyperref[sec:definitions]{shooting mechanism} shoots the table tennis ball towards the \hyperref[sec:definitions]{user side} of the table with spin along 2 axes \\
 	\textbf{Rationale}: Provides variability in the shots made towards the user \\
 	\textbf{Fit Criterion}: The \hyperref[sec:definitions]{shooting mechanism} can spin the ball at 0 to 360 degrees in discrete increments of 45 degrees on the longitudinal axis\\\\ % longitudinal - refers to lengthwise as opposed to across
@@ -253,7 +273,7 @@ the system should attempt to shoot balls when the system runs out or something.
 \end{framed}
 
 \begin{framed}
-	\noindent\textbf{Requirement ID}: F6 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Requirement ID}: F5 \hfill \textbf{Requirement Type}: F \hfill\\\\
 	\noindent\textbf{Description}: The \hyperref[sec:definitions]{system} can detect a successful return by the user \\
 	\textbf{Rationale}: Allows quantitative information to be collected on the user's performance \\
 	\textbf{Fit Criterion}: The system must detect 90\% of all successful returns made by the user\\\\
@@ -263,17 +283,17 @@ the system should attempt to shoot balls when the system runs out or something.
 \end{framed}
 
 \begin{framed}
-	\noindent\textbf{Requirement ID}: F7 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Requirement ID}: F6 \hfill \textbf{Requirement Type}: F \hfill\\\\
 	\noindent\textbf{Description}: The \hyperref[sec:definitions]{system} saves the details for each shot taken by the shooting mechanism \\
 	\textbf{Rationale}: Serves the purpose of saving the state and resuming sessions over time \\
-	\textbf{Fit Criterion}: After each shot is returned, an \hyperref[sec:definitions]{ACID} (atomic, consistent, isolated and durable) transaction takes place \\\\
+	\textbf{Fit Criterion}: After each shot is returned, an \hyperref[sec:definitions]{ACID} save transaction is performed \\\\
 	\textbf{Originator}: Christopher McDonald \\\\
 	\textbf{Priority}: Medium \hfill \\
 	\noindent\textbf{History}: Created Oct. 20, 2017
 \end{framed}
 
 \begin{framed}
-	\noindent\textbf{Requirement ID}: F8 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Requirement ID}: F7 \hfill \textbf{Requirement Type}: F \hfill\\\\
 	\noindent\textbf{Description}: The \hyperref[sec:definitions]{system} can load a previously saved state \\
 	\textbf{Rationale}: This will allow the user to continue a training session at different times, even if the system is powered down \\
 	\textbf{Fit Criterion}: \\\\
@@ -283,7 +303,7 @@ the system should attempt to shoot balls when the system runs out or something.
 \end{framed}
 
 \begin{framed}
-	\noindent\textbf{Requirement ID}: F9 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Requirement ID}: F8 \hfill \textbf{Requirement Type}: F \hfill\\\\
 	\noindent\textbf{Description}: The \hyperref[sec:definitions]{system} allows the creation of a new user \\
 	\textbf{Rationale}: This allows many users to use one system \\
 	\textbf{Fit Criterion}: A user must be able to be created only if the user does not already exist in the system \\\\
@@ -293,17 +313,17 @@ the system should attempt to shoot balls when the system runs out or something.
 \end{framed}
 
 \begin{framed}
-	\noindent\textbf{Requirement ID}: F10 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Requirement ID}: F9 \hfill \textbf{Requirement Type}: F \hfill\\\\
 	\noindent\textbf{Description}: The \hyperref[sec:definitions]{system} must authenticate users \\
 	\textbf{Rationale}: This will ensure a user can access their profile and restrict other users from accessing their profile \\
-	\textbf{Fit Criterion}: No user can access another user's profile and will have access to their own 99\% of the system's uptime \\\\
+	\textbf{Fit Criterion}: No user can access another user's profile and will have access to their own 99\% of the time \\\\
 	\textbf{Originator}: Christopher McDonald \\\\
 	\textbf{Priority}: High \hfill \\
 	\noindent\textbf{History}: Created Oct. 20, 2017
 \end{framed}
 
 \begin{framed}
-	\noindent\textbf{Requirement ID}: F11 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Requirement ID}: F10 \hfill \textbf{Requirement Type}: F \hfill\\\\
 	\noindent\textbf{Description}: The \hyperref[sec:definitions]{system} can pause the shooting mechanism \\
 	\textbf{Rationale}: A user may need to attend other matters during training or get real-time feedback from the system \\
 	\textbf{Fit Criterion}: After instantiating the pause process, the system shoots at most 1 more ball(s) \\\\
@@ -313,10 +333,20 @@ the system should attempt to shoot balls when the system runs out or something.
 \end{framed}
 
 \begin{framed}
-	\noindent\textbf{Requirement ID}: F12 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Requirement ID}: F11 \hfill \textbf{Requirement Type}: F \hfill\\\\
 	\noindent\textbf{Description}: The \hyperref[sec:definitions]{system} can end the training session \\
 	\textbf{Rationale}: This will be used when a user is done training \\
-	\textbf{Fit Criterion}: \\\\
+	\textbf{Fit Criterion}: N/A \\\\
+	\textbf{Originator}: Christopher McDonald \\\\
+	\textbf{Priority}: High \hfill \\
+	\noindent\textbf{History}: Created Oct. 20, 2017
+\end{framed}
+
+\begin{framed}
+	\noindent\textbf{Requirement ID}: F12 \hfill \textbf{Requirement Type}: F \hfill\\\\
+	\noindent\textbf{Description}: The \hyperref[sec:definitions]{system} can resume a training session from a paused state \\
+	\textbf{Rationale}: N/A \\
+	\textbf{Fit Criterion}: N/A \\\\
 	\textbf{Originator}: Christopher McDonald \\\\
 	\textbf{Priority}: High \hfill \\
 	\noindent\textbf{History}: Created Oct. 20, 2017
@@ -324,7 +354,7 @@ the system should attempt to shoot balls when the system runs out or something.
 
 \begin{framed}
 	\noindent\textbf{Requirement ID}: F13 \hfill \textbf{Requirement Type}: F \hfill\\\\
-	\noindent\textbf{Description}: The \hyperref[sec:definitions]{system} can display the user's performance over a determined time range \\
+	\noindent\textbf{Description}: The \hyperref[sec:definitions]{system} can display the user's performance over a custom time range \\
 	\textbf{Rationale}: This will aid the user in diagnosing their ability to play table tennis \\
 	\textbf{Fit Criterion}: N/A\\\\
 	\textbf{Originator}: Christopher McDonald \\\\
@@ -374,7 +404,7 @@ the system should attempt to shoot balls when the system runs out or something.
 
 \begin{framed}
 	\noindent\textbf{Requirement ID}: F18 \hfill \textbf{Requirement Type}: F \hfill\\\\
-	\noindent\textbf{Description}: The \hyperref[sec:definitions]{shotting mechanism} will shoot a ball once the previous has been returned to the \hyperref[sec:definitions]{system side} or 1.5 seconds after the previous shot, whichever happens first\\
+	\noindent\textbf{Description}: The \hyperref[sec:definitions]{shooting mechanism} will shoot a ball once the previous has been returned to the \hyperref[sec:definitions]{system side} or 1.5 seconds after the previous shot, whichever happens first\\
 	\textbf{Rationale}: This will ensure the system is reasonably fast and keeps the user engaged, as well as compensates for more experienced players. \\
 	\textbf{Fit Criterion}: N/A \\\\
 	\textbf{Originator}: Christopher McDonald \\\\
@@ -409,7 +439,7 @@ the system should attempt to shoot balls when the system runs out or something.
 \begin{framed}
 	\noindent\textbf{Requirement ID}: UH2 \hfill\\\\
 	\noindent\textbf{Description}: The \hyperref[sec:definitions]{system} will operate using the English language \\
-	\textbf{Rationale}: Development \hyperref[sec:definitions]{team} only speaks English \\
+	\textbf{Rationale}: Some of the Development \hyperref[sec:definitions]{team} only speaks English \\
 	\textbf{Fit Criterion}: All outputs generated by the system will be in English  \\\\
 	\textbf{Originator}: Sharon Platkin \\\\
 	\textbf{Priority}: High \hfill \\
@@ -421,9 +451,8 @@ the system should attempt to shoot balls when the system runs out or something.
 \begin{framed}
 	\noindent\textbf{Requirement ID}: P1 \hfill\\\\
 	\noindent\textbf{Description}: The response time of feedback for user input must be less than or equal to 100ms \\
-	\textbf{Rationale}: 100ms is the approximate maximum amount of time for the user to perceive the system as reacting instantaneously. 
-    \textit{Card et al. (1991), The information visualizer: An information workspace, Proc. ACH CHI'91 Conf. (New Orleans, LA, 28 April - 2 May), 181-188} Users should feel that all inputs have been registered by the system\\
-	\textbf{Fit Criterion}: Any click inputs that generate feedback must do so in at most 100ms. Example: a button click must indent the button in at most 100ms from the time it was clicked.  \\\\
+	\textbf{Rationale}: 100ms is the approximate maximum amount of time for the user to perceive the system as reacting instantaneously~\autocite{response}. Users should feel that all inputs have been registered by the system\\
+	\textbf{Fit Criterion}: Any click inputs that generate feedback must do so in at most 100ms.  \\\\
 	\textbf{Originator}: Sam Hamel \\\\
 	\textbf{Priority}: High \hfill \\
 	\noindent\textbf{History}: Created Oct. 27, 2017
@@ -431,18 +460,9 @@ the system should attempt to shoot balls when the system runs out or something.
 
 \begin{framed}
 	\noindent\textbf{Requirement ID}: P2 \hfill\\\\
-	\noindent\textbf{Description}: The update time of the user's performance must match gameplay  \\
-	\textbf{Rationale}: Live Performance feedback will allow users to see valuable information during their play sessions \\
-	\textbf{Fit Criterion}: Any results by any return from the player must be displayed on the \hyperref[sec:definitions]{GUI} (graphical user interface) before the player returns their next shot  \\\\
-	\textbf{Originator}: Sam Hamel \\\\
-	\textbf{Priority}: High \hfill \\
-	\noindent\textbf{History}: Created Oct. 27, 2017
-\end{framed}
-
-\begin{framed}
-	\noindent\textbf{Requirement ID}: P3 \hfill\\\\
-	\noindent\textbf{Description}: The shot frequency of the \hyperref[sec:definitions]{system} shall not deviate from the users set shot frequency by more than 1 ball/s  \\
-	\textbf{Rationale}: If the shot frequency varies more than one second from what the user specified, they will be able to notice the difference \\
+	\noindent\textbf{Description}: The system must include all but the previous 3 shots made toward the user  \\
+	\textbf{Rationale}: This will keep the performance measures relatively up to date for relevant and up-to-date feedback \\
+	\textbf{Fit Criterion}: Any results by any return from the player must be displayed on the \hyperref[sec:definitions]{GUI} (graphical user interface) before the player returns 3 more shots \\\\
 	\textbf{Originator}: Sam Hamel \\\\
 	\textbf{Priority}: High \hfill \\
 	\noindent\textbf{History}: Created Oct. 27, 2017
@@ -460,9 +480,9 @@ the system should attempt to shoot balls when the system runs out or something.
 
 \begin{framed}
 	\noindent\textbf{Requirement ID}: P5 \\\\
-	\noindent\textbf{Description}: The \hyperref[sec:definitions]{system} will be able to support only one user playing at a time \\
+	\noindent\textbf{Description}: The \hyperref[sec:definitions]{system} will be able to support only one user playing at any given time \\
 	\textbf{Rationale}: The system will not be able to differentiate between player returns if they were more than one user playing at the same time \\
-	\textbf{Fit Criterion}: The system will work as expected for one player playing \\\\
+	\textbf{Fit Criterion}: The system will work as expected for one player playing 99\% of the time \\\\
 	\textbf{Originator}: Sam Hamel \\\\
 	\textbf{Priority}: High \hfill \\
 	\noindent\textbf{History}: Created Oct. 27, 2017
@@ -471,7 +491,7 @@ the system should attempt to shoot balls when the system runs out or something.
 \subsection{Operational and Environmental Requirements}
 \begin{framed}
 	\noindent\textbf{Requirement ID}: OE1 \hfill\\\\
-	\noindent\textbf{Description}: The software for the \hyperref[sec:definitions]{system} will be able to be run on Linux, Windows and MacOS \\
+	\noindent\textbf{Description}: The software for the \hyperref[sec:definitions]{system} will execute on Linux, Windows and MacOS operating systems \\
 	\textbf{Originator}: Sam Hamel \\\\
 	\textbf{Priority}: High \hfill \\
 	\noindent\textbf{History}: Created Oct. 27, 2017
@@ -551,8 +571,7 @@ the system should attempt to shoot balls when the system runs out or something.
 \subsection{Health and Safety Requirements}
 \begin{framed}
 	\noindent\textbf{Requirement ID}: HS1 \hfill\\\\
-	\noindent\textbf{Description}: The \hyperref[sec:definitions]{shotting mechanism} will always hit the table at least once  \\
-    %TODO: HUH?
+	\noindent\textbf{Description}: The \hyperref[sec:definitions]{shooting mechanism} will always hit the table at least once  \\
 	\textbf{Rationale}: This will give the user more time and context to react to the shot \\
 	\textbf{Fit Criterion}: The system imposes limits for speed and pitch of the shot \\\\
 	\textbf{Originator}: Christopher McDonald \\\\
@@ -562,8 +581,8 @@ the system should attempt to shoot balls when the system runs out or something.
 
 \begin{framed}
 	\noindent\textbf{Requirement ID}: HS2 \hfill\\\\
-	\noindent\textbf{Description}: The \hyperref[sec:definitions]{shotting mechanism} will not shoot the ball faster than 9 m/s \\
-	\textbf{Rationale}: This is 75\% of one of the world's fastest shots taken in table tennis and is unlikely to be of any practical use\\
+	\noindent\textbf{Description}: The \hyperref[sec:definitions]{shooting mechanism} will not shoot the ball faster than 22 m/s \\
+	\textbf{Rationale}: This is 70\% of one of the world's fastest shots taken in table tennis and is unlikely to be of any practical use\\
 	\textbf{Fit Criterion}: The system will constrain the speed of its shooting mechanism \\\\
 	\textbf{Originator}: Christopher McDonald \\\\
 	\textbf{Priority}: High \hfill \\
@@ -582,7 +601,7 @@ the system should attempt to shoot balls when the system runs out or something.
 
 \begin{framed}
 	\noindent\textbf{Requirement ID}: HS4 \hfill\\\\
-	\noindent\textbf{Description}: The \hyperref[sec:definitions]{system} will carry warnings around moving parts \\
+	\noindent\textbf{Description}: The \hyperref[sec:definitions]{system} will carry warnings around moving parts  \\
 	\textbf{Rationale}: Moving parts can expose users to risk of pinching extremities \\
 	\textbf{Fit Criterion}: Warning signs are displayed at every point of risk \\\\
 	\textbf{Originator}: Christopher McDonald \\\\
@@ -593,7 +612,7 @@ the system should attempt to shoot balls when the system runs out or something.
 \begin{framed}
 	\noindent\textbf{Requirement ID}: HS5 \hfill\\\\
 	\noindent\textbf{Description}: The \hyperref[sec:definitions]{system} will have a button to cease all power to the system \\
-	\textbf{Rationale}: In the case of dangerous operation, the system must be able to be powered off \\
+	\textbf{Rationale}: In the case of dangerous operation, the system must be able to be powered off manually \\
 	\textbf{Fit Criterion}: One button will shut down system and is labeled as such \\\\
 	\textbf{Originator}: Christopher McDonald \\\\
 	\textbf{Priority}: High \hfill \\
@@ -602,13 +621,12 @@ the system should attempt to shoot balls when the system runs out or something.
 
 \section{Project Issues}
 \subsection{Open Issues}
-Due to the nature of the project, all aspects of it must operate proficiently in order for it to be successful. For example, one potential issue would arise if no spin must be applied to the ball. This would most likely include more than one motor, all operating at the same speed. This accuracy will be difficult to achieve given the budget constraints. \\\\
+Due to the nature of the project, all aspects of it must operate proficiently in order for it to be successful. For example, one potential issue would arise if no spin must be applied to the ball. Without detailing how the system works, the team considers this to be difficult without hardware that has no error in operation. \\\\
 Some players may be able to hit the ball much faster than the solution we build to capture successful returns. For example, if some optical sensor is used it must be fast enough to capture the ball at the point of contact, or very close to it, in order to accurately determine if it did hit the table. \\\\
 Between shots of the \hyperref[sec:definitions]{system}, it must determine where the next shot will be, get into the necessary position and shoot the ball. For some cases, the shot determination could take longer than usual or the distance between initial and final state could be far. This could jeopardize the system's ability to meet requirement F18.
 \subsection{Off-the-Shelf Solutions}
-% TODO add OTS solution for issue #1, Jared can you do this?
-For the second issue noted in the above section, a high speed camera could be used but would exceed the budget constraint placed on this project. For example, a GoPro HERO5 camera can film at 120fps but costs \$490.%[https://www.amazon.ca/GoPro-HERO5-Black-OFFICIAL-CAMERA/dp/B01KZIF4NO/ref=pd_sbs_421_1?_encoding=UTF8&psc=1&refRID=XW9MQB6DH4DYWCZSQG6N].
-Additionally, a camera which can film up to 500fps costs as much as \$999.99.%http://www.allsportsystems.com/store_images/capturbundles.htm.php#640x480x500fps
+For the second issue noted in the above section, a high speed camera could be used but would exceed the budget constraint placed on this project. For example, a GoPro HERO5 camera can film at 120fps but costs \$490~\autocite{amazon-gopro}.
+Additionally, a camera which can film up to 500fps costs as much as \$999.99~\autocite{all-sport}.
 These would far constrain our budget, but would solve the issue should it arise. An alternative could be mat embedded with sensors, omitting all optical sensor requirements. A mat which is roughly one-quarter the size of what we would need to cover one side of table costs \$119.99, which includes a wireless pager and any markup costs done by the manufacturer. A total estimate for our materials can be estimated to be \$150.00.\\\\
 For the third issue, faster motors could be used to make the shooting mechanism move faster. However, these also must fit in the budget and will be adjusted accordingly to do so.
 \subsection{New Problems}
@@ -631,6 +649,13 @@ As noted in the Project Goals document, many of the anticipated changes include 
 \item Adding variable heights for the shooting mechanism
 \item Adding the ability to track the ball throughout its travel across the table
 \end{itemize}
-%\section{Appendix}
-% diagrams, tables, ... etc.
+\section{Appendix}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{img/angles.png}
+\caption{Valid Range of Shot Calculation}
+\label{fig:calc}
+\end{figure}
+\section{References}
+\printbibliography
 \end{document}
