@@ -20,8 +20,8 @@ public class ShootingModel {
 
 	/**
 	 * Calculates the distance in x plane from the shooter to the landing point
-	 * @param  double landingXCoord [TODO description]
-	 * @return        [TODO description]
+	 * @param  landingXCoord [X Coordinate on the grid for landing position]
+	 * @return xDist [Distance (meters) the ball must travel in X direction]
 	 */
 	private double calculateXDistance(double landingXCoord){
 		//The 0.38125 is the centre of the board in x-plane; location of the shooter.
@@ -31,8 +31,8 @@ public class ShootingModel {
 
 	/**
 	 * Calculates the distance in y plane from the shooter to the landing point
-	 * @param  double landingYCoord [Y Coordinate on the grid for landing position]
-	 * @return        [TODO description]
+	 * @param  landingYCoord [Y Coordinate on the grid for landing position]
+	 * @return yDist [Distance (meters) the ball must travel in Y direction]
 	 */
 	private double calculateYDistance(double landingYCoord){
 		//The location of the shooter is at 0 m from the edge
@@ -43,9 +43,9 @@ public class ShootingModel {
 	//Calculates the total distance from the shooter to the landing point
 	/**
 	 * Calculates the total distance from the shooter to the landing point
-	 * @param landingXCoord TODO descr
-	 * @param landingYCoord TODO descr
-	 * @return 
+	 * @param landingXCoord [X Coordinate on the grid for landing position]
+	 * @param landingYCoord [Y Coordinate on the grid for landing position]
+	 * @return totalDistance [Total distance (meters) the ball must travel]
 	 */
 	public double calculateDistance(double landingXCoord, double landingYCoord){
 		xDistance = calculateXDistance(landingXCoord);
@@ -58,29 +58,19 @@ public class ShootingModel {
 
 	/**
 	 * TODO
-	 * @param yDist TODO
-	 * @param xDist TODO
-	 * @return TODO
+	 * @param yDist [Distance (meters)the ball must travel in Y direction]
+	 * @param xDist [Distance (meters) the ball must travel in X direction]
+	 * @return yawAngle [Yaw angle (degrees)]
 	 */
 	private double calculateYawAngle(double yDist, double xDist){
-		double angle = Math.atan(yDist/xDist);
-		System.out.println("Angle in the X Plane: " + Math.toDegrees(angle));
-		return angle;
-	}
-
-	//TODO: Change Y angle based on velocity as an input
-	/**
-	 * TODO
-	 * @return TODO
-	 */
-	private double calculatePitchAngle(){
-		System.out.println("Angle in the Y Plane: " + pitch);
-		return pitch;
+		double yawAngle = Math.atan(yDist/xDist);
+		System.out.println("Angle in the X Plane: " + Math.toDegrees(yawAngle));
+		return yawAngle;
 	}
 
 	/**
-	 * TODO
-	 * @return TODO
+	 * Calculates velocity in Yaw direction
+	 * @return vel [Velocity (meters/second)]
 	 */
 	public double calculateVelocity(){
 		double vel = Math.sqrt((Math.pow(distance, 2)*gravity)/(2*Math.pow(Math.cos(pitch),2)*(yInitialHeight+distance*Math.tan(pitch))));
@@ -90,15 +80,21 @@ public class ShootingModel {
 	
 	/**
 	 * ShootingModel Constructor
-	 * @param initialHeight
-	 * @param landingXCoord
-	 * @param landingYCoord
+	 * @param initialHeight [Private static var to hold height of shooter]
+	 * @param landingXCoord [X Coordinate on the grid for landing position]
+	 * @param landingYCoord [X Coordinate on the grid for landing position]
 	 */
 	public ShootingModel(double initialHeight, double pitch){
 		yInitialHeight = initialHeight;
 		this.pitch = pitch;
 	}
 	
+	/**
+	 * Method to get Yaw,Velocity from abstract data type (ShootingDetails)
+	 * @param landingXCoord [X Coordinate on the grid for landing position]
+	 * @param landingYCoord [Y Coordinate on the grid for landing position]
+	 * @return [ShootingDetails to get Yaw(degrees), Velocity(meters/second)]
+	 */
 	public ShootingDetails getShootingDetails(double landingXCoord, double landingYCoord){
 		distance = calculateDistance(landingXCoord, landingYCoord);
 		yaw = calculateYawAngle(xDistance, yDistance);
