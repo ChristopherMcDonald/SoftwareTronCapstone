@@ -12,9 +12,9 @@ public class ShootingModel {
 	public double distance;
 	public double xDistance;
 	public double yDistance;
-	public double xPlaneAngle;
+	public double yaw;
 	public double yInitialHeight;
-	public double yPlaneAngle = 45;
+	public double pitch;
 	public double gravity = 9.8;
 	public double velocity;
 
@@ -23,7 +23,7 @@ public class ShootingModel {
 	 * @param  double landingXCoord [TODO description]
 	 * @return        [TODO description]
 	 */
-	public double calculateXDistance(double landingXCoord){
+	private double calculateXDistance(double landingXCoord){
 		//The 0.38125 is the centre of the board in x-plane; location of the shooter.
 		double xDist = Math.abs(0.7625 - landingXCoord);
 		return xDist;
@@ -31,10 +31,10 @@ public class ShootingModel {
 
 	/**
 	 * Calculates the distance in y plane from the shooter to the landing point
-	 * @param  double landingYCoord [TODO description]
+	 * @param  double landingYCoord [Y Coordinate on the grid for landing position]
 	 * @return        [TODO description]
 	 */
-	public double calculateYDistance(double landingYCoord){
+	private double calculateYDistance(double landingYCoord){
 		//The location of the shooter is at 0 m from the edge
 		double yDist = Math.abs(landingYCoord - 0);
 		return yDist;
@@ -62,7 +62,7 @@ public class ShootingModel {
 	 * @param xDist TODO
 	 * @return TODO
 	 */
-	public double calculateXAngle(double yDist, double xDist){
+	private double calculateYawAngle(double yDist, double xDist){
 		double angle = Math.atan(yDist/xDist);
 		System.out.println("Angle in the X Plane: " + Math.toDegrees(angle));
 		return angle;
@@ -73,9 +73,9 @@ public class ShootingModel {
 	 * TODO
 	 * @return TODO
 	 */
-	public double calculateYAngle(){
-		System.out.println("Angle in the Y Plane: " + yPlaneAngle);
-		return yPlaneAngle;
+	private double calculatePitchAngle(){
+		System.out.println("Angle in the Y Plane: " + pitch);
+		return pitch;
 	}
 
 	/**
@@ -83,7 +83,7 @@ public class ShootingModel {
 	 * @return TODO
 	 */
 	public double calculateVelocity(){
-		double vel = Math.sqrt((Math.pow(distance, 2)*gravity)/(2*Math.pow(Math.cos(yPlaneAngle),2)*(yInitialHeight+distance*Math.tan(yPlaneAngle))));
+		double vel = Math.sqrt((Math.pow(distance, 2)*gravity)/(2*Math.pow(Math.cos(pitch),2)*(yInitialHeight+distance*Math.tan(pitch))));
 		System.out.println("Velocity: "+vel+" m/s");
 		return vel;
 	}
@@ -94,15 +94,21 @@ public class ShootingModel {
 	 * @param landingXCoord
 	 * @param landingYCoord
 	 */
-	public ShootingModel(double initialHeight, double landingXCoord, double landingYCoord){
+	public ShootingModel(double initialHeight, double pitch){
 		yInitialHeight = initialHeight;
+		this.pitch = pitch;
+	}
+	
+	public ShootingDetails getShootingDetails(double landingXCoord, double landingYCoord){
 		distance = calculateDistance(landingXCoord, landingYCoord);
-		xPlaneAngle = calculateXAngle(xDistance, yDistance);
-		double y_angle = calculateYAngle();
+		yaw = calculateYawAngle(xDistance, yDistance);
 		velocity = calculateVelocity();
+		return new ShootingDetails(yaw, velocity);
 	}
 
 	public static void main(String []args){
-		ShootingModel shooter = new ShootingModel(0.0762, 0.38125, 2.055);
+		ShootingModel shooter = new ShootingModel(0.0762, 45);
+		ShootingDetails details = shooter.getShootingDetails(0.6,0.6);
+		System.out.println(details.toString());
 	}
 }
