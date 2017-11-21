@@ -1,18 +1,17 @@
 import cv2
 from collections import deque
 import numpy as np
-import sys
-import argparse
-import imutils
-print(cv2.__version__)
+import sys, argparse, imutils
 
-
-
-
-ap = argparse.ArgumentParser()
-ap.add_argument("-b", "--buffer", type=int, default=32,
-	help="max buffer size")
+ap = argparse.ArgumentParser();
+ap.add_argument(
+    "-b", 
+    "--buffer", 
+    type = int, 
+    default = 32,
+	help = "max buffer size")
 args = vars(ap.parse_args())
+
 # define the lower and upper boundaries of the "green"
 # ball in the HSV color space, then initialize the
 # list of tracked points
@@ -22,26 +21,26 @@ OrangeLower = (0,145,200)
 OrangeUpper = (30,200,300)
 
 # global variables
-BLUE = [255,0,0];
-GREEN = [0,255,0];
-RED = [0,0,255];
-BORDERWIDTH = 5;
+BLUE = [255,0,0]
+GREEN = [0,255,0]
+RED = [0,0,255]
+BORDERWIDTH = 5
 
 # up/down travel variables
-minMax = -1;
-rising = False;
-init = False;
+minMax = -1
+rising = False
+init = False
 
 # ball state FSM
-fsm = 0; # 0 - initial fall, 1 - rise, 2 - out of frame
+fsm = 0 # 0 - initial fall, 1 - rise, 2 - out of frame
 
 # detect mode, will exit on return (successful or not)
-detect = True;
+detect = False
 
-pts = deque(maxlen=args["buffer"])
-counter =0
-(dX, dY) = (0,0);
-cap = cv2.VideoCapture(0)
+pts = deque(maxlen = args["buffer"])
+counter = 0
+(dX, dY) = (0,0)
+cap = cv2.VideoCapture("vids/3.mp4")
 print(cap.get(3))
 print(cap.get(4))
 
@@ -99,24 +98,24 @@ while(True and not (fsm != 0 and detect)):
         c = max(cnts, key=cv2.contourArea)
         ((x, y), radius) = cv2.minEnclosingCircle(c)
         if(not init):
-            minMax = y;
-            init = True;
+            minMax = y
+            init = True
         else:
             if(rising):
                 if(y < minMax):
-                    minMax = y;
-                elif(y > minMax + 25):
-                    minMax = y;
-                    rising = False;
-                    borderColour = RED;
+                    minMax = y
+                elif(y > minMax + 10):
+                    minMax = y
+                    rising = False
+                    borderColour = RED
             else:
-                if(y < minMax - 25):
-                    minMax = y;
-                    rising = True;
-                    borderColour = GREEN;
-                    fsm = 1;
+                if(y < minMax - 10):
+                    minMax = y
+                    rising = True
+                    borderColour = GREEN
+                    fsm = 1
                 elif(y > minMax):
-                    minMax = y;
+                    minMax = y
         M = cv2.moments(c)
         center = (int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"]))
 
@@ -129,7 +128,7 @@ while(True and not (fsm != 0 and detect)):
             cv2.circle(frame, center, 5, (0, 0, 255), -1)
             pts.appendleft(center)
     elif(init):
-        fsm = 2;
+        fsm = 2
 
     # loop over the set of tracked points
     for i in np.arange(1, len(pts)):
@@ -167,11 +166,11 @@ while(True and not (fsm != 0 and detect)):
         left = BORDERWIDTH,
         right = BORDERWIDTH,
         borderType = cv2.BORDER_CONSTANT,
-        value = borderColour);
+        value = borderColour)
     cv2.imshow('border', border)
    ## cv2.imshow("shape",thresh)
     key = cv2.waitKey(1) & 0xFF
-    counter+=1
+    counter += 1
 
     # if the 'q' key is pressed, stop the loop
     if key == ord("q"):
@@ -182,7 +181,7 @@ if(fsm == 1):
 else:
     txt = "Fail!"
 
-cv2.putText(frame, txt, (150,160), cv2.FONT_HERSHEY_SIMPLEX, 2, borderColour, 2);
-bbox = cv2.selectROI(frame, False);
+cv2.putText(frame, txt, (150,160), cv2.FONT_HERSHEY_SIMPLEX, 2, borderColour, 2)
+bbox = cv2.selectROI(frame, False)
 # cap.release()
 # cv2.destroyAllWindows()
