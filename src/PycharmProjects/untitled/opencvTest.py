@@ -178,8 +178,11 @@ while(True and not (fsm != 0 and detect)):
         break
 
 if(fsm == 1):
-    print("success");
+    txt = "Success!"
 else:
-    print("fail");
-cap.release()
-cv2.destroyAllWindows()
+    txt = "Fail!"
+
+cv2.putText(frame, txt, (150,160), cv2.FONT_HERSHEY_SIMPLEX, 2, borderColour, 2);
+bbox = cv2.selectROI(frame, False);
+# cap.release()
+# cv2.destroyAllWindows()
