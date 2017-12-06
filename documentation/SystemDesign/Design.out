@@ -1,0 +1,32 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Project Overview}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Document Overview}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{Naming Conventions and Terminology}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.4}{Project Scope}{section.1}% 5
+\BOOKMARK [1][-]{section.2}{System Description}{}% 6
+\BOOKMARK [2][-]{subsection.2.1}{System Architecture}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.2}{Subsystems}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.3}{Use Cases}{section.2}% 9
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Use Case Diagram}{subsection.2.3}% 10
+\BOOKMARK [2][-]{subsection.2.4}{Sequence Diagram}{section.2}% 11
+\BOOKMARK [2][-]{subsection.2.5}{Behaviour Description}{section.2}% 12
+\BOOKMARK [3][-]{subsubsection.2.5.1}{Normal Operation}{subsection.2.5}% 13
+\BOOKMARK [3][-]{subsubsection.2.5.2}{Error Handling}{subsection.2.5}% 14
+\BOOKMARK [1][-]{section.3}{Subsystems Overview}{}% 15
+\BOOKMARK [2][-]{subsection.3.1}{SmartServe}{section.3}% 16
+\BOOKMARK [2][-]{subsection.3.2}{Computer Vision}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.3}{Shot Recommendation}{section.3}% 18
+\BOOKMARK [2][-]{subsection.3.4}{Shooting Model}{section.3}% 19
+\BOOKMARK [2][-]{subsection.3.5}{Shot Optimizer}{section.3}% 20
+\BOOKMARK [2][-]{subsection.3.6}{Data Storage}{section.3}% 21
+\BOOKMARK [2][-]{subsection.3.7}{User Interface}{section.3}% 22
+\BOOKMARK [2][-]{subsection.3.8}{Shooting Mechanism}{section.3}% 23
+\BOOKMARK [1][-]{section.4}{Class Responsibility Collaboration \(CRC\) Cards}{}% 24
+\BOOKMARK [2][-]{subsection.4.1}{SmartServe CRC Cards}{section.4}% 25
+\BOOKMARK [2][-]{subsection.4.2}{Computer Vision CRC Cards CRC Cards}{section.4}% 26
+\BOOKMARK [2][-]{subsection.4.3}{Shot Recommendation CRC Cards}{section.4}% 27
+\BOOKMARK [2][-]{subsection.4.4}{Shooting Model CRC Cards}{section.4}% 28
+\BOOKMARK [2][-]{subsection.4.5}{Shot Optimizer CRC Cards}{section.4}% 29
+\BOOKMARK [2][-]{subsection.4.6}{Data Storage CRC Cards}{section.4}% 30
+\BOOKMARK [2][-]{subsection.4.7}{User Interface CRC Cards}{section.4}% 31
+\BOOKMARK [2][-]{subsection.4.8}{Shooting Mechanism CRC Cards}{section.4}% 32
