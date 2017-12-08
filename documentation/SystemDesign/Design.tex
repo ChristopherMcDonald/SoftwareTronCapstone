@@ -186,7 +186,13 @@ The trainee would begin by starting the system from its off state. This will tri
 If the system should encounter an error, it should display the details of it through the User Interface subsystem. In addition to this, it must take measures to ensure the safety of the user and integrity of the system. This includes stopping all training and pending actions for the system to perform. For example, an error could be a jammed table tennis ball or the system has run out of balls to use.
 \section{Subsystems Overview}
 \subsection{Smart Serve}
-The Smart Serve subsystem will provide the means of interfacing with all the subsystems and enforcing timing constraints. For all intents and purposes, it can be considered the main process and hub of the system. In the event a subsystem is taking too long to respond, this subsystem must be able to continue operation to meet timing requirements.
+The Smart Serve subsystem will provide the means of interfacing with all the subsystems and enforcing timing constraints. For all intents and purposes, it can be considered the main process and hub of the system. In the event a subsystem is taking too long to respond, this subsystem must be able to continue operation to meet timing requirements. The various states and transitions can be found in Figure \ref{fig:fsm}. The FSM diagram shows each state should have an \textit{exit option} if a service takes longer than allowed to preform an action.
+\begin{figure}[htbp]
+   \centering
+   \includegraphics[width=0.7\textwidth]{img/FSM.png}
+   \caption{Smart Serve FSM}
+   \label{fig:fsm}
+\end{figure}
 
 \subsection{Computer Vision}
 The Computer Visions subsystem will be a service to the Smart Serve subsystem to determine if a shot is successfully returned. When sent a request to begin tracking the ball, it will do so and return a true or false when the ball bounces off the table or it doesn't. In the event the ball never enters frame, it will assume the return was failed after a fixed amount of time.
