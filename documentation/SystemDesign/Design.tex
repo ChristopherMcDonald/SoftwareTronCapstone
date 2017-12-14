@@ -85,24 +85,27 @@ The project started at the beginning of the Fall 2017 academic term and will con
 The purpose of this document is to provide an overview of the team's proposed system design that meets the system requirements as specified in the Requirements document (SRS). After reading this document, the reader should have a clear understanding of system/subsystem interactions, different subsystems, roles and uses of subsystems, as well as how the proposed system design will address the requirements. \\ \\
 At first, the system is decomposed into subsystems while highlighting each subsystems own responsibilities and design. Next, the document outlines the subsystems intended inputs, expected outputs and description of its use. Later, the document details the expected use cases to understand user expectations and subsystem interactions in the Sequence Diagram section. For every subsystem, this document defines its purpose with respect to the overall system. Later, detailed input and output parameters are defined. The means of communication are also described as these could be simple method calls to requests over some transport protocol like HTTP or TCP. The architecture for each subsystem will be designed in the low level design document. These decisions will be based on the unique requirements each subsystem needs to satisfy. At the end of this document, each subsystem is responsible for implementing some set of requirements. Those requirements are outlined in the requirements document found here. % TODO link
 Please note that in the ideal scenario, one subsystem will be the only one that is responsible for any one requirement but may not be the case for all of the requirements. 
+
 \subsection{Naming Conventions and Terminology}
 \label{sec:definitions}
 The following terms and definitions will be used throughout this document:
 \begin{itemize}
-\item \textbf{System}: encompasses both the hardware and software parts of SmartServe
-\item \textbf{Shooting Mechanism}: refers to the part of the system that shoots the table tennis balls towards the user side (player)
-\item \textbf{Team}: all team members of the core capstone project, as noted in the list of Authors
-\item \textbf{User Side}: the side of the table where the user (player) is standing
-\item \textbf{System Side}: the side of the table where the electromechanical system is placed; it is the opposite side of the User Side
+% Alphabetical order is highly preferred as it eases user navigation
 \item \textbf{ACID}: a database transaction which is atomic, consistent, isolated and durable
 \item \textbf{FPS}: frames per second
 \item \textbf{GUI}: graphical user interface
-\item \textbf{Pitch}: rotation along the y-axis; this rotation angle primarily dictates the range of the ball from the net to the edge of the table on the user side
-\item \textbf{Yaw}: rotation along the z-axis; this rotation angle primarily dictates the panning functionality of the shooting mechanism from the right side to the left side of the table
-\item \textbf{Roll}: rotation along the x-axis
 \item \textbf{HTTP:} hypertext transfer protocol
+\item \textbf{Pitch}: rotation along the y-axis; this rotation angle primarily dictates the range of the ball from the net to the edge of the table on the user side
+\item \textbf{Roll}: rotation along the x-axis
+\item \textbf{Shooting Mechanism}: refers to the part of the system that shoots the table tennis balls towards the user side (player). Please refer to Figure \ref{fig:table-tennis-top-view} for visual illustration.
+\item \textbf{System Side}: the side of the table where the electromechanical system is placed; it is the opposite side of the User Side. Please refer to Figure \ref{fig:table-tennis-top-view} for visual illustration.
+\item \textbf{System}: encompasses both the hardware and software parts of SmartServe
 \item \textbf{TCP:} transmission control protocol
+\item \textbf{Team}: all team members of the core capstone project, as noted in the list of Authors
+\item \textbf{User Side}: the side of the table where the user (player) is standing
+\item \textbf{Yaw}: rotation along the z-axis; this rotation angle primarily dictates the panning functionality of the shooting mechanism from the right side to the left side of the table
 \end{itemize}
+
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.75\textwidth]{img/Table-Tennis-Top-View.png} %requires the graphicx package
