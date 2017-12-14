@@ -2,7 +2,7 @@
 \usepackage{geometry}
 \geometry{letterpaper}
 
-\usepackage{graphicx}   
+\usepackage{graphicx}
 \usepackage{amssymb}
 \usepackage{float}
 \usepackage{tabularx}
@@ -24,14 +24,14 @@
 	\newcommand{\HRule}{\rule{\linewidth}{0.2mm}}
 	\begin{center}
 	\textsc{\LARGE McMaster University}\\[1.5cm]
-	
+
 	\textsc{\Large SmartServe}\\[0.5cm]
-	\textsc{\large Software \& Mechatronics Capstone}\\[0.5cm] 
+	\textsc{\large Software \& Mechatronics Capstone}\\[0.5cm]
 
 	\HRule\\[0.4cm]
 		{\huge\bfseries High Level System Design}\\[0.4cm]
 	\HRule\\[0.4cm]
-	
+
 	\begin{minipage}[t][][t]{0.5\textwidth}
 		\begin{flushleft} \large
 			\emph{Authors:}\\
@@ -50,13 +50,13 @@
 			\emph{Professor:} \\
 			Dr. Alan Wassyng \\[0.4cm]
 			\emph{Teaching Assistants:} \\
-			Bennett Mackenzie \\ 
-			Nicholas Annable \\ 
-			Stephen Wynn-Williams \\ 
+			Bennett Mackenzie \\
+			Nicholas Annable \\
+			Stephen Wynn-Williams \\
 			Viktor Smirnov
 		\end{flushright}
 	\end{minipage}\\[2cm]
-	
+
 	\includegraphics[width=0.3\textwidth]{logo.png} \\
 	{\large Last compiled on \today}
 	\end{center}
@@ -70,9 +70,10 @@
 \begin{figure}[H]
    \centering
    \noindent\begin{tabularx}{\textwidth}{| >{\centering\arraybackslash}m{0.2\textwidth} | >{\centering\arraybackslash}m{0.2\textwidth} | >{\centering\arraybackslash}m{0.2\textwidth} | >{\centering\arraybackslash}m{0.285\textwidth} |}
-   \hline 
+   \hline
    \textbf{Date} & \textbf{Revision} & \textbf{Comments} & \textbf{Author(s)} \\ \hline
    Dec 1, 2017 & 1.0 & Main content done for all sections & Christopher McDonald \\ \hline
+   Dec 13, 2017 & 1.1 & Corrected Document Overview & Nisarg Patel \\ \hline
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -85,7 +86,7 @@ The project started at the beginning of the Fall 2017 academic term and will con
 The purpose of this document is to provide an overview on the team' proposed system design that meets the system requirements as specified in the Requirements document (SRS). This means the system will be decomposed into subsystems which each have their own responsibilities and design. The subsystems will have their intended input, expected output and description of how the module will be used. In further documentation, each will be designed in a way which is abstracted from this document's perspective. The expected use cases will also be detailed to understand the expectations of the user and how each subsystem interacts with another. A more detailed view of this including timing as a factor will be detailed in the Sequence Diagram section. \\ \\
 For each subsystem, its purpose will be defined with respect to the overall system. After doing so, detailed input and output parameters will be defined. The means of communication will also need to be described as these could be simple method calls to requests over some transport protocol like HTTP or TCP. The general architecture will be decided for each subsystem will be given as each needs to satisfy unique requirements and thus needs to be decided at a system level. \\ \\
 To finish the document, each subsystem will be responsible for implementing some set of requirements which can be found \href{run:../Requirements/Requirements.pdf}{here}. These requirements are outlined in the requirements document found here.
-In the ideal scenario, one subsystem will be the only one that is responsible for any one requirement but may not be the case for all the requirements. 
+In the ideal scenario, one subsystem will be the only one that is responsible for any one requirement but may not be the case for all the requirements.
 \subsection{Naming Conventions and Terminology}
 \label{sec:definitions}
 The following terms and definitions will be used throughout this document:
@@ -184,7 +185,7 @@ As the behaviour of the system has been discussed previously, this section will 
 \subsubsection{Normal Operation}
 The trainee would begin by starting the system from its off state. This will trigger the Start System use case and allow the Smart Serve system to boot and the Shot Recommendation System to boot and build a model to recommend shots. The user will then trigger the Start Training use case and specify a training mode. This creates the loop of Smart Serve prepping and serving shots for the user. Only until the user starts the Stop System use case will this loop stop during normal operation. Either during training or after, a user can start the View Data use case to get details on their performance.
 \subsubsection{Abnormal Operation}
-Although possible, there are some actions a user could take which would be considered abnormal. If a user hits the ball and it immediately leaves the viewable area of the computer vision, whether it never returns or does so after 1.5 seconds, it should be considered a failed return. A user could replace the table with a different one without calibrating the system to the new table. The user could also misplace the system such that it is not centre with the table or at the edge of the table. The proper placement can be found in Figure \ref{fig:table-tennis-top-view}. The system will require the user to load the balls into the shooting mechanism's hopper which will need to be a particular size and colour to work optimally. 
+Although possible, there are some actions a user could take which would be considered abnormal. If a user hits the ball and it immediately leaves the viewable area of the computer vision, whether it never returns or does so after 1.5 seconds, it should be considered a failed return. A user could replace the table with a different one without calibrating the system to the new table. The user could also misplace the system such that it is not centre with the table or at the edge of the table. The proper placement can be found in Figure \ref{fig:table-tennis-top-view}. The system will require the user to load the balls into the shooting mechanism's hopper which will need to be a particular size and colour to work optimally.
 \subsubsection{Error Handling}
 If the system should encounter an error, it should display the details of it through the User Interface subsystem. In addition to this, it must take measures to ensure the safety of the user and integrity of the system. This includes stopping all training and pending actions for the system to perform. For example, an error could be a jammed table tennis ball or the system has run out of balls to use.
 \section{Subsystems Overview}
@@ -209,7 +210,7 @@ The Computer Visions subsystem will be a service to the Smart Serve subsystem to
 The Shot Recommendation subsystem will be a service to the Smart Serve subsystem to determine which shot should be taken next. The way the subsystem decides on the shot will be determined by the training mode the user selects. These will include shooting the same shot every time, pseudo-randomly picking a shot or using reinforcement learning algorithms to decide the next shot. The last mode will be based on previous performance by the user.
 
 \subsection{Shooting Model}
-The Shooting Model subsystem will be a service to the Smart Serve subsystem which provides the means of mapping a desired shot to the details needed to take the shot. The input and output for the system can be found in Figure \ref{fig:shotmodel}. The output will be many combinations of pitch, yaw, speed and angular velocity that satisfy the input shot details. 
+The Shooting Model subsystem will be a service to the Smart Serve subsystem which provides the means of mapping a desired shot to the details needed to take the shot. The input and output for the system can be found in Figure \ref{fig:shotmodel}. The output will be many combinations of pitch, yaw, speed and angular velocity that satisfy the input shot details.
 \begin{figure}[htbp]
    \centering
    \includegraphics[width=0.6\textwidth]{img/ShotModel.png} % requires the graphicx package
@@ -219,11 +220,11 @@ The Shooting Model subsystem will be a service to the Smart Serve subsystem whic
 \subsection{Shot Optimizer}
 The Shot Optimizer will be a service to the Smart Serve subsystem which provides means of reducing the travel time the shooting mechanism needs to do in order to shoot the desired shot. This will simply scan each possible orientation and pick one which minimizes the distance travelled for the mechanism.
 \subsection{Data Storage}
-The Data Storage subsystem will store all the details for each shot, the user's profile and the return rates for each user. It will need to have interfaces for saving data and querying data out of the system in a variety of formats. Ideally, it will require minimal detail and configuration for the subsystem which uses it due a variety of implementations of these subsystems. 
+The Data Storage subsystem will store all the details for each shot, the user's profile and the return rates for each user. It will need to have interfaces for saving data and querying data out of the system in a variety of formats. Ideally, it will require minimal detail and configuration for the subsystem which uses it due a variety of implementations of these subsystems.
 \subsection{User Interface}
 The User Interface subsystem will be the means of translating user requests into actionable requests for the Smart Serve subsystem.
 \subsection{Shooting Mechanism}
-The Shooting Mechanism will be the subsystem which actually fires the ball towards the user. A microcontroller will be used as the point of contact and set any actuators required to fire a specified shot. It must complete this action within 1.5 seconds for the Computer Vision to detect the ball returned by the user. 
+The Shooting Mechanism will be the subsystem which actually fires the ball towards the user. A microcontroller will be used as the point of contact and set any actuators required to fire a specified shot. It must complete this action within 1.5 seconds for the Computer Vision to detect the ball returned by the user.
 \section{Class Responsibility Collaboration (CRC) Cards}
 \subsection{SmartServe}
 
@@ -234,14 +235,14 @@ The Shooting Mechanism will be the subsystem which actually fires the ball towar
 \hline
 \multicolumn{2}{|c|}{\textbf{Smart Serve}}             \\ \hline
 \textbf{Responsibilities:} & \textbf{Collaborators:} \\ \hline
-\begin{itemize} 
+\begin{itemize}
 \item \textbf{F10}: pause the shooting mechanism
 \item \textbf{F18}: shoot a ball once the previous has been returned to the system side or 1.5 seconds after the previous shot, whichever is shorter
 \item \textbf{P2}:  must include all but previous 3 shots in performance data
 \item \textbf{P5}: must support only one user playing at one time
-\end{itemize} 
-& 
-\begin{itemize} 
+\end{itemize}
+&
+\begin{itemize}
 \item Computer Vision
 \item Shot Recommendation
 \item Shooting Model
@@ -266,8 +267,8 @@ The Shooting Mechanism will be the subsystem which actually fires the ball towar
 \begin{itemize}
 \item \textbf{F5}: detect a successful return by the user
 \item \textbf{OE2}: functional in indoor settings with bright florescent lighting
-\end{itemize} 
-& 
+\end{itemize}
+&
 \begin{itemize} \item Smart Serve
 \end{itemize} \\ \hline
 \end{tabular}
@@ -283,12 +284,12 @@ The Shooting Mechanism will be the subsystem which actually fires the ball towar
 \hline
 \multicolumn{2}{|c|}{\textbf{Smart Serve}}             \\ \hline
 \textbf{Responsibilities:} & \textbf{Collaborators:} \\ \hline
-\begin{itemize} 
+\begin{itemize}
 \item \textbf{F7}: load a previously saved state
 \item \textbf{MS1}: must support adding different modes to the system
-\end{itemize} 
-& 
-\begin{itemize} 
+\end{itemize}
+&
+\begin{itemize}
 \item Smart Serve
 \item Data Storage
 \end{itemize} \\ \hline
@@ -305,12 +306,12 @@ The Shooting Mechanism will be the subsystem which actually fires the ball towar
 \hline
 \multicolumn{2}{|c|}{\textbf{Smart Serve}}             \\ \hline
 \textbf{Responsibilities:} & \textbf{Collaborators:} \\ \hline
-\begin{itemize} 
+\begin{itemize}
 \item \textbf{F13}: implements a training mode
 \item \textbf{F14}: implements a one-shot mode
-\end{itemize} 
-& 
-\begin{itemize} 
+\end{itemize}
+&
+\begin{itemize}
 \item Smart Serve
 \end{itemize} \\ \hline
 \end{tabular}
@@ -330,8 +331,8 @@ The Shooting Mechanism will be the subsystem which actually fires the ball towar
 \item \textbf{P6}: minimize the latency between the current shooting mechanism position and the next desired position
 \end{itemize}
 &
-\begin{itemize} 
-\item Smart Serve 
+\begin{itemize}
+\item Smart Serve
 \end{itemize} \\ \hline
 \end{tabular}
 \caption{Shot Optimizer Card}
@@ -346,8 +347,8 @@ The Shooting Mechanism will be the subsystem which actually fires the ball towar
 \hline
 \multicolumn{2}{|c|}{\textbf{Smart Serve}}             \\ \hline
 \textbf{Responsibilities:} & \textbf{Collaborators:} \\ \hline
-\begin{itemize} 
-\item \textbf{F6}: saves details for each shot taken by the shooting mechanism 
+\begin{itemize}
+\item \textbf{F6}: saves details for each shot taken by the shooting mechanism
 \item \textbf{F8}: allows creation of a new user
 \item \textbf{F9}: authenticate users
 \item \textbf{P4}: must support 1000 users
@@ -355,9 +356,9 @@ The Shooting Mechanism will be the subsystem which actually fires the ball towar
 \item \textbf{S1}: hash all passwords for user profiles
 \item \textbf{S2}: encrypt all performance data for each user
 \item \textbf{P1}: allow read access for coaches
-\end{itemize} 
-& 
-\begin{itemize} 
+\end{itemize}
+&
+\begin{itemize}
 \item Shot Recommendation
 \item Smart Serve
 \end{itemize} \\ \hline
@@ -374,7 +375,7 @@ The Shooting Mechanism will be the subsystem which actually fires the ball towar
 \hline
 \multicolumn{2}{|c|}{\textbf{Smart Serve}}             \\ \hline
 \textbf{Responsibilities:} & \textbf{Collaborators:} \\ \hline
-\begin{itemize} 
+\begin{itemize}
 \item \textbf{F11}: end the training session
 \item \textbf{F12}: resume training session from a paused state
 \item \textbf{F13}: display user's performance over a custom time range
@@ -384,9 +385,9 @@ The Shooting Mechanism will be the subsystem which actually fires the ball towar
 \item \textbf{UH1}: is intuitive to use
 \item \textbf{UH2}: operable using the English language
 \item \textbf{P1}: response time for user input must be less than or equal to 100ms
-\end{itemize} 
-& 
-\begin{itemize} 
+\end{itemize}
+&
+\begin{itemize}
 \item Smart Serve
 \end{itemize} \\ \hline
 \end{tabular}
@@ -403,8 +404,8 @@ The Shooting Mechanism will be the subsystem which actually fires the ball towar
 \multicolumn{2}{|c|}{\textbf{Smart Serve}}             \\ \hline
 \textbf{Responsibilities:} & \textbf{Collaborators:} \\ \hline
 \begin{itemize}
-\item \textbf{F1}: shoots the table tennis ball towards the user at various locations 
-\item \textbf{F2}: shoots the table tennis ball towards the user at various speeds 
+\item \textbf{F1}: shoots the table tennis ball towards the user at various locations
+\item \textbf{F2}: shoots the table tennis ball towards the user at various speeds
 \item \textbf{F3}: shoots the table tennis ball towards the user at various Yaw
 \item \textbf{F4}: shoots the table tennis ball towards the user with spin along 2 axes
 \item \textbf{HS1}: always hit the table at least once per shot
@@ -412,9 +413,9 @@ The Shooting Mechanism will be the subsystem which actually fires the ball towar
 \item \textbf{HS3}: have no exposed electrical wiring or components
 \item \textbf{HS4}: carries warnings around moving parts
 \item \textbf{HS5}: has a button to cease all power to system
-\end{itemize} 
+\end{itemize}
 &
-\begin{itemize} 
+\begin{itemize}
 \item Smart Serve
 \end{itemize} \\ \hline
 \end{tabular}
