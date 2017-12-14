@@ -10,22 +10,23 @@
 \BOOKMARK [2][-]{subsection.2.4}{Sequence Diagram}{section.2}% 10
 \BOOKMARK [2][-]{subsection.2.5}{Behaviour Description}{section.2}% 11
 \BOOKMARK [3][-]{subsubsection.2.5.1}{Normal Operation}{subsection.2.5}% 12
-\BOOKMARK [3][-]{subsubsection.2.5.2}{Error Handling}{subsection.2.5}% 13
-\BOOKMARK [1][-]{section.3}{Subsystems Overview}{}% 14
-\BOOKMARK [2][-]{subsection.3.1}{Smart Serve}{section.3}% 15
-\BOOKMARK [2][-]{subsection.3.2}{Computer Vision}{section.3}% 16
-\BOOKMARK [2][-]{subsection.3.3}{Shot Recommendation}{section.3}% 17
-\BOOKMARK [2][-]{subsection.3.4}{Shooting Model}{section.3}% 18
-\BOOKMARK [2][-]{subsection.3.5}{Shot Optimizer}{section.3}% 19
-\BOOKMARK [2][-]{subsection.3.6}{Data Storage}{section.3}% 20
-\BOOKMARK [2][-]{subsection.3.7}{User Interface}{section.3}% 21
-\BOOKMARK [2][-]{subsection.3.8}{Shooting Mechanism}{section.3}% 22
-\BOOKMARK [1][-]{section.4}{Class Responsibility Collaboration \(CRC\) Cards}{}% 23
-\BOOKMARK [2][-]{subsection.4.1}{SmartServe}{section.4}% 24
-\BOOKMARK [2][-]{subsection.4.2}{Computer Vision}{section.4}% 25
-\BOOKMARK [2][-]{subsection.4.3}{Shot Recommendation}{section.4}% 26
-\BOOKMARK [2][-]{subsection.4.4}{Shooting Model}{section.4}% 27
-\BOOKMARK [2][-]{subsection.4.5}{Shot Optimizer}{section.4}% 28
-\BOOKMARK [2][-]{subsection.4.6}{Data Storage}{section.4}% 29
-\BOOKMARK [2][-]{subsection.4.7}{User Interface}{section.4}% 30
-\BOOKMARK [2][-]{subsection.4.8}{Shooting Mechanism}{section.4}% 31
+\BOOKMARK [3][-]{subsubsection.2.5.2}{Abnormal Operation}{subsection.2.5}% 13
+\BOOKMARK [3][-]{subsubsection.2.5.3}{Error Handling}{subsection.2.5}% 14
+\BOOKMARK [1][-]{section.3}{Subsystems Overview}{}% 15
+\BOOKMARK [2][-]{subsection.3.1}{Smart Serve}{section.3}% 16
+\BOOKMARK [2][-]{subsection.3.2}{Computer Vision}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.3}{Shot Recommendation}{section.3}% 18
+\BOOKMARK [2][-]{subsection.3.4}{Shooting Model}{section.3}% 19
+\BOOKMARK [2][-]{subsection.3.5}{Shot Optimizer}{section.3}% 20
+\BOOKMARK [2][-]{subsection.3.6}{Data Storage}{section.3}% 21
+\BOOKMARK [2][-]{subsection.3.7}{User Interface}{section.3}% 22
+\BOOKMARK [2][-]{subsection.3.8}{Shooting Mechanism}{section.3}% 23
+\BOOKMARK [1][-]{section.4}{Class Responsibility Collaboration \(CRC\) Cards}{}% 24
+\BOOKMARK [2][-]{subsection.4.1}{SmartServe}{section.4}% 25
+\BOOKMARK [2][-]{subsection.4.2}{Computer Vision}{section.4}% 26
+\BOOKMARK [2][-]{subsection.4.3}{Shot Recommendation}{section.4}% 27
+\BOOKMARK [2][-]{subsection.4.4}{Shooting Model}{section.4}% 28
+\BOOKMARK [2][-]{subsection.4.5}{Shot Optimizer}{section.4}% 29
+\BOOKMARK [2][-]{subsection.4.6}{Data Storage}{section.4}% 30
+\BOOKMARK [2][-]{subsection.4.7}{User Interface}{section.4}% 31
+\BOOKMARK [2][-]{subsection.4.8}{Shooting Mechanism}{section.4}% 32
