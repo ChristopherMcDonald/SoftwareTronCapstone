@@ -16,7 +16,7 @@
     urlcolor=black
 }
 
-% ask Nick about lines, predicted abnormal behaviour, computer vision FSM to detect returns, UI, ask Nick about need 3D model, CRC card formatting, add Shot Opt requirement, add electric schematic
+% ask Nick about lines, UI, ask Nick about need 3D model, add electric schematic, ask Nick about entering project goals
 
 \begin{document}
 
@@ -78,7 +78,6 @@
 \end{figure}
 \newpage
 \section{Introduction}
-% todo pass mode to shot recommendation system
 \subsection{Project Overview}
 SmartServe is an autonomous table tennis training system for table tennis players with various skill levels. SmartServe aids in diagnosing and improving a player's performance over time. The system trains table tennis players by shooting table tennis balls towards the player and detects successful returns from the player. The system can further adapt to the player's weaknesses and help them overcome it through further training. Importantly, SmartServe alleviates the problems of finding and working with a coach for players, as well as coaches trying to train multiple players simultaneously. The system will be deemed a success if the table tennis players and coaches, can enjoy and see a value added by using SmartServe.\\\\
 The project started at the beginning of the Fall 2017 academic term and will conclude at the end of the Winter 2018 term. In addition, the core project team consists of final year Software and Mechatronics Engineering students who are enrolled in the MECHTRON 4TB6/SFWRENG 4G06 capstone project course.
@@ -184,6 +183,8 @@ The sequence diagram for each user-initiated use case are listed below in their 
 As the behaviour of the system has been discussed previously, this section will describe the expected user behaviour and how they would interact with the system.
 \subsubsection{Normal Operation}
 The trainee would begin by starting the system from its off state. This will trigger the Start System use case and allow the Smart Serve system to boot and the Shot Recommendation System to boot and build a model to recommend shots. The user will then trigger the Start Training use case and specify a training mode. This creates the loop of Smart Serve prepping and serving shots for the user. Only until the user starts the Stop System use case will this loop stop during normal operation. Either during training or after, a user can start the View Data use case to get details on their performance.
+\subsubsection{Abnormal Operation}
+Although possible, there are some actions a user could take which would be considered abnormal. If a user hits the ball and it immediately leaves the viewable area of the computer vision, whether it never returns or does so after 1.5 seconds, it should be considered a failed return. A user could replace the table with a different one without calibrating the system to the new table. The user could also misplace the system such that it is not centre with the table or at the edge of the table. The proper placement can be found in Figure \ref{fig:table-tennis-top-view}. The system will require the user to load the balls into the shooting mechanism's hopper which will need to be a particular size and colour to work optimally. 
 \subsubsection{Error Handling}
 If the system should encounter an error, it should display the details of it through the User Interface subsystem. In addition to this, it must take measures to ensure the safety of the user and integrity of the system. This includes stopping all training and pending actions for the system to perform. For example, an error could be a jammed table tennis ball or the system has run out of balls to use.
 \section{Subsystems Overview}
@@ -198,7 +199,12 @@ The Smart Serve subsystem will provide the means of interfacing with all the sub
 
 \subsection{Computer Vision}
 The Computer Visions subsystem will be a service to the Smart Serve subsystem to determine if a shot is successfully returned. When sent a request to begin tracking the ball, it will do so and return a true or false when the ball bounces off the table or it doesn't. In the event the ball never enters frame, it will assume the return was failed after a fixed amount of time.
-
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.4\textwidth]{img/cvFSM.png}
+   \caption{CV Finite State Machine}
+   \label{fig:cv}
+\end{figure}
 \subsection{Shot Recommendation}
 The Shot Recommendation subsystem will be a service to the Smart Serve subsystem to determine which shot should be taken next. The way the subsystem decides on the shot will be determined by the training mode the user selects. These will include shooting the same shot every time, pseudo-randomly picking a shot or using reinforcement learning algorithms to decide the next shot. The last mode will be based on previous performance by the user.
 
@@ -224,7 +230,7 @@ The Shooting Mechanism will be the subsystem which actually fires the ball towar
 \begin{table}[H]
 \centering
 \label{my-label}
-\begin{tabular}{ | p{0.4\textwidth} | p{0.4\textwidth} | }
+\begin{tabular}{ | >{\raggedright\arraybackslash}p{0.4\textwidth} | >{\raggedright\arraybackslash}p{0.4\textwidth} | }
 \hline
 \multicolumn{2}{|c|}{\textbf{Smart Serve}}             \\ \hline
 \textbf{Responsibilities:} & \textbf{Collaborators:} \\ \hline
@@ -253,7 +259,7 @@ The Shooting Mechanism will be the subsystem which actually fires the ball towar
 \begin{table}[H]
 \centering
 \label{my-label}
-\begin{tabular}{ | p{0.4\textwidth} | p{0.4\textwidth} | }
+\begin{tabular}{ | >{\raggedright\arraybackslash}p{0.4\textwidth} | >{\raggedright\arraybackslash}p{0.4\textwidth} | }
 \hline
 \multicolumn{2}{|c|}{\textbf{Smart Serve}}             \\ \hline
 \textbf{Responsibilities:} & \textbf{Collaborators:} \\ \hline
@@ -273,7 +279,7 @@ The Shooting Mechanism will be the subsystem which actually fires the ball towar
 \begin{table}[H]
 \centering
 \label{my-label}
-\begin{tabular}{ | p{0.4\textwidth} | p{0.4\textwidth} | }
+\begin{tabular}{ | >{\raggedright\arraybackslash}p{0.4\textwidth} | >{\raggedright\arraybackslash}p{0.4\textwidth} | }
 \hline
 \multicolumn{2}{|c|}{\textbf{Smart Serve}}             \\ \hline
 \textbf{Responsibilities:} & \textbf{Collaborators:} \\ \hline
@@ -295,7 +301,7 @@ The Shooting Mechanism will be the subsystem which actually fires the ball towar
 \begin{table}[H]
 \centering
 \label{my-label}
-\begin{tabular}{ | p{0.4\textwidth} | p{0.4\textwidth} | }
+\begin{tabular}{ | >{\raggedright\arraybackslash}p{0.4\textwidth} | >{\raggedright\arraybackslash}p{0.4\textwidth} | }
 \hline
 \multicolumn{2}{|c|}{\textbf{Smart Serve}}             \\ \hline
 \textbf{Responsibilities:} & \textbf{Collaborators:} \\ \hline
@@ -316,11 +322,17 @@ The Shooting Mechanism will be the subsystem which actually fires the ball towar
 \begin{table}[H]
 \centering
 \label{my-label}
-\begin{tabular}{ | p{0.4\textwidth} | p{0.4\textwidth} | }
+\begin{tabular}{ | >{\raggedright\arraybackslash}p{0.4\textwidth} | >{\raggedright\arraybackslash}p{0.4\textwidth} | }
 \hline
 \multicolumn{2}{|c|}{\textbf{Smart Serve}}             \\ \hline
 \textbf{Responsibilities:} & \textbf{Collaborators:} \\ \hline
-N/A & \begin{itemize} \item Smart Serve \end{itemize} \\ \hline
+\begin{itemize}
+\item \textbf{P6}: minimize the latency between the current shooting mechanism position and the next desired position
+\end{itemize}
+&
+\begin{itemize} 
+\item Smart Serve 
+\end{itemize} \\ \hline
 \end{tabular}
 \caption{Shot Optimizer Card}
 \end{table}
@@ -330,7 +342,7 @@ N/A & \begin{itemize} \item Smart Serve \end{itemize} \\ \hline
 \begin{table}[H]
 \centering
 \label{my-label}
-\begin{tabular}{ | p{0.4\textwidth} | p{0.4\textwidth} | }
+\begin{tabular}{ | >{\raggedright\arraybackslash}p{0.4\textwidth} | >{\raggedright\arraybackslash}p{0.4\textwidth} | }
 \hline
 \multicolumn{2}{|c|}{\textbf{Smart Serve}}             \\ \hline
 \textbf{Responsibilities:} & \textbf{Collaborators:} \\ \hline
@@ -358,7 +370,7 @@ N/A & \begin{itemize} \item Smart Serve \end{itemize} \\ \hline
 \begin{table}[H]
 \centering
 \label{my-label}
-\begin{tabular}{ | p{0.4\textwidth} | p{0.4\textwidth} | }
+\begin{tabular}{ | >{\raggedright\arraybackslash}p{0.4\textwidth} | >{\raggedright\arraybackslash}p{0.4\textwidth} | }
 \hline
 \multicolumn{2}{|c|}{\textbf{Smart Serve}}             \\ \hline
 \textbf{Responsibilities:} & \textbf{Collaborators:} \\ \hline
@@ -386,7 +398,7 @@ N/A & \begin{itemize} \item Smart Serve \end{itemize} \\ \hline
 \begin{table}[H]
 \centering
 \label{my-label}
-\begin{tabular}{ | p{0.5\textwidth} | p{0.5\textwidth} | }
+\begin{tabular}{ | >{\raggedright\arraybackslash}p{0.5\textwidth} | >{\raggedright\arraybackslash}p{0.5\textwidth} | }
 \hline
 \multicolumn{2}{|c|}{\textbf{Smart Serve}}             \\ \hline
 \textbf{Responsibilities:} & \textbf{Collaborators:} \\ \hline
