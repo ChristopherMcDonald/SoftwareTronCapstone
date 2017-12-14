@@ -5,9 +5,9 @@ import sys, argparse, imutils
 
 ap = argparse.ArgumentParser();
 ap.add_argument(
-    "-b", 
-    "--buffer", 
-    type = int, 
+    "-b",
+    "--buffer",
+    type = int,
     default = 32,
 	help = "max buffer size")
 args = vars(ap.parse_args())
@@ -15,10 +15,10 @@ args = vars(ap.parse_args())
 # define the lower and upper boundaries of the "green"
 # ball in the HSV color space, then initialize the
 # list of tracked points
-Orange1Upper = (50,300,300)
-Orange1Lower = (0,160,210)
-OrangeLower = (0,145,200)
-OrangeUpper = (30,200,300)
+Orange1Upper = (32,204,248)
+Orange1Lower = (9,105,130)
+# OrangeLower = (0,145,200)
+# OrangeUpper = (30,200,300)
 
 # global variables
 BLUE = [255,0,0]
@@ -35,12 +35,12 @@ init = False
 fsm = 0 # 0 - initial fall, 1 - rise, 2 - out of frame
 
 # detect mode, will exit on return (successful or not)
-detect = False
+detect = False;
 
 pts = deque(maxlen = args["buffer"])
 counter = 0
 (dX, dY) = (0,0)
-cap = cv2.VideoCapture("vids/3.mp4")
+cap = cv2.VideoCapture(1)
 print(cap.get(3))
 print(cap.get(4))
 
@@ -104,12 +104,12 @@ while(True and not (fsm != 0 and detect)):
             if(rising):
                 if(y < minMax):
                     minMax = y
-                elif(y > minMax + 10):
+                elif(y > minMax + 30):
                     minMax = y
                     rising = False
                     borderColour = RED
             else:
-                if(y < minMax - 10):
+                if(y < minMax - 30):
                     minMax = y
                     rising = True
                     borderColour = GREEN
