@@ -1,4 +1,4 @@
-\documentclass[11pt]{article} 
+\documentclass[11pt]{article}
 \usepackage{geometry}
 \geometry{letterpaper}
 
@@ -74,7 +74,7 @@
    \textbf{Date} & \textbf{Revision} & \textbf{Comments} & \textbf{Author(s)} \\ \hline
    Dec 1, 2017 & 1.0 & Main content done for all sections & Christopher McDonald \\ \hline
    Dec 13, 2017 & 1.1 & Corrected Document Overview & Nisarg Patel \\ \hline
-   Dec 14, 2017 & 1.2 & Refined Project Scope & Nisarg Patel \\ \hline
+   Dec 14, 2017 & 1.2 & Refined Project Scope \& System Description (Section 2) & Nisarg Patel \\ \hline
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -120,6 +120,12 @@ The system will only attempt to shoot balls from the shooting mechanism straight
 \section{System Description}
 \subsection{System Architecture}
 The system will follow a service-oriented architecture. This means that a central subsystem will interface with several services that serve a single purpose. Some subsystems will be simply told what needs to be done and others will be asked for some return value. This is done to implement separation of concerns where one subsystem doesn't know everything about the system and only what is necessary to satisfy their requirements. It also allows for easy increments of versioning, where one subsystem can be used as long as it is functional and easily swapped out for a newer version with extra features or increased performance. Moreover, this system has heavy timing constraints and an unpredictable environment so some actions must be taken in absence of a service's response. For example, the computer vision may take longer to track a ball depending on its trajectory where the system must shoot another ball in order to keep the user engaged.
+
+%TO DO
+\subsection{System Variables}
+\subsubsection{Monitored Variables}
+\subsubsection{Controlled Variables}
+
 \subsection{Subsystems}
 The system will be broken down into the subsystems with the following purposes: general managing of subsystems, computer vision to detect returns, shot recommendation, model the shot's trajectory, optimize the distance travelled by the shooting mechanism, store the data, take input and output from the user and shooting the ball toward the user. The diagram for this breakdown can be found in Figure \ref{fig:sub}.
 \begin{figure}[H]
@@ -136,53 +142,47 @@ The diagram including all use cases can be found in Figure \ref{fig:usecase}. Th
    \caption{Use Case Diagram}
    \label{fig:usecase}
 \end{figure}
-\subsubsection*{Start Training}
-The user interface will have ways to allow the user to start this action which makes the Smart Serve subsystem prepare for a shot to fire towards the user. To do this, it needs to request a shot to use from the Shot Recommendation subsystem. This will be in the form of a desired location on the table, the speed of the shot and the angular velocity of the ball. The Smart Serve subsystem can then use the Shooting Model to translate this information into pitch, yaw and angular velocity to shoot the ball so it matches the desired shot. The Smart Serve subsystem can then use the Shooting Mechanism's current position and the desired shot to request the optimal position to shoot the ball using the Shot Optimizer. After doing so, it will instruct the shooting mechanism to shoot the ball in the desired way and start the CV subsystem to begin tracking for a successful return. Only until the CV subsystem returns the pass or failed return data, can it update the Data Storage and Shot Recommendation subsystems with this new information. The former will store the result and the data for the shot together, where the latter will update the model used to generate shot recommendations. After doing all this, it can begin preparing for a new shot.
-\subsubsection*{Stop Training}
-In the event the user wants to cease training, the user interface will allow this and will halt the system from shooting balls. No data should be written or shots requested for the shooting mechanism to fire in order to preserve the integrity of the data the system gathers.
-\subsubsection*{View Results}
-When the user wants to visualize the results of their performance, the user interface will allow this action to begin. It will use the Smart Serve subsystem to query data from data storage and present it in some meaningful way.
-\subsubsection*{Tune Parameters}
-The system made need to be adjusted for various lighting, table sizes or environments. The user interface will allow a system administrator to do this in order to directly change values associated for these variables.
-\subsubsection*{Start System}
-The user interface will allow the system to be booted where it starts the Smart Serve subsystem. This will read allow the Shot Recommendation system to build its model based on previous data for the user, if it exists.
-\subsection{Sequence Diagram}
-The sequence diagram for each user-initiated use case are listed below in their respective sections.
-\subsubsection*{Start Training}
-\begin{figure}[htbp]
+\subsubsection{Start Training}
+The user interface will have ways to allow the user to start this action which makes the Smart Serve subsystem prepare for a shot to shoot towards the user. To do this, it needs to request a shot to use from the Shot Recommendation subsystem. This will be in the form of a desired location on the table, the speed of the shot and the angular velocity of the ball. The Smart Serve subsystem can then use the Shooting Model to translate this information into pitch, yaw and angular velocity to shoot the ball so it matches the desired shot. The Smart Serve subsystem can then use the Shooting Mechanism's current position and the desired shot to request the optimal position to shoot the ball using the Shot Optimizer. After doing so, it will instruct the shooting mechanism to shoot the ball in the desired way and start the CV subsystem to begin tracking for a successful return. Only until the CV subsystem returns the pass or failed return data, can it update the Data Storage and Shot Recommendation subsystems with this new information. The former will store the result and the data for the shot together, where the latter will update the model used to generate shot recommendations. After doing all this, it can begin preparing for a new shot.
+\begin{figure}[H]
    \centering
    \includegraphics[width=\textwidth]{img/SequenceDiagram-Start.png}
    \caption{Sequence Diagram for Starting Training}
    \label{fig:start}
 \end{figure}
-\subsubsection*{Stop Training}
-\begin{figure}[htbp]
+\subsubsection{Stop Training}
+In the event the user wants to cease training, the user interface will allow this and will halt the system from shooting balls. No data should be written or shots requested for the shooting mechanism to shoot in order to preserve the integrity of the data the system gathers.
+\begin{figure}[H]
    \centering
    \includegraphics[width=\textwidth]{img/SequenceDiagram-Stop.png}
    \caption{Sequence Diagram for Ceasing Training}
    \label{fig:stop}
 \end{figure}
-\subsubsection*{View Results}
-\begin{figure}[htbp]
+\subsubsection{View Results}
+When the user wants to visualize the results of their performance, the user interface will allow this action to begin. It will use the Smart Serve subsystem to query data from data storage and present it in some meaningful way.
+\begin{figure}[H]
    \centering
    \includegraphics[width=\textwidth]{img/SequenceDiagram-View.png}
    \caption{Sequence Diagram for Viewing Training Results}
    \label{fig:view}
 \end{figure}
-\subsubsection*{Tune Parameters}
-\begin{figure}[htbp]
+\subsubsection{Tune Parameters}
+The system may need to be adjusted for various lighting, table sizes or environments. The user interface will allow a system administrator to do this in order to directly change values associated for these variables.
+\begin{figure}[H]
    \centering
    \includegraphics[width=\textwidth]{img/SequenceDiagram-Tune.png}
    \caption{Sequence Diagram for Tuning Parameters}
    \label{fig:tune}
 \end{figure}
-\subsubsection*{Start System}
+\subsubsection{Start System}
+The user interface will allow the system to be booted where it starts the Smart Serve subsystem. This will read allow the Shot Recommendation system to build its model based on previous data for the user, if it exists.
 \begin{figure}[H]
    \centering
    \includegraphics[width=\textwidth]{img/SequenceDiagram-Boot.png}
    \caption{Sequence Diagram for Booting the System}
    \label{fig:boot}
 \end{figure}
+
 \subsection{Behaviour Description}
 As the behaviour of the system has been discussed previously, this section will describe the expected user behaviour and how they would interact with the system.
 \subsubsection{Normal Operation}
@@ -229,6 +229,7 @@ The User Interface subsystem will be the means of translating user requests into
 \subsection{Shooting Mechanism}
 The Shooting Mechanism will be the subsystem which actually fires the ball towards the user. A microcontroller will be used as the point of contact and set any actuators required to fire a specified shot. It must complete this action within 1.5 seconds for the Computer Vision to detect the ball returned by the user.
 \section{Class Responsibility Collaboration (CRC) Cards}
+%TODO CHRIS ADD WHAT CRC IS LIKE A BRIEF DESCRIPTION
 \subsection{SmartServe}
 
 \begin{table}[H]
