@@ -119,7 +119,8 @@ The system will only attempt to shoot balls from the shooting mechanism straight
 \section{System Description}
 \subsection{System Architecture}
 The system will follow a service-oriented / process-based architecture. This means that a central subsystem will interface with several services that serve a single purpose. Some subsystems will be simply told what needs to be done and others will asked for some return value. This is done to implement separation of concerns where one subsystem doesn't know everything about the system and only what is necessary to satisfy their requirements. It also allows for easy increments of versioning, where one subsystem can be used as long as it is functional and easily swapped out for a newer version with extra features or increased performance. Moreover, this system has heavy timing constraints and an unpredictable environment so some actions must be taken in absence of a service's response. For example, the computer vision may take longer to track a ball depending on its trajectory where the system must shoot another ball in order to keep the user engaged.
-\subsection{Subsystems}
+
+\subsection{Subsystems Overview}
 The system will be broken down into the subsystems with the following purposes: general managing of subsystems, computer vision to detect returns, shot recommendation, model the shot's trajectory, optimize the distance travelled by the shooting mechanism, store the data, take input and output from the user and shooting the ball toward the user. The diagram for this breakdown can be found in Figure \ref{fig:sub}.
 \begin{figure}[H]
    \centering
@@ -127,6 +128,39 @@ The system will be broken down into the subsystems with the following purposes: 
    \caption{Subsystem Breakdown}
    \label{fig:sub}
 \end{figure}
+\subsubsection{Smart Serve}
+The Smart Serve subsystem will provide the means of interfacing with all the subsystems and enforcing timing constraints. For all intents and purposes, it can be considered the main process and hub of the system. In the event a subsystem is taking too long to respond, this subsystem must be able to continue operation to meet timing requirements. The various states and transitions can be found in Figure \ref{fig:fsm}. The FSM diagram shows each state should have an \textit{exit option} if a service takes longer than allowed to preform an action.
+\begin{figure}[htbp]
+   \centering
+   \includegraphics[width=0.7\textwidth]{img/FSM.png}
+   \caption{Smart Serve FSM}
+   \label{fig:fsm}
+\end{figure}
+
+\subsubsection{Computer Vision}
+The Computer Visions subsystem will be a service to the Smart Serve subsystem to determine if a shot is successfully returned. When sent a request to begin tracking the ball, it will do so and return a true or false when the ball bounces off the table or it doesn't. In the event the ball never enters frame, it will assume the return was failed after a fixed amount of time.
+
+\subsubsection{Shot Recommendation}
+The Shot Recommendation subsystem will be a service to the Smart Serve subsystem to determine which shot should be taken next. The way the subsystem decides on the shot will be determined by the training mode the user selects. These will include shooting the same shot every time, pseudo-randomly picking a shot or using reinforcement learning algorithms to decide the next shot. The last mode will be based on previous performance by the user.
+
+\subsubsection{Shooting Model}
+The Shooting Model subsystem will be a service to the Smart Serve subsystem which provides the means of mapping a desired shot to the details needed to take the shot. The input and output for the system can be found in Figure \ref{fig:shotmodel}. The output will be many combinations of pitch, yaw, speed and angular velocity that satisfy the input shot details. 
+\begin{figure}[htbp]
+   \centering
+   \includegraphics[width=0.6\textwidth]{img/ShotModel.png} % requires the graphicx package
+   \caption{Shooting Model I/O}
+   \label{fig:shotmodel}
+\end{figure}
+\subsubsection{Shot Optimizer}
+The Shot Optimizer will be a service to the Smart Serve subsystem which provides means of reducing the travel time the shooting mechanism needs to do in order to shoot the desired shot. This will simply scan each possible orientation and pick one which minimizes the distance travelled for the mechanism.
+\subsubsection{Data Storage}
+The Data Storage subsystem will store all the details for each shot, the user's profile and the return rates for each user. It will need to have interfaces for saving data and querying data out of the system in a variety of formats. Ideally, it will require minimal detail and configuration for the subsystem which uses it due a variety of implementations of these subsystems. 
+\subsubsection{User Interface}
+The User Interface subsystem will be the means of translating user requests into actionable requests for the Smart Serve subsystem.
+\subsubsection{Shooting Mechanism}
+The Shooting Mechanism will be the subsystem which actually fires the ball towards the user. A microcontroller will be used as the point of contact and set any actuators required to fire a specified shot. It must complete this action within 1.5 seconds for the Computer Vision to detect the ball returned by the user. 
+
+
 \subsection{Use Cases}
 The diagram including all use cases can be found in Figure \ref{fig:usecase}. The user-instantiated ones will be described in detail below.
 \begin{figure}[htbp]
@@ -188,41 +222,8 @@ As the behaviour of the system has been discussed previously, this section will 
 The trainee would begin by starting the system from its off state. This will trigger the Start System use case and allow the Smart Serve system to boot and the Shot Recommendation System to boot and build a model to recommend shots. The user will then trigger the Start Training use case and specify a training mode. This creates the loop of Smart Serve prepping and serving shots for the user. Only until the user starts the Stop System use case will this loop stop during normal operation. Either during training or after, a user can start the View Data use case to get details on their performance.
 \subsubsection{Error Handling}
 If the system should encounter an error, it should display the details of it through the User Interface subsystem. In addition to this, it must take measures to ensure the safety of the user and integrity of the system. This includes stopping all training and pending actions for the system to perform. For example, an error could be a jammed table tennis ball or the system has run out of balls to use.
-\section{Subsystems Overview}
-\subsection{Smart Serve}
-The Smart Serve subsystem will provide the means of interfacing with all the subsystems and enforcing timing constraints. For all intents and purposes, it can be considered the main process and hub of the system. In the event a subsystem is taking too long to respond, this subsystem must be able to continue operation to meet timing requirements. The various states and transitions can be found in Figure \ref{fig:fsm}. The FSM diagram shows each state should have an \textit{exit option} if a service takes longer than allowed to preform an action.
-\begin{figure}[htbp]
-   \centering
-   \includegraphics[width=0.7\textwidth]{img/FSM.png}
-   \caption{Smart Serve FSM}
-   \label{fig:fsm}
-\end{figure}
-
-\subsection{Computer Vision}
-The Computer Visions subsystem will be a service to the Smart Serve subsystem to determine if a shot is successfully returned. When sent a request to begin tracking the ball, it will do so and return a true or false when the ball bounces off the table or it doesn't. In the event the ball never enters frame, it will assume the return was failed after a fixed amount of time.
-
-\subsection{Shot Recommendation}
-The Shot Recommendation subsystem will be a service to the Smart Serve subsystem to determine which shot should be taken next. The way the subsystem decides on the shot will be determined by the training mode the user selects. These will include shooting the same shot every time, pseudo-randomly picking a shot or using reinforcement learning algorithms to decide the next shot. The last mode will be based on previous performance by the user.
-
-\subsection{Shooting Model}
-The Shooting Model subsystem will be a service to the Smart Serve subsystem which provides the means of mapping a desired shot to the details needed to take the shot. The input and output for the system can be found in Figure \ref{fig:shotmodel}. The output will be many combinations of pitch, yaw, speed and angular velocity that satisfy the input shot details. 
-\begin{figure}[htbp]
-   \centering
-   \includegraphics[width=0.6\textwidth]{img/ShotModel.png} % requires the graphicx package
-   \caption{Shooting Model I/O}
-   \label{fig:shotmodel}
-\end{figure}
-\subsection{Shot Optimizer}
-The Shot Optimizer will be a service to the Smart Serve subsystem which provides means of reducing the travel time the shooting mechanism needs to do in order to shoot the desired shot. This will simply scan each possible orientation and pick one which minimizes the distance travelled for the mechanism.
-\subsection{Data Storage}
-The Data Storage subsystem will store all the details for each shot, the user's profile and the return rates for each user. It will need to have interfaces for saving data and querying data out of the system in a variety of formats. Ideally, it will require minimal detail and configuration for the subsystem which uses it due a variety of implementations of these subsystems. 
-\subsection{User Interface}
-The User Interface subsystem will be the means of translating user requests into actionable requests for the Smart Serve subsystem.
-\subsection{Shooting Mechanism}
-The Shooting Mechanism will be the subsystem which actually fires the ball towards the user. A microcontroller will be used as the point of contact and set any actuators required to fire a specified shot. It must complete this action within 1.5 seconds for the Computer Vision to detect the ball returned by the user. 
 \section{Class Responsibility Collaboration (CRC) Cards}
 \subsection{SmartServe}
-
 \begin{table}[H]
 \centering
 \label{my-label}
