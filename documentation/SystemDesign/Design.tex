@@ -74,6 +74,7 @@
    \textbf{Date} & \textbf{Revision} & \textbf{Comments} & \textbf{Author(s)} \\ \hline
    Dec 1, 2017 & 1.0 & Main content done for all sections & Christopher McDonald \\ \hline
    Dec 13, 2017 & 1.1 & Corrected Document Overview & Nisarg Patel \\ \hline
+   Dec 14, 2017 & 1.2 & Refined Project Scope & Nisarg Patel \\ \hline
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -93,6 +94,7 @@ The following terms and definitions will be used throughout this document:
 \begin{itemize}
 % Alphabetical order is highly preferred as it eases user navigation
 \item \textbf{ACID}: a database transaction which is atomic, consistent, isolated and durable
+\item \textbf{CV}: computer vision subsystem to perform image processing
 \item \textbf{FPS}: frames per second
 \item \textbf{GUI}: graphical user interface
 \item \textbf{HTTP:} hypertext transfer protocol
@@ -114,8 +116,7 @@ The following terms and definitions will be used throughout this document:
    \label{fig:table-tennis-top-view}
 \end{figure}
 \subsection{Project Scope}
-In order to make the project feasible within the time constraint imposed on the \hyperref[sec:definitions]{team}, it will need to be scoped accordingly. One way we are scoping the project is by limiting the types of shots the \hyperref[sec:definitions]{system} can take. A return by the system would first contact the table on the \hyperref[sec:definitions]{\textit{User side}} where a serve would first contact the table on the \hyperref[sec:definitions]{\textit{System side}}. We are limiting the system to only preform returns. The system will make no attempt at returning any shots from the user. \\\\
-After the user has returned a shot from the system, the system will not make any attempts to return a shot that is likely to be returned given the user's returns. This is to give the system the ability to focus on a particular type of shot the user is the least proficient at returning. The characteristics of the shot following any return will be determined by the system's mode and the proficiency of the player if available.
+The system will only attempt to shoot balls from the shooting mechanism straight towards the user side. Importantly, the system will not attempt to return any shots from the user. After the user has returned a shot, the Computer Vision (CV) subsystem will be utilized to determine if the user's shot lands on the table or not. Additionally, the characteristics of the shot following any return will be determined by the system's mode and the proficiency of the player if available.
 \section{System Description}
 \subsection{System Architecture}
 The system will follow a service-oriented architecture. This means that a central subsystem will interface with several services that serve a single purpose. Some subsystems will be simply told what needs to be done and others will be asked for some return value. This is done to implement separation of concerns where one subsystem doesn't know everything about the system and only what is necessary to satisfy their requirements. It also allows for easy increments of versioning, where one subsystem can be used as long as it is functional and easily swapped out for a newer version with extra features or increased performance. Moreover, this system has heavy timing constraints and an unpredictable environment so some actions must be taken in absence of a service's response. For example, the computer vision may take longer to track a ball depending on its trajectory where the system must shoot another ball in order to keep the user engaged.
