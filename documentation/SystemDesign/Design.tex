@@ -16,7 +16,7 @@
     urlcolor=black
 }
 
-% ask Nick about lines, UI, ask Nick about need 3D model, add electric schematic, ask Nick about entering project goals
+% ask Nick about lines in Seq Diagram, ask Nick about need 3D model, ask Nick about entering project goals
 
 \begin{document}
 
@@ -224,9 +224,9 @@ The Shooting Model subsystem will be a service to the Smart Serve subsystem whic
 \subsection{Shot Optimizer}
 The Shot Optimizer will be a service to the Smart Serve subsystem which provides means of reducing the travel time the shooting mechanism needs to do in order to shoot the desired shot. This will simply scan each possible orientation and pick one which minimizes the distance travelled for the mechanism.
 \subsection{Data Storage}
-The Data Storage subsystem will store all the details for each shot, the user's profile and the return rates for each user. It will need to have interfaces for saving data and querying data out of the system in a variety of formats. Ideally, it will require minimal detail and configuration for the subsystem which uses it due a variety of implementations of these subsystems.
+The Data Storage subsystem will store all the details for each shot, the user's profile and the return rates for each user. It will need to have interfaces for saving data and querying data out of the system in a variety of formats. Ideally, it will require minimal detail and configuration for the subsystem which uses it due to the variety of implementations of these subsystems.
 \subsection{User Interface}
-The User Interface subsystem will be the means of translating user requests into actionable requests for the Smart Serve subsystem.
+The User Interface subsystem will be the means of translating user requests into actionable requests for the Smart Serve subsystem. The inputs will include a username, password, mode selection and some means of starting and stopping the training. The UI will also need to accept custom parameters for performance data including time ranges and ways to cluster shot types. The output will include custom and useful error messages as well as graphs and tables for performance data.
 \subsection{Shooting Mechanism}
 The Shooting Mechanism will be the subsystem which actually fires the ball towards the user. A microcontroller will be used as the point of contact and set any actuators required to fire a specified shot. It must complete this action within 1.5 seconds for the Computer Vision to detect the ball returned by the user.
 \section{Class Responsibility Collaboration (CRC) Cards}
