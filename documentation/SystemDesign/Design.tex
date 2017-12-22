@@ -79,6 +79,7 @@
    Dec 14, 2017 & 1.2 & Refined Project Scope \& System Description (Section 2) & Nisarg Patel \\ \hline
    Dec 17, 2017 & 1.3 & Added CRC card intro and reviewed & Christopher McDonald \\ \hline
    Dec 21, 2017 & 1.4 & Edited entire document & Sharon Platkin \\ \hline
+   Dec 21, 2017 & 1.5 & Added Arduino Diagrams and Shooter Information & Nisarg Patel \\ \hline	
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -242,6 +243,30 @@ The Data Storage subsystem will store all the details for each shot, the user's 
 The User Interface subsystem will be the means of translating user requests into actionable requests for the Smart Serve subsystem. The inputs will include a username, password, mode selection and some means of starting and stopping the training. The UI will also need to accept custom parameters for performance data including time ranges and ways to cluster shot types. The output will include custom and useful error messages as well as graphs and tables for performance data.
 \subsection{Shooting Mechanism}
 The Shooting Mechanism will be the subsystem which actually fires the ball towards the user. A microcontroller will be used as the point of contact and set any actuators required to fire a specified shot. It must complete this action within 1.5 seconds for the Computer Vision to detect the ball returned by the user.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=1\textwidth]{img/Electrical_Wiring_Diagram_bb.png} %requires the graphicx package
+   \caption{Electrical Wiring Diagram - Bread Board}
+   \label{fig:electricalwiringdiagrambb}
+\end{figure}
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=1\textwidth]{img/Electrical_Wiring_Diagram_schematic.png} %requires the graphicx package
+   \caption{Electrical Wiring Diagram - Schematic}
+   \label{fig:electricalwiringdiagramschematic}
+\end{figure}
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=1\textwidth]{img/Electrical_Wiring_Diagram_pcb.png} %requires the graphicx package
+   \caption{Electrical Wiring Diagram - Printer Circuit Board Trace}
+   \label{fig:electricalwiringdiagrampcb}
+\end{figure}
+
+
+
 \section{Class Responsibility Collaboration (CRC) Cards}
 The following sections will include one CRC card for each subsystem. A CRC card contains information pertaining to which requirements a subsystem is responsible for and which subsystems one would collaborate with. This will be used for testing purposes and to track where a given requirement is satisfied. A requirement does not have to be satisfied completely by one subsystem, but a majority of the work must be done by that subsystem.
 \subsection{SmartServe}
