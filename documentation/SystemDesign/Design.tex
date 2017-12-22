@@ -16,7 +16,9 @@
     urlcolor=black
 }
 
+% TODOs:
 % ask Nick about lines in Seq Diagram, ask Nick about need 3D model, ask Nick about entering project goals
+% switch to cleveref
 
 \begin{document}
 
@@ -76,6 +78,7 @@
    Dec 13, 2017 & 1.1 & Corrected Document Overview & Nisarg Patel \\ \hline
    Dec 14, 2017 & 1.2 & Refined Project Scope \& System Description (Section 2) & Nisarg Patel \\ \hline
    Dec 17, 2017 & 1.3 & Added CRC card intro and reviewed & Christopher McDonald \\ \hline
+   Dec 21, 2017 & 1.4 & Edited entire document & Sharon Platkin \\ \hline
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -98,7 +101,6 @@ The following terms and definitions will be used throughout this document:
 \item \textbf{FPS}: frames per second
 \item \textbf{FSM}: finite state machine, shows transitions between states
 \item \textbf{GUI}: graphical user interface
-\item \textbf{HTTP}: hypertext transfer protocol
 \item \textbf{Pitch}: rotation along the y-axis; this rotation angle primarily dictates the range of the ball from the net to the edge of the table on the user side
 \item \textbf{Roll}: rotation along the x-axis
 \item \textbf{Shooting Mechanism}: refers to the part of the system that shoots the table tennis balls towards the user side (player) Please refer to Figure \ref{fig:table-tennis-top-view} for visual illustration
@@ -205,7 +207,7 @@ Although possible, there are some actions a user could take which would be consi
 If the system should encounter an error, it should display the details of it through the User Interface subsystem. In addition to this, it must take measures to ensure the safety of the user and integrity of the system. This includes stopping all training and pending actions for the system to perform. For example, an error could be a jammed table tennis ball or the system has run out of balls to use.
 \section{Subsystems Overview}
 \subsection{Smart Serve}
-The Smart Serve subsystem will provide the means of interfacing with all the subsystems and enforcing timing constraints. For all intents and purposes, it can be considered the main process and hub of the system. In the event a subsystem is taking too long to respond, this subsystem must be able to continue operation to meet timing requirements. The various states and transitions can be found in Figure \ref{fig:fsm}. The FSM(Finite State Machine) diagram shows each state should have an \textit{exit option} if a service takes longer than allowed to preform an action.
+The Smart Serve subsystem will provide the means of interfacing with all the subsystems and enforcing timing constraints. For all intents and purposes, it can be considered the main process and hub of the system. In the event a subsystem is taking too long to respond, this subsystem must be able to continue operation to meet timing requirements. The various states and transitions can be found in Figure \ref{fig:fsm}. The FSM (Finite State Machine) diagram shows each state should have an \textit{exit option} if a service takes longer than allowed to preform an action.
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.7\textwidth]{img/FSM.png}
