@@ -102,6 +102,7 @@ The following terms and definitions will be used throughout this document:
 \item \textbf{FPS}: frames per second
 \item \textbf{FSM}: finite state machine, shows transitions between states
 \item \textbf{GUI}: graphical user interface
+\item \textbf{IPO}: input process output
 \item \textbf{Pitch}: rotation along the y-axis; this rotation angle primarily dictates the range of the ball from the net to the edge of the table on the user side
 \item \textbf{Roll}: rotation along the x-axis
 \item \textbf{Shooting Mechanism}: refers to the part of the system that shoots the table tennis balls towards the user side (player) Please refer to Figure \ref{fig:table-tennis-top-view} for visual illustration
@@ -242,7 +243,16 @@ The Data Storage subsystem will store all the details for each shot, the user's 
 \subsection{User Interface}
 The User Interface subsystem will be the means of translating user requests into actionable requests for the Smart Serve subsystem. The inputs will include a username, password, mode selection and some means of starting and stopping the training. The UI will also need to accept custom parameters for performance data including time ranges and ways to cluster shot types. The output will include custom and useful error messages as well as graphs and tables for performance data.
 \subsection{Shooting Mechanism}
-The Shooting Mechanism will be the subsystem which actually fires the ball towards the user. A microcontroller will be used as the point of contact and set any actuators required to fire a specified shot. It must complete this action within 1.5 seconds for the Computer Vision to detect the ball returned by the user.
+The Shooting Mechanism will be the subsystem which actually fires the ball towards the user. A microcontroller will be used as the point of contact and set any actuators required to fire a specified shot. It must complete this action within 1.5 seconds for the Computer Vision to detect the ball returned by the user. \\\\
+The Shooting Mechanism will consist of three main sub parts: Automatic Feeder, Automatic Panning, Ball Shooter. The functionality of the Automatic Feeder part will be to automatically control the feeding rate of the ping pong balls into the shooting barrel and feed the balls into the barrel as initiated by the program. The functionality of the Automatic Panning will be to rotate the entire shooting mechanism or the shooting barrel about the z-axis so the mechanism is able to cover all of the shooting zones as specified in the requirements. Additionally, the functionality of the ball shooter is actually shoot out ping pong balls from the shooting barrel. Please refer to figure \ref{fig:shootingmechanismoutline} for visual representation. \\\\
+In terms of electrical components, Arduino UNO microcontroller will be used to control all of the IPO (Input Process Output) processes between the sensors, actuators and Smart Serve. For the ball shooter, a DC Motor will be used as the system will require high speeds and high torques to shoot out ping pong balls. The details on the DC motor can be found at https://secure.sayal.com/STORE/View_SPEC.asp?SKU=230437. The DC Motor will be controlled using the PWM method for speed control. Additionally, a Stepper Motor will be utilized for the automatic feeding of the balls into shooting barrel functionality as the Stepper motor would not require any position encoder as well as the stepper motor will have predictable movements. Details on the stepper motor can be found at https://www.seeedstudio.com/Gear-Stepper-Motor-with-Driver-p-1685.html. For the automatic panning part of the shooting mechanism, a servo or a stepper motor will be utilized however that would be further refined after rigorous prototyping and simulations. Please refer to Figure \ref{fig:electricalwiringdiagrambb}, Figure \ref{fig:electricalwiringdiagramschematic}, and Figure \ref{fig:electricalwiringdiagrampcb} for an overview of Electrical Bread Board, Schematic and PCB layout diagrams of how the Shooting Mechanism system outline.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=1\textwidth]{img/Shooting_Mechanism.png} %requires the graphicx package
+   \caption{Shooting Mechanism Rough Outline}
+   \label{fig:shootingmechanismoutline}
+\end{figure}
 
 \begin{figure}[H]
    \centering
