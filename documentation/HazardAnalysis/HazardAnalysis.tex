@@ -117,15 +117,15 @@ The following terms and definitions will be used throughout this document:
 
 \section{System}
 \subsection{High-Level Design}
-The high-level design document covers in great detail the design of the system and can be found \href{run:../SystemDesign/Design.pdf}{here}. As a summary, the mechanical aspects include a hopper to hold all the table tennis balls and a spinning disk with cut outs to force feed the balls into the barrel. The barrel can hold many balls and they are pushed up the barrel as the aforementioned disk spins. Once a ball reaches the end of the barrel, it will shoot the ball out via a spinning wheel affixed to the end of the barrel. The entire mechanism is fixed to a rotating platform to have variable yaw. The spinning wheel can shoot at various speeds. \\ \\
-The electrical components include an Arduino, breadboard and power supply to control the motors needed to spin the mechanism and wheel. There will also be a general purpose computer to run the software-based components and a USB camera to use for the computer vision system. 
+The high-level design document covers in great detail the design of the system and can be found \href{run:../SystemDesign/Design.pdf}{here}. As a summary, the mechanical aspects include a hopper to hold all the table tennis balls and a spinning disk with cut outs to force feed the balls into a barrel. The barrel can hold multiple balls, that are then pushed up the barrel as the aforementioned disk spins. Once a ball reaches the end of the barrel, the ball will be shot out via a spinning wheel affixed to a motor attached to the end of the barrel. The entire mechanism is fixed to a rotating platform to have variable yaw. The spinning wheel can shoot at various speeds and can be manually set to multiple orientations by rotating in the roll direction, to achieve different types of spin. The shooting assembly will also have multiple manual settings for rotating in the y-axis, in order to achieve different yaw and ball trajectories.  \\ \\
+The electrical components include an Arduino, breadboard, motor driver, H bridge, and power supply to control the motors needed to spin the mechanism and wheel. There will also be a general purpose computer to run the software-based components and a USB camera to use for the computer vision system. 
 \subsection{Scope \& Boundary}
 The hazards outlined below will cover the hardware, electrical and software aspects of the SmartServe system. \\ \\
 Intentional misuse or destruction of the system will not be discussed as it is outside the scope of this document. The user is assumed to be using fully-functioning and maintained equipment including the table tennis balls, table and paddles. All electrical equipment is assumed to be working at production performance which includes all electrical wiring, components, boards and motors.   
 \section{Hazards}
 \subsection{User is struck by an air-borne ball}
 \subsubsection*{Description}
-The machine will be shooting balls towards the user for them to return. For normal shots, it should always hit the table on the user side first before hitting a player. Not only is this a rule for valid shots as per the International Table Tennis Federation(ITTF) rules, it will ensure a sufficient amount of time for the user to react. However, the system could shoot the ball directly towards the player without hitting the table. This could potentially cause damage to the face or eyes of the player if the ball is travelling fast enough.
+The machine will be shooting balls towards the user for them to return. For normal shots, it should always hit the table on the user side first before hitting a player. Not only is this a rule for valid shots as per the International Table Tennis Federation(ITTF) rules, it will ensure a sufficient amount of time for the user to react. However, the system could shoot the ball directly towards the player without hitting the table. This could potentially cause damage to the face or eyes of the player if the ball is traveling fast enough.
 \subsubsection*{Mitigation Plan}
 The system should never attempt to take a shot which exceeds the length of the user's side of the table. However, if a user were to replace the table with a smaller one without calibration or if some bug does make the spinning wheel spin faster than allowed, this could happen. The motor for the spinning wheel should have a maximum voltage in order to ensure the ball isn't shot at high speeds which would cause damage. \\ \\
 The fault analysis tree can be found in Figure \ref{fig:ft-Air}.
@@ -138,9 +138,9 @@ The fault analysis tree can be found in Figure \ref{fig:ft-Air}.
 
 \subsection{User is caught in a Pinch Point}
 \subsubsection*{Description}
-The system will include moving mechanisms to shoot balls toward the player in a variety of ways. This means that two pieces could be moving next to one another. This may lead to a user's finge or other extremity being caught in between the two pieces. This can cause damage to the user and the system. The system can break the users skin or bones and the motors and materials can break if given enough force.
+The system will include moving mechanisms to shoot balls toward the player in a variety of ways. This means that two pieces could be moving next to one another. This may lead to a user's finger or other extremity being caught in between the two pieces. This can cause damage to the user and the system. The system can break the users skin or bones and the motors and materials can break if given enough force.
 \subsubsection*{Mitigation Plan}
-The number of pinch points should be minimized in order to avoid the chance of this happening. In the event one is unable to be avoided, proper notices and warnings will be used to discourage accidental exposure of the user's extremeties to the pinch points. Additionally, guards will be installed wherever possible. \\ \\
+The number of pinch points should be minimized in order to avoid the chance of this happening. In the event one is unable to be avoided, proper notices and warnings will be used to discourage accidental exposure of the user's extremities to the pinch points. Additionally, guards will be installed wherever possible. \\ \\
 The fault analysis tree can be found in Figure \ref{fig:ft-pinch}.
 
 \begin{figure}[H]
@@ -208,6 +208,21 @@ The fault analysis tree can be found in Figure \ref{fig:ft-traverse}.
    \includegraphics[width=0.7\textwidth]{img/ft-traverse.png} % requires the graphicx package
    \caption{Fault Analysis Tree for \textit{Machine's traversal is blocked}}
    \label{fig:ft-traverse}
+\end{figure}
+
+\subsection{Manual Settings not Communicated Correctly}
+\subsubsection*{Description}
+As stated before the machine will have manual settings for the shooting barrel, which will achieve different roll orientations and therefore ball spin. There will also be a manual setting for pitch orientation to achieve different ball trajectories. If the user does not properly communicate the current settings to the machine, it will shoot in an unpredictable and incorrect fashion, leaving the user and  environment susceptible to injury and damage.
+\subsubsection*{Mitigation Plan}
+The user should ensure that the correct manual settings are communicated to the machine. The machine's GUI will have extremely clear instructions for the user, to ensure proper settings. The machine could be fitted with sensors to detect current settings and eliminate potential human error. \\ \\
+
+The fault analysis tree can be found in Figure \ref{fig:ft-settings}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{img/ft-settings.png} % requires the graphicx package
+	\caption{Fault Analysis Tree for \textit{Manual Settings not Communicated Correctly}}
+	\label{fig:ft-settings}
 \end{figure}
 
 \end{document}
