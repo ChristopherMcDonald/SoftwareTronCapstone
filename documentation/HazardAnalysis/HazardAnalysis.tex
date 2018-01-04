@@ -75,8 +75,8 @@
    \hline
    \textbf{Date} & \textbf{Revision} & \textbf{Comments} & \textbf{Author(s)} \\ \hline
    Dec 29, 2017 & 1.0 & Main content done for all sections & Christopher McDonald \\ \hline
-   Jan 1, 2018 & 2.0 & Edit entire document & Sharon Platkin \\ \hline
-   Jan 3, 2018 & 3.0 & Edited document and added settings hazard & Jared Rayner \\ \hline
+   Jan 1, 2018 & 1.1 & Edit entire document & Sharon Platkin \\ \hline
+   Jan 3, 2018 & 1.2 & Edited document & Jared Rayner \\ \hline
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -155,7 +155,7 @@ The fault analysis tree can be found in Figure \ref{fig:ft-pinch}.
 \subsubsection*{Description}
 The system will require electrical components in order to activate motors. This will also include power balancing and transfer to the necessary components. This means some wiring will be needed and thus some inherent risk of shock to the user via such wiring or the sensors or actuators themselves. Only when the wires carry current would this be a risk.
 \subsubsection*{Mitigation Plan}
-All wiring will be enclosed to the best of our ability. However, due to the nature of the system requiring motion it can be difficult to completely enclose the system. Proper warnings and notices will be used to warn the user of electrical current. The system will also be fused to prevent prolonged short circuits. \\ \\
+All wiring will be enclosed to the best of our ability. However, due to the nature of the system requiring motion it can be difficult to completely enclose the system. Proper warnings and notices will be used to warn the user of electrical current. The system will also have a fail-safe via a fuse, which cuts power in the event of a short circuit. \\ \\
 
 The fault analysis tree can be found in Figure \ref{fig:ft-electric}.
 
@@ -209,21 +209,6 @@ The fault analysis tree can be found in Figure \ref{fig:ft-traverse}.
    \includegraphics[width=0.7\textwidth]{img/ft-traverse.png} % requires the graphicx package
    \caption{Fault Analysis Tree for \textit{Machine's traversal is blocked}}
    \label{fig:ft-traverse}
-\end{figure}
-
-\subsection{Manual Settings not Communicated Correctly}
-\subsubsection*{Description}
-As stated before the machine will have manual settings for the shooting barrel, which will achieve different roll orientations and therefore ball spin. There will also be a manual setting for pitch orientation to achieve different ball trajectories. If the user does not properly communicate the current settings to the machine, it will shoot in an unpredictable and incorrect fashion, leaving the user and  environment susceptible to injury and damage.
-\subsubsection*{Mitigation Plan}
-The user should ensure that the correct manual settings are communicated to the machine. The machine's GUI will have extremely clear instructions for the user, to ensure proper settings. The machine could be fitted with sensors to detect current settings and eliminate potential human error. \\ \\
-
-The fault analysis tree can be found in Figure \ref{fig:ft-settings}.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{img/ft-settings.png} % requires the graphicx package
-	\caption{Fault Analysis Tree for \textit{Manual Settings not Communicated Correctly}}
-	\label{fig:ft-settings}
 \end{figure}
 
 \end{document}
