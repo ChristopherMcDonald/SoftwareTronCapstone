@@ -2,7 +2,7 @@
 \usepackage{geometry}
 \geometry{letterpaper}
 
-% TODO: roadmap, top-down / bottom-up, categorize the hardwares
+% TODO: roadmap, categorize the hardwares
 
 \usepackage{graphicx}
 \usepackage{amssymb}
@@ -84,7 +84,8 @@
 SmartServe is an autonomous table tennis training system for table tennis players with various skill levels. SmartServe aids in diagnosing and improving a player's performance over time. The system trains table tennis players by shooting table tennis balls towards the player and detects successful returns from the player. The system can further adapt to the player's weaknesses and help them overcome it through further training. Importantly, SmartServe alleviates the problems of finding and working with a coach for players, as well as coaches trying to train multiple players simultaneously. The system will be deemed a success if the table tennis players and coaches can enjoy and see some value added by using SmartServe.\\ \\
 The project started at the beginning of the Fall 2017 academic term and will conclude at the end of the Winter 2018 term. In addition, the core project team consists of final year Software and Mechatronics Engineering students who are enrolled in the MECHTRON 4TB6/SFWRENG 4G06 capstone project course.
 \subsection{Document Overview}
-This document will cover all potential hazards that a user may encounter when using the SmartServe system. For each hazard, a description, mitigation plan, and a fault tree to cover all potential situations in which the hazard would arise are included. Additionally, a description of the system, its scope, and boundary will be provided in order to support and provide context to the hazards.
+This document will cover all potential hazards that a user may encounter when using the SmartServe system. For each hazard, a description, mitigation plan, and a fault tree to cover all potential situations in which the hazard would arise are included. Additionally, a description of the system, its scope, and boundary will be provided in order to support and provide context to the hazards. In addition to system hazards, project risks will also be considered where the hazards will place the successful completion of the project at risk. \\ \\
+In order to complete this Hazard Analysis, a Fault Tree Analysis will be preformed. This will begin by identifying the hazards which exist in and around the system. From there, all causes for such hazard will be added into the tree. A cause could potentially have its own set of causes which make it happen and these will also be included in the fault trees until the root causes are identified.
 \subsection{Naming Conventions and Terminology}
 \label{sec:definitions}
 The following terms and definitions will be used throughout this document:
@@ -120,8 +121,34 @@ The high-level design document covers in great detail the design of the system a
 The electrical components include an Arduino, breadboard, motor driver, H bridge, and power supply to control the motors needed to spin the mechanism and wheel. There will also be a general purpose computer to run the software-based components and a USB camera to use for the computer vision system. 
 \subsection{Scope \& Boundary}
 The hazards outlined below will cover the hardware, electrical and software aspects of the SmartServe system. \\ \\
-Intentional misuse or destruction of the system will not be discussed as it is outside the scope of this document. The user is assumed to be using fully-functioning and maintained equipment including the table tennis balls, table and paddles. All electrical equipment is assumed to be working at production performance which includes all electrical wiring, components, boards and motors.   
+Intentional misuse or destruction of the system will not be discussed as it is outside the scope of this document. The user is assumed to be using fully-functioning and maintained equipment including the table tennis balls, table and paddles. All electrical equipment is assumed to be working at production performance which includes all electrical wiring, components, boards and motors.
+
 \section{Hazards}
+The hazards outlined here can be categorized into 2 main categories: system and project. System hazards damage the user or the assets of the system where project hazards damage the integrity of the project and its success. The list of each can be found in Table \ref{table:hazard}. \\
+\begin{table}[H]
+\centering
+\caption{Categorization of Hazards}
+\label{table:hazard}
+\begin{tabular}{ | >{\raggedright\arraybackslash}p{0.5\textwidth} | >{\raggedright\arraybackslash}p{0.5\textwidth} | }
+\hline
+\multicolumn{2}{|c|}{\textbf{Hazards}} \\ \hline
+\textbf{System}   & \textbf{Project}   \\ \hline
+\begin{itemize}
+\item User is struck by an air-borne ball
+\item User is caught in a Pinch Point
+\item Electric Shock
+\item User's appendage is caught in machine
+\item Machine overheats
+\item Machine's traversal is blocked
+\end{itemize}
+&
+\begin{itemize}
+\item CV frame rate is too low for accurate reading
+\item Shooting Mechanism shoots inaccurately
+\end{itemize}
+\\ \hline
+\end{tabular}
+\end{table}
 \subsection{User is struck by an air-borne ball}
 \subsubsection*{Description}
 The machine will be shooting balls towards the user for them to return. For normal shots, it should always hit the table on the user side first before hitting a player. Not only is this a rule for valid shots as per the International Table Tennis Federation(ITTF) rules, it will ensure a sufficient amount of time for the user to react. However, the system could shoot the ball directly towards the player without hitting the table. This could potentially cause damage to the face or eyes of the player if the ball is traveling fast enough.
@@ -209,4 +236,48 @@ The fault analysis tree can be found in Figure \ref{fig:ft-traverse}.
    \label{fig:ft-traverse}
 \end{figure}
 
+\subsection{CV frame rate is too low for accurate reading}
+\subsubsection*{Description}
+The table tennis ball will be tracked with computer vision as it travels across the system's side after being hit by the user. The speed at which it does this can vary from 1 to 30 m/s and the higher range can be difficult to track with consumer-grade hardware which includes cameras and processing power. If the ball travels too quickly, the hardware used for the system may read the ball's trajectory inaccurately.
+\subsubsection*{Mitigation Plan}
+To handle this risk, the following items will be considered. The hardware the system uses can be improved to use higher frame rates or offer more processing power to handle the images from the camera. The framework used for the computer vision may need to be edited, replaced or made entirely by the team to meet the performance demands. The camera may need to film at a higher frame rate and process the film later, causing a delay in feedback for the user. A physical mat on the system's side could be used to detect returns. \\ \\
+
+The fault analysis tree can be found in Figure \ref{fig:ft-cv}.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.7\textwidth]{img/ft-cv.png} % requires the graphicx package
+   \caption{Fault Analysis Tree for \textit{CV frame rate is too low for accurate reading}}
+   \label{fig:ft-cv}
+\end{figure}
+
+\subsection{Shooting Mechanism shoots inaccurately}
+\subsubsection*{Description}
+The Shooting Mechanism needs to spin a wheel to fire a ball at variable plan which does introduce the possibility of inaccuracy when shooting the ball. If the wheel does not have the same contact with the ball for every shot, the speed, spin and position of the ball will vary between shots. If it does so too much, it will not satisfy the requirements as set in the System Requirements document.
+\subsubsection*{Mitigation Plan}
+In order to reduce the severity and likelihood of this error, the following actions could be used. The first being buying better hardware which has more accurate specifications like motors and power supplies. The team could reduce the accuracy of the requirements, although this would endanger the user experience for the system. 
+
+The fault analysis tree can be found in Figure \ref{fig:ft-shooting}.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.7\textwidth]{img/ft-shooting.png} % requires the graphicx package
+   \caption{Fault Analysis Tree for \textit{Shooting Mechanism shoots inaccurately}}
+   \label{fig:ft-shooting}
+\end{figure}
+
 \end{document}
+
+
+\subsection{}
+\subsubsection*{Description}
+\subsubsection*{Mitigation Plan}
+
+The fault analysis tree can be found in Figure \ref{fig:ft-traverse}.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.7\textwidth]{img/ft-traverse.png} % requires the graphicx package
+   \caption{Fault Analysis Tree for \textit{Machine's traversal is blocked}}
+   \label{fig:ft-traverse}
+\end{figure}
