@@ -240,7 +240,7 @@ The fault analysis tree can be found in Figure \ref{fig:ft-traverse}.
 \subsubsection*{Description}
 The table tennis ball will be tracked with computer vision as it travels across the system's side after being hit by the user. The speed at which it does this can vary from 1 to 30 m/s and the higher range can be difficult to track with consumer-grade hardware which includes cameras and processing power. If the ball travels too quickly, the hardware used for the system may read the ball's trajectory inaccurately.
 \subsubsection*{Mitigation Plan}
-To handle this risk, the following items will be considered. The hardware the system uses can be improved to use higher frame rates or offer more processing power to handle the images from the camera. The framework used for the computer vision may need to be edited, replaced or made entirely by the team to meet the performance demands. The camera may need to film at a higher frame rate and process the film later, causing a delay in feedback for the user. A physical mat on the system's side could be used to detect returns. \\ \\
+To handle this risk, the following items will be considered. The hardware that the system uses can be improved to use higher frame rates or offer sufficent processing power to handle the images from the camera. The framework used for the computer vision may need to be edited, replaced or made entirely by the team to meet the performance demands. The camera may need to film at a higher frame rate and process the film later, causing a delay in feedback for the user. A physical mat on the system's side could be used to detect returns. \\ \\
 
 The fault analysis tree can be found in Figure \ref{fig:ft-cv}.
 
@@ -253,7 +253,7 @@ The fault analysis tree can be found in Figure \ref{fig:ft-cv}.
 
 \subsection{Shooting Mechanism shoots inaccurately}
 \subsubsection*{Description}
-The Shooting Mechanism needs to spin a wheel to fire a ball at variable plan which does introduce the possibility of inaccuracy when shooting the ball. If the wheel does not have the same contact with the ball for every shot, the speed, spin and position of the ball will vary between shots. If it does so too much, it will not satisfy the requirements as set in the System Requirements document.
+The Shooting Mechanism needs to spin a wheel to fire a ball at various degrees of pan which does introduce the possibility of inaccuracy when shooting the ball. If the wheel does not have the same contact with the ball for every shot, the speed, spin and position of the ball will vary between shots. If it does so too many times, it will not satisfy the requirements as set in the System Requirements document.
 \subsubsection*{Mitigation Plan}
 In order to reduce the severity and likelihood of this error, the following actions could be used. The first being buying better hardware which has more accurate specifications like motors and power supplies. The team could reduce the accuracy of the requirements, although this would endanger the user experience for the system. 
 
