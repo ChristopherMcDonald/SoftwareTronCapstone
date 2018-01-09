@@ -14,6 +14,7 @@ public class ShootingModel {
 	public double yDistance;
 	public double yaw;
 	public double yInitialHeight;
+	public double xInitialDistance;
 	public double pitch;
 	public double gravity = 9.8;
 	public double velocity;
@@ -65,7 +66,7 @@ public class ShootingModel {
 	private double calculateYawAngle(double yDist, double xDist){
 		double yawAngle = Math.atan(yDist/xDist);
 		System.out.println("Angle in the X Plane: " + Math.toDegrees(yawAngle));
-		return yawAngle;
+		return Math.toDegrees(yawAngle);
 	}
 
 	/**
@@ -84,9 +85,11 @@ public class ShootingModel {
 	 * @param landingXCoord [X Coordinate on the grid for landing position]
 	 * @param landingYCoord [X Coordinate on the grid for landing position]
 	 */
-	public ShootingModel(double initialHeight, double pitch){
+	public ShootingModel(double initialHeight, double xInitialDistance, double pitch){
 		yInitialHeight = initialHeight;
 		this.pitch = pitch;
+		this.xInitialDistance = xInitialDistance;
+		
 	}
 	
 	/**
@@ -101,10 +104,35 @@ public class ShootingModel {
 		velocity = calculateVelocity();
 		return new ShootingDetails(yaw, velocity);
 	}
+	
+	/**
+	 * Method to check if this specific shot will go over the net
+	 * @return boolean [true/false indicating whether ball will pass over net]
+	 */
+	public boolean netHeightChecker(){
+		double velocityInX = velocity*Math.cos(pitch);
+		double velocityInY = velocity*Math.sin(pitch);
+		
+		//1.37 is half the length of the table in meters
+		double timeToNet = (1.37 - xInitialDistance)/velocityInX;
+		double heightAtHalfTable = 2*velocityInY*timeToNet - 0.5*gravity*Math.pow(timeToNet, 2) + yInitialHeight;
+		// 0.1524 is the height of the net in meters
+		double distanceAboveNet = heightAtHalfTable - 0.1524;
+		System.out.println(distanceAboveNet);
 
+		//0.0254 is 1 inch buffer space above net
+		if(distanceAboveNet > 0.0254){
+			return true;
+		} else {
+			return false;
+		}		
+	}
+	
 	public static void main(String []args){
-		ShootingModel shooter = new ShootingModel(0.0762, 45);
+		ShootingModel shooter = new ShootingModel(0.0762, 0.0762, 45);
 		ShootingDetails details = shooter.getShootingDetails(0.6,0.6);
+		boolean passNetHeight = shooter.netHeightChecker();
 		System.out.println(details.toString());
+		System.out.println(passNetHeight);
 	}
 }

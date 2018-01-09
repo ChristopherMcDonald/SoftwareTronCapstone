@@ -27,16 +27,18 @@ public class ShootingDetails {
 	
 	/**
 	 * getter for velocity
-	 * @return
+	 * @return velocity
 	 */
 	public double getVelocity(){
 		return velocity;
 	}
 	
+	
+	
 	/**
-	 * method to get yaw & velocity in String format
+	 * method to get yaw, pitch, & velocity in String format
 	 */
 	public String toString(){
-		return String.format("yaw:%.2f, vel:%.2f", yaw, velocity);
+		return String.format("yaw:%.2f, velocity:%.2f", yaw, velocity);
 	}
 }
