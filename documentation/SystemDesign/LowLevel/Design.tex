@@ -112,26 +112,76 @@ The following terms and definitions will be used throughout this document:
 \section{Detailed Class Diagram}
 
 \section{Module Guide}
-\subsection{SmartServe Modules}
-\subsubsection*{Module 1}
+\subsection{SmartServe Modules} % Chris - edited by Sharon
+\subsubsection*{Controller}
 \textbf{Responsibilities} \\
-some text \\
-\textbf{Secrets} \\ 
-some text \\ 
-\textbf{MID} \\
-some text \\
+The controller handles all the timing constraints and sequential events for shooting balls towards the player. It is the interface for the UI to allow the user to preform any and all actions. \\ \\
+\textbf{Secrets} \\
+The sequence and timing constraints of the shooting procedure. \\ \\
+\textbf{MID}
+\begin{itemize}
+\item \textbf{boot} - none \\ returns: \textit{boolean} \\ description: instantiates all dependancies and ensures services are working as expected
+\item \textbf{startTraining} - Mode m \\ returns: \textit{boolean} \\ description: starts the shooting procedure given a certain training Mode
+\item \textbf{stopTraining} - none \\ returns: \textit{boolean} \\ description: stops the training procedure
+\item \textbf{setShootingParameters} - ShootingParameters sp \\ returns: \textit{boolean} \\ description: sets the shooting parameters for certain table sizes
+\end{itemize}
 \textbf{MIS} \\
-some text \\
-\subsection{Shot Recommendation Modules}
-\subsubsection*{Module 1}
+
+\subsubsection*{ArduinoConnector}
 \textbf{Responsibilities} \\
-some text \\
 \textbf{Secrets} \\ 
-some text \\ 
-\textbf{MID} \\
-some text \\
+\textbf{MID}
+\begin{itemize}
+\item \textbf{test} - int port \\ returns: \textit{boolean} \\ description: tests connection to the Arduino
+\item \textbf{shoot} - float pitch, float yaw, float angularVelocity \\ returns: \textit{none} \\ description: instructs Arduino to shoot the ball in a certain way
+\item \textbf{position} - none \\ returns: \textit{Position} \\ description: returns the position of the mechanism
+\end{itemize}
 \textbf{MIS} \\
-some text \\
+
+\subsubsection*{ShootRecommendationConnector}
+\textbf{Responsibilities} \\
+\textbf{Secrets} \\ 
+\textbf{MID}
+\begin{itemize}
+\item \textbf{connect} - int port, [optional] String ip \\ returns: \textit{boolean} \\ description: instantiates all dependancies and ensures services are working as expected
+\end{itemize}
+\textbf{MIS} \\
+
+\subsubsection*{CVConnector}
+\textbf{Responsibilities} \\
+\textbf{Secrets} \\ 
+\textbf{MID}
+\begin{itemize}
+\item \textbf{connect} - int port \\ returns: \textit{boolean} \\ description: tests connection to CV subsystem
+\item \textbf{start} - none \\ returns: \textit{boolean} \\ description: instructs CV to begin tracking and return data for shot
+
+\end{itemize}
+\textbf{MIS} \\
+
+\subsubsection*{SQLConnector}
+\textbf{Responsibilities} \\
+\textbf{Secrets} \\ 
+\textbf{MID}
+\begin{itemize}
+\item \textbf{connect} - int port, [optional] String ip \\ returns: \textit{boolean} \\ description: tests connection to Data Storage subsystem on port \textit{port} at the IP Address \textit{ip}
+\item \textbf{start} - none \\ returns: \textit{boolean} \\ description: instructs CV to begin tracking and return data for shot
+
+\end{itemize}
+\textbf{MIS} \\
+
+\subsection{Shot Recommendation Modules} % Chris - edited by Sharon
+\subsubsection*{Controller}
+\textbf{Responsibilities} \\
+\textbf{Secrets} \\ 
+\textbf{MID} \\
+\textbf{MIS} \\
+
+\subsubsection*{Model}
+\textbf{Responsibilities} \\
+\textbf{Secrets} \\ 
+\textbf{MID} \\
+\textbf{MIS} \\
+
 \subsection{Shooting Model Modules}
 \subsubsection*{Module 1}
 \textbf{Responsibilities} \\
@@ -193,15 +243,26 @@ some text \\
 \textbf{MIS} \\
 some text \\
 
-\section{Communication Protocols}
+\section{Communication Protocols} % Chris
 \subsection{Smart Serve to Shot Recommendation}
+The Shot Recommendation system (SR) will use Python to leverage machine learning libraries like SciKit Learn and the Smart Serve system (SS) will be implemented in Java. In order for the SS to communicate to the SR, it will make an HTTP request with some data and receive an HTTP response encoded using JSON. This allows the use of a reliable means of communication and flexibility to host the SR remotely if need be. \\ \\
+The SS will make a GET request to the SR for requesting a shot to use and can make POST request to give data regarding whether a shot was returned or not. In the event the HTTP request takes too long, the SS should handle it accordingly by timing out and using random shots or continuing the program. \\ \\
+HTTP libraries are standard in Java and a microframework for handling HTTP requests can be used for Python like \href{http://flask.pocoo.org}{flask}.
 \subsection{Smart Serve to Shooting Mechanism}
+The Shooting Mechanism system (SM) will implement an interface using an Arduino. The SS will use libraries for communicating to the Arduino to communicate to the SM which can be found \href{http://fizzed.com/oss/rxtx-for-java}{here} for 64-bit Windows and Linux installations and \href{http://blog.iharder.net/2009/08/18/rxtx-java-6-and-librxtxserial-jnilib-on-intel-mac-os-x/}{here} for 64-bit macOS installations. The SS does not need a response from the system, as it will tell the SM where to shoot and how to do so but does not need a response.
 \subsection{Smart Serve to Computer Vision}
+The SS will communicate to the Computer Vision subsystem (CV) via sockets over the TCP protocol using the Java Networking libraries and the Python socket libraries. The SS will initiate the communication to start tracking and expect a return value based on whether it was returned or not. The SS will timeout in the event the CV does not return a value after 1.5 seconds.
 \subsection{Smart Serve to User Interface}
+% probably pretty standard, using Swing or something
+The SS and the User Interface system (UI) will both be programmed using Java. The UI system can interface with the SS by calling exposed public methods based on user input.
 \subsection{Smart Serve to Shot Optimizer}
+The SS and the Shot Optimizer system (SO) will both be programmed using Java. The SS system can interface with the SO by calling exposed public methods based on user input.
 \subsection{Smart Serve to Shooting Model}
+The SS and the Shooting Model system (SModel) will both be programmed using Java. The SS system can interface with the SModel by calling exposed public methods based on user input.
 \subsection{Smart Serve to Data Storage}
+The SS is programmed in Java and the Data Storage system (DS) will be implemented using Stored Procedures held in a MySQL database instance. In order for the SS to use the DS, a \href{https://dev.mysql.com/downloads/connector/j/5.1.html}{SQLConnector} can be used to do so. 
 \subsection{Shot Recommendation to Data Storage}
+The SR is programmed in Python and the Data Storage system (DS) will be implemented using Stored Procedures held in a MySQL database instance. In order for the SR to use the DS, a \href{https://dev.mysql.com/doc/connector-python/en/}{SQLConnector} can be used to do so. 
 
 
 
