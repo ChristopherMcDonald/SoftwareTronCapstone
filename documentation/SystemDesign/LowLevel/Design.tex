@@ -71,6 +71,8 @@
    \hline
    \textbf{Date} & \textbf{Revision} & \textbf{Comments} & \textbf{Author(s)} \\ \hline
    Dec 29, 2017 & 1.0 & Structure made for document including headings & Christopher McDonald \\ \hline
+   Jan 12, 2018 & 1.2 & added data storage and user interface modules & Sharon Platkin \\ \hline
+
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -171,16 +173,16 @@ Communicates with the database to create, delete and update rows in various tabl
 All connection information between the sub-systems, table contents.\\ 
 \textbf{MID} \\
 \begin{itemize}
-\item User \textbf{user} - String user_name, String password, int user_id \\ description: representation of a user 
-\item Shot \textbf{shotType} - int zone_id, int omega_id, int shot_id \\ description: representation of a shot type
-\item Zone \textbf{user} -  int zone_id, double x_loc, double y_loc \\ description: representation of a zone on the table, used as a look up table 
-\item Omega \textbf{user} - int omega_id, double angle, double velocity \\ description: representation of angular velocity of the ball, used as a look up table 
-\item ReturnRate \textbf{return_rate} - int user_id, int shot_id,  Timestamp timeStamp, boolean returned \\ description: return statistics for each user
-
+\item User \textbf{user} - String user\textunderscore name, String password, int user\textunderscore id \\ description: representation of a user 
+\item Shot \textbf{shotType} - int zone\textunderscore id, int omega\textunderscore id, int shot\textunderscore id \\ description: representation of a shot type
+\item Zone \textbf{user} -  int zone\textunderscore id, double x\textunderscore loc, double y\textunderscore loc \\ description: representation of a zone on the table, used as a look up table 
+\item Omega \textbf{user} - int omega\textunderscore id, double angle, double velocity \\ description: representation of angular velocity of the ball, used as a look up table 
+\item ReturnRate \textbf{return\textunderscore rate} - int user\textunderscore id, int shot\textunderscore id,  Timestamp timeStamp, boolean returned \\ description: return statistics for each user
 \item \textbf{signUp} - String userName, String password \\ returns: \textit{void} \\ description: adds a user row to the \textit{User} table
-\item \textbf{shotType} - int zone \\ returns: \textit{Shot} \\ description: determines which shot type to perform
-
+\item \textbf{nextShot} - int zone \\ returns: \textit{Shot} \\ description: determines which shot type to perform
+\item \textbf{returned} - Timestamp timeStamp, User user, Shot shot \\ returns: \textit{void} \\ description: updates returnRate table for user for performance statistics
 \end{itemize}
+
 \subsection{Shooting Mechanism Modules}
 \subsubsection*{Module 1}
 \textbf{Responsibilities} \\
@@ -196,11 +198,12 @@ some text \\
 \textbf{Responsibilities} \\
 Responsible for communicating with the SmartServe system as well as the View module to collect information from the user. \\
 \textbf{Secrets} \\ 
-User information. \\ 
+Connection between sub-systems. \\ 
 \textbf{MID} \\
 \begin{itemize}
 \item \textbf{main} - String args[] \\ returns: \textit{void} \\ description: calls the view module to initialize the UI
-\item \textbf{} - param \\ returns: \textit{param} \\ description:
+\item \textbf{getTrainingMode} - none \\ returns: \texit{Mode} \\ description: gets mode from view module and sends it to SmartServe
+\item \textbf{getShootingParameters} - none \\ returns: \textit{ShootingParameters} \\ description: gets shooting parameters from view module and sends it to SmartServe
 \end{itemize}
 \subsubsection*{View}
 \textbf{Responsibilities} \\
@@ -209,8 +212,13 @@ The view module will contain all the actual visual aspects of the system that th
 Button functionalities. \\ 
 \textbf{MID} \\
 \begin{itemize}
-\item \textbf{mouseClick} - MouseEvent \\ returns: \textit{boolean} \\ description: listens for a mouse clicks on various buttons 
 \item \textbf{application} - none \\ returns: \textit{void} \\ description: general user interface code, called to initiate UI
+\item \textbf{selectMode} - MouseEvent \\ returns: \textit{Mode} \\ description: listens for a mouse click on mode types, and returns that mode
+\item \textbf{calibrate} - none \\ returns: \textit{ShootingParameters} \\ description: collects user input for table size in order to calibrate the system
+\item \textbf{startTrainingBtn} - MouseEvent \\ returns: \textit{boolean} \\ description: listens for mouse click on start training button
+\item \textbf{stopTrainingBtn} - MouseEvent \\ returns: \textit{boolean} \\ description: listens for mouse click on stop training button
+
+
 \end{itemize}
 
 \section{Communication Protocols}
