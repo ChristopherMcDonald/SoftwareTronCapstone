@@ -274,6 +274,9 @@ Connection between sub-systems. \\
 \item \textbf{main} - String args[] \\ returns: \textit{void} \\ description: calls the view module to initialize the UI
 \item \textbf{getTrainingMode} - none \\ returns: \texit{Mode} \\ description: gets mode from view module and sends it to SmartServe
 \item \textbf{getShootingParameters} - none \\ returns: \textit{ShootingParameters} \\ description: gets shooting parameters from view module and sends it to SmartServe
+\item \textbf{getStatistics} - none \\ returns: \textit{StatisticsParameters} \\ description: gets statistics parameters and sends them to view module
+\item \textbf{signUp} - User user \\ returns \textit{void} \\ description: gets user information from view module and sends it to smartServe
+\item \textbf{login} - User user \\ returns \textit{boolean} \\ descriptopn: gets user name and password from the view module and authenticates by calling SmartServe
 \end{itemize}
 \subsubsection*{View}
 \textbf{Responsibilities} \\
@@ -287,8 +290,9 @@ Button functionalities. \\
 \item \textbf{calibrate} - none \\ returns: \textit{ShootingParameters} \\ description: collects user input for table size in order to calibrate the system
 \item \textbf{startTrainingBtn} - MouseEvent \\ returns: \textit{boolean} \\ description: listens for mouse click on start training button
 \item \textbf{stopTrainingBtn} - MouseEvent \\ returns: \textit{boolean} \\ description: listens for mouse click on stop training button
-
-
+\item \textbf{viewStatsBtn} - MouseEvent \\ returns: \textit{void} \\ description: listens for mouse click on statistics button and displays statistics to the user
+\item \textbf{signUpBtn} - MouseEvent \\ returns: \textit{User} \\ description: listens for mouse click on sign up button and collects user information
+\item \textbf{loginBtn} - MouseEvent \\ returns: \textit{User} \\ description: listens for mouse click on sign in button and displays profile if authenticated properly
 \end{itemize}
 
 \section{Communication Protocols} % Chris
