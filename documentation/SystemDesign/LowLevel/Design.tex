@@ -91,6 +91,7 @@ The following terms and definitions will be used throughout this document:
 \begin{itemize}
 % Alphabetical order is highly preferred as it eases user navigation
 \item \textbf{ACID}: a database transaction which is atomic, consistent, isolated and durable
+\item \textbf{ADT}: abstract data type
 \item \textbf{CV}: computer vision
 \item \textbf{FPS}: frames per second
 \item \textbf{FSM}: finite state machine, shows transitions between states
@@ -206,25 +207,41 @@ The algorithm to build the model. \\ \\
 \end{itemize}
 
 \subsection{Shooting Model Modules}
-\subsubsection*{Module 1}
+\subsubsection*{Shooting Details}
 \textbf{Responsibilities} \\
-some text \\
-\textbf{Secrets} \\
-some text \\
-\textbf{MID} \\
-some text \\
-\textbf{MIS} \\
-some text \\
+Specific details (such as yaw and speed) that are required to take the desired shot are stored within this abstract data type module. \\ \\
+\textbf{Secrets} \\ 
+?????? - Help, what's the secret for an ADT? \\  \\
+\textbf{MID} 
+\begin{itemize}
+\item \textbf{shootingDetails} - double  yaw, double velocity \\ returns: \textit{none} \\ description: constructor to store the shooting model details in an abstract data type.
+\item \textbf{toString} - none \\ returns: \textit{String} \\ description: Returns shooting details in a printable string format.
+\end{itemize}
+\subsubsection*{Shooting Model}
+\textbf{Responsibilities} \\
+Responsible for mapping a desired shot to the details needed to take the shot. \\ \\
+\textbf{Secrets} \\ 
+Methods and formulas being used to identify the required details needed to take the desired shot. \\  \\
+\textbf{MID} 
+\begin{itemize}
+\item \textbf{shootingModel} - double  initialHeight, double xInitialHeight, double pitch \\ returns: \textit{none} \\ description: instantiates the shooting model subsystem.
+\item \textbf{getShootingDetails} - double landingXCoord, double landingYCoord \\ returns: \textit{ShootingDetails} \\ description: calculates details to take the desired shot and stores them within the ADT.
+\end{itemize}
+
 \subsection{Shot Optimizer Modules}
-\subsubsection*{Module 1}
+\subsubsection*{Controller}
 \textbf{Responsibilities} \\
-some text \\
-\textbf{Secrets} \\
-some text \\
+This module is responsible for facilitating the communication with the Shot Optimizer system. This includes sending and receiving messages as well as ensuring proper testing of the connection is performed. \\ \\
+\textbf{Secrets} \\ 
+The connection to the Shot Optimizer system. \\ \\
 \textbf{MID} \\
-some text \\
-\textbf{MIS} \\
-some text \\
+\begin{itemize}
+\item \textbf{connect} - int  port, [optional] String ip \\ returns: \textit{boolean} \\ description: instantiates all dependancies and ensures services are working as expected.
+\item \textbf{getOrientation} - Position  position \\ returns: \textit{Orientation} \\ description: returns the optimal orientation data to orient the shooting mechanism.
+\end{itemize}
+
+
+
 \subsection{Computer Vision Modules}
 \subsubsection*{Module 1}
 \textbf{Responsibilities} \\
