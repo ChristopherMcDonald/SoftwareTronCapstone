@@ -71,7 +71,8 @@
    \hline
    \textbf{Date} & \textbf{Revision} & \textbf{Comments} & \textbf{Author(s)} \\ \hline
    Dec 29, 2017 & 1.0 & Structure made for document including headings & Christopher McDonald \\ \hline
-   Jan 11, 2018 & 1.1 & Added content for ShotRecommendation and SmartServer systems, and Comm Section & Christopher McDonald \\ \hline
+   Jan 11, 2018 & 1.1 & Added content for ShotRecommendation and SmartServe systems, and Communication Protocols Sections & Christopher McDonald \\
+   Jan 11, 2018 & 1.2 & Added content for Document Overview & Christopher McDonald \\ \hline
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -81,6 +82,8 @@
 SmartServe is an autonomous table tennis training system for table tennis players with various skill levels. SmartServe aids in diagnosing and improving a player's performance over time. The system trains table tennis players by shooting table tennis balls towards the player and detects successful returns from the player. The system can further adapt to the player's weaknesses and help them overcome it through further training. Importantly, SmartServe alleviates the problems of finding and working with a coach for players, as well as coaches trying to train multiple players simultaneously. The system will be deemed a success if the table tennis players and coaches can enjoy and see some value added by using SmartServe.\\\\
 The project started at the beginning of the Fall 2017 academic term and will conclude at the end of the Winter 2018 term. In addition, the core project team consists of final year Software and Mechatronics Engineering students who are enrolled in the MECHTRON 4TB6/SFWRENG 4G06 capstone project course.
 \subsection{Document Overview}
+This document will add more detail into the subsystems introduced in the High-Level System Design document (HLSD) found \href{run:../Design.pdf}{here}. The HLSD omitted details such as how the subsystems would work, how they are built and how communication will be handled between them. This document will cover all of those details and introduce how each subsystem will be programmed by defining the language and libraries required. \\ \\
+All software developers on the development team should read this document when building the subsystems to ensure the correct data is being sent and communication portals are set up correctly. Each subsystem will hold one to many modules and each module will contain one to many methods. A detailed class diagram will organize all the subsystems and their modules with arrows indicating which module uses another one.
 \subsection{Naming Conventions and Terminology}
 \label{sec:definitions}
 The following terms and definitions will be used throughout this document:
