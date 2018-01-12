@@ -115,7 +115,7 @@ public class ShootingModel {
 		
 		//1.37 is half the length of the table in meters
 		double timeToNet = (1.37 - xInitialDistance)/velocityInX;
-		double heightAtHalfTable = 2*velocityInY*timeToNet - 0.5*gravity*Math.pow(timeToNet, 2) + yInitialHeight;
+		double heightAtHalfTable = velocityInY*timeToNet - 0.5*gravity*Math.pow(timeToNet, 2) + yInitialHeight;
 		// 0.1524 is the height of the net in meters
 		double distanceAboveNet = heightAtHalfTable - 0.1524;
 		System.out.println(distanceAboveNet);
