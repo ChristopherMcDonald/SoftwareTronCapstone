@@ -102,6 +102,7 @@ The following terms and definitions will be used throughout this document:
 \item \textbf{System Side}: the side of the table where the electromechanical system is placed; it is the opposite side of the User Side Please refer to Figure \ref{fig:table-tennis-top-view} for visual illustration
 \item \textbf{TCP:} transmission control protocol
 \item \textbf{Team}: all team members of the core capstone project, as noted in the list of Authors
+\item \textbf{UI}: user interfacce
 \item \textbf{User Side}: the side of the table where the user (player) is standing
 \item \textbf{Yaw}: rotation along the z-axis; this rotation angle primarily dictates the panning functionality of the shooting mechanism from the right side to the left side of the table
 \end{itemize}
@@ -234,15 +235,23 @@ some text \\
 \textbf{MIS} \\
 some text \\
 \subsection{Data Storage Modules}
-\subsubsection*{Module 1}
+\subsubsection*{Global}
 \textbf{Responsibilities} \\
-some text \\
+Communicates with the database to create, delete and update rows in various tables.  \\
 \textbf{Secrets} \\ 
-some text \\ 
+All connection information between the sub-systems, table contents.\\ 
 \textbf{MID} \\
-some text \\
-\textbf{MIS} \\
-some text \\
+\begin{itemize}
+\item User \textbf{user} - String user_name, String password, int user_id \\ description: representation of a user 
+\item Shot \textbf{shotType} - int zone_id, int omega_id, int shot_id \\ description: representation of a shot type
+\item Zone \textbf{user} -  int zone_id, double x_loc, double y_loc \\ description: representation of a zone on the table, used as a look up table 
+\item Omega \textbf{user} - int omega_id, double angle, double velocity \\ description: representation of angular velocity of the ball, used as a look up table 
+\item ReturnRate \textbf{return_rate} - int user_id, int shot_id,  Timestamp timeStamp, boolean returned \\ description: return statistics for each user
+
+\item \textbf{signUp} - String userName, String password \\ returns: \textit{void} \\ description: adds a user row to the \textit{User} table
+\item \textbf{shotType} - int zone \\ returns: \textit{Shot} \\ description: determines which shot type to perform
+
+\end{itemize}
 \subsection{Shooting Mechanism Modules}
 \subsubsection*{Module 1}
 \textbf{Responsibilities} \\
@@ -253,16 +262,27 @@ some text \\
 some text \\
 \textbf{MIS} \\
 some text \\
-\subsection{User Interface Modules}
-\subsubsection*{Module 1}
+\subsection{UI(User Interface) Modules}
+\subsubsection*{Controlller}
 \textbf{Responsibilities} \\
-some text \\
+Responsible for communicating with the SmartServe system as well as the View module to collect information from the user. \\
 \textbf{Secrets} \\ 
-some text \\ 
+User information. \\ 
 \textbf{MID} \\
-some text \\
-\textbf{MIS} \\
-some text \\
+\begin{itemize}
+\item \textbf{main} - String args[] \\ returns: \textit{void} \\ description: calls the view module to initialize the UI
+\item \textbf{} - param \\ returns: \textit{param} \\ description:
+\end{itemize}
+\subsubsection*{View}
+\textbf{Responsibilities} \\
+The view module will contain all the actual visual aspects of the system that the user will interact with. This includes text, pictures, buttons, etc. \\
+\textbf{Secrets} \\ 
+Button functionalities. \\ 
+\textbf{MID} \\
+\begin{itemize}
+\item \textbf{mouseClick} - MouseEvent \\ returns: \textit{boolean} \\ description: listens for a mouse clicks on various buttons 
+\item \textbf{application} - none \\ returns: \textit{void} \\ description: general user interface code, called to initiate UI
+\end{itemize}
 
 \section{Communication Protocols} % Chris
 \subsection{Smart Serve to Shot Recommendation}
