@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.26)  11 JAN 2018 19:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.26)  11 JAN 2018 19:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -521,55 +521,55 @@ Underfull \hbox (badness 10000) in paragraph at lines 194--199
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--214
+Underfull \hbox (badness 10000) in paragraph at lines 207--215
 
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 216--224
+Underfull \hbox (badness 10000) in paragraph at lines 217--225
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 226--234
+Underfull \hbox (badness 10000) in paragraph at lines 227--235
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 236--244
+Underfull \hbox (badness 10000) in paragraph at lines 237--245
 
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 246--254
+Underfull \hbox (badness 10000) in paragraph at lines 247--255
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 256--264
+Underfull \hbox (badness 10000) in paragraph at lines 257--265
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 267--270
+Underfull \hbox (badness 10000) in paragraph at lines 268--271
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 267--270
+Underfull \hbox (badness 10000) in paragraph at lines 268--271
 
  []
 
 [10] [11]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 289.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 290.
  [12]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 289.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 290.
  (./Design.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 289.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 289.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 290.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 290.
 Package rerunfilecheck Info: File `Design.out' has not changed.
 (rerunfilecheck)             Checksum: 338AE5466E675A45589BC1AD9DD207D6;1647.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 289.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 290.
  ) 
 Here is how much of TeX's memory you used:
  6213 strings out of 494447
@@ -588,7 +588,7 @@ msfonts/cm/cmr12.pfb></usr/local/texlive/2016basic/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2016basic/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmti10.pfb></usr/local/texlive/2016basic/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmti12.pfb>
-Output written on Design.pdf (13 pages, 334125 bytes).
+Output written on Design.pdf (13 pages, 334199 bytes).
 PDF statistics:
  255 PDF objects out of 1000 (max. 8388607)
  226 compressed objects within 3 object streams
