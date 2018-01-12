@@ -71,6 +71,7 @@
    \hline
    \textbf{Date} & \textbf{Revision} & \textbf{Comments} & \textbf{Author(s)} \\ \hline
    Dec 29, 2017 & 1.0 & Structure made for document including headings & Christopher McDonald \\ \hline
+   Jan 11, 2018 & 1.1 & Added content for ShotRecommendation and SmartServer systems, and Comm Section & Christopher McDonald \\ \hline
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -125,62 +126,77 @@ The sequence and timing constraints of the shooting procedure. \\ \\
 \item \textbf{stopTraining} - none \\ returns: \textit{boolean} \\ description: stops the training procedure
 \item \textbf{setShootingParameters} - ShootingParameters sp \\ returns: \textit{boolean} \\ description: sets the shooting parameters for certain table sizes
 \end{itemize}
-\textbf{MIS} \\
 
 \subsubsection*{ArduinoConnector}
 \textbf{Responsibilities} \\
-\textbf{Secrets} \\ 
+This module is responsible for facilitating the communication with the Arduino. This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
+\textbf{Secrets} \\
+The connection to the Arduino. \\ \\
 \textbf{MID}
 \begin{itemize}
 \item \textbf{test} - int port \\ returns: \textit{boolean} \\ description: tests connection to the Arduino
 \item \textbf{shoot} - float pitch, float yaw, float angularVelocity \\ returns: \textit{none} \\ description: instructs Arduino to shoot the ball in a certain way
 \item \textbf{position} - none \\ returns: \textit{Position} \\ description: returns the position of the mechanism
 \end{itemize}
-\textbf{MIS} \\
 
-\subsubsection*{ShootRecommendationConnector}
+\subsubsection*{ShotRecommendationConnector}
 \textbf{Responsibilities} \\
+This module is responsible for facilitating the communication with the Shot Recommender. This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
 \textbf{Secrets} \\ 
+The connection to the Shot Recommender. \\ \\
 \textbf{MID}
 \begin{itemize}
 \item \textbf{connect} - int port, [optional] String ip \\ returns: \textit{boolean} \\ description: instantiates all dependancies and ensures services are working as expected
+\item \textbf{getRecommendation} - none \\ returns: \textit{Shot} \\ description: returns the shot data to shoot towards the player
+\item \textbf{updateModel} - Shot shot, boolean returned \\ returns: \textit{none} \\ description: sends data to ShotRecommender on whether a shot was returned or not
 \end{itemize}
-\textbf{MIS} \\
 
 \subsubsection*{CVConnector}
 \textbf{Responsibilities} \\
+This module is responsible for facilitating the communication with the CV system. This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
 \textbf{Secrets} \\ 
+The connection to the CV system. \\ \\
 \textbf{MID}
 \begin{itemize}
 \item \textbf{connect} - int port \\ returns: \textit{boolean} \\ description: tests connection to CV subsystem
 \item \textbf{start} - none \\ returns: \textit{boolean} \\ description: instructs CV to begin tracking and return data for shot
 
 \end{itemize}
-\textbf{MIS} \\
 
 \subsubsection*{SQLConnector}
 \textbf{Responsibilities} \\
+This module is responsible for facilitating the communication with the Data Storage system. This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
 \textbf{Secrets} \\ 
+The connection to the Data Storage system. \\ \\
 \textbf{MID}
 \begin{itemize}
-\item \textbf{connect} - int port, [optional] String ip \\ returns: \textit{boolean} \\ description: tests connection to Data Storage subsystem on port \textit{port} at the IP Address \textit{ip}
-\item \textbf{start} - none \\ returns: \textit{boolean} \\ description: instructs CV to begin tracking and return data for shot
-
+\item \textbf{connect} - int port, [optional] String ip \\ returns: \textit{boolean} \\ description: tests connection to Data Storage subsystem on port \textit{port} at the IP Address \textit{ip} or \textit{localhost} if ip is unavailable
+\item \textbf{query} - String procedure, Map<String, String> values \\ returns: \textit{ResultSet} \\ description: returns data from database based on procedure ran and values given
+\item \textbf{save} - String procedure, Map<String, String> values \\ returns: \textit{boolean} \\ description: returns success information on write to database based on procedure ran and values given
 \end{itemize}
-\textbf{MIS} \\
 
 \subsection{Shot Recommendation Modules} % Chris - edited by Sharon
 \subsubsection*{Controller}
 \textbf{Responsibilities} \\
-\textbf{Secrets} \\ 
-\textbf{MID} \\
-\textbf{MIS} \\
+This module will act as the API interface for the Shot Recommendation system. As such, it will accept requests and return the appropriate data. It will also communicate will other modules should a user of this system need to do so. \\ \\
+\textbf{Secrets} \\
+The process for handling Shot Recommendation requests. \\ \\
+\textbf{MID}
+\begin{itemize}
+\item \textbf{listen} - none \\ returns: \textit{none} \\ description: waits for a request made for a shot
+\item \textbf{query} - String procedure,  dict values, [optional] int port, [optional] String ip \\ returns: \textit{Cursor} \\ description: gets data from a stored procedure using some set of values for a MySQL instance on port \textit{port} at the IP Address \textit{ip}
+\end{itemize}
 
 \subsubsection*{Model}
 \textbf{Responsibilities} \\
+This module will hold the data for each user in such a way information can be extracted. It will contain an internal model which is built from the data and use it to recommend a new shot. \\ \\
 \textbf{Secrets} \\ 
-\textbf{MID} \\
-\textbf{MIS} \\
+The algorithm to build the model. \\ \\
+\textbf{MID}
+\begin{itemize}
+\item \textbf{train} - Cursor cur \\ returns: \textit{none} \\ description: using some data from Cursor, this will train the model
+\item \textbf{next} - none \\ returns: \textit{Shot} \\ description: returns a shot based on the user's past performance
+\end{itemize}
 
 \subsection{Shooting Model Modules}
 \subsubsection*{Module 1}
