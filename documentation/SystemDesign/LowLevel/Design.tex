@@ -132,7 +132,7 @@ The sequence and timing constraints of the shooting procedure. \\ \\
 
 \subsubsection*{ArduinoConnector}
 \textbf{Responsibilities} \\
-This module is responsible for facilitating the communication with the Arduino. This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
+This module is responsible for facilitating the communication with the Arduino which is part of the Shooting Mechanism subsystem. This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
 \textbf{Secrets} \\
 The connection to the Arduino. \\ \\
 \textbf{MID}
@@ -144,19 +144,20 @@ The connection to the Arduino. \\ \\
 
 \subsubsection*{ShotRecommendationConnector}
 \textbf{Responsibilities} \\
-This module is responsible for facilitating the communication with the Shot Recommender. This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
+This module is responsible for facilitating the communication with the Shot Recommender subsystem. This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
 \textbf{Secrets} \\ 
 The connection to the Shot Recommender. \\ \\
 \textbf{MID}
 \begin{itemize}
 \item \textbf{connect} - int port, [optional] String ip \\ returns: \textit{boolean} \\ description: instantiates all dependancies and ensures services are working as expected
 \item \textbf{getRecommendation} - none \\ returns: \textit{Shot} \\ description: returns the shot data to shoot towards the player
+
 \item \textbf{updateModel} - Shot shot, boolean returned \\ returns: \textit{none} \\ description: sends data to ShotRecommender on whether a shot was returned or not
 \end{itemize}
 
 \subsubsection*{CVConnector}
 \textbf{Responsibilities} \\
-This module is responsible for facilitating the communication with the CV system. This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
+This module is responsible for facilitating the communication with the CV (Computer Vision) subsystem. This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
 \textbf{Secrets} \\ 
 The connection to the CV system. \\ \\
 \textbf{MID}
@@ -168,7 +169,7 @@ The connection to the CV system. \\ \\
 
 \subsubsection*{SQLConnector}
 \textbf{Responsibilities} \\
-This module is responsible for facilitating the communication with the Data Storage system. This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
+This module is responsible for facilitating the communication with the Data Storage subsystem. This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
 \textbf{Secrets} \\ 
 The connection to the Data Storage system. \\ \\
 \textbf{MID}
@@ -181,7 +182,7 @@ The connection to the Data Storage system. \\ \\
 \subsection{Shot Recommendation Modules} % Chris - edited by Sharon
 \subsubsection*{Controller}
 \textbf{Responsibilities} \\
-This module will act as the API interface for the Shot Recommendation system. As such, it will accept requests and return the appropriate data. It will also communicate will other modules should a user of this system need to do so. \\ \\
+This module will act as the API interface for the Shot Recommendation subsystem. As such, it will accept requests and return the appropriate data. It will also communicate will other modules should a user of this system need to do so. \\ \\
 \textbf{Secrets} \\
 The process for handling Shot Recommendation requests. \\ \\
 \textbf{MID}
