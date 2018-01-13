@@ -80,7 +80,7 @@
 \newpage
 \section{Introduction}
 \subsection{Project Overview}
-SmartServe is an autonomous table tennis training system for table tennis players with various skill levels. SmartServe aids in diagnosing and improving a player's performance over time. The system trains table tennis players by shooting table tennis balls towards the player and detects successful returns from the player. The system can further adapt to the player's weaknesses and help them overcome it through further training. Importantly, SmartServe alleviates the problems of finding and working with a coach for players, as well as coaches trying to train multiple players simultaneously. The system will be deemed a success if the table tennis players and coaches can enjoy and see some value added by using SmartServe.\\\\
+SmartServe is an autonomous table tennis training system for table tennis players with various skill levels. SmartServe aids in diagnosing and improving a player's performance over time. The system trains table tennis players by shooting table tennis balls towards the player and detects successful returns from the player. The system can further adapt to the player's weaknesses and help them overcome it through further training. Importantly, SmartServe alleviates the problems of finding and working with a coach for players, as well as coaches trying to train multiple players simultaneously. The system will be deemed a success if the table tennis players and coaches can enjoy and see some value added by using SmartServe. \\\\
 The project started at the beginning of the Fall 2017 academic term and will conclude at the end of the Winter 2018 term. In addition, the core project team consists of final year Software and Mechatronics Engineering students who are enrolled in the MECHTRON 4TB6/SFWRENG 4G06 capstone project course.
 \subsection{Document Overview}
 This document will add more detail into the subsystems introduced in the High-Level System Design document (HLSD) found \href{run:../Design.pdf}{here}. The HLSD omitted details such as how the subsystems would work, how they are built and how communication will be handled between them. This document will cover all of those details and introduce how each subsystem will be programmed by defining the language and libraries required. \\ \\
@@ -103,7 +103,7 @@ The following terms and definitions will be used throughout this document:
 \item \textbf{System Side}: the side of the table where the electromechanical system is placed; it is the opposite side of the User Side Please refer to Figure \ref{fig:table-tennis-top-view} for visual illustration
 \item \textbf{TCP:} transmission control protocol
 \item \textbf{Team}: all team members of the core capstone project, as noted in the list of Authors
-\item \textbf{UI}: user interfacce
+\item \textbf{UI}: user interface
 \item \textbf{User Side}: the side of the table where the user (player) is standing
 \item \textbf{Yaw}: rotation along the z-axis; this rotation angle primarily dictates the panning functionality of the shooting mechanism from the right side to the left side of the table
 \end{itemize}
@@ -248,9 +248,9 @@ All connection information between the sub-systems, table contents.\\
 \item Zone \textbf{user} -  int zone\textunderscore id, double x\textunderscore loc, double y\textunderscore loc \\ description: representation of a zone on the table, used as a look up table
 \item Omega \textbf{user} - int omega\textunderscore id, double angle, double velocity \\ description: representation of angular velocity of the ball, used as a look up table
 \item ReturnRate \textbf{return\textunderscore rate} - int user\textunderscore id, int shot\textunderscore id,  Timestamp timeStamp, boolean returned \\ description: return statistics for each user
-\item \textbf{signUp} - String userName, String password \\ returns: \textit{void} \\ description: adds a user row to the \textit{User} table
+\item \textbf{signUp} - String userName, String password \\ returns: \textit{none} \\ description: adds a user row to the \textit{User} table
 \item \textbf{nextShot} - int zone \\ returns: \textit{Shot} \\ description: determines which shot type to perform
-\item \textbf{returned} - Timestamp timeStamp, User user, Shot shot \\ returns: \textit{void} \\ description: updates returnRate table for user for performance statistics
+\item \textbf{returned} - Timestamp timeStamp, User user, Shot shot \\ returns: \textit{none} \\ description: updates returnRate table for user for performance statistics
 \end{itemize}
 
 \subsection{Shooting Mechanism Modules}
@@ -263,34 +263,34 @@ some text \\
 some text \\
 \textbf{MIS} \\
 some text \\
-\subsection{UI(User Interface) Modules}
-\subsubsection*{Controlller}
+\subsection{UI (User Interface) Modules}
+\subsubsection*{Controller}
 \textbf{Responsibilities} \\
-Responsible for communicating with the SmartServe system as well as the View module to collect information from the user. \\
+Responsible for translating the desired action of the user from the View module to the SmartServe module. \\
 \textbf{Secrets} \\
-Connection between sub-systems. \\
+Connection between modules and sub-systems. \\
 \textbf{MID} \\
 \begin{itemize}
-\item \textbf{main} - String args[] \\ returns: \textit{void} \\ description: calls the view module to initialize the UI
-\item \textbf{getTrainingMode} - none \\ returns: \textit{Mode} \\ description: gets mode from view module and sends it to SmartServe
-\item \textbf{getShootingParameters} - none \\ returns: \textit{ShootingParameters} \\ description: gets shooting parameters from view module and sends it to SmartServe
-\item \textbf{getStatistics} - none \\ returns: \textit{StatisticsParameters} \\ description: gets statistics parameters and sends them to view module
-\item \textbf{signUp} - User user \\ returns \textit{void} \\ description: gets user information from view module and sends it to smartServe
-\item \textbf{login} - User user \\ returns \textit{boolean} \\ descriptopn: gets user name and password from the view module and authenticates by calling SmartServe
+\item \textbf{main} - String args[] \\ returns: \textit{none} \\ description: calls the View module to initialize the UI
+\item \textbf{setTrainingMode} - Mode m \\ returns: \textit{none} \\ description: sets mode from View module and sends it to SmartServe
+\item \textbf{setShootingParameters} - none \\ returns: \textit{ShootingParameters} \\ description: sets shooting parameters from View module and sends it to SmartServe
+\item \textbf{setStatistics} - none \\ returns: \textit{StatisticsParameters} \\ description: sets statistics parameters and sends them to View module
+\item \textbf{signUp} - User user \\ returns \textit{none} \\ description: gets user information from view module and sends it to smartServe
+\item \textbf{login} - User user \\ returns \textit{boolean} \\ description: gets user name and password from the View module and authenticates by calling SmartServe
 \end{itemize}
 \subsubsection*{View}
 \textbf{Responsibilities} \\
 The view module will contain all the actual visual aspects of the system that the user will interact with. This includes text, pictures, buttons, etc. \\
 \textbf{Secrets} \\
-Button functionalities. \\
-\textbf{MID} \\
+The structure and implementation of the view. \\
+\textbf{MID}
 \begin{itemize}
-\item \textbf{application} - none \\ returns: \textit{void} \\ description: general user interface code, called to initiate UI
+\item \textbf{start} - none \\ returns: \textit{none} \\ description: general user interface code, called to initiate UI
 \item \textbf{selectMode} - MouseEvent \\ returns: \textit{Mode} \\ description: listens for a mouse click on mode types, and returns that mode
 \item \textbf{calibrate} - none \\ returns: \textit{ShootingParameters} \\ description: collects user input for table size in order to calibrate the system
 \item \textbf{startTrainingBtn} - MouseEvent \\ returns: \textit{boolean} \\ description: listens for mouse click on start training button
 \item \textbf{stopTrainingBtn} - MouseEvent \\ returns: \textit{boolean} \\ description: listens for mouse click on stop training button
-\item \textbf{viewStatsBtn} - MouseEvent \\ returns: \textit{void} \\ description: listens for mouse click on statistics button and displays statistics to the user
+\item \textbf{viewStatsBtn} - MouseEvent \\ returns: \textit{none} \\ description: listens for mouse click on statistics button and displays statistics to the user
 \item \textbf{signUpBtn} - MouseEvent \\ returns: \textit{User} \\ description: listens for mouse click on sign up button and collects user information
 \item \textbf{loginBtn} - MouseEvent \\ returns: \textit{User} \\ description: listens for mouse click on sign in button and displays profile if authenticated properly
 \end{itemize}
