@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.26)  13 JAN 2018 13:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.26)  13 JAN 2018 21:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -417,7 +417,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \openout5 = `Design.lof'.
 
 
-Overfull \hbox (0.54704pt too wide) in alignment at lines 76--76
+Overfull \hbox (0.54704pt too wide) in alignment at lines 77--77
 [][][][] 
  []
 
@@ -425,85 +425,160 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.79 \newpage
+l.80 \newpage
               [1] [2]
-Underfull \hbox (badness 10000) in paragraph at lines 82--84
+Underfull \hbox (badness 10000) in paragraph at lines 83--85
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 90.
+
+Underfull \hbox (badness 10000) in paragraph at lines 86--88
+
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 93.
 (/usr/local/texlive/2016basic/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 90.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 93.
  [3]
-<../img/Table-Tennis-Top-View.png, id=153, 648.17157pt x 435.12563pt>
+<../img/Table-Tennis-Top-View.png, id=154, 648.17157pt x 435.12563pt>
 File: ../img/Table-Tennis-Top-View.png Graphic file (type png)
 
 <use ../img/Table-Tennis-Top-View.png>
 Package pdftex.def Info: ../img/Table-Tennis-Top-View.png used on input line 11
-0.
+3.
 (pdftex.def)             Requested size: 322.50346pt x 216.49995pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 120--128
-
- []
-
-[4 <../img/Table-Tennis-Top-View.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 130--138
+ [4]
+Underfull \hbox (badness 10000) in paragraph at lines 123--128
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--148
+Underfull \hbox (badness 10000) in paragraph at lines 123--128
+
+ []
+
+[5 <../img/Table-Tennis-Top-View.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 136--141
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--158
-
- []
-
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 160--168
+Underfull \hbox (badness 10000) in paragraph at lines 136--141
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 170--175
+Underfull \hbox (badness 10000) in paragraph at lines 148--153
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 148--153
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 188--196
+Underfull \hbox (badness 10000) in paragraph at lines 161--166
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 198--203
+Underfull \hbox (badness 10000) in paragraph at lines 161--166
 
  []
 
-[7] [8]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 241.
- [9]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 241.
+
+Underfull \hbox (badness 10000) in paragraph at lines 173--178
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 173--178
+
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 186--191
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 186--191
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--202
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--202
+
+ []
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 210--218
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 220--228
+
+ []
+
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 230--238
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 240--245
+
+ []
+
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 258--266
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 268--273
+
+ []
+
+[11] [12]
+Underfull \hbox (badness 10000) in paragraph at lines 300--303
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 300--303
+
+ []
+
+[13]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 322.
+ [14]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 322.
  (./Design.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 241.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 241.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 322.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 322.
 Package rerunfilecheck Info: File `Design.out' has not changed.
 (rerunfilecheck)             Checksum: 4FDBABB8697FE54346E375B2146C340F;1654.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 241.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 322.
  ) 
 Here is how much of TeX's memory you used:
- 6207 strings out of 494447
- 91837 string characters out of 6166766
- 184245 words of memory out of 5000000
+ 6217 strings out of 494447
+ 91927 string characters out of 6166766
+ 187245 words of memory out of 5000000
  9422 multiletter control sequences out of 15000+600000
  12309 words of font info for 45 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 29i,12n,28p,746b,392s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,12n,28p,746b,386s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2016basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx1
 0.pfb></usr/local/texlive/2016basic/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mbx12.pfb></usr/local/texlive/2016basic/texmf-dist/fonts/type1/public/amsfonts/
@@ -513,10 +588,10 @@ msfonts/cm/cmr12.pfb></usr/local/texlive/2016basic/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2016basic/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmti10.pfb></usr/local/texlive/2016basic/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmti12.pfb>
-Output written on Design.pdf (10 pages, 328508 bytes).
+Output written on Design.pdf (15 pages, 340442 bytes).
 PDF statistics:
- 231 PDF objects out of 1000 (max. 8388607)
- 205 compressed objects within 3 object streams
- 46 named destinations out of 1000 (max. 500000)
+ 265 PDF objects out of 1000 (max. 8388607)
+ 234 compressed objects within 3 object streams
+ 56 named destinations out of 1000 (max. 500000)
  195 words of extra memory for PDF output out of 10000 (max. 10000000)
 
