@@ -243,15 +243,18 @@ The connection to the Shot Optimizer system. \\ \\
 
 
 \subsection{Computer Vision Modules}
-\subsubsection*{Module 1}
+\subsubsection*{Detect}
 \textbf{Responsibilities} \\
-some text \\
-\textbf{Secrets} \\
-some text \\
+This module detects successful returns from the user, and sends that data to smartserve\\
+\textbf{Secrets} \\ 
+Success criteria of returns\\
+How the camera feed is analyzed\\ 
 \textbf{MID} \\
-some text \\
-\textbf{MIS} \\
-some text \\
+\begin{itemize}
+\item \textbf{Detect} - Camera Capture cap \\ returns: \textit{none} \\ description: Detects if the ball was succesfully returned by the user and calls the Send function
+\item \textbf{Send} -  \\ returns: \textit{none} \\ description: Sends a signal to Smartserve indicating that a successful return was made
+\end{itemize}
+
 \subsection{Data Storage Modules}
 \subsubsection*{Global}
 \textbf{Responsibilities} \\
@@ -272,16 +275,9 @@ All connection information between the sub-systems, table contents.\\
 
 \subsection{Shooting Mechanism Modules}
 \subsubsection*{Module 1}
-\textbf{Responsibilities} \\
-some text \\
-\textbf{Secrets} \\
-some text \\
-\textbf{MID} \\
-some text \\
-\textbf{MIS} \\
-some text \\
-\subsection{UI (User Interface) Modules}
-\subsubsection*{Controller}
+\textbf{This module will be specified in the hardware component design of the shooting mechanism}
+\subsection{User Interface Modules}
+\subsubsection*{Module 1}
 \textbf{Responsibilities} \\
 Responsible for translating the desired action of the user from the View module to the SmartServe module. \\
 \textbf{Secrets} \\
