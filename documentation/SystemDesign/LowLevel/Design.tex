@@ -73,7 +73,8 @@
    Dec 29, 2017 & 1.0 & Structure made for document including headings & Christopher McDonald \\ \hline
    Jan 11, 2018 & 1.1 & Added content for ShotRecommendation and SmartServe systems, and Communication Protocols Sections & Christopher McDonald \\
    Jan 11, 2018 & 1.2 & Added content for Document Overview & Christopher McDonald \\ \hline
-   Jan 12, 2018 & 1.3 & added data storage and user interface modules & Sharon Platkin \\ \hline
+   Jan 12, 2018 & 1.3 & Added Data Storage and User Interface modules & Sharon Platkin \\ \hline
+   Jan 13, 2018 & 1.4 & Added details for Shooting Mech, CV, Shot Optimizer, Shooting Model subsystems & Harit Patel \& Sam Hamel \\ \hline
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -84,7 +85,7 @@ SmartServe is an autonomous table tennis training system for table tennis player
 The project started at the beginning of the Fall 2017 academic term and will conclude at the end of the Winter 2018 term. In addition, the core project team consists of final year Software and Mechatronics Engineering students who are enrolled in the MECHTRON 4TB6/SFWRENG 4G06 capstone project course.
 \subsection{Document Overview}
 This document will add more detail into the subsystems introduced in the High-Level System Design document (HLSD) found \href{run:../Design.pdf}{here}. The HLSD omitted details such as how the subsystems would work, how they are built and how communication will be handled between them. This document will cover all of those details and introduce how each subsystem will be programmed by defining the language and libraries required. \\ \\
-All software developers on the development team should read this document when building the subsystems to ensure the correct data is being sent and communication portals are set up correctly. Each subsystem will hold one to many modules and each module will contain one to many methods. A detailed class diagram will organize all the subsystems and their modules with arrows indicating which module uses another one.
+All software developers on the development team should read this document when building the subsystems to ensure the correct data is being sent and communication portals are set up correctly. Each subsystem will hold one to many modules and each module will contain one to many methods or variables. A detailed class diagram will organize all the subsystems and their modules with arrows indicating which module uses another one.
 \subsection{Naming Conventions and Terminology}
 \label{sec:definitions}
 The following terms and definitions will be used throughout this document:
@@ -274,15 +275,14 @@ All connection information between the sub-systems, table contents.\\
 \end{itemize}
 
 \subsection{Shooting Mechanism Modules}
-\subsubsection*{Module 1}
-\textbf{This module will be specified in the hardware component design of the shooting mechanism}
+This module will be specified in the hardware component design of the shooting mechanism.
 \subsection{User Interface Modules}
-\subsubsection*{Module 1}
+\subsubsection*{Controller}
 \textbf{Responsibilities} \\
-Responsible for translating the desired action of the user from the View module to the SmartServe module. \\
+Responsible for translating the desired action of the user from the View module to the SmartServe module. \\ \\
 \textbf{Secrets} \\
-Connection between modules and sub-systems. \\
-\textbf{MID} \\
+Connection between modules and sub-systems. \\ \\
+\textbf{MID}
 \begin{itemize}
 \item \textbf{main} - String args[] \\ returns: \textit{none} \\ description: calls the View module to initialize the UI
 \item \textbf{setTrainingMode} - Mode m \\ returns: \textit{none} \\ description: sets mode from View module and sends it to SmartServe
@@ -293,9 +293,9 @@ Connection between modules and sub-systems. \\
 \end{itemize}
 \subsubsection*{View}
 \textbf{Responsibilities} \\
-The view module will contain all the actual visual aspects of the system that the user will interact with. This includes text, pictures, buttons, etc. \\
+The view module will contain all the actual visual aspects of the system that the user will interact with. This includes text, pictures, buttons, etc. \\ \\
 \textbf{Secrets} \\
-The structure and implementation of the view. \\
+The structure and implementation of the view. \\ \\
 \textbf{MID}
 \begin{itemize}
 \item \textbf{start} - none \\ returns: \textit{none} \\ description: general user interface code, called to initiate UI
