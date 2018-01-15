@@ -177,7 +177,7 @@ The connection to the CV system. \\ \\
 \textbf{Responsibilities} \\
 This module is responsible for facilitating the communication with the Data Storage subsystem. This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
 \textbf{Secrets} \\
-The connection to the Data Storage system. \\ \\
+The connection to the Data Storage subsystem. \\ \\
 \textbf{MID}
 \begin{itemize}
 \item \textbf{connect} - int port, [optional] String ip \\ returns: \textit{boolean} \\ description: tests connection to Data Storage subsystem on port \textit{port} at the IP Address \textit{ip} or \textit{localhost} if ip is unavailable
@@ -221,7 +221,7 @@ None \\  \\
 \item \textbf{toString} - none \\ returns: \textit{String} \\ description: Returns shooting details in a printable string format.
 \end{itemize}
 
-\subsubsection*{Shooting Model}
+\subsubsection*{ShootingModel}
 \textbf{Responsibilities} \\
 Responsible for mapping a desired shot to the details needed to take the shot. \\ \\
 \textbf{Secrets} \\ 
@@ -266,8 +266,8 @@ All connection information between the sub-systems, table contents.\\
 \begin{itemize}
 \item User \textbf{user} - String user\textunderscore name, String password, int user\textunderscore id \\ description: representation of a user
 \item Shot \textbf{shotType} - int zone\textunderscore id, int omega\textunderscore id, int shot\textunderscore id \\ description: representation of a shot type
-\item Zone \textbf{user} -  int zone\textunderscore id, double x\textunderscore loc, double y\textunderscore loc \\ description: representation of a zone on the table, used as a look up table
-\item Omega \textbf{user} - int omega\textunderscore id, double angle, double velocity \\ description: representation of angular velocity of the ball, used as a look up table
+\item Zone \textbf{zone} -  int zone\textunderscore id, double x\textunderscore loc, double y\textunderscore loc \\ description: representation of a zone on the table, used as a look up table
+\item Omega \textbf{omega} - int omega\textunderscore id, double angle, double velocity \\ description: representation of angular velocity of the ball, used as a look up table
 \item ReturnRate \textbf{return\textunderscore rate} - int user\textunderscore id, int shot\textunderscore id,  Timestamp timeStamp, boolean returned \\ description: return statistics for each user
 \item \textbf{signUp} - String userName, String password \\ returns: \textit{none} \\ description: adds a user row to the \textit{User} table
 \item \textbf{nextShot} - int zone \\ returns: \textit{Shot} \\ description: determines which shot type to perform
