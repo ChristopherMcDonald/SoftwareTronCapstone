@@ -210,16 +210,17 @@ The algorithm to build the model. \\ \\
 \end{itemize}
 
 \subsection{Shooting Model Modules}
-\subsubsection*{Shooting Details}
+\subsubsection*{Shot}
 \textbf{Responsibilities} \\
 Specific details (such as yaw and speed) that are required to take the desired shot are stored within this abstract data type module. \\ \\
 \textbf{Secrets} \\ 
 None \\  \\
 \textbf{MID} 
 \begin{itemize}
-\item \textbf{shootingDetails} - double  yaw, double velocity \\ returns: \textit{none} \\ description: constructor to store the shooting model details in an abstract data type.
+\item \textbf{shot} - double yaw, double velocity \\ returns: \textit{none} \\ description: constructor to store the shooting model details in an abstract data type.
 \item \textbf{toString} - none \\ returns: \textit{String} \\ description: Returns shooting details in a printable string format.
 \end{itemize}
+
 \subsubsection*{Shooting Model}
 \textbf{Responsibilities} \\
 Responsible for mapping a desired shot to the details needed to take the shot. \\ \\
@@ -228,7 +229,7 @@ Methods and formulas being used to identify the required details needed to take 
 \textbf{MID} 
 \begin{itemize}
 \item \textbf{shootingModel} - double  initialHeight, double xInitialHeight, double pitch \\ returns: \textit{none} \\ description: instantiates the shooting model subsystem.
-\item \textbf{getShootingDetails} - double landingXCoord, double landingYCoord \\ returns: \textit{ShootingDetails} \\ description: calculates details to take the desired shot and stores them within the ADT.
+\item \textbf{getShotDetails} - double landingXCoord, double landingYCoord \\ returns: \textit{Shot} \\ description: calculates details to take the desired shot and stores them within the ADT.
 \end{itemize}
 
 \subsection{Shot Optimizer Modules}
@@ -243,15 +244,12 @@ The connection to the Shot Optimizer system. \\ \\
 \item \textbf{getOrientation} - Position  position \\ returns: \textit{Orientation} \\ description: returns the optimal orientation data to orient the shooting mechanism.
 \end{itemize}
 
-
-
 \subsection{Computer Vision Modules}
 \subsubsection*{Detect}
 \textbf{Responsibilities} \\
 This module detects successful returns from the user, and sends that data to smartserve\\
 \textbf{Secrets} \\ 
-Success criteria of returns\\
-How the camera feed is analyzed\\ 
+Success criteria of returns and how the camera feed is analyzed.\\ 
 \textbf{MID} 
 \begin{itemize}
 \item \textbf{Detect} - Camera Capture cap \\ returns: \textit{none} \\ description: Detects if the ball was succesfully returned by the user and calls the Send function
