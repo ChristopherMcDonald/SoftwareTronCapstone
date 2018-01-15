@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2016.2.7)  12 JAN 2018 10:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2016.2.7)  14 JAN 2018 19:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -485,41 +485,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 161--166
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 161--166
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 175--183
-
- []
-
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 185--193
+Underfull \hbox (badness 10000) in paragraph at lines 188--196
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 195--203
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 205--213
+Underfull \hbox (badness 10000) in paragraph at lines 201--209
 
  []
 
 [6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 227.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 223.
  [7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 227.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 223.
  (./Design.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 227.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 227.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 223.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 223.
 Package rerunfilecheck Info: File `Design.out' has not changed.
 (rerunfilecheck)             Checksum: 338AE5466E675A45589BC1AD9DD207D6;1647.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 227.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 223.
  ) 
 Here is how much of TeX's memory you used:
  6205 strings out of 493042
@@ -537,7 +522,7 @@ type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2015/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmsy10.pfb><c:/texlive/2015/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmti10.pfb><c:/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
 i12.pfb>
-Output written on Design.pdf (8 pages, 324476 bytes).
+Output written on Design.pdf (8 pages, 325310 bytes).
 PDF statistics:
  222 PDF objects out of 1000 (max. 8388607)
  199 compressed objects within 2 object streams

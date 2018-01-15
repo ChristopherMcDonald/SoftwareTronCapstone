@@ -211,7 +211,7 @@ The algorithm to build the model. \\ \\
 \textbf{Responsibilities} \\
 Specific details (such as yaw and speed) that are required to take the desired shot are stored within this abstract data type module. \\ \\
 \textbf{Secrets} \\ 
-?????? - Help, what's the secret for an ADT? \\  \\
+None \\  \\
 \textbf{MID} 
 \begin{itemize}
 \item \textbf{shootingDetails} - double  yaw, double velocity \\ returns: \textit{none} \\ description: constructor to store the shooting model details in an abstract data type.
@@ -234,7 +234,7 @@ Methods and formulas being used to identify the required details needed to take 
 This module is responsible for facilitating the communication with the Shot Optimizer system. This includes sending and receiving messages as well as ensuring proper testing of the connection is performed. \\ \\
 \textbf{Secrets} \\ 
 The connection to the Shot Optimizer system. \\ \\
-\textbf{MID} \\
+\textbf{MID} 
 \begin{itemize}
 \item \textbf{connect} - int  port, [optional] String ip \\ returns: \textit{boolean} \\ description: instantiates all dependancies and ensures services are working as expected.
 \item \textbf{getOrientation} - Position  position \\ returns: \textit{Orientation} \\ description: returns the optimal orientation data to orient the shooting mechanism.
@@ -249,10 +249,10 @@ This module detects successful returns from the user, and sends that data to sma
 \textbf{Secrets} \\ 
 Success criteria of returns\\
 How the camera feed is analyzed\\ 
-\textbf{MID} \\
+\textbf{MID} 
 \begin{itemize}
 \item \textbf{Detect} - Camera Capture cap \\ returns: \textit{none} \\ description: Detects if the ball was succesfully returned by the user and calls the Send function
-\item \textbf{Send} -  \\ returns: \textit{none} \\ description: Sends a signal to Smartserve indicating that a successful return was made
+\item \textbf{Send} -  none \\ returns: \textit{none} \\ description: Sends a signal to Smartserve indicating that a successful return was made
 \end{itemize}
 
 \subsection{Data Storage Modules}
