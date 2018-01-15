@@ -75,6 +75,8 @@
    Jan 11, 2018 & 1.2 & Added content for Document Overview & Christopher McDonald \\ \hline
    Jan 12, 2018 & 1.3 & Added Data Storage and User Interface modules & Sharon Platkin \\ \hline
    Jan 13, 2018 & 1.4 & Added details for Shooting Mech, CV, Shot Optimizer, Shooting Model subsystems & Harit Patel \& Sam Hamel \\ \hline
+   Jan 15, 2018 & 1.5 & Edited Module Guide & Sharon Platkin \\ \hline
+
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -299,13 +301,13 @@ The structure and implementation of the view. \\ \\
 \textbf{MID}
 \begin{itemize}
 \item \textbf{start} - none \\ returns: \textit{none} \\ description: general user interface code, called to initiate UI
-\item \textbf{selectMode} - MouseEvent \\ returns: \textit{Mode} \\ description: listens for a mouse click on mode types, and returns that mode
+\item \textbf{selectMode} - MouseEvent me\\ returns: \textit{Mode} \\ description: listens for a mouse click on mode types, and returns that mode
 \item \textbf{calibrate} - none \\ returns: \textit{ShootingParameters} \\ description: collects user input for table size in order to calibrate the system
-\item \textbf{startTrainingBtn} - MouseEvent \\ returns: \textit{boolean} \\ description: listens for mouse click on start training button
-\item \textbf{stopTrainingBtn} - MouseEvent \\ returns: \textit{boolean} \\ description: listens for mouse click on stop training button
-\item \textbf{viewStatsBtn} - MouseEvent \\ returns: \textit{none} \\ description: listens for mouse click on statistics button and displays statistics to the user
-\item \textbf{signUpBtn} - MouseEvent \\ returns: \textit{User} \\ description: listens for mouse click on sign up button and collects user information
-\item \textbf{loginBtn} - MouseEvent \\ returns: \textit{User} \\ description: listens for mouse click on sign in button and displays profile if authenticated properly
+\item \textbf{startTrainingBtn} - MouseEvent me \\ returns: \textit{boolean} \\ description: listens for mouse click on start training button
+\item \textbf{stopTrainingBtn} - MouseEvent me \\ returns: \textit{boolean} \\ description: listens for mouse click on stop training button
+\item \textbf{viewStatsBtn} - MouseEvent me \\ returns: \textit{none} \\ description: listens for mouse click on statistics button and displays statistics to the user
+\item \textbf{signUpBtn} - MouseEvent me \\ returns: \textit{User} \\ description: listens for mouse click on sign up button and collects user information
+\item \textbf{loginBtn} - MouseEvent me \\ returns: \textit{User} \\ description: listens for mouse click on sign in button and displays profile if authenticated properly
 \end{itemize}
 
 \section{Communication Protocols} % Chris
