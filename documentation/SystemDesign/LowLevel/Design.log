@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.26)  15 JAN 2018 10:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.26)  16 JAN 2018 10:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -169,6 +169,18 @@ Package: multicol 2016/04/07 v1.8p multicolumn formatting (FMi)
 \colbreak@box=\box53
 \mc@col@check@num=\count101
 )
+(/usr/local/texlive/2016basic/texmf-dist/tex/latex/rotating/rotating.sty
+Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
+
+(/usr/local/texlive/2016basic/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\c@r@tfl@t=\count102
+\rotFPtop=\skip47
+\rotFPbot=\skip48
+\rot@float@box=\box54
+\rot@mess@toks=\toks21
+)
 (/usr/local/texlive/2016basic/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2016/05/05 v6.83n Hypertext links for LaTeX
 
@@ -223,13 +235,13 @@ Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 )
 \@linkdim=\dimen129
-\Hy@linkcounter=\count102
-\Hy@pagecounter=\count103
+\Hy@linkcounter=\count103
+\Hy@pagecounter=\count104
 
 (/usr/local/texlive/2016basic/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2016/05/05 v6.83n Hyperref: PDFDocEncoding definition (HO)
 )
-\Hy@SavedSpaceFactor=\count104
+\Hy@SavedSpaceFactor=\count105
 
 (/usr/local/texlive/2016basic/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
@@ -241,7 +253,7 @@ Package hyperref Info: Plain pages OFF on input line 4461.
 Package hyperref Info: Backreferencing OFF on input line 4466.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4691.
-\c@Hy@tempcnt=\count105
+\c@Hy@tempcnt=\count106
 
 (/usr/local/texlive/2016basic/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip10
@@ -249,7 +261,7 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5044.
 \XeTeXLinkMargin=\dimen130
-\Fld@menulength=\count106
+\Fld@menulength=\count107
 \Field@Width=\dimen131
 \Fld@charsize=\dimen132
 Package hyperref Info: Hyper figures OFF on input line 6298.
@@ -261,43 +273,43 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6323.
 Package hyperref Info: PDF/A mode OFF on input line 6328.
 LaTeX Info: Redefining \ref on input line 6368.
 LaTeX Info: Redefining \pageref on input line 6372.
-\Hy@abspage=\count107
-\c@Item=\count108
-\c@Hfootnote=\count109
+\Hy@abspage=\count108
+\c@Item=\count109
+\c@Hfootnote=\count110
 )
 
 Package hyperref Message: Driver (autodetected): hpdftex.
 
 (/usr/local/texlive/2016basic/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2016/05/05 v6.83n Hyperref driver for pdfTeX
-\Fld@listcount=\count110
-\c@bookmark@seq@number=\count111
+\Fld@listcount=\count111
+\c@bookmark@seq@number=\count112
 
 (/usr/local/texlive/2016basic/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
-\Hy@SectionHShift=\skip47
+\Hy@SectionHShift=\skip49
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 17.
+Package hyperref Info: Option `colorlinks' set `true' on input line 18.
  (./Design.aux)
 \openout1 = `Design.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -335,17 +347,17 @@ LaTeX Font Info:    ... okay on input line 19.
 
 (/usr/local/texlive/2016basic/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count112
+\scratchcounter=\count113
 \scratchdimen=\dimen133
-\scratchbox=\box54
-\nofMPsegments=\count113
-\nofMParguments=\count114
-\everyMPshowfont=\toks21
-\MPscratchCnt=\count115
+\scratchbox=\box55
+\nofMPsegments=\count114
+\nofMParguments=\count115
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count116
 \MPscratchDim=\dimen134
-\MPnumerator=\count116
-\makeMPintoPDFobject=\count117
-\everyMPtoPDFconversion=\toks22
+\MPnumerator=\count117
+\makeMPintoPDFobject=\count118
+\everyMPtoPDFconversion=\toks23
 ) (/usr/local/texlive/2016basic/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 (/usr/local/texlive/2016basic/texmf-dist/tex/latex/oberdiek/grfext.sty
@@ -360,7 +372,7 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box55
+\AtBeginShipoutBox=\box56
  (/usr/local/texlive/2016basic/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2016/05/09 v1.1c Standard LaTeX Color (DPC)
 
@@ -369,7 +381,7 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 144.
 )
-Package hyperref Info: Link coloring ON on input line 19.
+Package hyperref Info: Link coloring ON on input line 20.
 
 (/usr/local/texlive/2016basic/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -378,20 +390,20 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 y
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count118
+\c@section@level=\count119
 )
-LaTeX Info: Redefining \ref on input line 19.
-LaTeX Info: Redefining \pageref on input line 19.
-LaTeX Info: Redefining \nameref on input line 19.
+LaTeX Info: Redefining \ref on input line 20.
+LaTeX Info: Redefining \pageref on input line 20.
+LaTeX Info: Redefining \nameref on input line 20.
  (./Design.out) (./Design.out)
 \@outlinefile=\write3
 \openout3 = `Design.out'.
 
 
-<../logo.png, id=96, 1204.5pt x 1558.82375pt>
+<../logo.png, id=100, 1204.5pt x 1558.82375pt>
 File: ../logo.png Graphic file (type png)
  <use ../logo.png>
-Package pdftex.def Info: ../logo.png used on input line 58.
+Package pdftex.def Info: ../logo.png used on input line 59.
 (pdftex.def)             Requested size: 129.00269pt x 166.95186pt.
  [1
 
@@ -417,7 +429,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \openout5 = `Design.lof'.
 
 
-Overfull \hbox (0.54704pt too wide) in alignment at lines 78--78
+Overfull \hbox (0.54704pt too wide) in alignment at lines 81--81
 [][][][] 
  []
 
@@ -425,185 +437,195 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.81 \newpage
+l.84 \newpage
               [1] [2]
-Underfull \hbox (badness 10000) in paragraph at lines 84--86
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 87--89
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 94.
+
+Underfull \hbox (badness 10000) in paragraph at lines 90--92
+
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 97.
 (/usr/local/texlive/2016basic/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 94.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 97.
  [3]
-<../img/Table-Tennis-Top-View.png, id=154, 648.17157pt x 435.12563pt>
+<../img/Table-Tennis-Top-View.png, id=161, 648.17157pt x 435.12563pt>
 File: ../img/Table-Tennis-Top-View.png Graphic file (type png)
 
 <use ../img/Table-Tennis-Top-View.png>
-Package pdftex.def Info: ../img/Table-Tennis-Top-View.png used on input line 11
-5.
+Package pdftex.def Info: ../img/Table-Tennis-Top-View.png used on input line 12
+4.
 (pdftex.def)             Requested size: 322.50346pt x 216.49995pt.
  [4]
-Underfull \hbox (badness 10000) in paragraph at lines 125--130
+Underfull \hbox (badness 10000) in paragraph at lines 135--140
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 125--130
+Underfull \hbox (badness 10000) in paragraph at lines 135--140
 
  []
 
 [5 <../img/Table-Tennis-Top-View.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 138--143
+Underfull \hbox (badness 10000) in paragraph at lines 148--153
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 138--143
+Underfull \hbox (badness 10000) in paragraph at lines 148--153
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--155
+Underfull \hbox (badness 10000) in paragraph at lines 160--165
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--155
+Underfull \hbox (badness 10000) in paragraph at lines 160--165
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 163--168
+Underfull \hbox (badness 10000) in paragraph at lines 173--178
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 163--168
+Underfull \hbox (badness 10000) in paragraph at lines 173--178
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--180
+Underfull \hbox (badness 10000) in paragraph at lines 185--190
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--180
+Underfull \hbox (badness 10000) in paragraph at lines 185--190
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 188--193
+Underfull \hbox (badness 10000) in paragraph at lines 198--203
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 188--193
+Underfull \hbox (badness 10000) in paragraph at lines 198--203
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 199--204
+Underfull \hbox (badness 10000) in paragraph at lines 209--214
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 199--204
+Underfull \hbox (badness 10000) in paragraph at lines 209--214
 
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 212--217
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 212--217
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 222--227
 
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 222--227
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 233--238
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 233--238
 
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 234--239
+Underfull \hbox (badness 10000) in paragraph at lines 245--250
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 234--239
+Underfull \hbox (badness 10000) in paragraph at lines 245--250
 
  []
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 261--266
+Underfull \hbox (badness 10000) in paragraph at lines 269--274
 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 281--286
+Underfull \hbox (badness 10000) in paragraph at lines 289--294
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 281--286
+Underfull \hbox (badness 10000) in paragraph at lines 289--294
 
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 295--300
+Underfull \hbox (badness 10000) in paragraph at lines 303--308
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 295--300
+Underfull \hbox (badness 10000) in paragraph at lines 303--308
 
  []
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 313--316
+Underfull \hbox (badness 10000) in paragraph at lines 321--324
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 313--316
+Underfull \hbox (badness 10000) in paragraph at lines 321--324
 
  []
 
-[14]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 335.
- [15]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 335.
+[14] <diagram/DCD.png, id=230, 1837.86626pt x 1068.99374pt>
+File: diagram/DCD.png Graphic file (type png)
+
+<use diagram/DCD.png>
+Package pdftex.def Info: diagram/DCD.png used on input line 343.
+(pdftex.def)             Requested size: 612.12761pt x 356.04764pt.
+
+Overfull \hbox (55.65105pt too wide) in paragraph at lines 343--344
+ [][] 
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 350.
+[15] [16 <./diagram/DCD.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 350.
  (./Design.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 335.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 335.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 350.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 350.
 Package rerunfilecheck Info: File `Design.out' has not changed.
-(rerunfilecheck)             Checksum: 338AE5466E675A45589BC1AD9DD207D6;1647.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 335.
+(rerunfilecheck)             Checksum: 97FC99F124D84EBA202EF9A9815E7A97;1683.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 350.
  ) 
 Here is how much of TeX's memory you used:
- 6218 strings out of 494447
- 91934 string characters out of 6166766
- 188245 words of memory out of 5000000
- 9422 multiletter control sequences out of 15000+600000
+ 6337 strings out of 494447
+ 93539 string characters out of 6166766
+ 192077 words of memory out of 5000000
+ 9529 multiletter control sequences out of 15000+600000
  12309 words of font info for 45 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 29i,12n,28p,746b,386s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,12n,28p,746b,387s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2016basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx1
 0.pfb></usr/local/texlive/2016basic/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mbx12.pfb></usr/local/texlive/2016basic/texmf-dist/fonts/type1/public/amsfonts/
@@ -613,10 +635,10 @@ msfonts/cm/cmr12.pfb></usr/local/texlive/2016basic/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2016basic/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmti10.pfb></usr/local/texlive/2016basic/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmti12.pfb>
-Output written on Design.pdf (16 pages, 343490 bytes).
+Output written on Design.pdf (17 pages, 496502 bytes).
 PDF statistics:
- 269 PDF objects out of 1000 (max. 8388607)
- 237 compressed objects within 3 object streams
- 57 named destinations out of 1000 (max. 500000)
- 195 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 283 PDF objects out of 1000 (max. 8388607)
+ 248 compressed objects within 3 object streams
+ 60 named destinations out of 1000 (max. 500000)
+ 208 words of extra memory for PDF output out of 10000 (max. 10000000)
 
