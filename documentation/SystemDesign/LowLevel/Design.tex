@@ -190,8 +190,18 @@ The connection to the DS. \\ \\
 \textbf{MID}
 \begin{itemize}
 \item \textbf{connect} - int port, [optional] String ip \\ returns: \textit{boolean} \\ description: tests connection to DS on port \textit{port} at the IP Address \textit{ip} or \textit{localhost} if ip is unavailable
-\item \textbf{query} - String procedure, Map<String, String> values \\ returns: \textit{ResultSet} \\ description: returns data from database based on procedure ran and values given
-\item \textbf{save} - String procedure, Map<String, String> values \\ returns: \textit{boolean} \\ description: returns success information on write to database based on procedure ran and values given
+\item \textbf{query} - String procedure, Map\textless String, String\textgreater values \\ returns: \textit{ResultSet} \\ description: returns data from database based on procedure ran and values given
+\item \textbf{save} - String procedure, Map\textless String, String\textgreater values \\ returns: \textit{boolean} \\ description: returns success information on write to database based on procedure ran and values given
+\end{itemize}
+
+\subsubsection*{ShootingParameters}
+\textbf{Responsibilities} \\
+None. \\ \\
+\textbf{Secrets} \\
+None. \\ \\
+\textbf{MID}
+\begin{itemize}
+\item \textbf{ShootingParameters} - double tableWidth, double tableLength \\ description: constructs a ShootingParameters object
 \end{itemize}
 
 \subsection{Shot Recommendation Modules} % Chris - edited by Sharon
@@ -203,7 +213,7 @@ The process for handling SR requests. \\ \\
 \textbf{MID}
 \begin{itemize}
 \item \textbf{listen} - none \\ returns: \textit{none} \\ description: waits for a request made for a shot
-\item \textbf{query} - String procedure,  dict values, [optional] int port, [optional] String ip \\ returns: \textit{Cursor} \\ description: gets data from a stored procedure using some set of values for a MySQL instance on port \textit{port} at the IP Address \textit{ip}
+\item \textbf{query} - String procedure, Map\textless String, String\textgreater values, [optional] int port, [optional] String ip \\ returns: \textit{Cursor} \\ description: gets data from a stored procedure using some set of values for a MySQL instance on port \textit{port} at the IP Address \textit{ip}
 \end{itemize}
 
 \subsubsection*{Model}
@@ -214,6 +224,7 @@ The algorithm to build the model. \\ \\
 \textbf{MID}
 \begin{itemize}
 \item Model \textbf{model} - representation of shot performance data for extracting information
+\item \textbf{Model} - none \\ description: constructs a new Model
 \item \textbf{train} - Cursor cur \\ returns: \textit{none} \\ description: using some data from Cursor, this will train the model
 \item \textbf{next} - none \\ returns: \textit{Shot} \\ description: returns a shot based on the user's past performance
 \end{itemize}
@@ -226,7 +237,7 @@ Specific details (such as yaw and speed) that are required to take the desired s
 None \\  \\
 \textbf{MID} 
 \begin{itemize}
-\item \textbf{shot} - double yaw, double velocity \\ returns: \textit{none} \\ description: constructor to store the shooting model details in an abstract data type.
+\item \textbf{Shot} - Orientation orientation, double velocity \\ description: constructor to store the shooting model details in an abstract data type.
 \item \textbf{toString} - none \\ returns: \textit{String} \\ description: Returns shooting details in a printable string format.
 \end{itemize}
 
@@ -237,7 +248,8 @@ Responsible for mapping a desired shot to the details needed to take the shot. \
 Methods and formulas being used to identify the required details needed to take the desired shot. \\  \\
 \textbf{MID} 
 \begin{itemize}
-\item \textbf{shootingModel} - double  initialHeight, double xInitialHeight, double pitch \\ returns: \textit{none} \\ description: instantiates the ShootingModel subsystem (SModel).
+\item \textbf{ShootingModel} - double initialHeight, double xInitialHeight, double pitch \\ description: instantiates the ShootingModel subsystem (SModel).
+% TODO: Harit change these god awful names
 \item \textbf{getShotDetails} - double landingXCoord, double landingYCoord \\ returns: \textit{Shot} \\ description: calculates details to take the desired shot and stores them within the ADT.
 \end{itemize}
 
@@ -253,6 +265,26 @@ The connection to the SO. \\ \\
 \item \textbf{getOrientation} - Position  position \\ returns: \textit{Orientation} \\ description: returns the optimal orientation data to orient the SM.
 \end{itemize}
 
+\subsubsection*{Orientation}
+\textbf{Responsibilities} \\
+None. \\ \\
+\textbf{Secrets} \\
+None. \\ \\
+\textbf{MID}
+\begin{itemize}
+\item \textbf{Orientation} - double yaw, double pitch \\ description: constructs a Orientation object
+\end{itemize}
+
+\subsubsection*{Position}
+\textbf{Responsibilities} \\
+None. \\ \\
+\textbf{Secrets} \\
+None. \\ \\
+\textbf{MID}
+\begin{itemize}
+\item \textbf{Position} - double xPos, double yPos \\ description: constructs a Position object
+\end{itemize}
+
 \subsection{Computer Vision Modules}
 \subsubsection*{Detect}
 \textbf{Responsibilities} \\
@@ -265,22 +297,34 @@ Success criteria of returns and how the camera feed is analyzed.\\
 \item \textbf{send} - none \\ returns: \textit{none} \\ description: Sends a signal to SS indicating that a successful return was made
 \end{itemize}
 
+\subsubsection*{CameraCapture}
+\textbf{Responsibilities} \\
+None. \\ \\
+\textbf{Secrets} \\
+None. \\ \\
+\textbf{MID}
+\begin{itemize}
+\item \textbf{CameraCapture} - none\\ description: constructs a CameraCapture object
+\end{itemize}
+
 \subsection{Data Storage Modules}
 \subsubsection*{Global}
 \textbf{Responsibilities} \\
-Communicates with the database to create, delete and update rows in various tables.  \\
+Communicates with the database to create, delete and update rows in various tables.  \\ \\
 \textbf{Secrets} \\
-All connection information between the sub-systems, table contents.\\
+All connection information between the sub-systems, table contents.\\ \\
 \textbf{MID} \\
 \begin{itemize}
-\item User \textbf{user} - String user\textunderscore name, String password, int user\textunderscore id \\ description: representation of a user
-\item Shot \textbf{shotType} - int zone\textunderscore id, int omega\textunderscore id, int shot\textunderscore id \\ description: representation of a shot type
-\item Zone \textbf{zone} -  int zone\textunderscore id, double x\textunderscore loc, double y\textunderscore loc \\ description: representation of a zone on the table, used as a look up table
-\item Omega \textbf{omega} - int omega\textunderscore id, double angle, double velocity \\ description: representation of angular velocity of the ball, used as a look up table
-\item ReturnRate \textbf{returnRate} - int user\textunderscore id, int shot\textunderscore id,  Timestamp timeStamp, boolean returned \\ description: return statistics for each user
+\item User \textbf{user} - String userName, String password, int userId \\ description: representation of a user
+\item Shot \textbf{shotType} - int zoneId, int omegaId, int shotId \\ description: representation of a shot type
+\item Zone \textbf{zone} -  int zoneId, double xLoc, double yLoc \\ description: representation of a zone on the table, used as a look up table
+\item Omega \textbf{omega} - int omegaId, double angle, double velocity \\ description: representation of angular velocity of the ball, used as a look up table
+\item ReturnRate \textbf{returnRate} - int userId, int shotId,  Timestamp timeStamp, boolean returned \\ description: return statistics for each user
 \item \textbf{signUp} - String userName, String password \\ returns: \textit{none} \\ description: adds a user row to the \textit{User} table
 \item \textbf{nextShot} - int zone \\ returns: \textit{Shot} \\ description: determines which shot type to perform
 \item \textbf{returned} - Timestamp timeStamp, User user, Shot shot \\ returns: \textit{none} \\ description: updates returnRate table for user for performance statistics
+\item \textbf{signIn} - User user \\ returns: \textit{boolean} \\ description: validates and authenticates the user
+
 \end{itemize}
 
 \subsection{Shooting Mechanism Modules}
@@ -293,12 +337,12 @@ Responsible for translating the desired action of the user from the View module 
 Connection between modules and sub-systems. \\ \\
 \textbf{MID}
 \begin{itemize}
-\item \textbf{main} - String args[] \\ returns: \textit{none} \\ description: calls the View module to initialize the UI
+\item \textbf{main} - String[] args \\ returns: \textit{none} \\ description: calls the View module to initialize the UI
 \item \textbf{setTrainingMode} - Mode m \\ returns: \textit{none} \\ description: sets mode from View module and sends it to SS
-\item \textbf{setShootingParameters} - none \\ returns: \textit{ShootingParameters} \\ description: sets shooting parameters from View module and sends it to SS
-\item \textbf{setStatistics} - none \\ returns: \textit{StatisticsParameters} \\ description: sets statistics parameters and sends them to View module
-\item \textbf{signUp} - User user \\ returns \textit{none} \\ description: gets user information from view module and sends it to SS
-\item \textbf{login} - User user \\ returns \textit{boolean} \\ description: gets user name and password from the View module and authenticates by calling SS
+\item \textbf{setShootingParameters} - ShootingParameters \\ returns: \textit{none} \\ description: sets shooting parameters from View module and sends it to SS
+\item \textbf{setStatistics} - String statParam \\ returns: \textit{none} \\ description: sets statistics parameters and sends them to View module
+\item \textbf{signUp} - User user \\ returns: \textit{none} \\ description: gets user information from view module and sends it to SS
+\item \textbf{login} - User user \\ returns: \textit{boolean} \\ description: gets user name and password from the View module and authenticates by calling SS
 \end{itemize}
 \subsubsection*{View}
 \textbf{Responsibilities} \\
