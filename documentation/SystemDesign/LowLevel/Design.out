@@ -13,11 +13,12 @@
 \BOOKMARK [2][-]{subsection.3.7}{Shooting Mechanism Modules}{section.3}% 13
 \BOOKMARK [2][-]{subsection.3.8}{User Interface Modules}{section.3}% 14
 \BOOKMARK [1][-]{section.4}{Communication Protocols}{}% 15
-\BOOKMARK [2][-]{subsection.4.1}{Smart Serve to Shot Recommendation}{section.4}% 16
-\BOOKMARK [2][-]{subsection.4.2}{Smart Serve to Shooting Mechanism}{section.4}% 17
-\BOOKMARK [2][-]{subsection.4.3}{Smart Serve to Computer Vision}{section.4}% 18
-\BOOKMARK [2][-]{subsection.4.4}{Smart Serve to User Interface}{section.4}% 19
-\BOOKMARK [2][-]{subsection.4.5}{Smart Serve to Shot Optimizer}{section.4}% 20
-\BOOKMARK [2][-]{subsection.4.6}{Smart Serve to Shooting Model}{section.4}% 21
-\BOOKMARK [2][-]{subsection.4.7}{Smart Serve to Data Storage}{section.4}% 22
+\BOOKMARK [2][-]{subsection.4.1}{SmartServe to Shot Recommendation}{section.4}% 16
+\BOOKMARK [2][-]{subsection.4.2}{SmartServe to Shooting Mechanism}{section.4}% 17
+\BOOKMARK [2][-]{subsection.4.3}{SmartServe to Computer Vision}{section.4}% 18
+\BOOKMARK [2][-]{subsection.4.4}{SmartServe to User Interface}{section.4}% 19
+\BOOKMARK [2][-]{subsection.4.5}{SmartServe to Shot Optimizer}{section.4}% 20
+\BOOKMARK [2][-]{subsection.4.6}{SmartServe to ShootingModel}{section.4}% 21
+\BOOKMARK [2][-]{subsection.4.7}{SmartServe to Data Storage}{section.4}% 22
 \BOOKMARK [2][-]{subsection.4.8}{Shot Recommendation to Data Storage}{section.4}% 23
+\BOOKMARK [1][-]{section.5}{Appendix}{}% 24

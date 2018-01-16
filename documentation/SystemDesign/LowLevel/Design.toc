@@ -13,11 +13,12 @@
 \contentsline {subsection}{\numberline {3.7}Shooting Mechanism Modules}{12}{subsection.3.7}
 \contentsline {subsection}{\numberline {3.8}User Interface Modules}{12}{subsection.3.8}
 \contentsline {section}{\numberline {4}Communication Protocols}{14}{section.4}
-\contentsline {subsection}{\numberline {4.1}Smart Serve to Shot Recommendation}{14}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Smart Serve to Shooting Mechanism}{14}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Smart Serve to Computer Vision}{15}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Smart Serve to User Interface}{15}{subsection.4.4}
-\contentsline {subsection}{\numberline {4.5}Smart Serve to Shot Optimizer}{15}{subsection.4.5}
-\contentsline {subsection}{\numberline {4.6}Smart Serve to Shooting Model}{15}{subsection.4.6}
-\contentsline {subsection}{\numberline {4.7}Smart Serve to Data Storage}{15}{subsection.4.7}
+\contentsline {subsection}{\numberline {4.1}SmartServe to Shot Recommendation}{14}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}SmartServe to Shooting Mechanism}{14}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}SmartServe to Computer Vision}{14}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}SmartServe to User Interface}{15}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}SmartServe to Shot Optimizer}{15}{subsection.4.5}
+\contentsline {subsection}{\numberline {4.6}SmartServe to ShootingModel}{15}{subsection.4.6}
+\contentsline {subsection}{\numberline {4.7}SmartServe to Data Storage}{15}{subsection.4.7}
 \contentsline {subsection}{\numberline {4.8}Shot Recommendation to Data Storage}{15}{subsection.4.8}
+\contentsline {section}{\numberline {5}Appendix}{15}{section.5}

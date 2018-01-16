@@ -7,6 +7,7 @@
 \usepackage{float}
 \usepackage{tabularx}
 \usepackage{multicol}
+\usepackage{rotating}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -27,7 +28,7 @@
 	\textsc{\large Software \& Mechatronics Capstone}\\[0.5cm]
 
 	\HRule\\[0.4cm]
-		{\huge\bfseries Low Level System Design}\\[0.4cm]
+		{\huge\bfseries Component Design - Software}\\[0.4cm]
 	\HRule\\[0.4cm]
 
 	\begin{minipage}[t][][t]{0.5\textwidth}
@@ -95,19 +96,25 @@ The following terms and definitions will be used throughout this document:
 % Alphabetical order is highly preferred as it eases user navigation
 \item \textbf{ACID}: a database transaction which is atomic, consistent, isolated and durable
 \item \textbf{ADT}: abstract data type
-\item \textbf{CV}: computer vision
+\item \textbf{CV}: computer vision subsystem
+\item \textbf{DS}: data storage subsystem
 \item \textbf{FPS}: frames per second
 \item \textbf{FSM}: finite state machine, shows transitions between states
 \item \textbf{GUI}: graphical user interface
 \item \textbf{IPO}: input process output
 \item \textbf{Pitch}: rotation along the y-axis; this rotation angle primarily dictates the range of the ball from the net to the edge of the table on the user side
 \item \textbf{Roll}: rotation along the x-axis
-\item \textbf{Shooting Mechanism}: refers to the part of the system that shoots the table tennis balls towards the user side (player) Please refer to Figure \ref{fig:table-tennis-top-view} for visual illustration
+\item \textbf{Shooting Mechanism}: refers to the part of the system that shoots the table tennis balls towards the user side (player) Please refer to Figure \ref{fig:table-tennis-top-view} for visual illustration\
+\item \textbf{SM}: shooting mechanism subsystem
+\item \textbf{SModel}: shooting model subsystem
+\item \textbf{SO}: shot optimizer subsystem
+\item \textbf{SR}: shot recommendation subsystem
+\item \textbf{SS}: smartserve subsystem
 \item \textbf{System}: encompasses both the hardware and software parts of SmartServe
 \item \textbf{System Side}: the side of the table where the electromechanical system is placed; it is the opposite side of the User Side Please refer to Figure \ref{fig:table-tennis-top-view} for visual illustration
 \item \textbf{TCP:} transmission control protocol
 \item \textbf{Team}: all team members of the core capstone project, as noted in the list of Authors
-\item \textbf{UI}: user interface
+\item \textbf{UI}: user interface subsystem
 \item \textbf{User Side}: the side of the table where the user (player) is standing
 \item \textbf{Yaw}: rotation along the z-axis; this rotation angle primarily dictates the panning functionality of the shooting mechanism from the right side to the left side of the table
 \end{itemize}
@@ -120,6 +127,7 @@ The following terms and definitions will be used throughout this document:
 \end{figure}
 
 \section{Detailed Class Diagram}
+The Detailed Class Diagram is shown in Figure \ref{fig:dcd}, found in the Appendix.
 
 \section{Module Guide}
 \subsection{SmartServe Modules} % Chris - edited by Sharon
@@ -138,7 +146,7 @@ The sequence and timing constraints of the shooting procedure. \\ \\
 
 \subsubsection*{ArduinoConnector}
 \textbf{Responsibilities} \\
-This module is responsible for facilitating the communication with the Arduino which is part of the Shooting Mechanism subsystem. This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
+This module is responsible for facilitating the communication with the Arduino which is part of the Shooting Mechanism subsystem (SM). This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
 \textbf{Secrets} \\
 The connection to the Arduino. \\ \\
 \textbf{MID}
@@ -150,20 +158,20 @@ The connection to the Arduino. \\ \\
 
 \subsubsection*{ShotRecommendationConnector}
 \textbf{Responsibilities} \\
-This module is responsible for facilitating the communication with the Shot Recommender subsystem. This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
+This module is responsible for facilitating the communication with the ShotRecommendation subsystem (SR). This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
 \textbf{Secrets} \\
-The connection to the Shot Recommender. \\ \\
+The connection to the SR. \\ \\
 \textbf{MID}
 \begin{itemize}
 \item \textbf{connect} - int port, [optional] String ip \\ returns: \textit{boolean} \\ description: instantiates all dependancies and ensures services are working as expected
 \item \textbf{getRecommendation} - none \\ returns: \textit{Shot} \\ description: returns the shot data to shoot towards the player
 
-\item \textbf{updateModel} - Shot shot, boolean returned \\ returns: \textit{none} \\ description: sends data to ShotRecommender on whether a shot was returned or not
+\item \textbf{updateModel} - Shot shot, boolean returned \\ returns: \textit{none} \\ description: sends data to SR on whether a R was returned or not
 \end{itemize}
 
 \subsubsection*{CVConnector}
 \textbf{Responsibilities} \\
-This module is responsible for facilitating the communication with the CV (Computer Vision) subsystem. This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
+This module is responsible for facilitating the communication with the Computer Vision subsystem (CV). This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
 \textbf{Secrets} \\
 The connection to the CV system. \\ \\
 \textbf{MID}
@@ -175,12 +183,12 @@ The connection to the CV system. \\ \\
 
 \subsubsection*{SQLConnector}
 \textbf{Responsibilities} \\
-This module is responsible for facilitating the communication with the Data Storage subsystem. This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
+This module is responsible for facilitating the communication with the Data Storage subsystem (DS). This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
 \textbf{Secrets} \\
-The connection to the Data Storage subsystem. \\ \\
+The connection to the DS. \\ \\
 \textbf{MID}
 \begin{itemize}
-\item \textbf{connect} - int port, [optional] String ip \\ returns: \textit{boolean} \\ description: tests connection to Data Storage subsystem on port \textit{port} at the IP Address \textit{ip} or \textit{localhost} if ip is unavailable
+\item \textbf{connect} - int port, [optional] String ip \\ returns: \textit{boolean} \\ description: tests connection to DS on port \textit{port} at the IP Address \textit{ip} or \textit{localhost} if ip is unavailable
 \item \textbf{query} - String procedure, Map<String, String> values \\ returns: \textit{ResultSet} \\ description: returns data from database based on procedure ran and values given
 \item \textbf{save} - String procedure, Map<String, String> values \\ returns: \textit{boolean} \\ description: returns success information on write to database based on procedure ran and values given
 \end{itemize}
@@ -188,9 +196,9 @@ The connection to the Data Storage subsystem. \\ \\
 \subsection{Shot Recommendation Modules} % Chris - edited by Sharon
 \subsubsection*{Controller}
 \textbf{Responsibilities} \\
-This module will act as the API interface for the Shot Recommendation subsystem. As such, it will accept requests and return the appropriate data. It will also communicate will other modules should a user of this system need to do so. \\ \\
+This module will act as the API interface for the SR. As such, it will accept requests and return the appropriate data. It will also communicate will other modules should a user of this system need to do so. \\ \\
 \textbf{Secrets} \\
-The process for handling Shot Recommendation requests. \\ \\
+The process for handling SR requests. \\ \\
 \textbf{MID}
 \begin{itemize}
 \item \textbf{listen} - none \\ returns: \textit{none} \\ description: waits for a request made for a shot
@@ -228,32 +236,32 @@ Responsible for mapping a desired shot to the details needed to take the shot. \
 Methods and formulas being used to identify the required details needed to take the desired shot. \\  \\
 \textbf{MID} 
 \begin{itemize}
-\item \textbf{shootingModel} - double  initialHeight, double xInitialHeight, double pitch \\ returns: \textit{none} \\ description: instantiates the shooting model subsystem.
+\item \textbf{shootingModel} - double  initialHeight, double xInitialHeight, double pitch \\ returns: \textit{none} \\ description: instantiates the ShootingModel subsystem (SModel).
 \item \textbf{getShotDetails} - double landingXCoord, double landingYCoord \\ returns: \textit{Shot} \\ description: calculates details to take the desired shot and stores them within the ADT.
 \end{itemize}
 
 \subsection{Shot Optimizer Modules}
 \subsubsection*{Controller}
 \textbf{Responsibilities} \\
-This module is responsible for facilitating the communication with the Shot Optimizer system. This includes sending and receiving messages as well as ensuring proper testing of the connection is performed. \\ \\
+This module is responsible for facilitating the communication with the Shot Optimizer subsystem (SO). This includes sending and receiving messages as well as ensuring proper testing of the connection is performed. \\ \\
 \textbf{Secrets} \\ 
-The connection to the Shot Optimizer system. \\ \\
+The connection to the SO. \\ \\
 \textbf{MID} 
 \begin{itemize}
 \item \textbf{connect} - int  port, [optional] String ip \\ returns: \textit{boolean} \\ description: instantiates all dependancies and ensures services are working as expected.
-\item \textbf{getOrientation} - Position  position \\ returns: \textit{Orientation} \\ description: returns the optimal orientation data to orient the shooting mechanism.
+\item \textbf{getOrientation} - Position  position \\ returns: \textit{Orientation} \\ description: returns the optimal orientation data to orient the SM.
 \end{itemize}
 
 \subsection{Computer Vision Modules}
 \subsubsection*{Detect}
 \textbf{Responsibilities} \\
-This module detects successful returns from the user, and sends that data to the SmartServe subsystem\\
+This module detects successful returns from the user, and sends that data to the SmartServe subsystem (SS).\\
 \textbf{Secrets} \\ 
 Success criteria of returns and how the camera feed is analyzed.\\ 
 \textbf{MID} 
 \begin{itemize}
-\item \textbf{Detect} - Camera Capture cap \\ returns: \textit{none} \\ description: Detects if the ball was succesfully returned by the user and calls the Send function
-\item \textbf{Send} -  none \\ returns: \textit{none} \\ description: Sends a signal to Smartserve indicating that a successful return was made
+\item \textbf{detect} - CameraCapture cap \\ returns: \textit{none} \\ description: Detects if the ball was succesfully returned by the user and calls the Send function
+\item \textbf{send} - none \\ returns: \textit{none} \\ description: Sends a signal to SS indicating that a successful return was made
 \end{itemize}
 
 \subsection{Data Storage Modules}
@@ -268,28 +276,28 @@ All connection information between the sub-systems, table contents.\\
 \item Shot \textbf{shotType} - int zone\textunderscore id, int omega\textunderscore id, int shot\textunderscore id \\ description: representation of a shot type
 \item Zone \textbf{zone} -  int zone\textunderscore id, double x\textunderscore loc, double y\textunderscore loc \\ description: representation of a zone on the table, used as a look up table
 \item Omega \textbf{omega} - int omega\textunderscore id, double angle, double velocity \\ description: representation of angular velocity of the ball, used as a look up table
-\item ReturnRate \textbf{return\textunderscore rate} - int user\textunderscore id, int shot\textunderscore id,  Timestamp timeStamp, boolean returned \\ description: return statistics for each user
+\item ReturnRate \textbf{returnRate} - int user\textunderscore id, int shot\textunderscore id,  Timestamp timeStamp, boolean returned \\ description: return statistics for each user
 \item \textbf{signUp} - String userName, String password \\ returns: \textit{none} \\ description: adds a user row to the \textit{User} table
 \item \textbf{nextShot} - int zone \\ returns: \textit{Shot} \\ description: determines which shot type to perform
 \item \textbf{returned} - Timestamp timeStamp, User user, Shot shot \\ returns: \textit{none} \\ description: updates returnRate table for user for performance statistics
 \end{itemize}
 
 \subsection{Shooting Mechanism Modules}
-This module will be specified in the hardware component design of the shooting mechanism.
+This module will be specified in the hardware component design of the SM.
 \subsection{User Interface Modules}
 \subsubsection*{Controller}
 \textbf{Responsibilities} \\
-Responsible for translating the desired action of the user from the View module to the SmartServe subsystem. \\ \\
+Responsible for translating the desired action of the user from the View module to the SS. \\ \\
 \textbf{Secrets} \\
 Connection between modules and sub-systems. \\ \\
 \textbf{MID}
 \begin{itemize}
 \item \textbf{main} - String args[] \\ returns: \textit{none} \\ description: calls the View module to initialize the UI
-\item \textbf{setTrainingMode} - Mode m \\ returns: \textit{none} \\ description: sets mode from View module and sends it to SmartServe
-\item \textbf{setShootingParameters} - none \\ returns: \textit{ShootingParameters} \\ description: sets shooting parameters from View module and sends it to SmartServe
+\item \textbf{setTrainingMode} - Mode m \\ returns: \textit{none} \\ description: sets mode from View module and sends it to SS
+\item \textbf{setShootingParameters} - none \\ returns: \textit{ShootingParameters} \\ description: sets shooting parameters from View module and sends it to SS
 \item \textbf{setStatistics} - none \\ returns: \textit{StatisticsParameters} \\ description: sets statistics parameters and sends them to View module
-\item \textbf{signUp} - User user \\ returns \textit{none} \\ description: gets user information from view module and sends it to smartServe
-\item \textbf{login} - User user \\ returns \textit{boolean} \\ description: gets user name and password from the View module and authenticates by calling SmartServe
+\item \textbf{signUp} - User user \\ returns \textit{none} \\ description: gets user information from view module and sends it to SS
+\item \textbf{login} - User user \\ returns \textit{boolean} \\ description: gets user name and password from the View module and authenticates by calling SS
 \end{itemize}
 \subsubsection*{View}
 \textbf{Responsibilities} \\
@@ -309,26 +317,33 @@ The structure and implementation of the view. \\ \\
 \end{itemize}
 
 \section{Communication Protocols} % Chris
-\subsection{Smart Serve to Shot Recommendation}
-The Shot Recommendation system (SR) will use Python to leverage machine learning libraries like SciKit Learn and the Smart Serve system (SS) will be implemented in Java. In order for the SS to communicate to the SR, it will make an HTTP request with some data and receive an HTTP response encoded using JSON. This allows the use of a reliable means of communication and flexibility to host the SR remotely if need be. \\ \\
+\subsection{SmartServe to Shot Recommendation}
+The SR will use Python to leverage machine learning libraries like SciKit Learn and the SS will be implemented in Java. In order for the SS to communicate to the SR, it will make an HTTP request with some data and receive an HTTP response encoded using JSON. This allows the use of a reliable means of communication and flexibility to host the SR remotely if need be. \\ \\
 The SS will make a GET request to the SR for requesting a shot to use and can make POST request to give data regarding whether a shot was returned or not. In the event the HTTP request takes too long, the SS should handle it accordingly by timing out and using random shots or continuing the program. \\ \\
 HTTP libraries are standard in Java and a microframework for handling HTTP requests can be used for Python like \href{http://flask.pocoo.org}{flask}.
-\subsection{Smart Serve to Shooting Mechanism}
-The Shooting Mechanism system (SM) will implement an interface using an Arduino. The SS will use libraries for communicating to the Arduino to communicate to the SM which can be found \href{http://fizzed.com/oss/rxtx-for-java}{here} for 64-bit Windows and Linux installations and \href{http://blog.iharder.net/2009/08/18/rxtx-java-6-and-librxtxserial-jnilib-on-intel-mac-os-x/}{here} for 64-bit macOS installations. The SS does not need a response from the system, as it will tell the SM where to shoot and how to do so but does not need a response.
-\subsection{Smart Serve to Computer Vision}
-The SS will communicate to the Computer Vision subsystem (CV) via sockets over the TCP protocol using the Java Networking libraries and the Python socket libraries. The SS will initiate the communication to start tracking and expect a return value based on whether it was returned or not. The SS will timeout in the event the CV does not return a value after 1.5 seconds.
-\subsection{Smart Serve to User Interface}
-% probably pretty standard, using Swing or something
-The SS and the User Interface system (UI) will both be programmed using Java. The UI system can interface with the SS by calling exposed public methods based on user input.
-\subsection{Smart Serve to Shot Optimizer}
-The SS and the Shot Optimizer system (SO) will both be programmed using Java. The SS system can interface with the SO by calling exposed public methods based on user input.
-\subsection{Smart Serve to Shooting Model}
-The SS and the Shooting Model system (SModel) will both be programmed using Java. The SS system can interface with the SModel by calling exposed public methods based on user input.
-\subsection{Smart Serve to Data Storage}
-The SS is programmed in Java and the Data Storage system (DS) will be implemented using Stored Procedures held in a MySQL database instance. In order for the SS to use the DS, a \href{https://dev.mysql.com/downloads/connector/j/5.1.html}{SQLConnector} can be used to do so.
+\subsection{SmartServe to Shooting Mechanism}
+The SM will implement an interface using an Arduino. The SS will use libraries for communicating to the Arduino to communicate to the SM which can be found \href{http://fizzed.com/oss/rxtx-for-java}{here} for 64-bit Windows and Linux installations and \href{http://blog.iharder.net/2009/08/18/rxtx-java-6-and-librxtxserial-jnilib-on-intel-mac-os-x/}{here} for 64-bit macOS installations. The SS does not need a response from the system, as it will tell the SM where to shoot and how to do so but does not need a response.
+\subsection{SmartServe to Computer Vision}
+The SS will communicate to the CV via sockets over the TCP protocol using the Java Networking libraries and the Python socket libraries. The SS will initiate the communication to start tracking and expect a return value based on whether it was returned or not. The SS will timeout in the event the CV does not return a value after 1.5 seconds.
+\subsection{SmartServe to User Interface}
+The SS and the User Interface subsystem (UI) will both be programmed using Java. The UI system can interface with the SS by calling exposed public methods based on user input.
+\subsection{SmartServe to Shot Optimizer}
+The SS and the SO will both be programmed using Java. The SS system can interface with the SO by calling exposed public methods based on user input.
+\subsection{SmartServe to ShootingModel}
+The SS and the SModel will both be programmed using Java. The SS system can interface with the SModel by calling exposed public methods based on user input.
+\subsection{SmartServe to Data Storage}
+The SS is programmed in Java and the DS will be implemented using Stored Procedures held in a MySQL database instance. In order for the SS to use the DS, a \href{https://dev.mysql.com/downloads/connector/j/5.1.html}{SQLConnector} can be used to do so.
 \subsection{Shot Recommendation to Data Storage}
-The SR is programmed in Python and the Data Storage system (DS) will be implemented using Stored Procedures held in a MySQL database instance. In order for the SR to use the DS, a \href{https://dev.mysql.com/doc/connector-python/en/}{SQLConnector} can be used to do so.
+The SR is programmed in Python and the DS will be implemented using Stored Procedures held in a MySQL database instance. In order for the SR to use the DS, a \href{https://dev.mysql.com/doc/connector-python/en/}{SQLConnector} can be used to do so.
 
+\section{Appendix}
+
+\begin{sidewaysfigure}[ht]
+   \centering
+   \includegraphics[width=1.1\textwidth]{diagram/DCD.png} % requires the graphicx package
+   \caption{Detailed Class Diagram}
+   \label{fig:dcd}
+\end{sidewaysfigure}
 
 
 
