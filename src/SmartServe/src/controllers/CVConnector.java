@@ -58,7 +58,7 @@ public class CVConnector {
 			throw new NotConnectedException("CVConnector", port + 1);
 		}
 		
-		if(!status) port = -1;
+		if(!status) this.port = -1;
 		
 		return status;
 	}
