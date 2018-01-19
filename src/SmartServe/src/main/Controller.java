@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import adt.*;
 import controllers.*;
+import errors.NotConnectedException;
 
 /**
  * Main Controller of the SmartServe subsystem
@@ -38,30 +39,35 @@ public class Controller {
 	 * @return successful boot
 	 */
 	public boolean boot() {
-		ardController = new ArduinoController();
-		if(!ardController.test(ARD_PORT)) {
-			return false;
-		}
-		
-		cvController = new CVConnector();
-		if(!cvController.connect(CV_PORT)) {
-			return false;
-		}
-		
-		srController = new ShotRecommendationController();
-		if(!srController.connect(SR_PORT)) {
-			return false;
-		}
-		
-		sqlController = new SQLConnector();
-		if(!sqlController.connect(SQL_PORT)) {
-			return false;
-		}
-		
 		try {
-			welcomeSocket = new ServerSocket(CV_IN_PORT);
-		} catch (IOException e) {
-			e.printStackTrace();
+			ardController = new ArduinoController();
+			if(!ardController.test(ARD_PORT)) {
+				return false;
+			}
+			
+			cvController = new CVConnector();
+			if(!cvController.connect(CV_PORT)) {
+				return false;
+			}
+			
+			srController = new ShotRecommendationController();
+			if(!srController.connect(SR_PORT)) {
+				return false;
+			}
+			
+			sqlController = new SQLConnector();
+			if(!sqlController.connect(SQL_PORT)) {
+				return false;
+			}
+			
+			try {
+				welcomeSocket = new ServerSocket(CV_IN_PORT);
+			} catch (IOException e) {
+				e.printStackTrace();
+				return false;
+			}
+		} catch(NotConnectedException nce) {
+			nce.printStackTrace();
 			return false;
 		}
 		
@@ -71,8 +77,9 @@ public class Controller {
 	/**
 	 * starts the training loop
 	 * @param m - Mode to train in
+	 * @throws NotConnectedException 
 	 */
-	public void startTraining(Mode m) {
+	public void startTraining(Mode m) throws NotConnectedException {
 		this.m = m;
 		while(true) {
 			Shot s = srController.getRecommendation();
