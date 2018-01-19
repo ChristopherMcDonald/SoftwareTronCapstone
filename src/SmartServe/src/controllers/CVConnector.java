@@ -8,45 +8,91 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import errors.NotConnectedException;
+
 public class CVConnector {
 	
-	private int port; // the port value if successfully connects
-	
-	public static void main(String[] args) throws UnknownHostException, IOException {
-		// below is an example of how to in/out comm with python
-		int port = 8013;
-		Socket clientSocket = new Socket("localhost", port);
-		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-		
-		outToServer.writeUTF("TEST");
-		clientSocket.close();
-		
-		ServerSocket server = new ServerSocket(port + 1);
-		Socket client = server.accept();
-        System.out.println("got connection on port 8014");
-        BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-
-        String fromClient = in.readLine();
-        System.out.println("received: " + fromClient);
-        server.close();
-	}
+	private int port = -1; // the port value if successfully connects
 	
 	/**
 	 * attempts to connect to the CV over some port <code>port</code>
 	 * @param port - port to connect over
 	 * @return successful connection
+	 * @throws NotConnectedException 
 	 */
-	public boolean connect(int port) {
-		// TODO implement
-		return false;
+	public boolean connect(int port) throws NotConnectedException {
+		boolean status = false; // assume connection fails
+		Socket clientSocket;
+		try {
+			clientSocket = new Socket("localhost", port);
+			DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
+			
+			outToServer.writeUTF("TEST");
+			clientSocket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new NotConnectedException("CVConnector", port);
+		}
+		
+		ServerSocket server;
+		try {
+			server = new ServerSocket(port + 1);
+			Socket client = server.accept();
+	        BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+
+	        String fromClient = in.readLine();
+	        server.close();
+	        
+	        if(fromClient.equals("ALLGOOD")) {
+	        	status = true;
+	        	this.port = port;
+	        }
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new NotConnectedException("CVConnector", port + 1);
+		}
+		
+		if(!status) port = -1;
+		
+		return status;
 	}
 	
 	/**
 	 * begins detecting the ball over CV
 	 * @return if ball was returned
+	 * @throws NotConnectedException 
 	 */
-	public boolean start() {
-		// TODO implement
-		return false;
+	public boolean start() throws NotConnectedException {
+		if(port == -1) {
+			throw new NotConnectedException("CVConnector", port);
+		}
+		
+		String fromClient;
+		Socket clientSocket;
+		
+		try {
+			clientSocket = new Socket("localhost", port);
+			DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
+			
+			outToServer.writeUTF("DETECT");
+			clientSocket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new NotConnectedException("CVConnector", port);
+		}
+		
+		ServerSocket server;
+		try {
+			server = new ServerSocket(port + 1);
+			Socket client = server.accept();
+	        BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+
+	        fromClient = in.readLine();
+	        server.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new NotConnectedException("CVConnector", port + 1);
+		}
+		return fromClient.equals("RETURNED");
 	}
 }
