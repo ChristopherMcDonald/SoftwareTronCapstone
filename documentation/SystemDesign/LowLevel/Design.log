@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.26)  19 JAN 2018 19:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.26)  19 JAN 2018 21:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -661,30 +661,39 @@ File: img/1.jpg Graphic file (type jpg)
 Package pdftex.def Info: img/1.jpg used on input line 395.
 (pdftex.def)             Requested size: 103.20058pt x 185.34636pt.
 
+Underfull \hbox (badness 10000) in paragraph at lines 396--396
+[]\OT1/cmr/m/n/10.95 Figure 3: []Shaft
+ []
+
 <img/2.jpg, id=304, 350.30875pt x 728.7225pt>
 File: img/2.jpg Graphic file (type jpg)
  <use img/2.jpg>
 Package pdftex.def Info: img/2.jpg used on input line 400.
 (pdftex.def)             Requested size: 103.20058pt x 214.68216pt.
 
+Underfull \hbox (badness 2237) in paragraph at lines 401--401
+[]\OT1/cmr/m/n/10.95 Figure 4: []2D En-
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 408--410
 
  []
 
 [18 <./img/1.jpg> <./img/2.jpg>]
-<img/3.jpg, id=314, 575.14874pt x 316.18124pt>
+<img/3.jpg, id=313, 575.14874pt x 316.18124pt>
 File: img/3.jpg Graphic file (type jpg)
  <use img/3.jpg>
 Package pdftex.def Info: img/3.jpg used on input line 416.
 (pdftex.def)             Requested size: 137.5999pt x 75.64381pt.
 
-<img/4.jpg, id=315, 459.7175pt x 310.15875pt>
+<img/4.jpg, id=314, 459.7175pt x 310.15875pt>
 File: img/4.jpg Graphic file (type jpg)
  <use img/4.jpg>
 Package pdftex.def Info: img/4.jpg used on input line 421.
 (pdftex.def)             Requested size: 137.5999pt x 92.83537pt.
 
-<img/5.jpg, id=316, 604.2575pt x 557.08125pt>
+<img/5.jpg, id=315, 604.2575pt x 557.08125pt>
 File: img/5.jpg Graphic file (type jpg)
  <use img/5.jpg>
 Package pdftex.def Info: img/5.jpg used on input line 430.
@@ -718,27 +727,41 @@ File: img/10.jpg Graphic file (type jpg)
  <use img/10.jpg>
 Package pdftex.def Info: img/10.jpg used on input line 474.
 (pdftex.def)             Requested size: 85.9996pt x 171.97998pt.
- [21 <./img/7.jpg>]
-<img/11.jpg, id=342, 508.90125pt x 500.62032pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 475--475
+\OT1/cmr/m/n/10.95 with Mo-tor
+ []
+
+
+Underfull \hbox (badness 1603) in paragraph at lines 475--475
+\OT1/cmr/m/n/10.95 Bracket at-tached
+ []
+
+[21 <./img/7.jpg>] <img/11.jpg, id=342, 508.90125pt x 500.62032pt>
 File: img/11.jpg Graphic file (type jpg)
- <use img/11.jpg>
+
+<use img/11.jpg>
 Package pdftex.def Info: img/11.jpg used on input line 489.
 (pdftex.def)             Requested size: 137.5999pt x 135.36026pt.
-
-<img/12.jpg, id=343, 1586.92876pt x 850.17625pt>
+ <img/12.jpg, id=343, 1586.92876pt x 850.17625pt>
 File: img/12.jpg Graphic file (type jpg)
- <use img/12.jpg>
+
+<use img/12.jpg>
 Package pdftex.def Info: img/12.jpg used on input line 494.
 (pdftex.def)             Requested size: 137.5999pt x 73.71046pt.
- [22 <./img/8.jpg> <./img/9.jpg> <./img/10.jpg> <./img/11.jpg> <./img/12.jpg (P
-NG copy)>]
-<img/13.jpg, id=350, 1606.0pt x 803.0pt>
+
+Underfull \hbox (badness 2343) in paragraph at lines 495--495
+[]\OT1/cmr/m/n/10.95 Figure 14: []2D En-gi-neer-
+ []
+
+[22 <./img/8.jpg> <./img/9.jpg> <./img/10.jpg>]
+<img/13.jpg, id=349, 1606.0pt x 803.0pt>
 File: img/13.jpg Graphic file (type jpg)
  <use img/13.jpg>
 Package pdftex.def Info: img/13.jpg used on input line 509.
 (pdftex.def)             Requested size: 137.5999pt x 68.79935pt.
 
-<img/14.jpg, id=351, 1606.0pt x 803.0pt>
+<img/14.jpg, id=350, 1606.0pt x 803.0pt>
 File: img/14.jpg Graphic file (type jpg)
  <use img/14.jpg>
 Package pdftex.def Info: img/14.jpg used on input line 514.
@@ -749,19 +772,19 @@ Missing character: There is no ° in font cmr10!
 Missing character: There is no ° in font cmr10!
 Missing character: There is no ° in font cmr10!
 
-<img/15.jpg, id=352, 803.0pt x 1606.0pt>
+<img/15.jpg, id=351, 803.0pt x 1606.0pt>
 File: img/15.jpg Graphic file (type jpg)
  <use img/15.jpg>
 Package pdftex.def Info: img/15.jpg used on input line 529.
 (pdftex.def)             Requested size: 103.20058pt x 206.38579pt.
 
-<img/16.jpg, id=353, 803.0pt x 1606.0pt>
+<img/16.jpg, id=352, 803.0pt x 1606.0pt>
 File: img/16.jpg Graphic file (type jpg)
  <use img/16.jpg>
 Package pdftex.def Info: img/16.jpg used on input line 534.
 (pdftex.def)             Requested size: 103.20058pt x 206.38579pt.
- [23 <./img/13.jpg> <./img/14.jpg>] <img/17.jpg, id=360, 702.625pt x 526.96875p
-t>
+ [23 <./img/11.jpg> <./img/12.jpg (PNG copy)> <./img/13.jpg> <./img/14.jpg>]
+<img/17.jpg, id=360, 702.625pt x 526.96875pt>
 File: img/17.jpg Graphic file (type jpg)
  <use img/17.jpg>
 Package pdftex.def Info: img/17.jpg used on input line 551.
@@ -778,15 +801,30 @@ File: img/19.jpg Graphic file (type jpg)
 Package pdftex.def Info: img/19.jpg used on input line 571.
 (pdftex.def)             Requested size: 103.20058pt x 103.19827pt.
 
+Underfull \hbox (badness 10000) in paragraph at lines 572--572
+\OT1/cmr/m/n/10.95 DC 3-6VOLTS
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 572--572
+\OT1/cmr/m/n/10.95 17000RPM 2MM
+ []
+
+
+Underfull \hbox (badness 2096) in paragraph at lines 572--572
+\OT1/cmr/m/n/10.95 SHAFT 20.72G/CM
+ []
+
 <img/20.jpg, id=369, 803.0pt x 1606.0pt>
 File: img/20.jpg Graphic file (type jpg)
  <use img/20.jpg>
 Package pdftex.def Info: img/20.jpg used on input line 576.
 (pdftex.def)             Requested size: 103.20058pt x 206.38579pt.
- [25 <./img/17.jpg> <./img/18.jpg> <./img/19.jpg> <./img/20.jpg>]
-<diagram/DCD.png, id=378, 1963.335pt x 1068.99374pt>
+ [25 <./img/17.jpg> <./img/18.jpg>] <diagram/DCD.png, id=377, 1963.335pt x 1068
+.99374pt>
 File: diagram/DCD.png Graphic file (type png)
- <use diagram/DCD.png>
+
+<use diagram/DCD.png>
 Package pdftex.def Info: diagram/DCD.png used on input line 590.
 (pdftex.def)             Requested size: 612.12761pt x 333.29308pt.
 
@@ -795,7 +833,7 @@ Overfull \hbox (55.65105pt too wide) in paragraph at lines 590--591
  []
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 597.
-[26] [27 <./diagram/DCD.png>]
+[26 <./img/19.jpg> <./img/20.jpg>] [27 <./diagram/DCD.png>]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 597.
  (./Design.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 597.
@@ -809,10 +847,10 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 597.
  ) 
 Here is how much of TeX's memory you used:
- 6511 strings out of 494447
- 95637 string characters out of 6166766
- 192233 words of memory out of 5000000
- 9630 multiletter control sequences out of 15000+600000
+ 6509 strings out of 494447
+ 95617 string characters out of 6166766
+ 192169 words of memory out of 5000000
+ 9628 multiletter control sequences out of 15000+600000
  12309 words of font info for 45 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
  29i,12n,28p,974b,394s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -826,7 +864,7 @@ ic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2016basic/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2016basic/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2016basic/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Design.pdf (28 pages, 3005079 bytes).
+Output written on Design.pdf (28 pages, 3005710 bytes).
 PDF statistics:
  446 PDF objects out of 1000 (max. 8388607)
  367 compressed objects within 4 object streams
