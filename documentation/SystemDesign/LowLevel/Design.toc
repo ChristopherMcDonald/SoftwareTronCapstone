@@ -1,24 +1,27 @@
-\contentsline {section}{\numberline {1}Introduction}{3}{section.1}
-\contentsline {subsection}{\numberline {1.1}Project Overview}{3}{subsection.1.1}
-\contentsline {subsection}{\numberline {1.2}Document Overview}{3}{subsection.1.2}
-\contentsline {subsection}{\numberline {1.3}Naming Conventions and Terminology}{3}{subsection.1.3}
-\contentsline {section}{\numberline {2}Detailed Class Diagram}{5}{section.2}
-\contentsline {section}{\numberline {3}Module Guide}{5}{section.3}
-\contentsline {subsection}{\numberline {3.1}SmartServe Modules}{5}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Shot Recommendation Modules}{8}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Shooting Model Modules}{10}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Shot Optimizer Modules}{10}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}Computer Vision Modules}{12}{subsection.3.5}
-\contentsline {subsection}{\numberline {3.6}Data Storage Modules}{12}{subsection.3.6}
-\contentsline {subsection}{\numberline {3.7}Shooting Mechanism Modules}{13}{subsection.3.7}
-\contentsline {subsection}{\numberline {3.8}User Interface Modules}{13}{subsection.3.8}
-\contentsline {section}{\numberline {4}Communication Protocols}{15}{section.4}
-\contentsline {subsection}{\numberline {4.1}SmartServe to Shot Recommendation}{15}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}SmartServe to Shooting Mechanism}{16}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}SmartServe to Computer Vision}{16}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}SmartServe to User Interface}{16}{subsection.4.4}
-\contentsline {subsection}{\numberline {4.5}SmartServe to Shot Optimizer}{16}{subsection.4.5}
-\contentsline {subsection}{\numberline {4.6}SmartServe to ShootingModel}{16}{subsection.4.6}
-\contentsline {subsection}{\numberline {4.7}SmartServe to Data Storage}{16}{subsection.4.7}
-\contentsline {subsection}{\numberline {4.8}Shot Recommendation to Data Storage}{17}{subsection.4.8}
-\contentsline {section}{\numberline {5}Appendix}{17}{section.5}
+\contentsline {section}{\numberline {1}Introduction}{4}{section.1}
+\contentsline {subsection}{\numberline {1.1}Project Overview}{4}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Document Overview}{4}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Naming Conventions and Terminology}{4}{subsection.1.3}
+\contentsline {section}{\numberline {2}Detailed Class Diagram}{6}{section.2}
+\contentsline {section}{\numberline {3}Module Guide}{6}{section.3}
+\contentsline {subsection}{\numberline {3.1}SmartServe Modules}{6}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Shot Recommendation Modules}{9}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Shooting Model Modules}{11}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Shot Optimizer Modules}{11}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Computer Vision Modules}{13}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}Data Storage Modules}{13}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.7}Shooting Mechanism Modules}{14}{subsection.3.7}
+\contentsline {subsection}{\numberline {3.8}User Interface Modules}{14}{subsection.3.8}
+\contentsline {section}{\numberline {4}Communication Protocols}{16}{section.4}
+\contentsline {subsection}{\numberline {4.1}SmartServe to Shot Recommendation}{16}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}SmartServe to Shooting Mechanism}{17}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}SmartServe to Computer Vision}{17}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}SmartServe to User Interface}{17}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}SmartServe to Shot Optimizer}{17}{subsection.4.5}
+\contentsline {subsection}{\numberline {4.6}SmartServe to ShootingModel}{17}{subsection.4.6}
+\contentsline {subsection}{\numberline {4.7}SmartServe to Data Storage}{17}{subsection.4.7}
+\contentsline {subsection}{\numberline {4.8}Shot Recommendation to Data Storage}{18}{subsection.4.8}
+\contentsline {section}{\numberline {5}Hardware Design}{18}{section.5}
+\contentsline {subsection}{\numberline {5.1}Mechanical Components}{18}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Electrical Components}{24}{subsection.5.2}
+\contentsline {section}{\numberline {6}Appendix}{26}{section.6}
