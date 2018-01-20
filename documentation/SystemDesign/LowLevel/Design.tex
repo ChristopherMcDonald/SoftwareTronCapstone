@@ -78,6 +78,7 @@
    Jan 13, 2018 & 1.4 & Added details for Shooting Mech, CV, Shot Optimizer, Shooting Model subsystems & Harit Patel \& Sam Hamel \\ \hline
    Jan 15, 2018 & 1.5 & Edited Module Guide, Added Detailed Class Diagram & Sharon Platkin \\ \hline
    Jan 16, 2018 & 1.6 & Edited Document, refined and defragged definitions & Sharon Platkin \& Christopher McDonald \\ \hline
+   Jan 19, 2018 & 1.6 & Added work done by Hardware Team & Nisarg Patel \& Jared Rayner \& Janak Patel \& Christopher McDonald \\ \hline
 
    \end{tabularx}
    \caption{Revision History}
@@ -380,6 +381,207 @@ The SS and the SModel will both be programmed using Java. The SS system can inte
 The SS is programmed in Java and the DS will be implemented using Stored Procedures held in a MySQL database instance. In order for the SS to use the DS, a \href{https://dev.mysql.com/downloads/connector/j/5.1.html}{SQLConnector} can be used to do so.
 \subsection{Shot Recommendation to Data Storage}
 The SR is programmed in Python and the DS will be implemented using Stored Procedures held in a MySQL database instance. In order for the SR to use the DS, a \href{https://dev.mysql.com/doc/connector-python/en/}{SQLConnector} can be used to do so.
+
+\section{Hardware Design}
+\subsection{Mechanical Components}
+\subsubsection*{Shift Adapter}
+The shaft adapter is designed to fit snugly on the stepper motor shaft and provides a more robust connection with the \textit{spinning feeder cutout}. The shaft adapter is designed to allow the feeder cutout to sit at a precise height where it could rotate without any obstructions and push the table tennis balls into the \textit{Inner Tube}. The shaft adapter will bring the spinning feeder cutout to a height such that the contant point of the ball is in the middle (biggest diameter of the ball).
+
+\begin{center}
+\begin{minipage}[b]{0.6\textwidth}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/1.jpg}
+    \caption{one.}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/2.jpg}
+    \caption{two.}
+  \end{minipage}
+\end{figure}
+\end{minipage}
+\end{center}
+
+\subsubsection*{Panning Control}
+The functionality of the Automatic Panning will be to rotate the entire shooting mechanism or the shooting barrel about the z-axis so the mechanism is able to cover all of the shooting zones as specified in the requirements. \\ \\
+The components designed for the panning stage include an acrylic base plate, a rapid prototyped worm wheel gear ring, the worm, and a motor bracket. The base plate clearance mounting holes were made using a workshop drill press / milling machine. The rapid prototyped stepper motor bracket is mounted to the base plate and adjusted so that correct gear engagement is achieved. The Lazy Susan bearing is positioned 10 mm above the plate using spacers and longer \#6?32 screws, washers, and nuts. The worm gear is designed as a ring shape to reduce rapid prototyping material consumption. A corresponding hole pattern mates to the top plate of the Lazy Susan bearing. The optical switch is used to home the system at power up and align the system in the direction required with a reference and from there on the system will always be aware of its position. Optical switches allow for high repeatability making it a very applicable sensor to use in the prototype. 
+
+\begin{center}
+\begin{minipage}[b]{0.8\textwidth}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/3.jpg}
+    \caption{one.}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/4.jpg}
+    \caption{two.}
+  \end{minipage}
+\end{figure}
+\end{minipage}
+\end{center}
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.6\textwidth]{img/5.jpg} % requires the graphicx package
+   \caption{EXAMPLE}
+   \label{fig:hw5}
+\end{figure}
+
+\subsubsection*{Spinning Feeder Cutout}
+The spinning feeder cutout is fixed to the shaft of the stepper motor inside the bucket to guide the table tennis balls into the \textit{Inner Tube}. The cutout is laser cut from a thin and sturdy sheet of wood so it has enough thickness (contact surface area) to easily push the table tennis balls around. There will be a lot of balls going in and out of the feeder cutout continuously so it has the sharp edges to hold the ball in once its captured and 45mm diameter semi circles to easily allow the 40mm table tennis balls to slide into the pockets.  
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.3\textwidth]{img/6.jpg} % requires the graphicx package
+   \caption{EXAMPLE}
+   \label{fig:hw6}
+\end{figure}
+
+\subsubsection*{Inner Tube}
+The inner tube is designed to hold table tennis balls to be shot out by the shooting mechanism, as well as have solid support hold the shooting mechanism pipe structure. The diameter of the inner tube is 45mm to allow the ball to be easily fed into the tube but restrict jittering when traveling through the pipe.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.2\textwidth]{img/7.jpg} % requires the graphicx package
+   \caption{EXAMPLE}
+   \label{fig:hw7}
+\end{figure}
+
+ 
+\subsubsection*{Motor Bracket and Outer Tube}
+A custom designed motor bracket is used to mount the DC motor onto the outer PVC tube to create our preliminary shooting mechanism. The motor has a cylindrical housing thus making it difficult to fix onto anything especially onto another cylindrical object, the Outer Tube. The motor has to be mounted securely and tightly to minimize the vibrations into the shooting mechanism which could translate onto the entire system.  
+
+\begin{center}
+\begin{minipage}[b]{1.0\textwidth}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.2\textwidth}
+    \includegraphics[width=\textwidth]{img/8.jpg}
+    \caption{one.}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.2\textwidth}
+    \includegraphics[width=\textwidth]{img/9.jpg}
+    \caption{two.}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.2\textwidth}
+    \includegraphics[width=\textwidth]{img/10.jpg}
+    \caption{three.}
+  \end{minipage}
+\end{figure}
+\end{minipage}
+\end{center}
+
+\subsubsection*{Roll Control}
+The roll control part will act as a manual control for the user to decide the type of spin to give the table tennis ball for the current session. The roll control part acts as the male end of a locking mechanism, which will fix the shooter in either a 0, 90, 180, or 270 degree angle. With the roll control settings, the user will be able to manually change the roll setting to experience a topspin, backspin, and left or right spin.The roll control part will be fixed on the base end of the inner shaft of the shooter. The outer shaft of the shooter will then be able to lock into the desired position.
+
+\begin{center}
+\begin{minipage}[b]{0.8\textwidth}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/11.jpg}
+    \caption{one.}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/12.jpg}
+    \caption{two.}
+  \end{minipage}
+\end{figure}
+\end{minipage}
+\end{center}
+
+\subsubsection*{Base, Support Brackets and Bucket}
+The base is made out of a hardwood and laser cut to an appropriate size. The base acts as a fixture to attach the bucket supports to the azimuth stage. There are two metal support brackets which are made out of stainless steel, and lift the bucket to an appropriate height above the base. The bottom of the supports are screwed into the hardwood base, and the top of the supports are bolted to the bucket. The bucket is 8in x 7in and is large enough to hold at least 20 balls without overfilling.
+
+\begin{center}
+\begin{minipage}[b]{0.8\textwidth}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/13.jpg}
+    \caption{one.}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/14.jpg}
+    \caption{two.}
+  \end{minipage}
+\end{figure}
+\end{minipage}
+\end{center}
+
+\subsubsection*{Pitch Control}
+The pitch control consists of a screw that pierces through the support beam and bucket, to hold the shooter at a certain angle. The range of angles are as followed: -15°,0°,15°,30°,45°, and are set by pre drilled holes in the bucket. This design needs to be optimized with a bolt in order to further secure the pitch and eliminate error.
+
+\begin{center}
+\begin{minipage}[b]{0.6\textwidth}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/15.jpg}
+    \caption{one.}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/16.jpg}
+    \caption{two.}
+  \end{minipage}
+\end{figure}
+\end{minipage}
+\end{center}
+
+\subsection{Electrical Components}
+\subsubsection*{Stepper Motors}
+We chose a Japan Servo KP35FM2-035 stepper motor for the panning assembly because of its torque and step accuracy. To make the panning smooth as possible the motor provides 200 steps per revolution (1.8 degrees per step) from this stepper is sufficient for our purposes. The max torque is 700 g/cm at 24 VDC / 500mA but due to microcontroller restrictions and we are only using a torque of approximately 250g/cm to operate at a around 9VDC. At this lower voltage the stepper motor combined with the worm gear train provides enough torque to move the system (panning) at a sufficient speed.
+A gear stepper motor (model 28BYJ48) with a driver is utilized for the automatic feeding of the balls into shooting barrel functionality as the stepper motor would not require any position encoder as well as the stepper motor will have predictable movements. This motor generates 300 g/cm torque at a voltage of 5VDC. This motor will be continuously running during the operation of the system at varying speeds and a ball will enter the Inner Tube at every quarter turn of the Feeder Cutout. The stepper has 64 steps per revolution (5.625 degrees per step) so every 16 steps the stepper moves, a ball will be fed into the feeder. This low-step count motor is good for our purposes because it allows the stepper to function at higher RPMs than other higher step count similar frame size motors. 
+
+\begin{center}
+\begin{minipage}[b]{0.8\textwidth}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/17.jpg}
+    \caption{one.}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/18.jpg}
+    \caption{two.}
+  \end{minipage}
+\end{figure}
+\end{minipage}
+\end{center}
+
+\subsubsection*{DC Motors}
+For the ball shooter, a DC Motor purchased from Sayal Electronics and Hobbies is used as the system will require high speeds and high torques to shoot out ping pong balls. The DC motor operates between 3-6 volts, can reach a max RPM of 17,000, has a 2mm shaft diameter and max torque of 20.72 g/cm. Although the table tennis balls don't account for much weight the motor torque needs to be sufficient enough so that the wheel attached to the shaft can push on the ball, make contact and toss it out as required speeds. The DC Motor will be controlled using the PWM method for speed control.
+
+\begin{center}
+\begin{minipage}[b]{0.6\textwidth}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/19.jpg}
+    \caption{one.}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/20.jpg}
+    \caption{two.}
+  \end{minipage}
+\end{figure}
+\end{minipage}
+\end{center}
+
+\subsubsection*{Arduino}
+Arduino UNO microcontroller is used to control all of the IPO (Input Process Output) processes between the sensors, actuators and Smart Serve. Arduino is chosen because it has a hardware platform setup and allows programming and serial communication over USB so designing so a PCB is not necessary. It is fast for our purposes, there is a lot of libraries available to use and lots of hardware modules designed for Arduino UNO. Also, this microcontroller easily interfaces with the hardware used in this prototype. 
 
 \section{Appendix}
 
