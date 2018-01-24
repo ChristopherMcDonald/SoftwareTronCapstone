@@ -2,6 +2,9 @@ package main;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.util.HashMap;
+import java.util.Map;
+
 import adt.*;
 import controllers.*;
 import errors.NotConnectedException;
@@ -78,8 +81,10 @@ public class Controller {
 	 * starts the training loop
 	 * @param m - Mode to train in
 	 * @throws NotConnectedException 
+	 * @throws InterruptedException 
+	 * @throws IOException 
 	 */
-	public void startTraining(Mode m) throws NotConnectedException {
+	public void startTraining(Mode m) throws NotConnectedException, IOException, InterruptedException {
 		this.m = m;
 		while(true) {
 			Shot s = srController.getRecommendation();
@@ -87,8 +92,12 @@ public class Controller {
 			// TODO trade shot for position with shooting model
 			// TODO optimize shots
 			
-			cvController.start();
 			ardController.shoot(0.0f, 0.0f, 0.0f); // TODO: fill
+			boolean returned = cvController.start();
+			Map<String, String> values = new HashMap<String, String>();
+			values.put("shot", s.toString());
+			values.put("returned", returned ? "true" : "false");
+			sqlController.save("returnedShot", values);
 		}
 	}
 	

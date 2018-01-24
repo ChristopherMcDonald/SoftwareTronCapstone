@@ -1,8 +1,14 @@
 package controllers;
 
+import java.io.IOException;
 import adt.Position;
 
 public class ArduinoController {
+	
+	public static void main(String[] args) throws IOException, InterruptedException {
+		ArduinoController ac = new ArduinoController();
+		ac.shoot(12.3f, 12345.2f, 0.11232f);
+	}
 	
 	private int port; // holds the port if successfully connects
 	
@@ -22,9 +28,12 @@ public class ArduinoController {
 	 * @param pitch
 	 * @param yaw
 	 * @param angularVelocity
+	 * @throws IOException 
+	 * @throws InterruptedException 
 	 */
-	public void shoot(float pitch, float yaw, float angularVelocity) {
-		// TODO implement
+	public void shoot(float pitch, float yaw, float angularVelocity) throws IOException, InterruptedException {
+		Process p = Runtime.getRuntime().exec("bash ../Arduino/shoot.sh " + pitch + " " + yaw + " " + angularVelocity);
+		p.waitFor();
 	}
 	
 	/**
