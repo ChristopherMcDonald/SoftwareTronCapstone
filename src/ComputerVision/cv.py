@@ -1,7 +1,8 @@
 import cv2
 from collections import deque
 import numpy as np
-import sys, argparse, imutils
+import sys, argparse, imutils;
+import socket, time;
 
 ap = argparse.ArgumentParser();
 ap.add_argument(
@@ -37,16 +38,59 @@ fsm = 0 # 0 - initial fall, 1 - rise, 2 - out of frame
 # detect mode, will exit on return (successful or not)
 detect = False;
 
+# global variables
+HOST = "localhost";
+PORT = 8013;
+
+socketIn = socket.socket();             # handles incoming requests
+socketIn.bind((HOST, PORT));            # binds to a host and port
+socketIn.listen(5);                     # enables server to accept incoming
+
 pts = deque(maxlen = args["buffer"])
 counter = 0
 (dX, dY) = (0,0)
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 print(cap.get(3))
 print(cap.get(4))
 
 ok,frame = cap.read()
-
+loop = 0;
+first = True;
 while(True and not (fsm != 0 and detect)):
+    
+    if(loop % 100 == 0):
+        
+        if(False == first):
+            print("sending ret...");
+            socketOut.send(b'RETURNED\n');
+        else:
+            first = False;
+        
+        conn, addr = socketIn.accept();     # loop will freeze on this command, runs when SmartServe
+        print("Got connection from", addr); # sends a request
+        msg = conn.recv(1024);              # parses msg... could be "TEST", "DETECT"
+    
+        # DEBUGGING
+        print(msg);
+    
+        # DEBUGGING
+        time.sleep(1);
+    
+        # socket for outgoing messages
+        socketOut = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
+        socketOut.connect((HOST, PORT + 1));
+    
+        # DEBUGGING
+        time.sleep(1);
+    
+        if("TEST" in msg.decode("UTF8")):
+            loop = 99;
+            socketOut.send(b'ALLGOOD\n');
+        else:
+            loop = 0;
+            first = False;
+    
+    loop = loop + 1;
     # grab the current frame
     (grabbed, frame) = cap.read()
     img = cap.read()
