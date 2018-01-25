@@ -178,7 +178,7 @@ while(True):
                             socketOut = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
                             socketOut.connect((HOST, PORT + 1));
                             
-                            socketOut.send(b'GOOD\n');
+                            socketOut.send(b'eGOOD\n');
                             fsm = 0;    # HIT!
                     
 
