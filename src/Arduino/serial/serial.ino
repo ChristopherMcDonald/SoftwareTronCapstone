@@ -26,12 +26,10 @@ void loop() {
 
     // works for values 45, -123, 1.2344354353534534432234324
 
-    //if(pitch != 12.30) {
-    while(true) {
+    if(pitch == 42) {
       digitalWrite(LED_BUILTIN, HIGH);
+    } else {
+      digitalWrite(LED_BUILTIN, LOW);
     }
-    //} else {
-      //digitalWrite(LED_BUILTIN, LOW);
-    //}
   }
 }
