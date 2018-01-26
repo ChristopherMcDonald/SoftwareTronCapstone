@@ -28,6 +28,7 @@ public class SQLConnector {
 	        users.put(1,"Sharon"); //user name
 	        users.put(2, "plzwork"); //password
 	        
+	        //Add shot return stats
 	        myReturns.put(1, "Hi"); //user
 	        myReturns.put(2, "5"); //shot
 	        myReturns.put(3, "true"); //returned
@@ -71,18 +72,31 @@ public class SQLConnector {
 		return false;
 	}
 	
-	public static ResultSet query(String proc, Map<String, String> values, int numArgs) {
+	public static ResultSet query(String proc, Map<Integer, Object> values, int numArgs) {
 		try {
 			//create a statement
-			Statement myStmt1;
-			myStmt1 = myConn.createStatement();
-			ResultSet rs = myStmt1.executeQuery("select * from user");
-			//process results
+			String argus = "(";
+			for(int i=0; i < numArgs-1; i++) {
+				argus = argus + "?,";
+			}
+			CallableStatement myStmt = myConn.prepareCall("{call "+ proc + argus + "?)}");
 			
-			//need to figure out how to process these without knowing the names of the columns
+			
+			ResultSet rs = myStmt.executeQuery("select * from user");
+			
+			
+			for(int key: values.keySet()) {
+				System.out.println(key + " - " + values.get(key)); 
+		        myStmt.getString(key);
+		    }
+			myStmt.executeUpdate();
+			
+			/*
+			//process results
 			while (rs.next()) {
 				System.out.println("user_name: " + rs.getString("user_name") + ", " + "password: " + rs.getString("password"));
-			}
+			}*/
+			
 			return rs;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -139,7 +153,7 @@ public class SQLConnector {
 		}
 	}
 	
-	//Method to delete rows
+	//Method to delete rows - USED FOR TESTING
 	static void delete_user(int id) {
 		try {
 			//execute SQL query 
