@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class SQLConnector {
 	
@@ -16,43 +17,41 @@ public class SQLConnector {
 	
 	
 	public static void main(String[] args) {
-		/*
-		System.out.print(connect(3306, "localhost"));
-		
-		try {
+		if(connect(3306, "localhost")){
+			try {
+			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/smartserve?useSSL=false","root", "smarTserve91");
+			
+			Map users = new HashMap();
+			Map myReturns = new HashMap();
+			
+	        // Add a user
+	        users.put(1,"Sharon"); //user name
+	        users.put(2, "plzwork"); //password
+	        
+	        myReturns.put(1, "Hi"); //user
+	        myReturns.put(2, "5"); //shot
+	        myReturns.put(3, "true"); //returned
+	        myReturns.put(4, "jan26"); //timestamp
+	        
+	        //query("next_shot", testMap,1);
+			//query("sign_in",testMap,1);
+			
+			save("signup_proc",users,2);
+			save("returned",myReturns,4);
+			
 			myConn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		try {
-		myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/smartserve?useSSL=false","root", "smarTserve91");
-		
-		Map testMap = new HashMap();
-		
-		query("next_shot", testMap,1);
-		query("sign_in",testMap,1);
-		
-		save("signup_proc",testMap,2);
-		save("returned",testMap,3);
-		
-		
-		
-			myConn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			}catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
-
 	}
 	public static boolean connect(int port) { 		
 		try {
 			//get connection
 			myConn = DriverManager.getConnection("jdbc:mysql://localhost:"+port+"/smartserve?useSSL=false","root", "smarTserve91");
-			
+			myConn.close();
 			return true;
-			
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -73,35 +72,50 @@ public class SQLConnector {
 	}
 	
 	public static ResultSet query(String proc, Map<String, String> values, int numArgs) {
-		// TODO implement
+		try {
+			//create a statement
+			Statement myStmt1;
+			myStmt1 = myConn.createStatement();
+			ResultSet rs = myStmt1.executeQuery("select * from user");
+			//process results
+			while (rs.next()) {
+				System.out.println("user_name: " + rs.getString("user_name") + ", " + "password: " + rs.getString("password"));
+			}
+			return rs;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 	
-	public static boolean save(String proc, Map<String, String> values, int numArgs) {
+	public static boolean save(String proc, Map<Integer, Object> values, int numArgs) {
 		try {
-			
-			CallableStatement cs = myConn.prepareCall("{call "+ proc +"(?,?)}");
-			
-			Map users = new HashMap();
-	        
-	        // Add a user
-	        users.put("Harit","44");
-
-	         
-	        System.out.println("Total people: " + users.size());
-	        // Iterate over all entries
-	        for(Object key: users.keySet()) {
-	            System.out.println(key + " - " + users.get(key)); 
-	            cs.setString(1, (String) users.get(key));
-	            cs.setString(2, (String) key);
-	        }
-			cs.executeUpdate();
+				
+		String argus = "(";
+		for(int i=0; i < numArgs-1; i++) {
+			argus = argus + "?,";
+		}
+		
+		System.out.println(argus);
+		
+		CallableStatement cs = myConn.prepareCall("{call "+ proc + argus + "?)}");
+		
+		for(int key: values.keySet()) {
+			System.out.println(key + " - " + values.get(key)); 
+	        cs.setString(key, (String) values.get(key));
+	    }
+		cs.executeUpdate();
+		return true;
+		
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return false;
 	}
-	/* Method to add rows
+	
+	/*Methods without procs
+	 * 
+	 * Method to add rows
 	 * 
 	static void add_user(String name, String password) {
 		try {
