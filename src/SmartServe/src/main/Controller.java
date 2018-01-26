@@ -49,7 +49,7 @@ public class Controller {
 	public boolean boot() {
 		try {
 			ardController = new ArduinoController();
-			if(!ardController.test(ARD_PORT)) {
+			if(!ardController.test("cu.usbmodem14431")) {
 				return false;
 			}
 			
