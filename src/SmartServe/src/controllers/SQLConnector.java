@@ -17,12 +17,17 @@ public class SQLConnector {
 	
 	
 	public static void main(String[] args) {
+		//if connection is successful
 		if(connect(3306, "localhost")){
 			try {
+			//connect for real
 			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/smartserve?useSSL=false","root", "smarTserve91");
 			
+			/*Data to get from UI*/
 			Map users = new HashMap();
 			Map myReturns = new HashMap();
+
+			Map nextShot = new HashMap();
 			
 	        // Add a user
 	        users.put(1,"Sharon"); //user name
@@ -34,11 +39,15 @@ public class SQLConnector {
 	        myReturns.put(3, "true"); //returned
 	        myReturns.put(4, "jan26"); //timestamp
 	        
-	        //query("next_shot", testMap,1);
-			//query("sign_in",testMap,1);
-			
+	        //Add nextshot stuff
+	        nextShot.put(1, "test");
+	       
 			save("signup_proc",users,2);
 			save("returned",myReturns,4);
+			
+			query("next_shot", nextShot,1);
+			query("sign_in",users,1);
+			
 			
 			myConn.close();
 			}catch (SQLException e) {
@@ -74,6 +83,7 @@ public class SQLConnector {
 	
 	public static ResultSet query(String proc, Map<Integer, Object> values, int numArgs) {
 		try {
+			
 			//create a statement
 			String argus = "(";
 			for(int i=0; i < numArgs-1; i++) {
@@ -82,20 +92,19 @@ public class SQLConnector {
 			CallableStatement myStmt = myConn.prepareCall("{call "+ proc + argus + "?)}");
 			
 			
-			ResultSet rs = myStmt.executeQuery("select * from user");
-			
-			
 			for(int key: values.keySet()) {
 				System.out.println(key + " - " + values.get(key)); 
 		        myStmt.getString(key);
 		    }
 			myStmt.executeUpdate();
 			
-			/*
+			//get the result set from the proc
+			ResultSet rs = myStmt.executeQuery("select * from user");
+			
 			//process results
-			while (rs.next()) {
-				System.out.println("user_name: " + rs.getString("user_name") + ", " + "password: " + rs.getString("password"));
-			}*/
+			//while (rs.next()) {
+			//	System.out.println("user_name: " + rs.getString("user_name") + ", " + "password: " + rs.getString("password"));
+			//}
 			
 			return rs;
 		} catch (SQLException e) {
