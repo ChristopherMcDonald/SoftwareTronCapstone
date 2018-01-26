@@ -78,6 +78,8 @@ public class SQLConnector {
 			myStmt1 = myConn.createStatement();
 			ResultSet rs = myStmt1.executeQuery("select * from user");
 			//process results
+			
+			//need to figure out how to process these without knowing the names of the columns
 			while (rs.next()) {
 				System.out.println("user_name: " + rs.getString("user_name") + ", " + "password: " + rs.getString("password"));
 			}
