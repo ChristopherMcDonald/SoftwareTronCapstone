@@ -8,4 +8,8 @@ public class NotConnectedException extends Exception {
 		super("Not connected to " + system + " on port: " + Integer.toString(port));
 	}
 
+	public NotConnectedException(String system, String port) {
+		super("Not connected to " + system + " on port: " + port);
+	}
+
 }
