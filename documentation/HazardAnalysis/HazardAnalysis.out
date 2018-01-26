@@ -1,0 +1,16 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Project Overview}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Document Overview}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{Naming Conventions and Terminology}{section.1}% 4
+\BOOKMARK [1][-]{section.2}{System}{}% 5
+\BOOKMARK [2][-]{subsection.2.1}{High-Level Design}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.2}{Scope \046 Boundary}{section.2}% 7
+\BOOKMARK [1][-]{section.3}{Hazards}{}% 8
+\BOOKMARK [2][-]{subsection.3.1}{User is struck by an air-borne ball}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.2}{User is caught in a Pinch Point}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.3}{Electric Shock}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.4}{User's appendage is caught in machine}{section.3}% 12
+\BOOKMARK [2][-]{subsection.3.5}{Machine overheats}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.6}{Machine's traversal is blocked}{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.7}{CV frame rate is too low for accurate reading}{section.3}% 15
+\BOOKMARK [2][-]{subsection.3.8}{Shooting Mechanism shoots inaccurately}{section.3}% 16
