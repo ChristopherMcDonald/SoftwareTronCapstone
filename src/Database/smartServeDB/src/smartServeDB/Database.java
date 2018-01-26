@@ -4,7 +4,7 @@ import java.sql.*;
 public class Database {
 	static Connection myConn;
 	
-	public static void main(String[] args) {
+	public static void connection(String[] args) {
 		try {
 			//get connection
 			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/smartserve","root", "smarTserve91");
@@ -70,7 +70,7 @@ public class Database {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 	
 	//Method to delete rows
 	static void delete_user(int id) {
@@ -89,4 +89,5 @@ public class Database {
 			e.printStackTrace();
 		}
 	}
+	*/
 }
