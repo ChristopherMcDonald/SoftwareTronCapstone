@@ -3,16 +3,18 @@ package controllers;
 import java.io.IOException;
 import adt.Position;
 import arduino.Arduino;
+import errors.NotConnectedException;
 
 public class ArduinoController {
 	
-	public static void main(String[] args) throws IOException, InterruptedException {
+	public static void main(String[] args) throws IOException, InterruptedException, NotConnectedException {
 		ArduinoController ac = new ArduinoController();
-		ac.test("cu.usbmodem14431");
-		ac.shoot(12.3f, 12345.2f, 1.0f);
+		ac.test("cu.usbmodem14441");
+		ac.shoot(41f, 12345.2f, 1.0f);
 	}
 	
 	private Arduino arduino; // holds the port if successfully connects
+	private String port;
 	
 	/**
 	 * attempts to connect to Arduino over port <code>port</code>
@@ -22,9 +24,11 @@ public class ArduinoController {
 	public boolean test(String port) {
 		arduino = new Arduino(port, 9600);
 		if(arduino.openConnection()) {
+			this.port = port;
 			return true; 
 		} else {
 			arduino = null;
+			this.port = null;
 			return false;
 		}
 	}
@@ -34,16 +38,21 @@ public class ArduinoController {
 	 * @param pitch
 	 * @param yaw
 	 * @param angularVelocity
+	 * @throws NotConnectedException 
 	 * @throws IOException 
 	 * @throws InterruptedException 
 	 */
-	public void shoot(float pitch, float yaw, float angularVelocity) throws IOException, InterruptedException {
+	public void shoot(float pitch, float yaw, float angularVelocity) throws NotConnectedException {
+		if(arduino != null) {
+			throw new NotConnectedException("Arduino", port);
+		}
 		String toSend = String.format("P=%.0f,Y=%.0f,Z=%.0f", pitch, yaw, angularVelocity);
 		
 		// DEBUGGING
 		System.out.println(toSend);
 		
-		arduino.serialWrite(toSend); 
+		arduino.serialWrite("");		// TODO understand W(hy)TF this is needed
+		arduino.serialWrite(toSend);
 		arduino.closeConnection();
 	}
 	
