@@ -54,9 +54,9 @@ public class Controller {
 			}
 			
 			srController = new ShotRecommendationController();
-			if(!srController.connect(SR_PORT)) {
+			/*if(!srController.connect(SR_PORT)) {
 				return false;
-			}
+			}*/
 			
 			sqlController = new SQLConnector();
 			if(!sqlController.connect(SQL_PORT)) {
@@ -87,7 +87,7 @@ public class Controller {
 	public void startTraining(Mode m) throws NotConnectedException, IOException, InterruptedException {
 		this.m = m;
 		while(true) {
-			Shot s = srController.getRecommendation();
+			Shot s = srController.getRecommendation("http://localhost:8080/nextShot", "");
 			
 			// TODO trade shot for position with shooting model
 			// TODO optimize shots
@@ -116,6 +116,18 @@ public class Controller {
 	 */
 	public void setShootingParameters(ShootingParameters sp) {
 		this.sp = sp;
+	}
+	
+	public static void main(String[] args) throws NotConnectedException, IOException, InterruptedException{
+		ShotRecommendationController recommender = new ShotRecommendationController();
+		Shot nextShot = recommender.getRecommendation("http://localhost:8080/nextShot", "");
+		System.out.println(nextShot.toString());
+		
+		/*
+		Controller controller = new Controller();
+		controller.boot();
+		controller.startTraining(Mode.TRAIN);
+		*/
 	}
 
 }
