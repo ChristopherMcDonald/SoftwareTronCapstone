@@ -12,7 +12,7 @@ import errors.NotConnectedException;
 
 public class CVConnector {
 	
-	public static void main(String[] args) throws NotConnectedException {
+	public static void main(String[] args) throws NotConnectedException, InterruptedException {
 		CVConnector cv = new CVConnector();
 		System.out.println(cv.connect(8013));
 		System.out.println(cv.start());
