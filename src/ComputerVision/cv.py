@@ -87,6 +87,8 @@ while(True):
             
             socketOut.send(b'BAD\n');
             fsm = 0;
+            pts = deque(maxlen=args["buffer"])
+
         else:
             # grab the current frame
             (grabbed, frame) = cap.read()
@@ -185,6 +187,7 @@ while(True):
                             print("hit")
                             socketOut.send(b'GOOD\n');
                             fsm = 0;    # HIT!
+                            pts = deque(maxlen = args["buffer"])
                     
 
                 thickness = int(np.sqrt(args["buffer"] / float(i + 1)) * 2.5)
