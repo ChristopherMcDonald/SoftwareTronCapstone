@@ -16,6 +16,11 @@ import errors.NotConnectedException;
  */
 public class Controller {
 	
+	public static void main(String[] args) {
+		Object b = "1234553";
+		System.out.println((String) b);
+	}
+	
 	// global variables
 	private ShootingParameters sp;
 	private Mode m;
@@ -97,7 +102,7 @@ public class Controller {
 			Map<String, String> values = new HashMap<String, String>();
 			values.put("shot", s.toString());
 			values.put("returned", returned ? "true" : "false");
-			sqlController.save("returnedShot", values);
+//			sqlController.save("returnedShot", values);
 		}
 	}
 	
