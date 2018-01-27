@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS `omega`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `omega` (
   `omega_id` int(11) NOT NULL AUTO_INCREMENT,
-  `xloc` double(30,5) DEFAULT NULL,
+  `angle` double(30,5) DEFAULT NULL,
   `yloc` double(30,5) DEFAULT NULL,
   PRIMARY KEY (`omega_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -134,8 +134,8 @@ DROP TABLE IF EXISTS `zone`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `zone` (
   `zone_id` int(11) NOT NULL AUTO_INCREMENT,
-  `omega` double(30,5) DEFAULT NULL,
-  `velocity` double(30,5) DEFAULT NULL,
+  `xloc` double(30,5) DEFAULT NULL,
+  `yloc` double(30,5) DEFAULT NULL,
   PRIMARY KEY (`zone_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -238,4 +238,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-27 13:33:56
+-- Dump completed on 2018-01-27 13:48:04
