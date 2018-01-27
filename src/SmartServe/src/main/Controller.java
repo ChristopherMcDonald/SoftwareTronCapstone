@@ -92,7 +92,7 @@ public class Controller {
 	public void startTraining(Mode m) throws NotConnectedException, IOException, InterruptedException {
 		this.m = m;
 		while(true) {
-			Shot s = srController.getRecommendation("http://localhost:8080/nextShot", "");
+			Shot s = srController.getRecommendation();
 			
 			// TODO trade shot for position with shooting model
 			// TODO optimize shots
@@ -125,7 +125,7 @@ public class Controller {
 	
 	public static void main(String[] args) throws NotConnectedException, IOException, InterruptedException{
 		ShotRecommendationController recommender = new ShotRecommendationController();
-		Shot nextShot = recommender.getRecommendation("http://localhost:8080/nextShot", "");
+		Shot nextShot = recommender.getRecommendation();
 		System.out.println(nextShot.toString());
 		
 		/*

@@ -17,7 +17,9 @@ import errors.NotConnectedException;
 
 public class ShotRecommendationController {
 	
-	public static Shot getRecommendation(String targetURL, String urlParameters) {
+	private static final String targetURL = "http://localhost:8080/nextShot";
+	
+	public static Shot getRecommendation() {
 		 
 		HttpURLConnection connection = null;
 		try {			  
@@ -25,10 +27,6 @@ public class ShotRecommendationController {
 		    URL url = new URL(targetURL);
 		    connection = (HttpURLConnection) url.openConnection();
 		    connection.setRequestMethod("GET");
-
-		    connection.setRequestProperty("Content-Length", 
-		        Integer.toString(urlParameters.getBytes().length));
-		    connection.setRequestProperty("Content-Language", "en-US");  
 
 		    connection.setUseCaches(false);
 		    connection.setDoOutput(true);
@@ -61,8 +59,5 @@ public class ShotRecommendationController {
 			  connection.disconnect();
 		  }
 	  	}
-	}
-	
-	
-	
+	}	
 }
