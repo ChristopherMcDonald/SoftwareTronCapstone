@@ -48,7 +48,7 @@ socketIn.listen(5);                     # enables server to accept incoming
 pts = deque(maxlen = args["buffer"])
 counter = 0
 (dX, dY) = (0,0)
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 print(cap.get(3))
 print(cap.get(4))
 

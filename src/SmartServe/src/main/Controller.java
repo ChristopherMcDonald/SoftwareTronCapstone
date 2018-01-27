@@ -2,12 +2,17 @@ package main;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
 import adt.*;
 import controllers.*;
 import errors.NotConnectedException;
+import shootingModel.ShootingDetails;
+import shootingModel.ShootingModel;
 
 /**
  * Main Controller of the SmartServe subsystem
@@ -16,9 +21,10 @@ import errors.NotConnectedException;
  */
 public class Controller {
 	
-	public static void main(String[] args) {
-		Object b = "1234553";
-		System.out.println((String) b);
+	public static void main(String[] args) throws Exception {
+		Controller c = new Controller();
+		c.boot();
+		c.startTraining(Mode.RANDOM);
 	}
 	
 	// global variables
@@ -33,8 +39,8 @@ public class Controller {
 	private static final int ARD_PORT = 8000;
 	
 	private CVConnector cvController;
-	private static final int CV_PORT = 8010;
-	private static final int CV_IN_PORT = 8011;
+	private static final int CV_PORT = 9003;
+	private static final int CV_IN_PORT = 9004;
 	
 	private ShotRecommendationController srController;
 	private static final int SR_PORT = 8020;
@@ -49,7 +55,7 @@ public class Controller {
 	public boolean boot() {
 		try {
 			ardController = new ArduinoController();
-			if(!ardController.test("cu.usbmodem14431")) {
+			if(!ardController.test("cu.usbmodem14531")) {
 				return false;
 			}
 			
@@ -58,20 +64,7 @@ public class Controller {
 				return false;
 			}
 			
-			srController = new ShotRecommendationController();
-			/*if(!srController.connect(SR_PORT)) {
-				return false;
-			}*/
-			
-			sqlController = new SQLConnector();
-			if(!sqlController.connect(SQL_PORT)) {
-				return false;
-			}
-			
-			try {
-				welcomeSocket = new ServerSocket(CV_IN_PORT);
-			} catch (IOException e) {
-				e.printStackTrace();
+			if(!SQLConnector.connect(SQL_PORT)) {
 				return false;
 			}
 		} catch(NotConnectedException nce) {
@@ -88,21 +81,23 @@ public class Controller {
 	 * @throws NotConnectedException 
 	 * @throws InterruptedException 
 	 * @throws IOException 
+	 * @throws SQLException 
 	 */
-	public void startTraining(Mode m) throws NotConnectedException, IOException, InterruptedException {
+	public void startTraining(Mode m) throws NotConnectedException, IOException, InterruptedException, SQLException {
 		this.m = m;
 		while(true) {
-			Shot s = srController.getRecommendation();
+			Shot s = ShotRecommendationController.getRecommendation();
+			ShootingDetails sd = (new ShootingModel(0.08, 45)).getShootingDetails(s.x, s.y);
+			ShotDetail sd1 = new ShotDetail(45f, (float) sd.getYaw(), (float) sd.getVelocity(), 0f);
 			
-			// TODO trade shot for position with shooting model
 			// TODO optimize shots
 			
-			ardController.shoot(0.0f, 0.0f, 0.0f); // TODO: fill
+			ardController.shoot(sd1); // TODO: fill
 			boolean returned = cvController.start();
-			Map<String, String> values = new HashMap<String, String>();
-			values.put("shot", s.toString());
-			values.put("returned", returned ? "true" : "false");
-//			sqlController.save("returnedShot", values);
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			// TODO fill below with userID and shotID
+			Object[] myReturns = new Object[]{25, 1, returned ? 1 : 0, sdf.format(new Date(System.currentTimeMillis()))};
+			SQLConnector.save("returned", myReturns);
 		}
 	}
 	
@@ -121,18 +116,6 @@ public class Controller {
 	 */
 	public void setShootingParameters(ShootingParameters sp) {
 		this.sp = sp;
-	}
-	
-	public static void main(String[] args) throws NotConnectedException, IOException, InterruptedException{
-		ShotRecommendationController recommender = new ShotRecommendationController();
-		Shot nextShot = recommender.getRecommendation();
-		System.out.println(nextShot.toString());
-		
-		/*
-		Controller controller = new Controller();
-		controller.boot();
-		controller.startTraining(Mode.TRAIN);
-		*/
 	}
 
 }

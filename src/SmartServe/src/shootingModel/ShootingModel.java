@@ -1,4 +1,4 @@
-package ShootingModel;
+package shootingModel;
 
 public class ShootingModel {
     // Instantiate necessary variables

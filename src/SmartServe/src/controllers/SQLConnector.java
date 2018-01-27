@@ -39,7 +39,7 @@ public class SQLConnector {
 				 *passed into returned proc
 				 */
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-				Object[] myReturns = new Object[]{25, 1, 1, sdf.format(new Date(1))};
+				Object[] myReturns = new Object[]{25, 1, 1, sdf.format(new Date(System.currentTimeMillis()))};
 				/*Signin 
 				 *@Params username, password
 				 *returns userid as resultset
@@ -87,6 +87,8 @@ public class SQLConnector {
 	}
 
 	public static ResultSet query(String proc, Object[] values) throws SQLException {
+		myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/smartserve?useSSL=false","root", "smarTserve91");
+		
 		String argus = "(";
 		for(int i=0; i < values.length - 1; i++) {
 			argus = argus + "?,";
@@ -113,6 +115,8 @@ public class SQLConnector {
 	}
 
 	public static boolean save(String proc, Object[] values) throws SQLException {
+		myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/smartserve?useSSL=false","root", "smarTserve91");
+		
 		String argus = "(";
 		for(int i=0; i < values.length - 1; i++) {
 			argus = argus + "?,";
