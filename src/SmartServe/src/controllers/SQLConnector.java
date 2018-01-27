@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 
 public class SQLConnector {
 
@@ -24,15 +26,34 @@ public class SQLConnector {
 				myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/smartserve?useSSL=false","root", "smarTserve91");
 
 				/*Data to get from UI*/
-				String[] users = new String[]{"Sharon", "plzwork"};
-				String[] myReturns = new String[]{"Hi", "5", "true", "jan27"};
-				String[] nextShot = new String[]{"test"};
+				
+				/*Users 
+				 *@Params username, password
+				 *returns boolean - successful save?
+				 *passed into signup_proc
+				 */
+				Object[] users = new Object[]{"Sharon", "apples"};
+				/*myReturns 
+				 *@Params user_id, shot_id, returned, timestamp
+				 *returns boolean - successful save?
+				 *passed into returned proc
+				 */
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+				Object[] myReturns = new Object[]{25, 1, 1, sdf.format(new Date(1))};
+				/*Signin 
+				 *@Params username, password
+				 *returns userid as resultset
+				 *passed into login proc
+				 */
+				Object[] signin = new Object[]{"Sharon", "apples"};
 
+				//signup_proc saves the user to the database
 				save("signup_proc",users);
+				//returned proc saves the return stats to the database
 				save("returned",myReturns);
-
-				query("next_shot", nextShot);
-				query("sign_in",users);
+				//login proc gets the user id of a user
+				//getInt(1) gets first cell from resultset 
+				query("login_proc",signin).getInt(1);
 
 				myConn.close();
 			}catch (SQLException e) {
@@ -79,9 +100,9 @@ public class SQLConnector {
 			System.out.println(j + " - " + values[j]); 
 			
 			switch(values[j].getClass().getSimpleName()) {
-				case("Double"): 	cs.setDouble(j, (Double) values[j]);
-				case("String"): 	cs.setString(j, (String) values[j]);
-				case("Integer"): 	cs.setInt(j, (Integer) values[j]);
+				case("Double"): 	cs.setDouble(j+1, (Double) values[j]); break;
+				case("String"): 	cs.setString(j+1, (String) values[j]); break;
+				case("Integer"): 	cs.setInt(j+1, (Integer) values[j]); break;
 				default:			throw new IllegalArgumentException();
 			}
 			
@@ -105,9 +126,10 @@ public class SQLConnector {
 			System.out.println(j + " - " + values[j]); 
 			
 			switch(values[j].getClass().getSimpleName()) {
-				case("Double"): 	cs.setDouble(j, (Double) values[j]);
-				case("String"): 	cs.setString(j, (String) values[j]);
-				case("Integer"): 	cs.setInt(j, (Integer) values[j]);
+				case("Double"): 	cs.setDouble(j+1, (Double) values[j]); break;
+				case("String"): 	cs.setString(j+1, (String) values[j]); break;
+				case("Integer"): 	cs.setInt(j+1, (Integer) values[j]); break;
+				case("Date"):		cs.setDate(j+1, (Date) values[j]); break;
 				default:			throw new IllegalArgumentException();
 			}
 			
