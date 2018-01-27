@@ -13,10 +13,10 @@ W = [-5, -10, -15, 5, 10, 15]
 def helloWorld():
 	return 'Hello, World!'
 
-@app.route('/nextShot')
+@app.route('/nextShot', methods = ['POST'])
 def getNextShot():
 	outputString = 'X='+str(random.choice(X))+',Y='+str(random.choice(Y))+',V='+str(random.choice(V))+',W='+str(random.choice(W))
 	print outputString
 	return outputString
 
-app.run(host="127.0.0.1", port=8080)
+app.run(host="localhost", port=8080)
