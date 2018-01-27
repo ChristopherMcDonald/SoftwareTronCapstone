@@ -16,7 +16,7 @@ def helloWorld():
 @app.route('/nextShot', methods = ['POST'])
 def getNextShot():
 	outputString = 'X='+str(random.choice(X))+',Y='+str(random.choice(Y))+',V='+str(random.choice(V))+',W='+str(random.choice(W))
-	print outputString
+	print(outputString)
 	return outputString
 
 app.run(host="localhost", port=8080)
