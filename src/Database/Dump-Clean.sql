@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `smartserve` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `smartserve`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: smartserve
@@ -27,7 +25,7 @@ DROP TABLE IF EXISTS `omega`;
 CREATE TABLE `omega` (
   `omega_id` int(11) NOT NULL AUTO_INCREMENT,
   `angle` double(30,5) DEFAULT NULL,
-  `yloc` double(30,5) DEFAULT NULL,
+  `velocity` double(30,5) DEFAULT NULL,
   PRIMARY KEY (`omega_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -238,4 +236,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-27 13:48:04
+-- Dump completed on 2018-01-27 13:53:38
