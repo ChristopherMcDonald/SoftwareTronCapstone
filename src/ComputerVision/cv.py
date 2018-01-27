@@ -1,7 +1,8 @@
 import cv2
 from collections import deque
 import numpy as np
-import sys, argparse, imutils, datetime;
+import sys, argparse, imutils
+from datetime import datetime
 import socket, time;
 from enum import Enum;
 
@@ -17,8 +18,8 @@ args = vars(ap.parse_args())
 # define the lower and upper boundaries of the "green"
 # ball in the HSV color space, then initialize the
 # list of tracked points
-Orange1Upper = (32,204,248)
-Orange1Lower = (9,105,130)
+Orange1Upper = (28,216,294)
+Orange1Lower = (6,142,161)
 # OrangeLower = (0,145,200)
 # OrangeUpper = (30,200,300)
 
@@ -38,7 +39,7 @@ fsm = 0 # 0 - waiting request, 1 - detecting, 2 - active ball, 3 - descent
 
 # global variables
 HOST = "localhost";
-PORT = 8013;
+PORT = 9003;
 
 socketIn = socket.socket();             # handles incoming requests
 socketIn.bind((HOST, PORT));            # binds to a host and port
@@ -61,7 +62,8 @@ while(True):
         msg = conn.recv(1024);              # parses msg... could be "TEST", "DETECT"
     
         # DEBUGGING
-        print(msg);
+        # msg = b'DETECT'
+        # print(msg);
     
         if("TEST" in msg.decode("UTF8")):
             # DEBUGGING
@@ -76,9 +78,9 @@ while(True):
             start = datetime.now();
             fsm = 1;
     
-    if(fsm == 1 || fsm == 2 || fsm == 3):
+    if(fsm == 1 or fsm == 2 or fsm == 3):
         
-        if((start - datetime.now()).seconds > 120):
+        if((datetime.now() - start).seconds > 10):
             # socket for outgoing messages
             socketOut = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
             socketOut.connect((HOST, PORT + 1));
@@ -166,19 +168,22 @@ while(True):
                     dY = pts[-10][1] - pts[i][1]
                     (dirX, dirY) = ("", "")
                     
-                    if(fsm == 2):       # check if active
+                    if(fsm == 1):       # check if active
+                        print("in state 1")
                         if(dX > 10):
-                            fsm = 3;
-                    elif(fsm == 3):     # check if descending
+                            fsm = 2;
+                    elif(fsm == 2):     # check if descending
+                        print("in state 2")
                         if(dY > 10):
-                            fsm = 4;
-                    elif(fsm == 4):     # if ascending, return GOOD
-                        if(dY > -10):
+                            fsm = 3;
+                    elif(fsm == 3):     # if ascending, return GOOD
+                        print("in state 3")
+                        if(dY < -10):
                             # socket for outgoing messages
                             socketOut = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
                             socketOut.connect((HOST, PORT + 1));
-                            
-                            socketOut.send(b'eGOOD\n');
+                            print("hit")
+                            socketOut.send(b'GOOD\n');
                             fsm = 0;    # HIT!
                     
 
@@ -197,12 +202,12 @@ while(True):
                 left = BORDERWIDTH,
                 right = BORDERWIDTH,
                 borderType = cv2.BORDER_CONSTANT,
-                value = borderColour)
+                value = RED)
             cv2.imshow('border', border)
            ## cv2.imshow("shape",thresh)
             key = cv2.waitKey(1) & 0xFF
             counter += 1
 
-            # if the 'q' key is pressed, stop the loop
+            # if the 'q' key is pressed, stop the l3oop
             if key == ord("q"):
                 break
