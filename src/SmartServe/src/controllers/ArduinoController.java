@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.IOException;
 import adt.Position;
+import adt.ShotDetail;
 import arduino.Arduino;
 import errors.NotConnectedException;
 
@@ -10,7 +11,7 @@ public class ArduinoController {
 	public static void main(String[] args) throws IOException, InterruptedException, NotConnectedException {
 		ArduinoController ac = new ArduinoController();
 		ac.test("cu.usbmodem14441");
-		ac.shoot(41f, 12345.2f, 1.0f);
+		ac.shoot(new ShotDetail(41f, 12345.2f, 1.323425f, 1.0f));
 	}
 	
 	private Arduino arduino; // holds the port if successfully connects
@@ -42,18 +43,17 @@ public class ArduinoController {
 	 * @throws IOException 
 	 * @throws InterruptedException 
 	 */
-	public void shoot(float pitch, float yaw, float angularVelocity) throws NotConnectedException {
-		if(arduino != null) {
+	public void shoot(ShotDetail sd) throws NotConnectedException {
+		if(arduino == null) {
 			throw new NotConnectedException("Arduino", port);
 		}
-		String toSend = String.format("P=%.0f,Y=%.0f,Z=%.0f", pitch, yaw, angularVelocity);
+		String toSend = String.format("P=%.0f,Y=%.0f,V=%.0f,Z=%.0f", sd.pitch, sd.pitch, sd.velocity, sd.angular);
 		
 		// DEBUGGING
 		System.out.println(toSend);
 		
 		arduino.serialWrite("");		// TODO understand W(hy)TF this is needed
 		arduino.serialWrite(toSend);
-		arduino.closeConnection();
 	}
 	
 	/**

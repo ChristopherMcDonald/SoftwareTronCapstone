@@ -1,4 +1,4 @@
-package ShootingModel;
+package shootingModel;
 
 public class ShootingDetails {
     private double yaw;
