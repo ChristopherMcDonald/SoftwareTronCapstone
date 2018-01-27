@@ -10,48 +10,32 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SQLConnector {
-	
+
 	private int port; // port if successfully connect
 	private String address; // address if successfully connect
 	static Connection myConn;
-	
-	
+
+
 	public static void main(String[] args) {
 		//if connection is successful
 		if(connect(3306, "localhost")){
 			try {
-			//connect for real
-			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/smartserve?useSSL=false","root", "smarTserve91");
-			
-			/*Data to get from UI*/
-			Map users = new HashMap();
-			Map myReturns = new HashMap();
+				//connect for real
+				myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/smartserve?useSSL=false","root", "smarTserve91");
 
-			Map nextShot = new HashMap();
-			
-	        // Add a user
-	        users.put(1,"Sharon"); //user name
-	        users.put(2, "plzwork"); //password
-	        
-	        //Add shot return stats
-	        myReturns.put(1, "Hi"); //user
-	        myReturns.put(2, "5"); //shot
-	        myReturns.put(3, "true"); //returned
-	        myReturns.put(4, "jan26"); //timestamp
-	        
-	        //Add nextshot stuff
-	        nextShot.put(1, "test");
-	       
-			save("signup_proc",users,2);
-			save("returned",myReturns,4);
-			
-			query("next_shot", nextShot,1);
-			query("sign_in",users,1);
-			
-			
-			myConn.close();
+				/*Data to get from UI*/
+				String[] users = new String[]{"Sharon", "plzwork"};
+				String[] myReturns = new String[]{"Hi", "5", "true", "jan27"};
+				String[] nextShot = new String[]{"test"};
+
+				save("signup_proc",users);
+				save("returned",myReturns);
+
+				query("next_shot", nextShot);
+				query("sign_in",users);
+
+				myConn.close();
 			}catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -74,70 +58,64 @@ public class SQLConnector {
 			myConn = DriverManager.getConnection("jdbc:mysql://"+address+":"+port+"/smartserve","root", "smarTserve91");
 			myConn.close();
 			return true;
-			
+
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
 		return false;
 	}
-	
-	public static ResultSet query(String proc, Map<Integer, Object> values, int numArgs) {
-		try {
-			
-			//create a statement
-			String argus = "(";
-			for(int i=0; i < numArgs-1; i++) {
-				argus = argus + "?,";
-			}
-			CallableStatement myStmt = myConn.prepareCall("{call "+ proc + argus + "?)}");
-			
-			
-			for(int key: values.keySet()) {
-				System.out.println(key + " - " + values.get(key)); 
-		        myStmt.getString(key);
-		    }
-			myStmt.executeUpdate();
-			
-			//get the result set from the proc
-			ResultSet rs = myStmt.executeQuery("select * from user");
-			
-			//process results
-			//while (rs.next()) {
-			//	System.out.println("user_name: " + rs.getString("user_name") + ", " + "password: " + rs.getString("password"));
-			//}
-			
-			return rs;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	public static boolean save(String proc, Map<Integer, Object> values, int numArgs) {
-		try {
-				
+
+	public static ResultSet query(String proc, Object[] values) throws SQLException {
 		String argus = "(";
-		for(int i=0; i < numArgs-1; i++) {
+		for(int i=0; i < values.length - 1; i++) {
 			argus = argus + "?,";
 		}
-		
+
 		System.out.println(argus);
-		
+
 		CallableStatement cs = myConn.prepareCall("{call "+ proc + argus + "?)}");
+
+		for(int j = 0; j < values.length; j++) {
+			System.out.println(j + " - " + values[j]); 
+			
+			switch(values[j].getClass().getSimpleName()) {
+				case("Double"): 	cs.setDouble(j, (Double) values[j]);
+				case("String"): 	cs.setString(j, (String) values[j]);
+				case("Integer"): 	cs.setInt(j, (Integer) values[j]);
+				default:			throw new IllegalArgumentException();
+			}
+			
+		}
+		cs.execute();
 		
-		for(int key: values.keySet()) {
-			System.out.println(key + " - " + values.get(key)); 
-	        cs.setString(key, (String) values.get(key));
-	    }
+		return cs.getResultSet();
+	}
+
+	public static boolean save(String proc, Object[] values) throws SQLException {
+		String argus = "(";
+		for(int i=0; i < values.length - 1; i++) {
+			argus = argus + "?,";
+		}
+
+		System.out.println(argus);
+
+		CallableStatement cs = myConn.prepareCall("{call "+ proc + argus + "?)}");
+
+		for(int j = 0; j < values.length; j++) {
+			System.out.println(j + " - " + values[j]); 
+			
+			switch(values[j].getClass().getSimpleName()) {
+				case("Double"): 	cs.setDouble(j, (Double) values[j]);
+				case("String"): 	cs.setString(j, (String) values[j]);
+				case("Integer"): 	cs.setInt(j, (Integer) values[j]);
+				default:			throw new IllegalArgumentException();
+			}
+			
+		}
 		cs.executeUpdate();
 		return true;
-		
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return false;
 	}
-	
+
 	/*Methods without procs
 	 * 
 	 * Method to add rows
@@ -150,34 +128,34 @@ public class SQLConnector {
 		    		"INSERT INTO user (user_name, password)" 
 		    		+ "VALUES (?,?)"
 		    );
-			
+
 		    //set parameters
 		    preparedStmt.setString (1, name);
 		    preparedStmt.setString (2, password);
-		    
+
 		    //execute
 			preparedStmt.execute();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	//Method to delete rows - USED FOR TESTING
 	static void delete_user(int id) {
 		try {
 			//execute SQL query 
 			//insert
 		    PreparedStatement preparedStmt = myConn.prepareStatement("DELETE FROM user WHERE user_id = ?");
-			
+
 		    //set parameters
 		    preparedStmt.setInt(1, id);
-		    
+
 		    //execute
 			preparedStmt.execute();
-			
+
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	*/
+	 */
 }
