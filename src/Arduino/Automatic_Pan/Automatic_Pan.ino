@@ -39,9 +39,9 @@ void loop()
   {
     Serial.println("Error in homing one of the stages");
   }
-//  move_azimuth("CCW",45);
-//  move_azimuth("CW",15);
-//  move_azimuth("CCW",95);
+//  move_to_location("CCW",45);
+//  move_to_location("CW",15);
+//  move_to_location("CCW",95);
   Serial.print("Current Location = ");
   Serial.println(current_location);
   Serial.print("Target Location = ");
@@ -52,12 +52,12 @@ void loop()
     location_diff = target_location - current_location;
     if (location_diff >= 0)
     {
-      move_azimuth("CCW", location_diff);
+      move_to_location("CCW", location_diff);
     }
     else
     {
       location_diff = -1*location_diff;
-      move_azimuth("CW", location_diff);
+      move_to_location("CW", location_diff);
     }
    }
   else
@@ -85,11 +85,11 @@ void home_azimuth(String motor_direction) // This function will place the Azimut
     {
       if (motor_direction == "CCW")
       {
-        move_azimuth("CCW", 0.5); // Move the Azimuth Stage with a precision of 0.5 degree
+        move_to_location("CCW", 0.5); // Move the Azimuth Stage with a precision of 0.5 degree
       }
       else
       {
-        move_azimuth("CW", 0.5); // Move the Azimuth Stage with a precision of 0.5 degree
+        move_to_location("CW", 0.5); // Move the Azimuth Stage with a precision of 0.5 degree
       }
     }
   }
@@ -98,10 +98,10 @@ void home_azimuth(String motor_direction) // This function will place the Azimut
 
 
 
-void move_azimuth(String motor_direction, double azimuth_move_degrees) // This function will send a signal to the stepper motor to move the azimuth stage
+void move_to_location(String motor_direction, double degrees_to_move) // This function will send a signal to the stepper motor to move the azimuth stage
 {
   /* Convert degrees to the # of steps */
-  int azimuth_steps = (azimuth_move_degrees / 0.05);
+  int azimuth_steps = (degrees_to_move / 0.05);
   Serial.print("Azimuth Steps > ");
   Serial.print(azimuth_steps);
   Serial.println("");
