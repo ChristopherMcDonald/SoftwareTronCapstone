@@ -1,4 +1,4 @@
-package alt;
+package runnables;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -100,8 +100,9 @@ public class Controller implements Runnable {
 	private void shoot() throws NotConnectedException, IOException, InterruptedException, SQLException {
 		while(this.state != RunState.TERMINATE) {
 			Shot s = ShotRecommendationController.getRecommendation(); // TODO pass in Mode
-			ShootingDetails sd = (new ShootingModel(0.08, 45)).getShootingDetails(s.x, s.y);
-			ShotDetail sd1 = new ShotDetail(45f, (float) sd.getYaw(), (float) sd.getVelocity(), 0f);
+			ShootingDetails sd = (new ShootingModel(0.08, 45)).getShootingDetails(s.x, s.y); 	// TODO get shootingModel outta here
+																							// TODO ensure height is functional
+			ShotDetail sd1 = new ShotDetail(45f, (float) sd.getYaw(), (float) sd.getVelocity(), 0f);	// TODO variable pitch and angular direction
 			
 			// TODO optimize shots
 			
