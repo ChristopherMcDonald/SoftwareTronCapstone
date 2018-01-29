@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import adt.Mode;
-import alt.*;
+import runnables.*;
 
 public class View {
 	
@@ -64,6 +64,7 @@ public class View {
 		        control.setMode(Mode.valueOf(modeDropDown.getSelectedItem().toString()));
 				Thread t = new Thread(control);
 				t.start();
+				
 		     }
 		   }
 		 );
