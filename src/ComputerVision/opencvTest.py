@@ -45,8 +45,8 @@ detect = False
 pts = deque(maxlen = args["buffer"])
 counter = 0
 (dX, dY) = (0,0)
-cap = cv2.VideoCapture(0)
-vs= WebcamVideoStream(src=0).start()
+cap = cv2.VideoCapture(1)
+vs= WebcamVideoStream(src=1).start()
 roiBox = None
 roiHist = None
 frame = vs.read()
