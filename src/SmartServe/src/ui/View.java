@@ -3,19 +3,18 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;  
+import javax.swing.*;
+
+import adt.Mode;
 import alt.*;
 
 public class View {
 	
-	private Controller control;
+	private static Controller control;
 	private static boolean paused = true;		
 	public static void main(String[] args) {  
 		
 		JFrame f = new JFrame();				//creating instance of JFrame  
-		Controller c = new Controller();
-		Thread t = new Thread(c);
-		t.start();
 
 		JLabel title = new JLabel("Welcome to SmartServe"); //create title JLabel
 		title.setBounds(50,50,300,40);
@@ -31,7 +30,7 @@ public class View {
 		JButton stopBtn = new JButton("Stop");			//creating instance of JButton  
 		stopBtn.setBounds(250,100,100, 40);				//x axis, y axis, width, height  
 		
-		String[] modes = { "Training","Random"};		//training modes
+		String[] modes = { Mode.RANDOM.toString(), Mode.SINGLE.toString(), Mode.TRAIN.toString()};		//training modes
 	    final JComboBox<String> modeDropDown = new JComboBox<String>(modes); //creating instance of JComboBox(Dropdown)
 	    modeDropDown.setBounds(150, 150, 100,40);		//x acis, y axis, width, height
 	    
@@ -60,6 +59,11 @@ public class View {
 		        pauseBtn.setEnabled(true);
 		        stopBtn.setEnabled(true);  
 		        modeDropDown.setEnabled(false);
+		        
+		        control = new Controller();
+		        control.setMode(Mode.valueOf(modeDropDown.getSelectedItem().toString()));
+				Thread t = new Thread(control);
+				t.start();
 		     }
 		   }
 		 );
@@ -74,10 +78,12 @@ public class View {
 		        if(paused) { 				//if pause then continue
 		        	paused = false;
 		        	pauseBtn.setText("Continue");
+		        	control.pause();
 		        }
 		        else {						//if continue then pause
 		        	paused = true;
 		        	pauseBtn.setText("Pause");
+		        	control.resume();
 		        }
 		     }
 		   }
@@ -89,7 +95,9 @@ public class View {
 		        pauseBtn.setEnabled(false);
 		        stopBtn.setEnabled(false);  
 		        modeDropDown.setEnabled(true);
+		        control.terminate();
 		     }
+		     
 		   }
 		 );
 	}  
