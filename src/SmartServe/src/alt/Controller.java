@@ -99,12 +99,6 @@ public class Controller implements Runnable {
 		this.m = m;
 		begin();
 		while(this.state != RunState.TERMINATE) {
-			
-			while(this.state == RunState.PAUSED) {
-				Thread.sleep(100);
-				//System.out.println("My state is: " + state);
-			}
-			
 //			Shot s = ShotRecommendationController.getRecommendation(); // TODO pass in Mode
 //			ShootingDetails sd = (new ShootingModel(0.08, 45)).getShootingDetails(s.x, s.y);
 //			ShotDetail sd1 = new ShotDetail(45f, (float) sd.getYaw(), (float) sd.getVelocity(), 0f);
@@ -118,8 +112,12 @@ public class Controller implements Runnable {
 //			Object[] myReturns = new Object[]{25, 1, returned ? 1 : 0, sdf.format(new Date(System.currentTimeMillis()))};
 //			SQLConnector.save("returned", myReturns);
 			
-			Thread.sleep(100);
-			//System.out.println("My state is: " + state);
+			while(this.state == RunState.PAUSED) {
+				Thread.sleep(10);
+				System.out.println("My state is: " + state);
+			}
+			Thread.sleep(10);
+			System.out.println("My state is: " + state);
 		}
 	}
 	
