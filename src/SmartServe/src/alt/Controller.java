@@ -102,7 +102,7 @@ public class Controller implements Runnable {
 			
 			while(this.state == RunState.PAUSED) {
 				Thread.sleep(100);
-				System.out.println("My state is: " + state);
+				//System.out.println("My state is: " + state);
 			}
 			
 //			Shot s = ShotRecommendationController.getRecommendation(); // TODO pass in Mode
@@ -119,7 +119,7 @@ public class Controller implements Runnable {
 //			SQLConnector.save("returned", myReturns);
 			
 			Thread.sleep(100);
-			System.out.println("My state is: " + state);
+			//System.out.println("My state is: " + state);
 		}
 	}
 	
