@@ -22,6 +22,7 @@ import shootingModel.ShootingModel;
 public class Controller implements Runnable {
 	
 	public static void main(String[] args) throws InterruptedException {
+		
 		Controller c = new Controller();
 		Thread t = new Thread(c);
 		t.start();
