@@ -37,7 +37,7 @@ public class Controller implements Runnable {
 	@Override
 	public void run() {
 		try {
-			startTraining(Mode.RANDOM);
+			startTraining();
 		} catch (NotConnectedException | IOException | InterruptedException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -95,8 +95,7 @@ public class Controller implements Runnable {
 	 * @throws IOException 
 	 * @throws SQLException 
 	 */
-	public void startTraining(Mode m) throws NotConnectedException, IOException, InterruptedException, SQLException {
-		this.m = m;
+	public void startTraining() throws NotConnectedException, IOException, InterruptedException, SQLException {
 		begin();
 		while(this.state != RunState.TERMINATE) {
 //			Shot s = ShotRecommendationController.getRecommendation(); // TODO pass in Mode
@@ -121,11 +120,13 @@ public class Controller implements Runnable {
 		}
 	}
 	
-	private void begin() { this.state = RunState.RUNNING; }
+	public void begin() { this.state = RunState.RUNNING; }
 	
 	public void pause() { this.state = RunState.PAUSED; }
 	
 	public void resume() { this.state = RunState.RUNNING; }
 	
 	public void terminate() { this.state = RunState.TERMINATE; }
+
+	public void setMode(Mode m) { this.m = m; }
 }
