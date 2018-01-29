@@ -5,9 +5,6 @@ import java.net.ServerSocket;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.Map;
-
 import adt.*;
 import controllers.*;
 import errors.NotConnectedException;
@@ -36,16 +33,10 @@ public class Controller {
 	
 	// controllers
 	private ArduinoController ardController;
-	private static final int ARD_PORT = 8000;
 	
 	private CVConnector cvController;
 	private static final int CV_PORT = 9003;
-	private static final int CV_IN_PORT = 9004;
 	
-	private ShotRecommendationController srController;
-	private static final int SR_PORT = 8020;
-	
-	private SQLConnector sqlController;
 	private static final int SQL_PORT = 3306;
 	
 	/**
