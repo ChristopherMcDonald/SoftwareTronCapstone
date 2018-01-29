@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import request
 import random
 import mysql.connector
 from mysql.connector import Error
@@ -12,8 +13,10 @@ shot = random.randint(2, 1585)
 def helloWorld():
 	return 'Hello, World!'
 
+# takes in argument mode, ex. http://locahost:8080/nextShot?mode=#######
 @app.route('/nextShot', methods = ['POST'])
 def getNextShot():
+	mode = request.args.get("mode");
 	conn = mysql.connector.connect(host='localhost',
 								database='smartserve',
 								user='root',
@@ -24,6 +27,7 @@ def getNextShot():
 		values = callProc(conn)
 		outputString = 'X='+str(values[1])+',Y='+str(values[2])+',V='+str(values[3])+',W='+str(values[4])
 	print(outputString)
+
 	conn.close()
 	return outputString
 
