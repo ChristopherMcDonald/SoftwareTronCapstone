@@ -22,8 +22,7 @@ def getNextShot():
 	if conn.is_connected():
 		print('Connected to MySQL database')
 		values = callProc(conn)
-		#outputString = 'X='+str(values[0])+',Y='+str(values[0])+',V='+str(values[0])+',W='+str(values[0])
-		outputString = 'value: ' + values
+		outputString = 'X='+str(values[1])+',Y='+str(values[2])+',V='+str(values[3])+',W='+str(values[4])
 	print(outputString)
 	conn.close()
 	return outputString
@@ -33,9 +32,9 @@ def callProc(conn):
 	cur = conn.cursor()
 
 	#Calling proc
-	args = [4]
+	args = [4,0,0,0,0]
 	result_args = cur.callproc('next_shot',args)
-	return str(result_args[0])
+	return result_args
 
 	#Runnning SQL script
 	#cur.execute( "SELECT user_name, password FROM user" )
