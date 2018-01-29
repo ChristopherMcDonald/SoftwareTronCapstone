@@ -1,4 +1,5 @@
 package ui;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,6 +17,10 @@ public class View {
 		Thread t = new Thread(c);
 		t.start();
 
+		JLabel title = new JLabel("Welcome to SmartServe"); //create title JLabel
+		title.setBounds(50,50,300,40);
+		title.setFont(new Font("Arial", Font.PLAIN, 26));
+		
 		JButton startBtn = new JButton("Start");		//creating instance of JButton  
 		startBtn.setBounds(50,100,100, 40);				//x axis, y axis, width, height  
 		
@@ -30,11 +35,15 @@ public class View {
 	    final JComboBox<String> modeDropDown = new JComboBox<String>(modes); //creating instance of JComboBox(Dropdown)
 	    modeDropDown.setBounds(150, 150, 100,40);		//x acis, y axis, width, height
 	    
-	    f.add(modeDropDown);							//add JComboBox in JFrame
+	    
+	    f.add(title);									//add title in JFrame
+	    
 		f.add(startBtn);								//adding buttons in JFrame  
 		f.add(pauseBtn);
 		f.add(stopBtn);
 
+		f.add(modeDropDown);							//add JComboBox in JFrame
+		
 		f.setSize(400,500);						//400 width and 500 height  
 		f.setLayout(null);						//using no layout managers  
 		f.setVisible(true);						//making the frame visible  
