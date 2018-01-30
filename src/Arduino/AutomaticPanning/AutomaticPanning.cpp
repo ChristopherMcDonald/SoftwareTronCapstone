@@ -5,15 +5,18 @@
 #define Azimuth_Motor_Clock 6
 #define Azimuth_Optical_Sensor 2 // HIGH = Triggered
 #define Stepper_Motor_Delay 1
+#define location_limit_max 178 // You dont want the system to exceed 178 deg, if exceeded the limit switch would be interrupted at 180 deg
+#define location_limit_min 0
 
 int AzimuthErrorFlag = 1; // 1 = Error, 0 = No Error
-double current_location ; // Home Position -> 0 deg and measured CCW+
-double target_location = 0.00;
-double location_diff = 0.00;
 
-AutomaticPanning::AutomaticPanning()
+AutomaticPanning::AutomaticPanning() // Constructor
 {
   Serial.begin(9600); 
+
+  target_location = 0.00;
+  location_diff = 0.00;
+  current_location = 360.0;
 
   /* Initialize all Sensors and Actuators for the Azimuth Stage */
 
@@ -28,7 +31,7 @@ AutomaticPanning::AutomaticPanning()
   Serial.println("");
 }
 
-void AutomaticPanning::home_azimuth(String motor_direction)
+void AutomaticPanning::home_assembly(String motor_direction)
 {
   Serial.println("Moving Azimuth Stage to the Home Position");
   for (int i = 0; i < 720; i++) // 360 / 0.5
@@ -44,18 +47,18 @@ void AutomaticPanning::home_azimuth(String motor_direction)
     {
       if (motor_direction == "CCW")
       {
-        move_to_location("CCW", 0.5); // Move the Azimuth Stage with a precision of 0.5 degree
+        move_by_degrees("CCW", 0.5); // Move the Azimuth Stage with a precision of 0.5 degree
       }
       else
       {
-        move_to_location("CW", 0.5); // Move the Azimuth Stage with a precision of 0.5 degree
+        move_by_degrees("CW", 0.5); // Move the Azimuth Stage with a precision of 0.5 degree
       }
     }
   }
   Serial.println("ERROR: Aziumth Stage moved from 0 - 360 degrees CW, Home Position not reached. Try cleaning the optical sensor or perhaps go in CCW position.");
 }
 
-void AutomaticPanning::move_to_location(String motor_direction, double degrees_to_move)
+void AutomaticPanning::move_by_degrees(String motor_direction, double degrees_to_move)
 {
   /* Convert degrees to the # of steps */
   int azimuth_steps = (degrees_to_move / 0.05);
@@ -92,11 +95,43 @@ void AutomaticPanning::move_to_location(String motor_direction, double degrees_t
     // Update current position
     if (motor_direction == "CW") // Subtraction from current pos if direction is CW
     {
-      current_location = current_location - 0.05; // Current Position is in degrees
+      set_current_location(get_current_location() - 0.05); // Current Position is in degrees
     }
     else if (motor_direction == "CCW") // Addition from current pos if direction is CCW
     {
-      current_location = current_location + 0.05; // Current Position is in degrees
+      set_current_location(get_current_location() + 0.05); // Update Current Position is in degrees
     }
   }
+}
+
+void AutomaticPanning::move_to_location(double desired_location)
+{
+  target_location = desired_location;
+  if (target_location <= location_limit_max && target_location >= location_limit_min) // Target Location within the max and min limits, now only proceed to calculation and movement
+  {
+    location_diff = target_location - current_location;
+    if (location_diff >= 0)
+    {
+      move_by_degrees("CCW", location_diff);
+    }
+    else
+    {
+      location_diff = -1*location_diff;
+      move_by_degrees("CW", location_diff);
+    }
+   }
+  else
+  {
+    Serial.println("Target Location Out of Reach");
+  }
+}
+
+double AutomaticPanning::get_current_location()
+{
+	return current_location;
+}
+
+void AutomaticPanning::set_current_location(double location)
+{
+	current_location = location;
 }
