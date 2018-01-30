@@ -5,6 +5,7 @@ import sys, argparse, imutils
 from datetime import datetime
 import socket, time;
 from enum import Enum;
+from imutils.video import WebcamVideoStream
 
 ap = argparse.ArgumentParser();
 ap.add_argument(
@@ -49,51 +50,52 @@ pts = deque(maxlen = args["buffer"])
 counter = 0
 (dX, dY) = (0,0)
 cap = cv2.VideoCapture(0)
+vs= WebcamVideoStream(src=0).start()
 print(cap.get(3))
 print(cap.get(4))
 
 ok,frame = cap.read()
 while(True):
-    
+
     if(fsm == 0):                           # waiting on connection
-        
+
         conn, addr = socketIn.accept();     # loop will freeze on this command, runs when SmartServe
         print("Got connection from", addr); # sends a request
         msg = conn.recv(1024);              # parses msg... could be "TEST", "DETECT"
-    
+
         # DEBUGGING
         # msg = b'DETECT'
         # print(msg);
-    
+
         if("TEST" in msg.decode("UTF8")):
             # DEBUGGING
             time.sleep(1);
-            
+
             # socket for outgoing messages
             socketOut = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
             socketOut.connect((HOST, PORT + 1));
-            
+
             socketOut.send(b'ALLGOOD\n');
         else:
             start = datetime.now();
             fsm = 1;
-    
+
     if(fsm == 1 or fsm == 2 or fsm == 3):
-        
+
         if((datetime.now() - start).seconds > 10):
             # socket for outgoing messages
             socketOut = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
             socketOut.connect((HOST, PORT + 1));
-            
+
             socketOut.send(b'BAD\n');
             fsm = 0;
             pts = deque(maxlen=args["buffer"])
 
         else:
             # grab the current frame
-            (grabbed, frame) = cap.read()
-            img = cap.read()
-            
+            frame = vs.read()
+            img = vs.read()
+
             # resize the frame, blur it, and convert it to the HSV
             # color space
             frame = imutils.resize(frame, width=600)
@@ -169,7 +171,7 @@ while(True):
                     dX = pts[-10][0] - pts[i][0]
                     dY = pts[-10][1] - pts[i][1]
                     (dirX, dirY) = ("", "")
-                    
+
                     if(fsm == 1):       # check if active
                         print("in state 1")
                         if(dX > 10):
@@ -188,7 +190,7 @@ while(True):
                             socketOut.send(b'GOOD\n');
                             fsm = 0;    # HIT!
                             pts = deque(maxlen = args["buffer"])
-                    
+
 
                 thickness = int(np.sqrt(args["buffer"] / float(i + 1)) * 2.5)
                 cv2.line(frame, pts[i - 1], pts[i], (0, 0, 255), thickness)
