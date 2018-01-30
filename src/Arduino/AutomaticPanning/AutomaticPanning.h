@@ -7,8 +7,8 @@ class AutomaticPanning
 {
     public:
         AutomaticPanning();
-        void move_to_location(double desired_location);
-        void home_assembly(String motor_direction); 
+        bool move_to_location(double desired_location);
+        bool home_assembly(String motor_direction); 
         double get_current_location();
     private:
     	// Home Position -> 0 deg and measured CCW+
