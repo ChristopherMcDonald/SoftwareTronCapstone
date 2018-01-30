@@ -26,7 +26,7 @@ public class ShotRecommendationController {
 		    //Create connection
 		    URL url = new URL(targetURL);
 		    connection = (HttpURLConnection) url.openConnection();
-		    connection.setRequestMethod("GET");
+		    connection.setRequestMethod("POST");
 
 		    connection.setUseCaches(false);
 		    connection.setDoOutput(true);
