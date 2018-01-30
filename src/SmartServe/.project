@@ -3,6 +3,7 @@
 	<name>SmartServe</name>
 	<comment></comment>
 	<projects>
+		<project>Database</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
