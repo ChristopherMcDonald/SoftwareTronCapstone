@@ -7,8 +7,14 @@ class AutomaticPanning
 {
     public:
         AutomaticPanning();
-        void move_to_location(String motor_direction, double degrees_to_move);
-        void home_azimuth(String motor_direction);  	
+        void move_to_location(double desired_location);
+        void home_assembly(String motor_direction); 
+        double get_current_location();
+    private:
+    	// Home Position -> 0 deg and measured CCW+
+    	double current_location, target_location, location_diff; 
+    	void set_current_location(double location);
+    	void move_by_degrees(String motor_direction, double degrees_to_move);
 };
 
 #endif
