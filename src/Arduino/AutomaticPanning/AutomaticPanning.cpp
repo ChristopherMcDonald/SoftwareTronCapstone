@@ -14,9 +14,9 @@ AutomaticPanning::AutomaticPanning() // Constructor
 {
   Serial.begin(9600); 
 
-  target_location = 0.00;
-  location_diff = 0.00;
-  current_location = 360.0;
+  target_location = 0.0;
+  location_diff = 0.0;
+  current_location = 0.0;
 
   /* Initialize all Sensors and Actuators for the Azimuth Stage */
 
@@ -31,7 +31,7 @@ AutomaticPanning::AutomaticPanning() // Constructor
   Serial.println("");
 }
 
-void AutomaticPanning::home_assembly(String motor_direction)
+bool AutomaticPanning::home_assembly(String motor_direction)
 {
   Serial.println("Moving Azimuth Stage to the Home Position");
   for (int i = 0; i < 720; i++) // 360 / 0.5
@@ -39,9 +39,8 @@ void AutomaticPanning::home_assembly(String motor_direction)
     if (digitalRead(Azimuth_Optical_Sensor) == HIGH) // Sensor Triggered
     {
       Serial.println("Azimuth Stage = Home Position");
-      current_location = 0.00; // Set Current Position to 0.00 as HOME 
-      AzimuthErrorFlag = 0;
-      return;
+      current_location = 0.00; // Set Current Position to 0.00 as HOME
+      return true;
     }
     else
     {
@@ -56,6 +55,7 @@ void AutomaticPanning::home_assembly(String motor_direction)
     }
   }
   Serial.println("ERROR: Aziumth Stage moved from 0 - 360 degrees CW, Home Position not reached. Try cleaning the optical sensor or perhaps go in CCW position.");
+  return false;
 }
 
 void AutomaticPanning::move_by_degrees(String motor_direction, double degrees_to_move)
@@ -104,7 +104,7 @@ void AutomaticPanning::move_by_degrees(String motor_direction, double degrees_to
   }
 }
 
-void AutomaticPanning::move_to_location(double desired_location)
+bool AutomaticPanning::move_to_location(double desired_location)
 {
   target_location = desired_location;
   if (target_location <= location_limit_max && target_location >= location_limit_min) // Target Location within the max and min limits, now only proceed to calculation and movement
@@ -113,16 +113,19 @@ void AutomaticPanning::move_to_location(double desired_location)
     if (location_diff >= 0)
     {
       move_by_degrees("CCW", location_diff);
+      return true;
     }
     else
     {
       location_diff = -1*location_diff;
       move_by_degrees("CW", location_diff);
+      return true;
     }
    }
   else
   {
     Serial.println("Target Location Out of Reach");
+    return false;
   }
 }
 
