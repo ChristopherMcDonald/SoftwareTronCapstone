@@ -2,12 +2,18 @@
 
 FeedAndShoot* myfeedandshoot = new FeedAndShoot();
 
-void setup() {
+void setup() 
+{
   // put your setup code here, to run once:
+  Serial.begin(9600);
 
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
+void loop() 
+{
+  if(!(myfeedandshoot->set_dcspeed(100)))
+  {
+    Serial.println("Error in Setting DC Speed");
+  }
 
 }
