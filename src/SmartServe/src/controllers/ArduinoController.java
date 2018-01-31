@@ -102,9 +102,6 @@ public class ArduinoController {
 		
 		String toSend = Double.toString(speed);
 		
-		// DEBUGGING
-		System.out.println(toSend);
-		
 		arduino.serialWrite(toSend);
 		
 	}

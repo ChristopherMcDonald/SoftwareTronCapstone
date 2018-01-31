@@ -171,15 +171,15 @@ while(True):
 
                     if(fsm == 1):       # check if active
                         print("in state 1")
-                        if(dX > 10):
+                        if(dX > 5):
                             fsm = 2;
                     elif(fsm == 2):     # check if descending
                         print("in state 2")
-                        if(dY > 10):
+                        if(dY > 5):
                             fsm = 3;
                     elif(fsm == 3):     # if ascending, return GOOD
                         print("in state 3")
-                        if(dY < -10):
+                        if(dY < -5):
                             # socket for outgoing messages
                             socketOut = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
                             socketOut.connect((HOST, PORT + 1));
