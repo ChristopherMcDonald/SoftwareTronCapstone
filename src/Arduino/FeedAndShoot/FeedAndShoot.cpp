@@ -2,7 +2,7 @@
 #include "FeedAndShoot.h"
 #include "Stepper.h"
 
-const int stepsPerRevolution = 200;
+const int stepsPerRevolution = 64;
 const int FrequencyMotorMaxSpeed = 150;
 const int FrequencyMotorMinSpeed = 5;
 const int ShooterMotorMaxSpeed = 255;
@@ -11,17 +11,15 @@ const int ShooterMotorMinSpeed = 0;
 // Declare DC Shooter Motor Speed PIN for PWM
 const int speedPin = 3;
 
-
+// Initialize Stepper Motor Pins
+Stepper myStepper(stepsPerRevolution, 8, 9, 10, 11);
 
 FeedAndShoot::FeedAndShoot() // Constructor
 {
 	Serial.begin(9600);
 
-	stepperspeed = 0;
+	stepperspeed = 100;
 	dcspeed = 0; // Speed stored as 0 - 255 PWM values
-
-	// Initialize Stepper Motor Pins
-	Stepper myStepper(stepsPerRevolution, 8, 9, 10, 11);
 
 	// Initialize Shooter DC Motor Pin
   	pinMode(speedPin, OUTPUT);
@@ -30,10 +28,6 @@ FeedAndShoot::FeedAndShoot() // Constructor
   	Serial.println("\nFeeder and Shooter Program Initialized");
 }
 
-int FeedAndShoot::get_dcspeed() // Get DC Speed
-{
-	return dcspeed;
-}
 
 bool FeedAndShoot::set_dcspeed(int desired_speed) // Set DC Motor Speed. Note Desired Speed is from 0 - 100 limit
 {
@@ -47,4 +41,10 @@ bool FeedAndShoot::set_dcspeed(int desired_speed) // Set DC Motor Speed. Note De
   		analogWrite(speedPin, dcspeed); // Move the Motor with the desired speed setting
   		return true;
   	}
+}
+
+void FeedAndShoot::move_by_degrees(double degrees_to_move)
+{
+	myStepper.setSpeed(stepperspeed);
+	myStepper.step((int)((degrees_to_move*stepsPerRevolution)/360));
 }
