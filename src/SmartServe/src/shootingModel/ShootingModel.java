@@ -45,7 +45,7 @@ public class ShootingModel {
         yDistance = calculateYDistance(landingYCoord);
         double distSquared = Math.pow(xDistance, 2) + Math.pow(yDistance, 2);
         double totalDistance = Math.sqrt(distSquared);
-        System.out.println("Total travel distance: " + totalDistance + " meters");
+        //System.out.println("Total travel distance: " + totalDistance + " meters");
         return totalDistance;
     }
 
@@ -57,7 +57,7 @@ public class ShootingModel {
      */
     private double calculateYawAngle(double yDist, double xDist){
         double yawAngle = Math.atan(yDist/xDist);
-        System.out.println("Angle in the X Plane: " + Math.toDegrees(yawAngle));
+        //System.out.println("Angle in the X Plane: " + Math.toDegrees(yawAngle));
         return yawAngle;
     }
 
@@ -67,7 +67,7 @@ public class ShootingModel {
      */
     public double calculateVelocity(){
         double vel = Math.sqrt((Math.pow(distance, 2)*gravity)/(2*Math.pow(Math.cos(pitch),2)*(yInitialHeight+distance*Math.tan(pitch))));
-        System.out.println("Velocity: "+vel+" m/s");
+        //System.out.println("Velocity: "+vel+" m/s");
         return vel;
     }
 

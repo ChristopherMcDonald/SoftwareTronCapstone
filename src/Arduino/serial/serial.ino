@@ -38,7 +38,7 @@ void loop() {
       double ang = data.substring(2).toDouble();
      
       if(myautopan->move_to_location(pan)) {
-        Serial.write('A');
+        Serial.write('C');
       } else {
         Serial.write('B');
       }

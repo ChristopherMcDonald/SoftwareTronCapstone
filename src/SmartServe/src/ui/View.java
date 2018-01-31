@@ -12,7 +12,7 @@ public class View {
 	
 	private static Controller control;
 	private static boolean paused = true;		
-	public static void main(String[] args) {  
+	public static void main(String[] args) {
 		
 		JFrame f = new JFrame();				//creating instance of JFrame  
 
@@ -32,7 +32,7 @@ public class View {
 		
 		String[] modes = { Mode.RANDOM.toString(), Mode.SINGLE.toString(), Mode.TRAIN.toString()};		//training modes
 	    final JComboBox<String> modeDropDown = new JComboBox<String>(modes); //creating instance of JComboBox(Dropdown)
-	    modeDropDown.setBounds(150, 150, 100,40);		//x acis, y axis, width, height
+	    modeDropDown.setBounds(100, 150, 200,40);		//x acis, y axis, width, height
 	    
 	    
 	    f.add(title);									//add title in JFrame
