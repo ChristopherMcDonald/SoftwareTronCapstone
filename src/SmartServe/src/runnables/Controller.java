@@ -8,7 +8,6 @@ import java.text.SimpleDateFormat;
 import java.util.Random;
 
 import adt.Mode;
-import adt.RunState;
 import adt.ShootingParameters;
 import adt.Shot;
 import adt.ShotDetail;
@@ -16,6 +15,7 @@ import controllers.ArduinoController;
 import controllers.CVConnector;
 import controllers.SQLConnector;
 import controllers.ShotRecommendationController;
+import enums.RunState;
 import errors.NotConnectedException;
 import shootingModel.ShootingDetails;
 import shootingModel.ShootingModel;
