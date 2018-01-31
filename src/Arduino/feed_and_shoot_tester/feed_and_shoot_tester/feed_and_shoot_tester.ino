@@ -2,19 +2,25 @@
 
 FeedAndShoot* myfeedandshoot = new FeedAndShoot();
 
+String data;
+
 void setup() 
 {
   // put your setup code here, to run once:
-  Serial.begin(9600);
-
+  Serial.begin(19200);
+  myfeedandshoot->set_dcspeed(0);
 }
 
 void loop() 
 {
-  if(!(myfeedandshoot->set_dcspeed(50)))
-  {
-    Serial.println("Error in Setting DC Speed");
+  if(Serial.available() > 0) {
+    data = Serial.readString();
+    double num = data.toDouble();
+
+    if(!(myfeedandshoot->set_dcspeed(100)))
+    {
+      Serial.println("Error in Setting DC Speed");
+    }
+    myfeedandshoot->move_by_steps(550); // 600 Steps for 1 shot or 550 tested
   }
-  myfeedandshoot->move_by_steps(600); // 600 Steps for 1 shot or 550 tested
-  delay(3000);
 }
