@@ -2,7 +2,7 @@
 #include "FeedAndShoot.h"
 #include "Stepper.h"
 
-const int stepsPerRevolution = 64;
+const int stepsPerRevolution = 200;
 const int FrequencyMotorMaxSpeed = 150;
 const int FrequencyMotorMinSpeed = 5;
 const int ShooterMotorMaxSpeed = 255;
@@ -43,8 +43,8 @@ bool FeedAndShoot::set_dcspeed(int desired_speed) // Set DC Motor Speed. Note De
   	}
 }
 
-void FeedAndShoot::move_by_degrees(double degrees_to_move)
+void FeedAndShoot::move_by_steps(int steps)
 {
 	myStepper.setSpeed(stepperspeed);
-	myStepper.step((int)((degrees_to_move*stepsPerRevolution)/360));
+	myStepper.step(steps);
 }
