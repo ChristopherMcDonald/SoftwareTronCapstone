@@ -94,12 +94,9 @@ public class SQLConnector {
 			argus = argus + "?,";
 		}
 
-		System.out.println(argus);
-
 		CallableStatement cs = myConn.prepareCall("{call "+ proc + argus + "?)}");
 
 		for(int j = 0; j < values.length; j++) {
-			System.out.println(j + " - " + values[j]); 
 			
 			switch(values[j].getClass().getSimpleName()) {
 				case("Double"): 	cs.setDouble(j+1, (Double) values[j]); break;
@@ -122,12 +119,9 @@ public class SQLConnector {
 			argus = argus + "?,";
 		}
 
-		System.out.println(argus);
-
 		CallableStatement cs = myConn.prepareCall("{call "+ proc + argus + "?)}");
 
 		for(int j = 0; j < values.length; j++) {
-			System.out.println(j + " - " + values[j]); 
 			
 			switch(values[j].getClass().getSimpleName()) {
 				case("Double"): 	cs.setDouble(j+1, (Double) values[j]); break;

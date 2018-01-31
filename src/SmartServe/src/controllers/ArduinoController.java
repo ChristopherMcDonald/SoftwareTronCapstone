@@ -18,7 +18,6 @@ public class ArduinoController {
 
 		pan.shoot(new ShotDetail(0.0f, 80.0f, 0.0f, 0.0f));
 		shooter.shoot(100);
-		
 	}
 	
 	private Arduino arduino; // holds the port if successfully connects
@@ -34,7 +33,13 @@ public class ArduinoController {
 		if(arduino.openConnection()) {
 			byte[] b = new byte[1];
 			arduino.getSerialPort().readBytes(b, 1);
-			System.out.println("test: " + b[0]);
+			
+			while(b[0] != 65) {
+				b = new byte[1];
+				arduino.getSerialPort().readBytes(b, 1);
+			}
+			
+			System.out.println("Connected to Arduino: " + port);
 			this.port = port;
 			return true; 
 		} else {
@@ -42,6 +47,13 @@ public class ArduinoController {
 			this.port = null;
 			return false;
 		}
+	}
+	
+	/**
+	 * closes the connection to the Arduino
+	 */
+	public void closeConnection() {
+		this.arduino.closeConnection();
 	}
 	
 	/**
@@ -60,19 +72,19 @@ public class ArduinoController {
 		String toSend = String.format("P=%.0f,Y=%.0f,V=%.0f,Z=%.0f", sd.pitch, sd.yaw, sd.velocity, sd.angular);
 
 		// DEBUGGING
-		System.out.println(toSend);
+		System.out.println("Panning to " + sd.yaw);
 		
 		arduino.serialWrite(toSend);
 		
 		byte[] b = new byte[1];
 		arduino.getSerialPort().readBytes(b, 1);
-		System.out.println("Pan gave me: " + b[0]);
 		
-		while(b[0] != 65) {
+		while(b[0] != 67) {
 			b = new byte[1];
 			arduino.getSerialPort().readBytes(b, 1);
-			System.out.println("Pan gave me: " + b[0]);
 		}
+		
+		System.out.println("Panning Completed");
 		
 		return 0;
 	}
@@ -95,9 +107,6 @@ public class ArduinoController {
 		
 		arduino.serialWrite(toSend);
 		
-		byte[] b = new byte[1];
-		arduino.getSerialPort().readBytes(b, 1);
-		System.out.println(b[0]);
 	}
 	
 	/**

@@ -9,6 +9,7 @@ void setup()
   // put your setup code here, to run once:
   Serial.begin(19200);
   myfeedandshoot->set_dcspeed(0);
+  Serial.write('A');
 }
 
 void loop() 
@@ -21,6 +22,7 @@ void loop()
     {
       Serial.println("Error in Setting DC Speed");
     }
+    delay(1000);
     myfeedandshoot->move_by_steps(550); // 600 Steps for 1 shot or 550 tested
   }
 }

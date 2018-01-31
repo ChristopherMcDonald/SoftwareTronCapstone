@@ -19,12 +19,12 @@ public class ShotRecommendationController {
 	
 	private static final String targetURL = "http://localhost:8080/nextShot";
 	
-	public static Shot getRecommendation() {
+	public static Shot getRecommendation(Mode m) {
 		 
 		HttpURLConnection connection = null;
 		try {			  
 		    //Create connection
-		    URL url = new URL(targetURL);
+		    URL url = new URL(targetURL + "?mode=" + m.toString());
 		    connection = (HttpURLConnection) url.openConnection();
 		    connection.setRequestMethod("GET");
 

@@ -77,7 +77,7 @@ public class Controller {
 	public void startTraining(Mode m) throws NotConnectedException, IOException, InterruptedException, SQLException {
 		this.m = m;
 		while(true) {
-			Shot s = ShotRecommendationController.getRecommendation();
+			Shot s = ShotRecommendationController.getRecommendation(this.m);
 			ShootingDetails sd = (new ShootingModel(0.08, 45)).getShootingDetails(s.x, s.y);
 			ShotDetail sd1 = new ShotDetail(45f, (float) sd.getYaw(), (float) sd.getVelocity(), 0f);
 			

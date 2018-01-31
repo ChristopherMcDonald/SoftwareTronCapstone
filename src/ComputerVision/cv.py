@@ -49,12 +49,8 @@ socketIn.listen(5);                     # enables server to accept incoming
 pts = deque(maxlen = args["buffer"])
 counter = 0
 (dX, dY) = (0,0)
-cap = cv2.VideoCapture(0)
-vs= WebcamVideoStream(src=0).start()
-print(cap.get(3))
-print(cap.get(4))
+vs= WebcamVideoStream(src=1).start()
 
-ok,frame = cap.read()
 while(True):
 
     if(fsm == 0):                           # waiting on connection
