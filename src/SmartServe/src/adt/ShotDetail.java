@@ -13,7 +13,7 @@ public class ShotDetail {
 	public float angular; // direction
 	
 	public ShotDetail(float p, float y, float v, float a) {
-		pitch = a;
+		pitch = p;
 		yaw = y;
 		velocity = v;
 		angular = a;

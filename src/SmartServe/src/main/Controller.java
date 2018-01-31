@@ -55,7 +55,7 @@ public class Controller {
 	public boolean boot() {
 		try {
 			ardController = new ArduinoController();
-			if(!ardController.test("cu.usbmodem14531")) {
+			if(!ardController.test("cu.usbmodem14531", 900)) {
 				return false;
 			}
 			
