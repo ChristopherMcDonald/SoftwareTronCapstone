@@ -15,6 +15,6 @@ void loop()
   {
     Serial.println("Error in Setting DC Speed");
   }
-  myfeedandshoot->move_by_degrees(360);
+  myfeedandshoot->move_by_steps(600); // 600 Steps for 1 shot or 550 tested
   delay(3000);
 }

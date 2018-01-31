@@ -8,7 +8,7 @@ class FeedAndShoot
 	public:
 		FeedAndShoot();
 		bool set_dcspeed(int desired_speed);
-		void move_by_degrees(double degrees_to_move);
+		void move_by_steps(int steps);
 
 	private:
 		int stepperspeed, dcspeed;
