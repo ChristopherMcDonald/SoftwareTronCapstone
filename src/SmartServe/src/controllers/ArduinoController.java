@@ -9,9 +9,16 @@ import errors.NotConnectedException;
 public class ArduinoController {
 	
 	public static void main(String[] args) throws IOException, InterruptedException, NotConnectedException {
-		ArduinoController ac = new ArduinoController();
-		ac.test("cu.usbmodem14441");
-		ac.shoot(new ShotDetail(41f, 12345.2f, 1.323425f, 1.0f));
+		ArduinoController pan = new ArduinoController();
+		ArduinoController shooter = new ArduinoController();
+		String port2 = "cu.usbserial-A700fk4c";
+		String port1 = "cu.usbmodem14131";
+		System.out.println(pan.test(port2, 9600));
+		System.out.println(shooter.test(port1, 19200));
+
+		pan.shoot(new ShotDetail(0.0f, 80.0f, 0.0f, 0.0f));
+		shooter.shoot(100);
+		
 	}
 	
 	private Arduino arduino; // holds the port if successfully connects
@@ -22,9 +29,12 @@ public class ArduinoController {
 	 * @param port - port to connect over to arduino
 	 * @return successful connection
 	 */
-	public boolean test(String port) {
-		arduino = new Arduino(port, 9600);
+	public boolean test(String port, int baud) {
+		arduino = new Arduino(port, baud);
 		if(arduino.openConnection()) {
+			byte[] b = new byte[1];
+			arduino.getSerialPort().readBytes(b, 1);
+			System.out.println("test: " + b[0]);
 			this.port = port;
 			return true; 
 		} else {
@@ -43,17 +53,51 @@ public class ArduinoController {
 	 * @throws IOException 
 	 * @throws InterruptedException 
 	 */
-	public void shoot(ShotDetail sd) throws NotConnectedException {
+	public int shoot(ShotDetail sd) throws NotConnectedException {
 		if(arduino == null) {
 			throw new NotConnectedException("Arduino", port);
 		}
-		String toSend = String.format("P=%.0f,Y=%.0f,V=%.0f,Z=%.0f", sd.pitch, sd.pitch, sd.velocity, sd.angular);
+		String toSend = String.format("P=%.0f,Y=%.0f,V=%.0f,Z=%.0f", sd.pitch, sd.yaw, sd.velocity, sd.angular);
+
+		// DEBUGGING
+		System.out.println(toSend);
+		
+		arduino.serialWrite(toSend);
+		
+		byte[] b = new byte[1];
+		arduino.getSerialPort().readBytes(b, 1);
+		System.out.println("Pan gave me: " + b[0]);
+		
+		while(b[0] != 65) {
+			b = new byte[1];
+			arduino.getSerialPort().readBytes(b, 1);
+			System.out.println("Pan gave me: " + b[0]);
+		}
+		
+		return 0;
+	}
+	
+	/**
+	 * instructs Arduino to shoot a ball at a given speed, must be done after shoot(ShotDetail)
+	 * @param speed in m/s
+	 * @throws NotConnectedException
+	 */
+	public void shoot(double speed) throws NotConnectedException {
+		if(arduino == null) {
+			throw new NotConnectedException("Arduino", port);
+		}
+//		double intensity = (speed - 10)*10 + 50; // scales speed which is 10 - 15 to 50% - 100%
+		
+		String toSend = Double.toString(speed);
 		
 		// DEBUGGING
 		System.out.println(toSend);
 		
-		arduino.serialWrite("");		// TODO understand W(hy)TF this is needed
 		arduino.serialWrite(toSend);
+		
+		byte[] b = new byte[1];
+		arduino.getSerialPort().readBytes(b, 1);
+		System.out.println(b[0]);
 	}
 	
 	/**
