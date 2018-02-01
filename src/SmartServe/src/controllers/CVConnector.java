@@ -99,6 +99,6 @@ public class CVConnector {
 			e.printStackTrace();
 			throw new NotConnectedException("CVConnector", port + 1);
 		}
-		return fromClient.equals("RETURNED");
+		return fromClient.equals("GOOD");
 	}
 }
