@@ -78,7 +78,7 @@ public class Controller implements Runnable {
 			System.out.println("Connected to Panning");
 			
 			shooter = new ArduinoController();
-			if(!shooter.test("cu.usbmodem14131", 19200)) {
+			if(!shooter.test("cu.usbmodem14531", 19200)) {
 				return false;
 			}
 			System.out.println("Connected to Shooter");
@@ -117,20 +117,20 @@ public class Controller implements Runnable {
 			ShootingDetails sd = (new ShootingModel(0.08, 45)).getShootingDetails(s.x, s.y); 	// TODO get shootingModel outta here
 																							// TODO ensure height is functional
 			// QUICK YAW FIX
-			int[] yaws = new int[]{60, 70, 80, 90, 100, 110, 120};
+			int[] yaws = new int[]{80, 85, 90, 95, 100};
 			Random r = new Random();
-			ShotDetail sd1 = new ShotDetail(45f, yaws[r.nextInt(7)], (float) sd.getVelocity(), 0f);	// TODO variable pitch and angular direction
+			ShotDetail sd1 = new ShotDetail(45f, yaws[r.nextInt(5)], (float) sd.getVelocity(), 0f);	// TODO variable pitch and angular direction
 			
 			// TODO optimize shots
 			
 			pan.shoot(sd1);
-			shooter.shoot(100);
+			shooter.shoot(75);
 			boolean returned = cvController.start();
+			System.out.println(returned ? "Ball Returned" : "Ball Not Returned");
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 			// TODO fill below with userID and shotID
 			Object[] myReturns = new Object[]{25, 1, returned ? 1 : 0, sdf.format(new Date(System.currentTimeMillis()))};
 			SQLConnector.save("returned", myReturns);
-			Thread.sleep(1000);
 			while(this.state == RunState.PAUSED) {
 				System.out.println("System is Paused...");
 				Thread.sleep(10);

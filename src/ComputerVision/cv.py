@@ -58,7 +58,7 @@ while(True):
         conn, addr = socketIn.accept();     # loop will freeze on this command, runs when SmartServe
         print("Got connection from", addr); # sends a request
         msg = conn.recv(1024);              # parses msg... could be "TEST", "DETECT"
-
+        
         # DEBUGGING
         # msg = b'DETECT'
         # print(msg);
@@ -78,7 +78,7 @@ while(True):
 
     if(fsm == 1 or fsm == 2 or fsm == 3):
 
-        if((datetime.now() - start).seconds > 10):
+        if((datetime.now() - start).seconds > 8):
             # socket for outgoing messages
             socketOut = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
             socketOut.connect((HOST, PORT + 1));
@@ -171,7 +171,7 @@ while(True):
 
                     if(fsm == 1):       # check if active
                         print("in state 1")
-                        if(dX > 5):
+                        if(dX < -5):
                             fsm = 2;
                     elif(fsm == 2):     # check if descending
                         print("in state 2")
@@ -181,14 +181,15 @@ while(True):
                         print("in state 3")
                         if(dY < -5):
                             # socket for outgoing messages
+                            print("hit")
                             socketOut = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
                             socketOut.connect((HOST, PORT + 1));
-                            print("hit")
+                            
                             socketOut.send(b'GOOD\n');
                             fsm = 0;    # HIT!
                             pts = deque(maxlen = args["buffer"])
 
-                if(fsm!=0):
+                if(fsm != 0):
                     thickness = int(np.sqrt(args["buffer"] / float(i + 1)) * 2.5)
                     cv2.line(frame, pts[i - 1], pts[i], (0, 0, 255), thickness)
                     cv2.putText(frame, "dx: {}, dy: {}".format(dX, dY),
