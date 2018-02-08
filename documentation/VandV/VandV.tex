@@ -108,9 +108,24 @@ The following terms and definitions will be used throughout this document:
 
 \section{Testing Philosophy}
 \subsection{Approach}
+The approach to testing will be to separate the subsystems as much as possible and test them accordingly. Every subsystem will be unit tested in JUnit or PyUnit if implemented in Java or Python respectively. The shooting mechanism will be tested manually to ensure it is functional properly. Stubbing a service or dependancy can be done to return consistent, reliable and predictable results. For instance, the SmartServe system may use a stub for the CV subsystem to return a predefined sequence of pass/fail flags.
 \subsection{Schedule}
+\begin{table}[H]
+\centering
+\caption{Testing Schedule}
+\label{my-label}
+\begin{tabular}{|l|l|l|}
+\hline
+\multicolumn{3}{|c|}{\textbf{Testing Schedule}}  \\ \hline
+\textbf{Task} & \textbf{Date} & \textbf{Notes} \\ \hline
+Complete Test Cases & February 13, 2018 & N/A \\ \hline
+Run Tests (First) & February 16, 2018 & N/A \\ \hline
+Edit Test Cases & March 9, 2018 & N/A \\ \hline
+Run Tests (Second) & March 16, 2018 & N/A \\ \hline
+\end{tabular}
+\end{table}
 \subsection{Environment}
-
+The SmartServe system uses heavy computation power due to the CV and ML models, so the system which runs the test will have the following details. The system will be a 15-inch Macbook Pro (Late 2016) running macOS High Sierra (10.13). The Macbook Pro has an 2.6 GHz Intel Core i7 CPU and a Radeon Pro 450 2GB GPU. The location will be in Thode Makerspace where the CV will be adjusted as necessary for those lighting conditions. 
 \section{Test Cases}
 \subsection{Electromechanical Subsystems}
 \subsubsection{Shooting Mechanism}
@@ -125,3 +140,20 @@ The following terms and definitions will be used throughout this document:
 \section{Test Case-Requirement Traceability Matrix}
 
 \end{document}
+
+% Test Case Template
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: XXY	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{Title???}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: ????}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: ????}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: ????}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: ????}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: ????}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: ????}\\\hline
+\end{tabular}
+\caption{Title???}
+\end{table}
+\end{center}
