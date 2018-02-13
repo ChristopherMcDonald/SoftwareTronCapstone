@@ -132,10 +132,445 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \subsection{Software Subsystems}
 \subsubsection{Computer Vision}
 \subsubsection{ShotRecommender}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SR1	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommender Listen Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommender service responds to HTTP calls on port 8080.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The system waits until a request.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: N/A}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: None}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: N/A}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ShotRecommender Listen Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SR2	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommender Query Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommender calls the ``query" method for user data.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The call returns a table of user performance data.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The SQL database is running on port 3306.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: a valid user id for the ``performance" procedure}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: table of data}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ShotRecommender Query Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SR3	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommender Random Shot Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommender receives a request for a shot.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The service generates a random shot.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The service is running on port 8080.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: a HTTP request with ``Random" as the mode parameter}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: a random shot which adheres to requirements}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ShotRecommender Random Shot Test}
+\end{table}
+\end{center}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SR4	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommender Training Shot Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommender receives a request for a shot.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The service generates a shot.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The service is running on port 8080.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: a HTTP request with ``Train" as the mode parameter}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: a random shot which adheres to requirements}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ShotRecommender Training Shot Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SR5	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommender UpdateModel Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommender receives a status update for a shot.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The service changes the model in response.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The service is running on port 8080.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: a HTTP request with the shot id and returned boolean as parameters.}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: the model is updated}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ShotRecommender UpdateModel Test}
+\end{table}
+\end{center}
+
 \subsubsection{Shooting Model}
 \subsubsection{Data Storage}
 \subsubsection{User Interface}
 \subsubsection{SmartServe}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: XXY	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommendation Connection Test - Pass}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommendation class will call the \textit{connect} method with port 8080 as a parameter.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method should return true.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The ShotRecommendation server is running on port 8080.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: 8080}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ShotRecommendation Connection Test - Pass}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: XXY	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommendation Connection Test - Fail}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommendation class will call the \textit{connect} method with port 8090 as a parameter.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method should return false.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The ShotRecommendation server is running on port 8080.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: 8090}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: false}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ShotRecommendation Connection Test - Fail}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: XXY	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommendation Request Shot - Random}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommendation class will call the \textit{getRecommendation} method with Random mode as a parameter.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method should a random shot of the form ``X=A.BC,Y=A.BC,V=A.BC,W=A.BC" where the values are within the requirements of the system.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The ShotRecommendation server is running on port 8080.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Mode.Random}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: A valid shot, in string form.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ShotRecommendation Request Shot - Random}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: XXY	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommendation Request Shot - Train}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommendation class will call the \textit{getRecommendation} method with Training mode as a parameter.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method should a shot of the form ``X=A.BC,Y=A.BC,V=A.BC,W=A.BC" where the values are within the requirements of the system.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The ShotRecommendation server is running on port 8080.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Mode.Train}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: A valid shot, in string form.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ShotRecommendation Request Shot - Train}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SS1	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommendation Request Shot - One-shot}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommendation class will call the \textit{getRecommendation} method with One-shot mode as a parameter.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method should a shot of the form ``X=A.BC,Y=A.BC,V=A.BC,W=A.BC" where the values are within the requirements of the system. Repeated requests should return the same shot.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The ShotRecommendation server is running on port 8080.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Mode.OneShot}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: A valid shot, in string form.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ShotRecommendation Request Shot - One-shot}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SS2	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommendation Model Update}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommendation class will call the \textit{updateModel} method.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The ShotRecommender does not throw an error and the model is updated.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The ShotRecommendation server is running on port 8080.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: a previously request shot and false}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: N/A}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ShotRecommendation Model Update}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SS3	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommendation Model Update}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommendation class will call the \textit{updateModel} method.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The ShotRecommender does not throw an error and the model is updated.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The ShotRecommendation server is running on port 8080.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: a previously request shot and true}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: N/A}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ShotRecommendation Request Shot - One-shot}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SS4	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ComputerVisionController Connection Test - Pass}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The CV class will call the \textit{connection} method.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method returns true.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The CV server is running on port 8000.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: 8000}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ComputerVisionController Connection Test - Pass}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SS5	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ComputerVisionController Connection Test - Fail}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The CV class will call the \textit{connection} method.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method returns false.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The CV server is running on port 8001.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: 8000}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: false}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ComputerVisionController Connection Test - Fail}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SS6	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ComputerVisionController Detect Test - Timeout}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The CV class will call the \textit{start} method and no ball is introduced into the frame.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method returns false.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The CV server is running on port 8000.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: false}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ComputerVisionController Detect Test - Timeout}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SS7	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ComputerVisionController Detect Test - Detect}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The CV class will call the \textit{start} method and a ball is introduced into the frame, emulating a successful shot.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method returns true.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The CV server is running on port 8000.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ComputerVisionController Detect Test - Detect}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SS8	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{SQLConnector Connection Test - Pass}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The SQLConnector class will call the \textit{connect} method.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method returns true.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The SQL server is running on port 3306.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: 3306}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{SQLConnector Connection Test - Pass}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SS9	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{SQLConnector Connection Test - Fail}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The SQLConnector class will call the \textit{connect} method.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method returns false.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The SQL server is not running.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: 3306}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: false}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{SQLConnector Connection Test - Pass}
+\end{table}
+\end{center}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SS10	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{SQLConnector Query Test - Signup}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The SQLConnector class will call the \textit{save} method.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The user is saved in the database.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The SQL server is running on port 3306.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Object[] with ``Chris" and ``password123" for the ``sign\_up" procedure}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{SQLConnector Query Test - Signup}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SS11	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{SQLConnector Query Test - Returned}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The SQLConnector class will call the \textit{save} method.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The shot is saved in the database correctly.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The SQL server is running on port 3306.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Object[] with 25, 1, 1 and the current time for the ``returned" procedure}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{SQLConnector Query Test - Returned}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SS12	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{SQLConnector Query Test - Login}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The SQLConnector class will call the \textit{save} method.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The shot is saved in the database correctly.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The SQL server is running on port 3306.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Object[] with ``Chris" and ``password123" for the ``login" procedure}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{SQLConnector Query Test - Returned}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SS13	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ArduinoController Connection Test - Pass}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The ArduinoController class will call the \textit{test} method, repeat for all arduinos.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method returns true.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The Arduinos are plugged in via USB and loaded with the correct code.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: the port for the Arduino(s)}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ArduinoController Connection Test - Pass}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SS14	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ArduinoController Connection Test - Fail}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The ArduinoController class will call the \textit{test} method, repeat for all arduinos.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method returns false.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The Arduinos are plugged in via USB and loaded with the correct code.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: ``some-test-string"}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: false}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ArduinoController Connection Test - Fail}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SS15	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ArduinoController Test - Pan}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The ArduinoController class will call the \textit{shoot} method.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The system pans to 75 degrees.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The Arduinos are plugged in via USB and loaded with the correct code.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: a ShotDetail object with pan of 75 degrees}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ArduinoController Test - Pan}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SS16	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ArduinoController Test - Pan}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The ArduinoController class will call the \textit{shoot} method.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The system pans to 120 degrees.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The Arduinos are plugged in via USB and loaded with the correct code.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: a ShotDetail object with pan of 120 degrees}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ArduinoController Test - Pan}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SS17	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ArduinoController Test - Shoot}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The ArduinoController class will call the \textit{shoot} method.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The system shoots at 75\% power.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The Arduinos are plugged in via USB and loaded with the correct code.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: 75}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ArduinoController Test - Shoot}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SS18	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ArduinoController Test - Shoot}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The ArduinoController class will call the \textit{shoot} method.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The system shoots at 100\% power.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The Arduinos are plugged in via USB and loaded with the correct code.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: 100}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ArduinoController Test - Shoot}
+\end{table}
+\end{center}
 
 \section{Test Case-Requirement Traceability Matrix}
 
