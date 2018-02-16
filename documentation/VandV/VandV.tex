@@ -55,7 +55,7 @@
 		\end{flushright}
 	\end{minipage}\\[2cm]
 
-	\includegraphics[width=0.3\textwidth]{logo.png} \\
+
 	{\large Last compiled on \today}
 	\end{center}
 
@@ -125,12 +125,173 @@ Run Tests (Second) & March 16, 2018 & N/A \\ \hline
 \end{tabular}
 \end{table}
 \subsection{Environment}
-The SmartServe system uses heavy computation power due to the CV and ML models, so the system which runs the test will have the following details. The system will be a 15-inch Macbook Pro (Late 2016) running macOS High Sierra (10.13). The Macbook Pro has an 2.6 GHz Intel Core i7 CPU and a Radeon Pro 450 2GB GPU. The location will be in Thode Makerspace where the CV will be adjusted as necessary for those lighting conditions. 
+The SmartServe system uses heavy computation power due to the CV and ML models, so the system which runs the test will have the following details. The system will be a 15-inch Macbook Pro (Late 2016) running macOS High Sierra (10.13). The Macbook Pro has an 2.6 GHz Intel Core i7 CPU and a Radeon Pro 450 2GB GPU. The location will be in Thode Makerspace where the CV will be adjusted as necessary for those lighting conditions.
 \section{Test Cases}
 \subsection{Electromechanical Subsystems}
 \subsubsection{Shooting Mechanism}
 \subsection{Software Subsystems}
 \subsubsection{Computer Vision}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: XXY	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ball detection Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Test to see if cv module detects the ball}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: fails if false is returned while ball is in frame}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: cvmodule successfully connects to camera and smartserve}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: returns true while ball is in frame}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ball detection Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: XXY	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ball upward detection Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Test to see if cv module detects the ball moving upwards}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: fails if false is returned while ball is moving upwards }\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: cvmodule successfully connects to camera and smartserve, ball is being detected}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: returns true while ball is moving upwards}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ball upward detection Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: XXY	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ball downward detection Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Test to see if cv module detects the ball moving downwards}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: fails if false is returned while ball is moving downwards }\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: cvmodule successfully connects to camera and smartserve, ball is being detected}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: returns true while ball is moving downwards}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ball downward detection Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: XXY	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ball rightward detection Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Test to see if cv module detects the ball moving rightwards}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: fails if false is returned while ball is moving rightwards }\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: cvmodule successfully connects to camera and smartserve, ball is being detected}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: returns true while ball is moving rightwards}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ball rightward detection Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: XXY	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ball leftward detection Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Test to see if cv module detects the ball moving leftwards}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: fails if false is returned while ball is moving leftwards }\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: cvmodule successfully connects to camera and smartserve, ball is being detected}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: returns true while ball is moving leftwards}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ball leftward detection Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: XXY	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{cvmodule timeout test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Test to see if cv module correctly times out }\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: condition passes if fsm moves from state 1 to state 0 after 8 seconds}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: fsm is in state 1}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: sends bad signal to smartserve, cvmodule stops running}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: cvmodule is closed}\\\hline
+\end{tabular}
+\caption{cvmodule timeout test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: XXY	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{fsm transition: state 1 to 2}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description:test if the fsm transitions to state 2 when ball is descending}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition:fsm transitions to state 2 when ball is descending }\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: fsm is in state 1}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: fsm transitions to state 2}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: fsm is in state 2}\\\hline
+\end{tabular}
+\caption{fsm transition: state 1 to 2}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: XXY	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{fsm transition: state 2 to 3}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description:test if the fsm transitions from state 2 to state 3 when ball is ascending}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition:fsm transitions to state 3 when ball is ascending }\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: fsm is in state 2}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: fsm transitions to state 3}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: fsm is in state 3}\\\hline
+\end{tabular}
+\caption{fsm transition: state 2 to 3}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: XXY	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{good signal test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description:test if the cvmodule sends a good signal to smartserve}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition:cvmodule successfully sends good signal when fsm is in state 3}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: fsm is in state 3}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: good signals successfully sent}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: fsm is in state 0}\\\hline
+\end{tabular}
+\caption{good signal test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: XXY	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{cvmodule timeout test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Test to see if cv module correctly times out }\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: condition passes if fsm moves from state 1 to state 0 after 8 seconds}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: fsm is in state 1}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: sends bad signal to smartserve, cvmodule stops running}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: cvmodule is closed}\\\hline
+\end{tabular}
+\caption{cvmodule timeout test}
+\end{table}
+\end{center}
+
 \subsubsection{ShotRecommender}
 
 \begin{center}
