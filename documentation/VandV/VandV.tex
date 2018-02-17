@@ -55,7 +55,7 @@
 		\end{flushright}
 	\end{minipage}\\[2cm]
 
-	\includegraphics[width=0.3\textwidth]{logo.png} \\
+
 	{\large Last compiled on \today}
 	\end{center}
 
@@ -116,7 +116,7 @@ The approach to testing will be to separate the subsystems as much as possible a
 \label{my-label}
 \begin{tabular}{|l|l|l|}
 \hline
-\multicolumn{3}{|c|}{\textbf{Testing Schedule}}  \\ \hline
+\multicolumn{3}{|c|}{\textbf{Testing Schedule}}  \\ \hline 
 \textbf{Task} & \textbf{Date} & \textbf{Notes} \\ \hline
 Complete Test Cases & February 13, 2018 & N/A \\ \hline
 Run Tests (First) & February 16, 2018 & N/A \\ \hline
@@ -125,12 +125,173 @@ Run Tests (Second) & March 16, 2018 & N/A \\ \hline
 \end{tabular}
 \end{table}
 \subsection{Environment}
-The SmartServe system uses heavy computation power due to the CV and ML models, so the system which runs the test will have the following details. The system will be a 15-inch Macbook Pro (Late 2016) running macOS High Sierra (10.13). The Macbook Pro has an 2.6 GHz Intel Core i7 CPU and a Radeon Pro 450 2GB GPU. The location will be in Thode Makerspace where the CV will be adjusted as necessary for those lighting conditions. 
+The SmartServe system uses heavy computation power due to the CV and ML models, so the system which runs the test will have the following details. The system will be a 15-inch Macbook Pro (Late 2016) running macOS High Sierra (10.13). The Macbook Pro has an 2.6 GHz Intel Core i7 CPU and a Radeon Pro 450 2GB GPU. The location will be in Thode Makerspace where the CV will be adjusted as necessary for those lighting conditions.
 \section{Test Cases}
 \subsection{Electromechanical Subsystems}
 \subsubsection{Shooting Mechanism}
 \subsection{Software Subsystems}
 \subsubsection{Computer Vision}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: CV1	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ball detection Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Test to see if cv module detects the ball}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: fails if false is returned while ball is in frame}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: cvmodule successfully connects to camera and smartserve}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: returns true while ball is in frame}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ball detection Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: CV2	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ball upward detection Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Test to see if cv module detects the ball moving upwards}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: fails if false is returned while ball is moving upwards }\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: cvmodule successfully connects to camera and smartserve, ball is being detected}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: returns true while ball is moving upwards}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ball upward detection Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: CV3	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ball downward detection Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Test to see if cv module detects the ball moving downwards}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: fails if false is returned while ball is moving downwards }\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: cvmodule successfully connects to camera and smartserve, ball is being detected}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: returns true while ball is moving downwards}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ball downward detection Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: CV4	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ball rightward detection Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Test to see if cv module detects the ball moving rightwards}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: fails if false is returned while ball is moving rightwards }\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: cvmodule successfully connects to camera and smartserve, ball is being detected}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: returns true while ball is moving rightwards}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ball rightward detection Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: CV5	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ball leftward detection Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Test to see if cv module detects the ball moving leftwards}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: fails if false is returned while ball is moving leftwards }\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: cvmodule successfully connects to camera and smartserve, ball is being detected}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: returns true while ball is moving leftwards}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ball leftward detection Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: CV6	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{cvmodule timeout test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Test to see if cv module correctly times out }\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: condition passes if fsm moves from state 1 to state 0 after 8 seconds}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: fsm is in state 1}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: sends bad signal to smartserve, cvmodule stops running}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: cvmodule is closed}\\\hline
+\end{tabular}
+\caption{cvmodule timeout test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: CV7	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{fsm transition: state 1 to 2}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description:test if the fsm transitions to state 2 when ball is descending}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition:fsm transitions to state 2 when ball is descending }\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: fsm is in state 1}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: fsm transitions to state 2}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: fsm is in state 2}\\\hline
+\end{tabular}
+\caption{fsm transition: state 1 to 2}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: CV8	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{fsm transition: state 2 to 3}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description:test if the fsm transitions from state 2 to state 3 when ball is ascending}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition:fsm transitions to state 3 when ball is ascending }\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: fsm is in state 2}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: fsm transitions to state 3}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: fsm is in state 3}\\\hline
+\end{tabular}
+\caption{fsm transition: state 2 to 3}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: CV9	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{good signal test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description:test if the cvmodule sends a good signal to smartserve}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition:cvmodule successfully sends good signal when fsm is in state 3}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: fsm is in state 3}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: good signals successfully sent}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: fsm is in state 0}\\\hline
+\end{tabular}
+\caption{good signal test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: CV10	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{cvmodule timeout test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Test to see if cv module correctly times out }\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: condition passes if fsm moves from state 1 to state 0 after 8 seconds}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: fsm is in state 1}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: sends bad signal to smartserve, cvmodule stops running}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: cvmodule is closed}\\\hline
+\end{tabular}
+\caption{cvmodule timeout test}
+\end{table}
+\end{center}
+
 \subsubsection{ShotRecommender}
 
 \begin{center}
@@ -173,7 +334,7 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommender receives a request for a shot.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The service generates a random shot.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The service is running on port 8080.}\\[4mm]
-	\multicolumn{2}{|p{\textwidth}|}{Input: a HTTP request with ``Random" as the mode parameter}\\[2mm]\hline
+	\multicolumn{2}{|p{\textwidth}|}{Input: an HTTP request with ``Random" as the mode parameter}\\[2mm]\hline
 	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: a random shot which adheres to requirements}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
@@ -190,7 +351,7 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommender receives a request for a shot.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The service generates a shot.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The service is running on port 8080.}\\[4mm]
-	\multicolumn{2}{|p{\textwidth}|}{Input: a HTTP request with ``Train" as the mode parameter}\\[2mm]\hline
+	\multicolumn{2}{|p{\textwidth}|}{Input: an HTTP request with ``Train" as the mode parameter}\\[2mm]\hline
 	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: a random shot which adheres to requirements}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
@@ -206,7 +367,7 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommender receives a status update for a shot.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The service changes the model in response.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The service is running on port 8080.}\\[4mm]
-	\multicolumn{2}{|p{\textwidth}|}{Input: a HTTP request with the shot id and returned boolean as parameters.}\\[2mm]\hline
+	\multicolumn{2}{|p{\textwidth}|}{Input: an HTTP request with the shot id and returned boolean as parameters.}\\[2mm]\hline
 	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: the model is updated}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
@@ -215,6 +376,55 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \end{center}
 
 \subsubsection{Shooting Model}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SM1	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ShootingModel calculateYawAngle Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The calculateYawAngle method returns an accurate yaw angle in degrees.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method returns an angle in degrees accurate to a whole number.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: N/A}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: xDist, yDist; distance to desired shot's x-coordinate and y-coordinate.}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: A yaw angle in degrees, accurate to a whole number.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ShootingModel calculateYawAngle Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SM2	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ShootingModel calculateVelocity Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The calculateVelocity method returns an accurate velocity in meters/second.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method returns the velocity accurate to a whole number.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: N/A}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Velocity in m/s, accurate to a whole number.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ShootingModel calculateVeolocty Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SM3	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{ShootingModel netHeightChecker Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: ThenetHeightChecker method checks whether the desired shot will pass over the net.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method returns the correct boolean indicating if the shot will pass over the net.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: N/A}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: N/A.}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: A boolean; True is shot will pass over the net, False otherwise.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{ShootingModel netHeightChecker Test}
+\end{table}
+\end{center}
+
 \subsubsection{Data Storage} %Sharon
 \begin{center}
 \begin{table}[H]
@@ -248,6 +458,8 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \end{table}
 \end{center}
 
+
+
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
@@ -277,6 +489,93 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: ????}\\\hline
 \end{tabular}
 \caption{Data Storage Sign In Test}
+\end{table}
+\end{center}
+
+\subsubsection{Shooting Mechanism}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SMC1	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{Feeding Mechanism Rotation Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The feeding mechanism rotates by given amount in degrees.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The feeding mechanism rotates by given amount of degrees within a tolerance of 2 degrees.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The feeding mechanism is ready/powered on.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Integer indicating the amount of degrees to be rotated.}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Feeding mechanism rotates to the required position.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{Feeding Mechanism Rotation Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SMC2	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{Shooting Control Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The shooting control shoots the ball via a rotating wheel at the requested power level to achieve the desired speed.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: ???}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The Shooting Control motor is powered on, and connected to the system.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Integer between 0-100 indicating the power level of the shot.
+}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: ????}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{Shooting Control Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SMC3	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{Four Position Roll Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The system rotates the Shooting Control to one of the four default positions.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: Rotates to the indicated position.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The Shooting Control motor is powered on, and connected to the system.
+}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Integer between 0-3 indicating the desired default position.}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: The shooting control rotates to the requested default position.
+}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{Four Position Roll Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SMC4	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{Adjustable Pitch Control Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The pitch control angles the shooting mechanism at the desired pitch level.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition:Rotate to the desired pitch level with a tolerance of 5 degrees.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: N/A}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input:Integer between -15 deg to 45 deg indicating pitch angle.}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Rotate to the desired pitch level with a tolerance of 5 degrees.
+}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{Adjustable Pitch Control Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SMC5	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{Panning Shooting Mechanism Across the Table}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Move the system to face the direction specified in degrees.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: System moved to desired position.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions:Panning stage is homed correctly before moving to the first location.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input:Integer between 60 deg to 120 deg indicating where to point the shooter.}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Moves to the desired position without going out of bounds.
+}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: When powered down, the system rotates to the home (0 degrees) position.}\\\hline
+\end{tabular}
+\caption{Panning Shooting Mechanism Test}
 \end{table}
 \end{center}
 
@@ -331,28 +630,12 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \end{table}
 \end{center}
 
-\begin{center}
-\begin{table}[H]
-\begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: UI3	&Status: ???? \\[-3mm]
-	\multicolumn{2}{|c|}{\textbf{\large{User Interface Sign Up Test}}}\\&\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Description: When sign up button is pressed, user is added with given parameters}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: User inputs are sent to Data Storage}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: Application UI is running}\\[4mm]
-	\multicolumn{2}{|p{\textwidth}|}{Input: User name and user password}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Return user parameters }	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ??}\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: ??}\\\hline 
-\end{tabular}
-\caption{User Interface Sign Up Test}
-\end{table}
-\end{center}
-
 \subsubsection{SmartServe}
 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: XXY	&Status: ????\\[-3mm]
+	Test ID: SR1	&Status: ????\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommendation Connection Test - Pass}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommendation class will call the \textit{connect} method with port 8080 as a parameter.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method should return true.}\\[1mm]\hline&\\[-3mm]
@@ -368,7 +651,7 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: XXY	&Status: ????\\[-3mm]
+	Test ID: SR2	&Status: ????\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommendation Connection Test - Fail}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommendation class will call the \textit{connect} method with port 8090 as a parameter.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method should return false.}\\[1mm]\hline&\\[-3mm]
@@ -384,7 +667,7 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: XXY	&Status: ????\\[-3mm]
+	Test ID: SR3	&Status: ????\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommendation Request Shot - Random}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommendation class will call the \textit{getRecommendation} method with Random mode as a parameter.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method should a random shot of the form ``X=A.BC,Y=A.BC,V=A.BC,W=A.BC" where the values are within the requirements of the system.}\\[1mm]\hline&\\[-3mm]
@@ -400,7 +683,7 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: XXY	&Status: ????\\[-3mm]
+	Test ID: SR4	&Status: ????\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommendation Request Shot - Train}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommendation class will call the \textit{getRecommendation} method with Training mode as a parameter.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method should a shot of the form ``X=A.BC,Y=A.BC,V=A.BC,W=A.BC" where the values are within the requirements of the system.}\\[1mm]\hline&\\[-3mm]
