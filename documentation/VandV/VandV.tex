@@ -129,6 +129,92 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \section{Test Cases}
 \subsection{Electromechanical Subsystems}
 \subsubsection{Shooting Mechanism}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SMC1	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{Feeding Mechanism Rotation Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The feeding mechanism rotates by given amount in degrees.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The feeding mechanism rotates by given amount of degrees within a tolerance of 2 degrees.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The feeding mechanism is ready/powered on.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Integer indicating the amount of degrees to be rotated.}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Feeding mechanism rotates to the required position.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{Feeding Mechanism Rotation Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SMC2	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{Shooting Control Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The shooting control shoots the ball via a rotating wheel at the requested power level to achieve the desired speed.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: ???}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The Shooting Control motor is powered on, and connected to the system.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Integer between 0-100 indicating the power level of the shot.
+}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: ????}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{Shooting Control Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SMC3	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{Four Position Roll Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The system rotates the Shooting Control to one of the four default positions.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: Rotates to the indicated position.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The Shooting Control motor is powered on, and connected to the system.
+}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Integer between 0-3 indicating the desired default position.}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: The shooting control rotates to the requested default position.
+}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{Four Position Roll Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SMC4	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{Adjustable Pitch Control Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The pitch control angles the shooting mechanism at the desired pitch level.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: Rotate to the desired pitch level with a tolerance of 5 degrees.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: N/A}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Integer between -15 deg to 45 deg indicating pitch angle.}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Rotate to the desired pitch level with a tolerance of 5 degrees.
+}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{Adjustable Pitch Control Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: SMC5	&Status: ????\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{Panning Shooting Mechanism Across the Table}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Move the system to face the direction specified in degrees.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: System moved to desired position.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: Panning stage is homed correctly before moving to the first location.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Integer between 60 deg to 120 deg indicating where to point the shooter.}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Moves to the desired position without going out of bounds.
+}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: When powered down, the system rotates to the home (0 degrees) position.}\\\hline
+\end{tabular}
+\caption{Panning Shooting Mechanism Test}
+\end{table}
+\end{center}
+
 \subsection{Software Subsystems}
 \subsubsection{Computer Vision}
 
@@ -136,15 +222,15 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
 	Test ID: CV1	&Status: ????\\[-3mm]
-	\multicolumn{2}{|c|}{\textbf{\large{ball detection Test}}}\\&\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Description: Test to see if cv module detects the ball}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: fails if false is returned while ball is in frame}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: cvmodule successfully connects to camera and smartserve}\\[4mm]
-	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: returns true while ball is in frame}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{Ball Detection Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Tests if CV subsystem can detect a table tennis ball}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: N/A}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: CV subsystem successfully connects to camera}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Ball is placed in frame}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV subsystem detects ball}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
-\caption{ball detection Test}
+\caption{Ball Detection Test}
 \end{table}
 \end{center}
 
@@ -152,12 +238,12 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
 	Test ID: CV2	&Status: ????\\[-3mm]
-	\multicolumn{2}{|c|}{\textbf{\large{ball upward detection Test}}}\\&\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Description: Test to see if cv module detects the ball moving upwards}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: fails if false is returned while ball is moving upwards }\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: cvmodule successfully connects to camera and smartserve, ball is being detected}\\[4mm]
-	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: returns true while ball is moving upwards}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{Ball Upward Detection Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Tests if CV Subsystem can detect upward motion of the ball}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: N/A }\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: CV Subsystem successfully connects to camera, ball is being detected}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Ball is lifted upwards}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV tracks the ball in motion}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ball upward detection Test}
@@ -168,15 +254,15 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
 	Test ID: CV3	&Status: ????\\[-3mm]
-	\multicolumn{2}{|c|}{\textbf{\large{ball downward detection Test}}}\\&\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Description: Test to see if cv module detects the ball moving downwards}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: fails if false is returned while ball is moving downwards }\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: cvmodule successfully connects to camera and smartserve, ball is being detected}\\[4mm]
-	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: returns true while ball is moving downwards}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{Ball Downward Detection Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Tests if CV Subsystem can detect downward motion of the ball}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: N/A }\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: CV Subsystem successfully connects to camera, ball is being detected}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Ball is moved downward}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV tracks the ball in motion}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
-\caption{ball downward detection Test}
+\caption{ball upward detection Test}
 \end{table}
 \end{center}
 
@@ -184,15 +270,15 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
 	Test ID: CV4	&Status: ????\\[-3mm]
-	\multicolumn{2}{|c|}{\textbf{\large{ball rightward detection Test}}}\\&\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Description: Test to see if cv module detects the ball moving rightwards}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: fails if false is returned while ball is moving rightwards }\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: cvmodule successfully connects to camera and smartserve, ball is being detected}\\[4mm]
-	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: returns true while ball is moving rightwards}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{Ball Rightward Detection Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Tests if CV Subsystem can detect rightward motion of the ball}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: N/A }\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: CV Subsystem successfully connects to camera, ball is being detected}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Ball is moved rightwards}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV tracks the ball in motion}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
-\caption{ball rightward detection Test}
+\caption{ball upward detection Test}
 \end{table}
 \end{center}
 
@@ -200,15 +286,15 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
 	Test ID: CV5	&Status: ????\\[-3mm]
-	\multicolumn{2}{|c|}{\textbf{\large{ball leftward detection Test}}}\\&\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Description: Test to see if cv module detects the ball moving leftwards}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: fails if false is returned while ball is moving leftwards }\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: cvmodule successfully connects to camera and smartserve, ball is being detected}\\[4mm]
-	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: returns true while ball is moving leftwards}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{Ball Leftward Detection Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Tests if CV Subsystem can detect leftward motion of the ball}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: N/A }\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: CV Subsystem successfully connects to camera, ball is being detected}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Ball is moved leftward}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV tracks the ball in motion}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
-\caption{ball leftward detection Test}
+\caption{ball upward detection Test}
 \end{table}
 \end{center}
 
@@ -216,12 +302,12 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
 	Test ID: CV6	&Status: ????\\[-3mm]
-	\multicolumn{2}{|c|}{\textbf{\large{cvmodule timeout test}}}\\&\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Description: Test to see if cv module correctly times out }\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: condition passes if fsm moves from state 1 to state 0 after 8 seconds}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: fsm is in state 1}\\[4mm]
+	\multicolumn{2}{|c|}{\textbf{\large{CV Timeout Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Tests if CV subsystem times out}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: Times out within 1 second of initiation}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: CV is in state 1}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: sends bad signal to smartserve, cvmodule stops running}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Times out in 8 seconds}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: cvmodule is closed}\\\hline
 \end{tabular}
 \caption{cvmodule timeout test}
@@ -232,15 +318,15 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
 	Test ID: CV7	&Status: ????\\[-3mm]
-	\multicolumn{2}{|c|}{\textbf{\large{fsm transition: state 1 to 2}}}\\&\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Description:test if the fsm transitions to state 2 when ball is descending}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition:fsm transitions to state 2 when ball is descending }\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: fsm is in state 1}\\[4mm]
-	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: fsm transitions to state 2}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: fsm is in state 2}\\\hline
+	\multicolumn{2}{|c|}{\textbf{\large{CV Transition: State 1 to 2}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Tests that the CV state transitions from state 1 to 2 when ball is moving away from player}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: State changes within 0.5 seconds of real-time}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: CV is in state 1}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Ball is moving towards system-side}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV moves to state 2}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: CV is in state 2}\\\hline
 \end{tabular}
-\caption{fsm transition: state 1 to 2}
+\caption{CV Transition: State 1 to 2}
 \end{table}
 \end{center}
 
@@ -248,15 +334,15 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
 	Test ID: CV8	&Status: ????\\[-3mm]
-	\multicolumn{2}{|c|}{\textbf{\large{fsm transition: state 2 to 3}}}\\&\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Description:test if the fsm transitions from state 2 to state 3 when ball is ascending}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition:fsm transitions to state 3 when ball is ascending }\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: fsm is in state 2}\\[4mm]
-	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: fsm transitions to state 3}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: fsm is in state 3}\\\hline
+	\multicolumn{2}{|c|}{\textbf{\large{CV Transition: State 2 to 3}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Tests that the CV state transitions from state 2 to 3 when ball is descending}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: State changes within 0.5 seconds of real-time}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: CV is in state 2}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Ball is moved downward in frame}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV moves to state 3}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: CV is in state 3}\\\hline
 \end{tabular}
-\caption{fsm transition: state 2 to 3}
+\caption{CV Transition: State 2 to 3}
 \end{table}
 \end{center}
 
@@ -264,15 +350,15 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
 	Test ID: CV9	&Status: ????\\[-3mm]
-	\multicolumn{2}{|c|}{\textbf{\large{good signal test}}}\\&\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Description:test if the cvmodule sends a good signal to smartserve}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition:cvmodule successfully sends good signal when fsm is in state 3}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: fsm is in state 3}\\[4mm]
-	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: good signals successfully sent}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: fsm is in state 0}\\\hline
+	\multicolumn{2}{|c|}{\textbf{\large{CV Transition: State 3 to 0}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Tests that the CV state transitions from state 3 to 0 when ball is ascending}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: State changes within 0.5 seconds of real-time}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: CV is in state 3}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Ball is moved upward in frame}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV moves to state 0}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: CV is in state 0}\\\hline
 \end{tabular}
-\caption{good signal test}
+\caption{CV Transition: State 3 to 0}
 \end{table}
 \end{center}
 
@@ -280,15 +366,15 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
 	Test ID: CV10	&Status: ????\\[-3mm]
-	\multicolumn{2}{|c|}{\textbf{\large{cvmodule timeout test}}}\\&\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Description: Test to see if cv module correctly times out }\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: condition passes if fsm moves from state 1 to state 0 after 8 seconds}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: fsm is in state 1}\\[4mm]
-	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: sends bad signal to smartserve, cvmodule stops running}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: cvmodule is closed}\\\hline
+	\multicolumn{2}{|c|}{\textbf{\large{Sends Hit Signal to SmartServe}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: Tests that the CV Subsystem sends a ``GOOD" signal to SmartServe}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: N/A}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: CV is in state 3}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: Ball is moved upward in frame}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: ``GOOD" signal sent to SmartServe}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: CV is in state 0}\\\hline
 \end{tabular}
-\caption{cvmodule timeout test}
+\caption{good signal test}
 \end{table}
 \end{center}
 
@@ -489,93 +575,6 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: ????}\\\hline
 \end{tabular}
 \caption{Data Storage Sign In Test}
-\end{table}
-\end{center}
-
-\subsubsection{Shooting Mechanism}
-
-\begin{center}
-\begin{table}[H]
-\begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SMC1	&Status: ????\\[-3mm]
-	\multicolumn{2}{|c|}{\textbf{\large{Feeding Mechanism Rotation Test}}}\\&\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Description: The feeding mechanism rotates by given amount in degrees.}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The feeding mechanism rotates by given amount of degrees within a tolerance of 2 degrees.}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The feeding mechanism is ready/powered on.}\\[4mm]
-	\multicolumn{2}{|p{\textwidth}|}{Input: Integer indicating the amount of degrees to be rotated.}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Feeding mechanism rotates to the required position.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
-\end{tabular}
-\caption{Feeding Mechanism Rotation Test}
-\end{table}
-\end{center}
-
-\begin{center}
-\begin{table}[H]
-\begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SMC2	&Status: ????\\[-3mm]
-	\multicolumn{2}{|c|}{\textbf{\large{Shooting Control Test}}}\\&\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Description: The shooting control shoots the ball via a rotating wheel at the requested power level to achieve the desired speed.}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: ???}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The Shooting Control motor is powered on, and connected to the system.}\\[4mm]
-	\multicolumn{2}{|p{\textwidth}|}{Input: Integer between 0-100 indicating the power level of the shot.
-}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: ????}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
-\end{tabular}
-\caption{Shooting Control Test}
-\end{table}
-\end{center}
-
-\begin{center}
-\begin{table}[H]
-\begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SMC3	&Status: ????\\[-3mm]
-	\multicolumn{2}{|c|}{\textbf{\large{Four Position Roll Test}}}\\&\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Description: The system rotates the Shooting Control to one of the four default positions.}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: Rotates to the indicated position.}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The Shooting Control motor is powered on, and connected to the system.
-}\\[4mm]
-	\multicolumn{2}{|p{\textwidth}|}{Input: Integer between 0-3 indicating the desired default position.}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: The shooting control rotates to the requested default position.
-}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
-\end{tabular}
-\caption{Four Position Roll Test}
-\end{table}
-\end{center}
-
-\begin{center}
-\begin{table}[H]
-\begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SMC4	&Status: ????\\[-3mm]
-	\multicolumn{2}{|c|}{\textbf{\large{Adjustable Pitch Control Test}}}\\&\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Description: The pitch control angles the shooting mechanism at the desired pitch level.}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition:Rotate to the desired pitch level with a tolerance of 5 degrees.}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: N/A}\\[4mm]
-	\multicolumn{2}{|p{\textwidth}|}{Input:Integer between -15 deg to 45 deg indicating pitch angle.}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Rotate to the desired pitch level with a tolerance of 5 degrees.
-}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
-\end{tabular}
-\caption{Adjustable Pitch Control Test}
-\end{table}
-\end{center}
-
-\begin{center}
-\begin{table}[H]
-\begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SMC5	&Status: ????\\[-3mm]
-	\multicolumn{2}{|c|}{\textbf{\large{Panning Shooting Mechanism Across the Table}}}\\&\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Description: Move the system to face the direction specified in degrees.}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: System moved to desired position.}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions:Panning stage is homed correctly before moving to the first location.}\\[4mm]
-	\multicolumn{2}{|p{\textwidth}|}{Input:Integer between 60 deg to 120 deg indicating where to point the shooter.}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Moves to the desired position without going out of bounds.
-}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: When powered down, the system rotates to the home (0 degrees) position.}\\\hline
-\end{tabular}
-\caption{Panning Shooting Mechanism Test}
 \end{table}
 \end{center}
 
