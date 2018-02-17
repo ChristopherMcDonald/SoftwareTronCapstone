@@ -6,6 +6,7 @@ from datetime import datetime
 import socket, time;
 from enum import Enum;
 from imutils.video import WebcamVideoStream
+from imutils.video import FPS
 
 ap = argparse.ArgumentParser();
 ap.add_argument(
@@ -49,7 +50,8 @@ socketIn.listen(5);                     # enables server to accept incoming
 pts = deque(maxlen = args["buffer"])
 counter = 0
 (dX, dY) = (0,0)
-vs= WebcamVideoStream(src=1).start()
+vs = WebcamVideoStream(src=0).start()
+fps = FPS().start()
 
 while(True):
 
@@ -57,8 +59,8 @@ while(True):
 
         conn, addr = socketIn.accept();     # loop will freeze on this command, runs when SmartServe
         print("Got connection from", addr); # sends a request
-        msg = conn.recv(1024);              # parses msg... could be "TEST", "DETECT"
-        
+        msg = conn.recv(1024);              # parses msg... could be "TEST","DETECT"
+
         # DEBUGGING
         # msg = b'DETECT'
         # print(msg);
@@ -78,7 +80,11 @@ while(True):
 
     if(fsm == 1 or fsm == 2 or fsm == 3):
 
-        if((datetime.now() - start).seconds > 8):
+        if((datetime.now() - start).seconds > 5):
+
+            fps.stop()
+            print("[INFO] elasped time: {:.2f}".format(fps.elapsed()))
+            print("[INFO] approx. FPS: {:.2f}".format(fps.fps()))
             # socket for outgoing messages
             socketOut = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
             socketOut.connect((HOST, PORT + 1));
@@ -89,12 +95,11 @@ while(True):
 
         else:
             # grab the current frame
-            frame = vs.read()
-            img = vs.read()
-
+            frame = cv2.resize(vs.read(), (0,0), fx=0.5, fy=0.5)
+            fps.update()
+            # print(type(frame));
             # resize the frame, blur it, and convert it to the HSV
             # color space
-            frame = imutils.resize(frame, width=600)
             hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
             # construct a mask for the color "green", then perform
@@ -120,7 +125,6 @@ while(True):
                     cv2.circle(thresh, (i[0], i[1]), i[2], (0, 255, 0), 2)
                     # draw the center of the circle
                     cv2.circle(thresh, (i[0], i[1]), 2, (0, 0, 255), 3)
-
 
             # find contours in the mask and initialize the current
             # (x, y) center of the ball
@@ -180,11 +184,16 @@ while(True):
                     elif(fsm == 3):     # if ascending, return GOOD
                         print("in state 3")
                         if(dY < -5):
+
+                            fps.stop()
+                            print("[INFO] elasped time: {:.2f}".format(fps.elapsed()))
+                            print("[INFO] approx. FPS: {:.2f}".format(fps.fps()))
+
                             # socket for outgoing messages
                             print("hit")
                             socketOut = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
                             socketOut.connect((HOST, PORT + 1));
-                            
+
                             socketOut.send(b'GOOD\n');
                             fsm = 0;    # HIT!
                             pts = deque(maxlen = args["buffer"])
@@ -199,17 +208,17 @@ while(True):
 
 
             # show the frame to our screen
-            cv2.imshow("Frame", mask)
-            border = cv2.copyMakeBorder(
-                frame,
-                top = BORDERWIDTH,
-                bottom = BORDERWIDTH,
-                left = BORDERWIDTH,
-                right = BORDERWIDTH,
-                borderType = cv2.BORDER_CONSTANT,
-                value = RED)
-            cv2.imshow('border', border)
-           ## cv2.imshow("shape",thresh)
+            # cv2.imshow("Frame", cv2.resize(mask, (0,0), fx=2.5, fy=2.5) )
+            # border = cv2.copyMakeBorder(
+            #     frame,
+            #     top = BORDERWIDTH,
+            #     bottom = BORDERWIDTH,
+            #     left = BORDERWIDTH,
+            #     right = BORDERWIDTH,
+            #     borderType = cv2.BORDER_CONSTANT,
+            #     value = RED)
+            # cv2.imshow('border', border)
+            # cv2.imshow("shape",thresh)
             key = cv2.waitKey(1) & 0xFF
             counter += 1
 
