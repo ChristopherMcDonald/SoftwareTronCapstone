@@ -76,7 +76,9 @@
 \end{figure}
 \newpage
 \section{Executive Summary of Testing}
-
+The testing completed on February 17th, 2018 has yielded 44 passes and 9 failures. The failures in their entirety can be attributed to features not yet implemented including; automated roll and pitch as well as the machine learning model. Given that the failure rate is roughly 17\%, the team does not recommend operation of the project at this time. \\ \\
+An important note to consider is that most errors are localized in the Shooting Mechanism and ShotRecommender subsystems. The team would also like to expand testing further to have higher coverage of the system and increase their confidence in its reliability. \\ \\
+The team will continue developing the system until March 9th where tests will be redefined and added to satisfy the team's ideals. After which, the second round of testing will commence. 
 \section{Introduction}
 \subsection{Project Overview}
 SmartServe is an autonomous table tennis training system for table tennis players with various skill levels. SmartServe aids in diagnosing and improving a player's performance over time. The system trains table tennis players by shooting table tennis balls towards the player and detects successful returns from the player. The system can further adapt to the player's weaknesses and help them overcome it through further training. Importantly, SmartServe alleviates the problems of finding and working with a coach for players, as well as coaches trying to train multiple players simultaneously. The system will be deemed a success if the table tennis players and coaches can enjoy and see some value added by using SmartServe.\\\\
@@ -133,13 +135,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SMC1	&Status: ????\\[-3mm]
+	Test ID: SMC1	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{Feeding Mechanism Rotation Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The feeding mechanism rotates by given amount in degrees.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The feeding mechanism rotates by given amount of degrees within a tolerance of 2 degrees.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The feeding mechanism is ready/powered on.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Integer indicating the amount of degrees to be rotated.}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Feeding mechanism rotates to the required position.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Feeding mechanism rotates to the required position.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: One ball is shot at a time}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{Feeding Mechanism Rotation Test}
@@ -149,14 +151,14 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SMC2	&Status: ????\\[-3mm]
+	Test ID: SMC2	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{Shooting Control Test}}}\\&\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Description: The shooting control shoots the ball via a rotating wheel at the requested power level to achieve the desired speed.}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: ???}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The shooting control shoots the ball using a rotating wheel at the requested power level to achieve the desired speed.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The system must reach the same distance each time for the same amount of power, within 0.1 metres of error.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The Shooting Control motor is powered on, and connected to the system.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Integer between 0-100 indicating the power level of the shot.
 }\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: ????}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: 2 successive shots land in the same spot}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: 2 successive shots land in the same spot}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{Shooting Control Test}
@@ -166,7 +168,7 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SMC3	&Status: ????\\[-3mm]
+	Test ID: SMC3	&Status: FAIL\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{Four Position Roll Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The system rotates the Shooting Control to one of the four default positions.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: Rotates to the indicated position.}\\[1mm]\hline&\\[-3mm]
@@ -174,7 +176,7 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 }\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Integer between 0-3 indicating the desired default position.}\\[2mm]\hline
 	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: The shooting control rotates to the requested default position.
-}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: Not implemented}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{Four Position Roll Test}
@@ -184,14 +186,14 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SMC4	&Status: ????\\[-3mm]
+	Test ID: SMC4	&Status: FAIL\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{Adjustable Pitch Control Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The pitch control angles the shooting mechanism at the desired pitch level.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: Rotate to the desired pitch level with a tolerance of 5 degrees.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: N/A}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Integer between -15 deg to 45 deg indicating pitch angle.}\\[2mm]\hline
 	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Rotate to the desired pitch level with a tolerance of 5 degrees.
-}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: Not implemented}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{Adjustable Pitch Control Test}
@@ -201,14 +203,14 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SMC5	&Status: ????\\[-3mm]
+	Test ID: SMC5	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{Panning Shooting Mechanism Across the Table}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: Move the system to face the direction specified in degrees.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: System moved to desired position.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: Panning stage is homed correctly before moving to the first location.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Integer between 60 deg to 120 deg indicating where to point the shooter.}\\[2mm]\hline
 	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Moves to the desired position without going out of bounds.
-}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: Moves to desired positions}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: When powered down, the system rotates to the home (0 degrees) position.}\\\hline
 \end{tabular}
 \caption{Panning Shooting Mechanism Test}
@@ -221,13 +223,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: CV1	&Status: ????\\[-3mm]
+	Test ID: CV1	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{Ball Detection Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: Tests if CV subsystem can detect a table tennis ball}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: N/A}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: CV subsystem successfully connects to camera}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Ball is placed in frame}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV subsystem detects ball}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV subsystem detects ball}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{Ball Detection Test}
@@ -237,45 +239,45 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: CV2	&Status: ????\\[-3mm]
+	Test ID: CV2	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{Ball Upward Detection Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: Tests if CV Subsystem can detect upward motion of the ball}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: N/A }\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: CV Subsystem successfully connects to camera, ball is being detected}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Ball is lifted upwards}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV tracks the ball in motion}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV tracks the ball in motion}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
-\caption{ball upward detection Test}
+\caption{Ball Upward Detection Test}
 \end{table}
 \end{center}
 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: CV3	&Status: ????\\[-3mm]
+	Test ID: CV3	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{Ball Downward Detection Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: Tests if CV Subsystem can detect downward motion of the ball}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: N/A }\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: CV Subsystem successfully connects to camera, ball is being detected}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Ball is moved downward}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV tracks the ball in motion}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV tracks the ball in motion}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
-\caption{ball upward detection Test}
+\caption{Ball Downward Detection Test}
 \end{table}
 \end{center}
 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: CV4	&Status: ????\\[-3mm]
+	Test ID: CV4	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{Ball Rightward Detection Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: Tests if CV Subsystem can detect rightward motion of the ball}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: N/A }\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: CV Subsystem successfully connects to camera, ball is being detected}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Ball is moved rightwards}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV tracks the ball in motion}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV tracks the ball in motion}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ball upward detection Test}
@@ -285,13 +287,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: CV5	&Status: ????\\[-3mm]
+	Test ID: CV5	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{Ball Leftward Detection Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: Tests if CV Subsystem can detect leftward motion of the ball}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: N/A }\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: CV Subsystem successfully connects to camera, ball is being detected}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Ball is moved leftward}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV tracks the ball in motion}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV tracks the ball in motion}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ball upward detection Test}
@@ -301,13 +303,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: CV6	&Status: ????\\[-3mm]
+	Test ID: CV6	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{CV Timeout Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: Tests if CV subsystem times out}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: Times out within 1 second of initiation}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: CV is in state 1}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Times out in 8 seconds}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Times out in 8 seconds}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: cvmodule is closed}\\\hline
 \end{tabular}
 \caption{cvmodule timeout test}
@@ -317,13 +319,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: CV7	&Status: ????\\[-3mm]
+	Test ID: CV7	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{CV Transition: State 1 to 2}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: Tests that the CV state transitions from state 1 to 2 when ball is moving away from player}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: State changes within 0.5 seconds of real-time}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: CV is in state 1}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Ball is moving towards system-side}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV moves to state 2}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV moves to state 2}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: CV is in state 2}\\\hline
 \end{tabular}
 \caption{CV Transition: State 1 to 2}
@@ -333,13 +335,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: CV8	&Status: ????\\[-3mm]
+	Test ID: CV8	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{CV Transition: State 2 to 3}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: Tests that the CV state transitions from state 2 to 3 when ball is descending}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: State changes within 0.5 seconds of real-time}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: CV is in state 2}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Ball is moved downward in frame}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV moves to state 3}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV moves to state 3}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: CV is in state 3}\\\hline
 \end{tabular}
 \caption{CV Transition: State 2 to 3}
@@ -349,13 +351,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: CV9	&Status: ????\\[-3mm]
+	Test ID: CV9	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{CV Transition: State 3 to 0}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: Tests that the CV state transitions from state 3 to 0 when ball is ascending}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: State changes within 0.5 seconds of real-time}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: CV is in state 3}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Ball is moved upward in frame}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV moves to state 0}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: CV moves to state 0}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: CV is in state 0}\\\hline
 \end{tabular}
 \caption{CV Transition: State 3 to 0}
@@ -365,13 +367,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: CV10	&Status: ????\\[-3mm]
+	Test ID: CV10	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{Sends Hit Signal to SmartServe}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: Tests that the CV Subsystem sends a ``GOOD" signal to SmartServe}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: N/A}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: CV is in state 3}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Ball is moved upward in frame}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: ``GOOD" signal sent to SmartServe}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: ``GOOD" signal sent to SmartServe}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: CV is in state 0}\\\hline
 \end{tabular}
 \caption{good signal test}
@@ -383,13 +385,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SR1	&Status: ????\\[-3mm]
+	Test ID: SR1	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommender Listen Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommender service responds to HTTP calls on port 8080.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The system waits until a request.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: N/A}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: None}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: N/A}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: N/A}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ShotRecommender Listen Test}
@@ -399,13 +401,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SR2	&Status: ????\\[-3mm]
+	Test ID: SR2	&Status: FAIL\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommender Query Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommender calls the ``query" method for user data.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The call returns a table of user performance data.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The SQL database is running on port 3306.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: a valid user id for the ``performance" procedure}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: table of data}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: table of data}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: Procedure not found}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ShotRecommender Query Test}
@@ -415,13 +417,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SR3	&Status: ????\\[-3mm]
+	Test ID: SR3	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommender Random Shot Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommender receives a request for a shot.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The service generates a random shot.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The service is running on port 8080.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: an HTTP request with ``Random" as the mode parameter}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: a random shot which adheres to requirements}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: a random shot which adheres to requirements}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ShotRecommender Random Shot Test}
@@ -432,13 +434,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SR4	&Status: ????\\[-3mm]
+	Test ID: SR4	&Status: FAIL\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommender Training Shot Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommender receives a request for a shot.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The service generates a shot.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The service is running on port 8080.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: an HTTP request with ``Train" as the mode parameter}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: a random shot which adheres to requirements}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: a random shot which adheres to requirements}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: Model not found}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ShotRecommender Training Shot Test}
@@ -448,13 +450,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SR5	&Status: ????\\[-3mm]
+	Test ID: SR5	&Status: FAIL\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommender UpdateModel Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommender receives a status update for a shot.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The service changes the model in response.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The service is running on port 8080.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: an HTTP request with the shot id and returned boolean as parameters.}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: the model is updated}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: the model is updated}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: Model not found}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ShotRecommender UpdateModel Test}
@@ -466,13 +468,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SM1	&Status: ????\\[-3mm]
+	Test ID: SM1	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShootingModel calculateYawAngle Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The calculateYawAngle method returns an accurate yaw angle in degrees.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method returns an angle in degrees accurate to a whole number.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: N/A}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: xDist, yDist; distance to desired shot's x-coordinate and y-coordinate.}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: A yaw angle in degrees, accurate to a whole number.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: A yaw angle in degrees, accurate to a whole number.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ShootingModel calculateYawAngle Test}
@@ -482,13 +484,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SM2	&Status: ????\\[-3mm]
+	Test ID: SM2	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShootingModel calculateVelocity Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The calculateVelocity method returns an accurate velocity in meters/second.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method returns the velocity accurate to a whole number.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: N/A}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Velocity in m/s, accurate to a whole number.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Velocity in m/s, accurate to a whole number.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ShootingModel calculateVeolocty Test}
@@ -498,13 +500,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SM3	&Status: ????\\[-3mm]
+	Test ID: SM3	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShootingModel netHeightChecker Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: ThenetHeightChecker method checks whether the desired shot will pass over the net.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method returns the correct boolean indicating if the shot will pass over the net.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: N/A}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: N/A.}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: A boolean; True is shot will pass over the net, False otherwise.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: A boolean; True is shot will pass over the net, False otherwise.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ShootingModel netHeightChecker Test}
@@ -515,14 +517,14 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: DS1	&Status: ????\\[-3mm]
+	Test ID: DS1	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{Data Storage Sign Up Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: Data Storage receives user name and password to sign up}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: User table updates with correct parameters}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The SQL database is running on port 3306.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: User name and user password}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: User table updated}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: ????}\\\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: User table updated}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{Data Storage Sign Up Test}
 \end{table}
@@ -531,14 +533,14 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: DS2	&Status: ????\\[-3mm]
+	Test ID: DS2	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{Data Storage Next Shot Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: Data Storage returns a shot type for the system to execute}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: a specified desired zone the system must aim for is returned}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The SQL database is running on port 3306.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Desired zone id as an integer}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Return valid shot parameters, speed and angular velocity}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: ????}\\\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Return valid shot parameters, speed and angular velocity}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{Data Storage Next Shot Test}
 \end{table}
@@ -549,14 +551,14 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: DS3	&Status: ????\\[-3mm]
+	Test ID: DS3	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{Data Storage Returned Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: Data Storage received parameters for a successful or missed shot}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: Returnrate table updates with correct parameters}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The SQL database is running on port 3306.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Timestamp, user and shot ids}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Returnrate table updated}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: ????}\\\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Returnrate table updated}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{Data Storage Returned Test}
 \end{table}
@@ -565,14 +567,14 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: DS4	&Status: ????\\[-3mm]
+	Test ID: DS4	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{Data Storage Sign In Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: Data Storage receives user name and password and authenticates it}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: Returns accurate boolean value according to matching of user name and password}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The SQL database is running on port 3306.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: User name and user password}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: True is returned if the password matches the user name, false if they do not match}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: ????}\\\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: True is returned if the password matches the user name, false if they do not match}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{Data Storage Sign In Test}
 \end{table}
@@ -583,13 +585,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: UI1	&Status: Complete \\[-3mm]
+	Test ID: UI1	&Status: PASS \\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{User Interface Display Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: All elements of UI are displayed in a window}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: UI displays when program is run}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions:N/A}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Window opens with Welcome Screen}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: Window opens with Welcome Screen}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Window opens with Welcome Screen}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: Application running}\\\hline
 \end{tabular}
 \caption{User Interface Display Test}
@@ -599,13 +601,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: UI2	&Status: ???? \\[-3mm]
+	Test ID: UI2	&Status: PASS \\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{User Interface Button Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: All buttons should do some action when pressed}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: When pressed, buttons change the state of the application and return }\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: Application UI is running}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Return true when button is pressed}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ??}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Return true when button is pressed}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: ??}\\\hline
 \end{tabular}
 \caption{User Interface Button Test}
@@ -616,16 +618,32 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: UI3	&Status: ???? \\[-3mm]
+	Test ID: UI3	&Status: PASS \\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{User Interface Mode Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: Mode should be assigned when it is picked in a dropdown}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: Mode variable assigned selected value}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: Application UI is running}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Return value selected }	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ??}\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: ??}\\\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Return value selected }	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{User Interface Mode Test}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: UI4	&Status: FAIL \\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{User Interface Sign up Test}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: When signup button is pressed, user is added with given parameters}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: User inputs are sent to Data Storage}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: Application UI is running}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: User name and user password}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Return user parameters}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: Page not implemented}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{User Interface Sign up Test}
 \end{table}
 \end{center}
 
@@ -634,13 +652,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SR1	&Status: ????\\[-3mm]
+	Test ID: SS1	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommendation Connection Test - Pass}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommendation class will call the \textit{connect} method with port 8080 as a parameter.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method should return true.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The ShotRecommendation server is running on port 8080.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: 8080}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ShotRecommendation Connection Test - Pass}
@@ -650,13 +668,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SR2	&Status: ????\\[-3mm]
+	Test ID: SS2	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommendation Connection Test - Fail}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommendation class will call the \textit{connect} method with port 8090 as a parameter.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method should return false.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The ShotRecommendation server is running on port 8080.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: 8090}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: false}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: false}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ShotRecommendation Connection Test - Fail}
@@ -666,13 +684,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SR3	&Status: ????\\[-3mm]
+	Test ID: SS3	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommendation Request Shot - Random}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommendation class will call the \textit{getRecommendation} method with Random mode as a parameter.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method should a random shot of the form ``X=A.BC,Y=A.BC,V=A.BC,W=A.BC" where the values are within the requirements of the system.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The ShotRecommendation server is running on port 8080.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Mode.Random}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: A valid shot, in string form.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: A valid shot, in string form.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ShotRecommendation Request Shot - Random}
@@ -682,13 +700,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SR4	&Status: ????\\[-3mm]
+	Test ID: SS4	&Status: FAIL\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommendation Request Shot - Train}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommendation class will call the \textit{getRecommendation} method with Training mode as a parameter.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method should a shot of the form ``X=A.BC,Y=A.BC,V=A.BC,W=A.BC" where the values are within the requirements of the system.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The ShotRecommendation server is running on port 8080.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Mode.Train}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: A valid shot, in string form.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: A valid shot, in string form.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: Model not found}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ShotRecommendation Request Shot - Train}
@@ -698,13 +716,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SS1	&Status: ????\\[-3mm]
+	Test ID: SS5	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommendation Request Shot - One-shot}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommendation class will call the \textit{getRecommendation} method with One-shot mode as a parameter.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method should a shot of the form ``X=A.BC,Y=A.BC,V=A.BC,W=A.BC" where the values are within the requirements of the system. Repeated requests should return the same shot.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The ShotRecommendation server is running on port 8080.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Mode.OneShot}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: A valid shot, in string form.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: A valid shot, in string form.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ShotRecommendation Request Shot - One-shot}
@@ -714,13 +732,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SS2	&Status: ????\\[-3mm]
+	Test ID: SS6	&Status: FAIL\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommendation Model Update}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommendation class will call the \textit{updateModel} method.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The ShotRecommender does not throw an error and the model is updated.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The ShotRecommendation server is running on port 8080.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: a previously request shot and false}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: N/A}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: N/A}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: Model not found}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ShotRecommendation Model Update}
@@ -730,13 +748,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SS3	&Status: ????\\[-3mm]
+	Test ID: SS7	&Status: FAIL\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommendation Model Update}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommendation class will call the \textit{updateModel} method.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The ShotRecommender does not throw an error and the model is updated.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The ShotRecommendation server is running on port 8080.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: a previously request shot and true}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: N/A}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: N/A}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: Model not found}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ShotRecommendation Request Shot - One-shot}
@@ -746,13 +764,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SS4	&Status: ????\\[-3mm]
+	Test ID: SS8	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ComputerVisionController Connection Test - Pass}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The CV class will call the \textit{connection} method.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method returns true.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The CV server is running on port 8000.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: 8000}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ComputerVisionController Connection Test - Pass}
@@ -762,13 +780,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SS5	&Status: ????\\[-3mm]
+	Test ID: SS9	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ComputerVisionController Connection Test - Fail}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The CV class will call the \textit{connection} method.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method returns false.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The CV server is running on port 8001.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: 8000}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: false}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: false}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ComputerVisionController Connection Test - Fail}
@@ -778,13 +796,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SS6	&Status: ????\\[-3mm]
+	Test ID: SS10	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ComputerVisionController Detect Test - Timeout}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The CV class will call the \textit{start} method and no ball is introduced into the frame.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method returns false.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The CV server is running on port 8000.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: false}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: false}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ComputerVisionController Detect Test - Timeout}
@@ -794,13 +812,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SS7	&Status: ????\\[-3mm]
+	Test ID: SS11	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ComputerVisionController Detect Test - Detect}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The CV class will call the \textit{start} method and a ball is introduced into the frame, emulating a successful shot.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method returns true.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The CV server is running on port 8000.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ComputerVisionController Detect Test - Detect}
@@ -810,13 +828,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SS8	&Status: ????\\[-3mm]
+	Test ID: SS12	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{SQLConnector Connection Test - Pass}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The SQLConnector class will call the \textit{connect} method.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method returns true.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The SQL server is running on port 3306.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: 3306}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{SQLConnector Connection Test - Pass}
@@ -826,13 +844,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SS9	&Status: ????\\[-3mm]
+	Test ID: SS13	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{SQLConnector Connection Test - Fail}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The SQLConnector class will call the \textit{connect} method.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method returns false.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The SQL server is not running.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: 3306}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: false}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: false}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{SQLConnector Connection Test - Pass}
@@ -843,13 +861,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SS10	&Status: ????\\[-3mm]
+	Test ID: SS14	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{SQLConnector Query Test - Signup}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The SQLConnector class will call the \textit{save} method.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The user is saved in the database.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The SQL server is running on port 3306.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Object[] with ``Chris" and ``password123" for the ``sign\_up" procedure}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{SQLConnector Query Test - Signup}
@@ -859,13 +877,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SS11	&Status: ????\\[-3mm]
+	Test ID: SS15	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{SQLConnector Query Test - Returned}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The SQLConnector class will call the \textit{save} method.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The shot is saved in the database correctly.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The SQL server is running on port 3306.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Object[] with 25, 1, 1 and the current time for the ``returned" procedure}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{SQLConnector Query Test - Returned}
@@ -875,13 +893,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SS12	&Status: ????\\[-3mm]
+	Test ID: SS16	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{SQLConnector Query Test - Login}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The SQLConnector class will call the \textit{save} method.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The shot is saved in the database correctly.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The SQL server is running on port 3306.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Object[] with ``Chris" and ``password123" for the ``login" procedure}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{SQLConnector Query Test - Returned}
@@ -891,13 +909,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SS13	&Status: ????\\[-3mm]
+	Test ID: SS17	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ArduinoController Connection Test - Pass}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ArduinoController class will call the \textit{test} method, repeat for all arduinos.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method returns true.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The Arduinos are plugged in via USB and loaded with the correct code.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: the port for the Arduino(s)}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ArduinoController Connection Test - Pass}
@@ -907,13 +925,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SS14	&Status: ????\\[-3mm]
+	Test ID: SS18	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ArduinoController Connection Test - Fail}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ArduinoController class will call the \textit{test} method, repeat for all arduinos.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method returns false.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The Arduinos are plugged in via USB and loaded with the correct code.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: ``some-test-string"}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: false}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: false}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ArduinoController Connection Test - Fail}
@@ -923,13 +941,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SS15	&Status: ????\\[-3mm]
+	Test ID: SS19	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ArduinoController Test - Pan}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ArduinoController class will call the \textit{shoot} method.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The system pans to 75 degrees.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The Arduinos are plugged in via USB and loaded with the correct code.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: a ShotDetail object with pan of 75 degrees}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ArduinoController Test - Pan}
@@ -939,13 +957,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SS16	&Status: ????\\[-3mm]
+	Test ID: SS20	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ArduinoController Test - Pan}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ArduinoController class will call the \textit{shoot} method.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The system pans to 120 degrees.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The Arduinos are plugged in via USB and loaded with the correct code.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: a ShotDetail object with pan of 120 degrees}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ArduinoController Test - Pan}
@@ -955,13 +973,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SS17	&Status: ????\\[-3mm]
+	Test ID: SS21	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ArduinoController Test - Shoot}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ArduinoController class will call the \textit{shoot} method.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The system shoots at 75\% power.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The Arduinos are plugged in via USB and loaded with the correct code.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: 75}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ArduinoController Test - Shoot}
@@ -971,13 +989,13 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SS18	&Status: ????\\[-3mm]
+	Test ID: SS22	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ArduinoController Test - Shoot}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ArduinoController class will call the \textit{shoot} method.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The system shoots at 100\% power.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The Arduinos are plugged in via USB and loaded with the correct code.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: 100}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ????}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: true}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ArduinoController Test - Shoot}
@@ -988,50 +1006,152 @@ The SmartServe system uses heavy computation power due to the CV and ML models, 
 
 \begin{table}[H]
 \centering
-\caption{Matrix to Match Tests to Functional Requirements}
+\caption{Matrix to Match Tests to Functional Requirements [1]}
 \label{my-label}
 \begin{tabular}{| l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l |}
 \hline
 \multicolumn{19}{|c|}{\textbf{Functional Requirement-Test Matrix}}                          \\ \hline
  & \tiny{F1} & \tiny{F2} & \tiny{F3} & \tiny{F4} & \tiny{F5} & \tiny{F6} & \tiny{F7} & \tiny{F8} & \tiny{F9} & \tiny{F10} & \tiny{F11} & \tiny{F12} & \tiny{F13} & \tiny{F14} & \tiny{F15} & \tiny{F16} & \tiny{F17} & \tiny{F18} \\ \hline
-           &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & &  \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & &  \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & &  \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & &  \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & &  \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & &  \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & &  \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & &  \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & &  \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & &  \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & &  \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & &  \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & &  \\ \hline
+\tiny{SMC1}&\tiny{X}&\tiny{X}&\tiny{X}&\tiny{X}&\tiny{X}&&&&&&&&&&&&&\tiny{X} \\ \hline
+\tiny{SMC2}&\tiny{X}&\tiny{X}&&&\tiny{X}&&&&&&&&&&&&&\tiny{X} \\ \hline
+\tiny{SMC3}&\tiny{X}&&&\tiny{X}&&&&&&&&&&&&&& \\ \hline
+\tiny{SMC4}&\tiny{X}&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{SMC5}&\tiny{X}&&\tiny{X}&&&&&&&&&&&&&&& \\ \hline
+\tiny{CV1}&&&&&\tiny{X}&&&&&&&&&&&&&\tiny{X} \\ \hline
+\tiny{CV2}&&&&&\tiny{X}&&&&&&&&&&&&& \\ \hline
+\tiny{CV3}&&&&&\tiny{X}&&&&&&&&&&&&& \\ \hline
+\tiny{CV4}&&&&&\tiny{X}&&&&&&&&&&&&&\tiny{X} \\ \hline
+\tiny{CV5}&&&&&\tiny{X}&&&&&&&&&&&&&\tiny{X} \\ \hline
+\tiny{CV6}&&&&&&\tiny{X}&&&&&&&&&&&&\tiny{X} \\ \hline
+\tiny{CV7}&&&&&\tiny{X}&&&&&&&&&&&&& \\ \hline
+\tiny{CV8}&&&&&\tiny{X}&&&&&&&&&&&&& \\ \hline
+\tiny{CV9}&&&&&\tiny{X}&&&&&&&&&&&&& \\ \hline
+\tiny{CV10}&&&&&&\tiny{X}&&&&&&&&&&&& \\ \hline
+\tiny{SR1}&&&&&&&&&&&&&&\tiny{X}&\tiny{X}&&& \\ \hline
+\tiny{SR2}&&&&&&&\tiny{X}&&&&&&&\tiny{X}&\tiny{X}&&& \\ \hline
+\tiny{SR3}&&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{SR4}&&&&&&&&&&&&&&\tiny{X}&&&& \\ \hline
+\tiny{SR5}&&&&&&&&&&&&&&\tiny{X}&&&& \\ \hline
+\tiny{SM1}&\tiny{X}&&\tiny{X}&&\tiny{X}&&&&&&&&&&&&& \\ \hline
+\tiny{SM2}&\tiny{X}&\tiny{X}&&&\tiny{X}&&&&&&&&&&&&&\tiny{X} \\ \hline
+\tiny{SM3}&&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{DS1}&&&&&&&&\tiny{X}&&&&&&&&&& \\ \hline
+\tiny{DS2}&\tiny{X}&\tiny{X}&\tiny{X}&\tiny{X}&\tiny{X}&\tiny{X}&&&&&&&&&&&&\tiny{X} \\ \hline
+\tiny{DS3}&&&&&&\tiny{X}&&&&&&&&&&&& \\ \hline
+\tiny{DS4}&&&&&&&&&\tiny{X}&&&&&&&&& \\ \hline
+\tiny{UI1}&&&&&&&&\tiny{X}&\tiny{X}&\tiny{X}&\tiny{X}&\tiny{X}&\tiny{X}&&&\tiny{X}&\tiny{X}& \\ \hline
+\tiny{UI2}&&&&&&&&\tiny{X}&\tiny{X}&\tiny{X}&\tiny{X}&\tiny{X}&\tiny{X}&&&\tiny{X}&\tiny{X}& \\ \hline
+\tiny{UI3}&&&&&&&&&&&&&&&&\tiny{X}&& \\ \hline
+\tiny{UI4}&&&&&&&&\tiny{X}&&&&&&&&&& \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Matrix to Match Tests to Functional Requirements [2]}
+\label{my-label}
+\begin{tabular}{| l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l |}
+\hline
+\multicolumn{19}{|c|}{\textbf{Functional Requirement-Test Matrix}}                          \\ \hline
+ & \tiny{F1} & \tiny{F2} & \tiny{F3} & \tiny{F4} & \tiny{F5} & \tiny{F6} & \tiny{F7} & \tiny{F8} & \tiny{F9} & \tiny{F10} & \tiny{F11} & \tiny{F12} & \tiny{F13} & \tiny{F14} & \tiny{F15} & \tiny{F16} & \tiny{F17} & \tiny{F18} \\ \hline
+\tiny{SS1}&&&&&&&\tiny{X}&&&&&&&\tiny{X}&\tiny{X}&&& \\ \hline
+\tiny{SS2}&&&&&&&\tiny{X}&&&&&&&\tiny{X}&\tiny{X}&&& \\ \hline
+\tiny{SS3}&&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{SS4}&&&&&&&&&&&&&&\tiny{X}&&&& \\ \hline
+\tiny{SS5}&&&&&&&&&&&&&&&\tiny{X}&&& \\ \hline
+\tiny{SS6}&&&&&&&&&&&&&&\tiny{X}&&&& \\ \hline
+\tiny{SS7}&&&&&&&&&&&&&&\tiny{X}&&&& \\ \hline
+\tiny{SS8}&&&&&\tiny{X}&\tiny{X}&&&&&&&&&&&&\tiny{X} \\ \hline
+\tiny{SS9}&&&&&\tiny{X}&\tiny{X}&&&&&&&&&&&&\tiny{X} \\ \hline
+\tiny{SS10}&&&&&\tiny{X}&\tiny{X}&&&&&&&&&&&&\tiny{X} \\ \hline
+\tiny{SS11}&&&&&\tiny{X}&\tiny{X}&&&&&&&&&&&&\tiny{X} \\ \hline
+\tiny{SS12}&&&&&&\tiny{X}&&\tiny{X}&\tiny{X}&&&&\tiny{X}&&&&&\tiny{X} \\ \hline
+\tiny{SS13}&&&&&&\tiny{X}&&\tiny{X}&\tiny{X}&&&&\tiny{X}&&&&&\tiny{X} \\ \hline
+\tiny{SS14}&&&&&&&&\tiny{X}&&&&&&&&&& \\ \hline
+\tiny{SS15}&&&&&&\tiny{X}&&&&&&&&&&&& \\ \hline
+\tiny{SS16}&&&&&&&&&\tiny{X}&&&&&&&&& \\ \hline
+\tiny{SS17}&\tiny{X}&\tiny{X}&\tiny{X}&\tiny{X}&\tiny{X}&&&&&&&&&&&&&\tiny{X} \\ \hline
+\tiny{SS18}&\tiny{X}&\tiny{X}&\tiny{X}&\tiny{X}&\tiny{X}&&&&&&&&&&&&&\tiny{X} \\ \hline
+\tiny{SS19}&\tiny{X}&&\tiny{X}&&&&&&&&&&&&&&& \\ \hline
+\tiny{SS20}&\tiny{X}&&\tiny{X}&&&&&&&&&&&&&&& \\ \hline
+\tiny{SS21}&\tiny{X}&\tiny{X}&&&\tiny{X}&&&&&&&&&&&&&\tiny{X} \\ \hline
+\tiny{SS22}&\tiny{X}&\tiny{X}&&&\tiny{X}&&&&&&&&&&&&&\tiny{X} \\ \hline
 \end{tabular}
 \end{table}
 
 
 \begin{table}[H]
 \centering
-\caption{Matrix to Match Tests to Non-Functional Requirements}
+\caption{Matrix to Match Tests to Non-Functional Requirements [1]}
 \label{my-label}
-\begin{tabular}{| l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l |}
+\begin{tabular}{| l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l |}
 \hline
-\multicolumn{20}{|c|}{\textbf{Non-Functional Requirement-Test Matrix}}                          \\ \hline
- & \tiny{LF1} & \tiny{UH1} & \tiny{UH2} & \tiny{P1} & \tiny{P2} & \tiny{P4} & \tiny{P5} & \tiny{OE2} & \tiny{MS1} & \tiny{MS2} & \tiny{S1} & \tiny{S2} & \tiny{P1} & \tiny{LC1} & \tiny{HS1} & \tiny{HS2} & \tiny{HS3} & \tiny{HS4} & \tiny{HS5} \\ \hline
-T1 &  &  &  &  & X &  &  &  &  &  & X &  &  &  &  &  &  &  &  \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & & &  \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & & &  \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & & & \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & & & \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & & & \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & & & \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & & & \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & & &\\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & & & \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & & & \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & & & \\ \hline
-          &             &           &  &  &  &  &  &  &  &  &  &  &  &  &  &  & & & \\ \hline
+\multicolumn{19}{|c|}{\textbf{Non-Functional Requirement-Test Matrix}}                          \\ \hline
+ & \tiny{LF1} & \tiny{UH1} & \tiny{UH2} & \tiny{P1} & \tiny{P2} & \tiny{P4} & \tiny{P5} & \tiny{OE2} & \tiny{MS2} & \tiny{S1} & \tiny{S2} & \tiny{P1} & \tiny{LC1} & \tiny{HS1} & \tiny{HS2} & \tiny{HS3} & \tiny{HS4} & \tiny{HS5} \\ \hline
+\tiny{SMC1}&&&&&&&&&&&&&&\tiny{X}&\tiny{X}&&& \\ \hline
+\tiny{SMC2}&&&&&&&&&&&&&&\tiny{X}&\tiny{X}&&& \\ \hline
+\tiny{SMC3}&&&&&&&&&&&&&&\tiny{X}&&&& \\ \hline
+\tiny{SMC4}&&&&&&&&&&&&&&\tiny{X}&&&& \\ \hline
+\tiny{SMC5}&&&&&&&&&&&&&&\tiny{X}&&&& \\ \hline
+\tiny{CV1}&&&&&&&&\tiny{X}&&&&&&&&&& \\ \hline
+\tiny{CV2}&&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{CV3}&&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{CV4}&&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{CV5}&&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{CV6}&&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{CV7}&&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{CV8}&&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{CV9}&&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{CV10}&&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{SR1}&&&&&&&&&&&&&&\tiny{X}&\tiny{X}&&& \\ \hline
+\tiny{SR2}&&&&&&&&&&&&&&\tiny{X}&&&& \\ \hline
+\tiny{SR3}&&&&&&&&&&&&&&\tiny{X}&&&& \\ \hline
+\tiny{SR4}&&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{SR5}&&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{SM1}&&&&&&&&&&&&&&\tiny{X}&&&& \\ \hline
+\tiny{SM2}&&&&&&&&&&&&&&\tiny{X}&\tiny{X}&&& \\ \hline
+\tiny{SM3}&&&&&&&&&&&&&&\tiny{X}&&&& \\ \hline
+\tiny{DS1}&&&&&&\tiny{X}&&&&\tiny{X}&&&&&&&& \\ \hline
+\tiny{DS2}&&&&&&&&&&&&&&\tiny{X}&\tiny{X}&&& \\ \hline
+\tiny{DS3}&&&&&\tiny{X}&&&&&&&&&&&&& \\ \hline
+\tiny{DS4}&&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{UI1}&\tiny{X}&\tiny{X}&\tiny{X}&&\tiny{X}&\tiny{X}&\tiny{X}&&\tiny{X}&\tiny{X}&&\tiny{X}&&&&&& \\ \hline
+\tiny{UI2}&\tiny{X}&\tiny{X}&\tiny{X}&\tiny{X}&&&&&&&&&&&&&& \\ \hline
+\tiny{UI3}&&&\tiny{X}&\tiny{X}&&&&&&&&&&&&&& \\ \hline
+\tiny{UI4}&&&\tiny{X}&&&\tiny{X}&&&&\tiny{X}&&&&&&&& \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Matrix to Match Tests to Non-Functional Requirements [2]}
+\label{my-label}
+\begin{tabular}{| l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l |}
+\hline
+\multicolumn{19}{|c|}{\textbf{Non-Functional Requirement-Test Matrix}}                          \\ \hline
+ & \tiny{LF1} & \tiny{UH1} & \tiny{UH2} & \tiny{P1} & \tiny{P2} & \tiny{P4} & \tiny{P5} & \tiny{OE2} & \tiny{MS2} & \tiny{S1} & \tiny{S2} & \tiny{P1} & \tiny{LC1} & \tiny{HS1} & \tiny{HS2} & \tiny{HS3} & \tiny{HS4} & \tiny{HS5} \\ \hline
+\tiny{SS1}&&&&&&&&&&&&&&&\tiny{X}&&& \\ \hline
+\tiny{SS2}&&&&&&&&&&&&&&&\tiny{X}&&& \\ \hline
+\tiny{SS3}&&&&&&&&&&&&&&&\tiny{X}&&& \\ \hline
+\tiny{SS4}&&&&&&&&&&&&&&&\tiny{X}&&& \\ \hline
+\tiny{SS5}&&&&&&&&&&&&&&&\tiny{X}&&& \\ \hline
+\tiny{SS6}&&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{SS7}&&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{SS8}&&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{SS9}&&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{SS10}&&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{SS11}&&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{SS12}&&&&&\tiny{X}&\tiny{X}&&&&\tiny{X}&&&&&&&& \\ \hline
+\tiny{SS13}&&&&&\tiny{X}&\tiny{X}&&&&\tiny{X}&&&&\tiny{X}&\tiny{X}&&& \\ \hline
+\tiny{SS14}&&&&&&\tiny{X}&&&&\tiny{X}&&&&\tiny{X}&\tiny{X}&&& \\ \hline
+\tiny{SS15}&&&&&\tiny{X}&&&&&&&&&&&&& \\ \hline
+\tiny{SS16}&&&&&&&&&&&&&&&&&& \\ \hline
+\tiny{SS17}&&&&&&&&&&&&&&\tiny{X}&\tiny{X}&&& \\ \hline
+\tiny{SS18}&&&&&&&&&&&&&&\tiny{X}&\tiny{X}&&& \\ \hline
+\tiny{SS19}&&&&&&&&&&&&&&\tiny{X}&&&& \\ \hline
+\tiny{SS20}&&&&&&&&&&&&&&\tiny{X}&&&& \\ \hline
+\tiny{SS21}&&&&&&&&&&&&&&\tiny{X}&\tiny{X}&&& \\ \hline
+\tiny{SS22}&&&&&&&&&&&&&&\tiny{X}&\tiny{X}&&& \\ \hline
 \end{tabular}
 \end{table}
 
