@@ -63,6 +63,7 @@
 
 \tableofcontents
 \listoffigures
+\listoftables
 
 \vfill
 \begin{figure}[H]
@@ -70,7 +71,11 @@
    \noindent\begin{tabularx}{\textwidth}{| >{\centering\arraybackslash}m{0.2\textwidth} | >{\centering\arraybackslash}m{0.2\textwidth} | >{\centering\arraybackslash}m{0.2\textwidth} | >{\centering\arraybackslash}m{0.285\textwidth} |}
    \hline
    \textbf{Date} & \textbf{Revision} & \textbf{Comments} & \textbf{Author(s)} \\ \hline
-   Feb 1, 2018 & 1.0 & Document structure and Headings & Christopher MCDonald \\ \hline
+   Feb 1, 2018 & 1.0 & Document structure and Headings & Christopher McDonald \\ \hline
+   Feb 10, 2018 & 1.1 & Philosophy and Intro section & Christopher MCDonald \\ \hline
+   Feb 13, 2018 & 1.2 & UI and DS Tests & Sharon Platkin \\ \hline
+   Feb 15, 2018 & 1.3 & SM, SMC, SS, CV and SR & Christopher McDonald \& Harit Patel \& Sam Hamel \\ \hline
+   Feb 16-17, 2018 & 1.4 & Executive Summary and Testing & Christopher McDonald \& Sharon Platkin  \\ \hline
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -78,7 +83,7 @@
 \section{Executive Summary of Testing}
 The testing completed on February 17th, 2018 has yielded 44 passes, 10 failures, and 3 pending. Pending tests have not been executed due to lack of relevnce at this stage. The failures in their entirety can be attributed to features that are in progress or that have not yet been implemented including; automated roll and pitch as well as the machine learning model. Given that the failure rate is roughly 17\%, the team does not recommend operation of the project at this time. \\ \\
 An important note to consider is that most errors are localized in the Shooting Mechanism and ShotRecommender subsystems. The team would also like to expand testing further to have higher coverage of the system and increase their confidence in its reliability. \\ \\
-The team will continue developing the system until March 9th where tests will be redefined and added to satisfy the team's ideals. After which, the second round of testing will commence. 
+The team will continue developing the system until March 9th where tests will be redefined and added to satisfy the team's ideals. After which, the second round of testing will commence.
 \section{Introduction}
 \subsection{Project Overview}
 SmartServe is an autonomous table tennis training system for table tennis players with various skill levels. SmartServe aids in diagnosing and improving a player's performance over time. The system trains table tennis players by shooting table tennis balls towards the player and detects successful returns from the player. The system can further adapt to the player's weaknesses and help them overcome it through further training. Importantly, SmartServe alleviates the problems of finding and working with a coach for players, as well as coaches trying to train multiple players simultaneously. The system will be deemed a success if the table tennis players and coaches can enjoy and see some value added by using SmartServe.\\\\
@@ -118,7 +123,7 @@ The approach to testing will be to separate the subsystems as much as possible a
 \label{my-label}
 \begin{tabular}{|l|l|l|}
 \hline
-\multicolumn{3}{|c|}{\textbf{Testing Schedule}}  \\ \hline 
+\multicolumn{3}{|c|}{\textbf{Testing Schedule}}  \\ \hline
 \textbf{Task} & \textbf{Date} & \textbf{Notes} \\ \hline
 Complete Test Cases & February 13, 2018 & N/A \\ \hline
 Run Tests (First) & February 16, 2018 & N/A \\ \hline
@@ -128,6 +133,8 @@ Run Tests (Second) & March 16, 2018 & N/A \\ \hline
 \end{table}
 \subsection{Environment}
 The SmartServe system uses heavy computation power due to the CV and ML models, so the system which runs the test will have the following details. The system will be a 15-inch Macbook Pro (Late 2016) running macOS High Sierra (10.13). The Macbook Pro has an 2.6 GHz Intel Core i7 CPU and a Radeon Pro 450 2GB GPU. The location will be in Thode Makerspace where the CV will be adjusted as necessary for those lighting conditions.
+\subsection{Code Reviews}
+As per the Development Plan document, the team will be using branches on GitHub to control additions into the source code. The list of Pull Requests can be found here \href{https://github.com/ChristopherMcDonald/SoftwareTronCapstone/pulls?utf8=?&q=is\%3Apr}{here}. Although it is impossible to test whether it is better that they were made as opposed to all members contributing to the same branch, few commits have had to be made directly to the develop branch, and 0 to the master branch, which indicates the system is working as expected.
 \section{Test Cases}
 \subsection{Electromechanical Subsystems}
 \subsubsection{Shooting Mechanism}
