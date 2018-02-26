@@ -58,7 +58,7 @@ public class View extends ApplicationFrame {
 	    View demo = new View( "Mobile Sales" );  
 	      demo.setSize( 560 , 367 );    
 	      RefineryUtilities.centerFrameOnScreen( demo );    
-	      demo.setVisible( true );
+	      //demo.setVisible( true );
 	      
 	    f.add(title);									//add title in JFrame
 	    
@@ -72,7 +72,7 @@ public class View extends ApplicationFrame {
 		
 		f.setSize(400,500);						//400 width and 500 height  
 		f.setLayout(null);						//using no layout managers  
-		f.setVisible(true);						//making the frame visible  
+		//f.setVisible(true);						//making the frame visible  
 		welcomef.setVisible(true);				//making the welcome frame visible  
 
 		

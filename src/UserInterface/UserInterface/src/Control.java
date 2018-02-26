@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import java.awt.Font;
 
 public class Control extends JFrame {
 
@@ -40,22 +41,23 @@ public class Control extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(60, 62, 89, 23);
-		contentPane.add(btnNewButton);
+		JButton startBtn = new JButton("Start");	  
+		startBtn.setBounds(50,59,100, 40);
+		contentPane.add(startBtn);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(159, 62, 89, 23);
-		contentPane.add(btnNewButton_1);
+		JButton pauseBtn = new JButton("Pause");		  
+		pauseBtn.setBounds(160,59,100, 40);	
+		contentPane.add(pauseBtn);
 		
-		JButton btnNewButton_2 = new JButton("New button");
-		btnNewButton_2.setBounds(258, 62, 89, 23);
-		contentPane.add(btnNewButton_2);
+		JButton stopBtn = new JButton("Stop");			 
+		stopBtn.setBounds(270,59,100, 40);				
+		contentPane.add(stopBtn);
 		
 		String[] modes = { "Random", "Single", "Train"};
-		JComboBox comboBox = new JComboBox(modes);
-		comboBox.setBounds(159, 107, 89, 20);
-		contentPane.add(comboBox);
+		JComboBox modeComboBox = new JComboBox(modes);
+		modeComboBox.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		modeComboBox.setBounds(160, 127, 100, 20);
+		contentPane.add(modeComboBox);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
