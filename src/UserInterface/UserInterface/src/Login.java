@@ -11,6 +11,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class Login extends JFrame {
 
@@ -47,25 +48,25 @@ public class Login extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Email");
-		lblNewLabel.setBounds(131, 93, 46, 14);
+		lblNewLabel.setBounds(118, 93, 46, 14);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Password");
-		lblNewLabel_1.setBounds(131, 117, 46, 14);
+		lblNewLabel_1.setBounds(118, 117, 46, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		textField = new JTextField();
-		textField.setBounds(224, 90, 129, 20);
+		textField.setBounds(226, 81, 86, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(224, 114, 129, 20);
+		textField_1.setBounds(226, 106, 86, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Login");
-		btnNewButton.setBounds(193, 145, 75, 30);
+		btnNewButton.setBounds(166, 153, 89, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				View.loginf.setVisible(false);
@@ -73,5 +74,10 @@ public class Login extends JFrame {
 			}
 		});
 		contentPane.add(btnNewButton);
+		
+		JLabel lblLogIn = new JLabel("Log In");
+		lblLogIn.setFont(new Font("Century", Font.PLAIN, 35));
+		lblLogIn.setBounds(149, 4, 137, 69);
+		contentPane.add(lblLogIn);
 	}
 }

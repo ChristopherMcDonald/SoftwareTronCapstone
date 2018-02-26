@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class Welcome extends JFrame {
 
@@ -42,7 +44,7 @@ public class Welcome extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnSignUp = new JButton("Sign Up");
-		btnSignUp.setBounds(159, 62, 89, 23);
+		btnSignUp.setBounds(169, 101, 89, 23);
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				View.welcomef.setVisible(false);
@@ -52,13 +54,18 @@ public class Welcome extends JFrame {
 		contentPane.add(btnSignUp);
 		
 		JButton btnLogIn = new JButton("Log In");
-		btnLogIn.setBounds(159, 97, 89, 23);
-		btnSignUp.addActionListener(new ActionListener() {
+		btnLogIn.setBounds(169, 143, 89, 23);
+		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				View.welcomef.setVisible(false);
 				View.loginf.setVisible(true);
 			}
 		});
 		contentPane.add(btnLogIn);
+		
+		JLabel lblWelcome = new JLabel("Welcome");
+		lblWelcome.setFont(new Font("Andalus", Font.PLAIN, 55));
+		lblWelcome.setBounds(101, 30, 218, 60);
+		contentPane.add(lblWelcome);
 	}
 }

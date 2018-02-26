@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class Signup extends JFrame {
 
@@ -21,6 +22,7 @@ public class Signup extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JButton btnSignUp;
+	private JLabel lblSignUp;
 
 	/**
 	 * Launch the application.
@@ -50,38 +52,38 @@ public class Signup extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblName = new JLabel("Name");
-		lblName.setBounds(125, 60, 46, 14);
+		lblName.setBounds(121, 84, 46, 14);
 		contentPane.add(lblName);
 		
 		JLabel lblEmail = new JLabel("Email");
-		lblEmail.setBounds(125, 85, 46, 14);
+		lblEmail.setBounds(121, 109, 46, 14);
 		contentPane.add(lblEmail);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(125, 110, 46, 14);
+		lblPassword.setBounds(121, 134, 46, 14);
 		contentPane.add(lblPassword);
 		
 		JLabel lblConfirmPassword = new JLabel("Confirm Password");
-		lblConfirmPassword.setBounds(125, 135, 94, 14);
+		lblConfirmPassword.setBounds(121, 159, 94, 14);
 		contentPane.add(lblConfirmPassword);
 		
 		textField = new JTextField();
-		textField.setBounds(230, 57, 86, 20);
+		textField.setBounds(226, 81, 86, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(230, 82, 86, 20);
+		textField_1.setBounds(226, 106, 86, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(230, 107, 86, 20);
+		textField_2.setBounds(226, 131, 86, 20);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(230, 132, 86, 20);
+		textField_3.setBounds(226, 156, 86, 20);
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
 		
@@ -93,8 +95,13 @@ public class Signup extends JFrame {
 				View.welcomef.setVisible(true);
 			}
 		});
-		btnSignUp.setBounds(170, 160, 89, 23);
+		btnSignUp.setBounds(166, 184, 89, 23);
 		contentPane.add(btnSignUp);
+		
+		lblSignUp = new JLabel("Sign Up");
+		lblSignUp.setFont(new Font("Century", Font.PLAIN, 35));
+		lblSignUp.setBounds(149, 4, 137, 69);
+		contentPane.add(lblSignUp);
 	}
 
 }
