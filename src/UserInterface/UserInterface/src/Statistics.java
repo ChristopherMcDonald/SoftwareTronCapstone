@@ -6,12 +6,17 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
 
 public class Statistics extends JFrame {
 
 	private JPanel contentPane;
+	private JTable table;
+	private JTable table_1;
 
 	/**
 	 * Launch the application.
@@ -40,6 +45,11 @@ public class Statistics extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JTable table_1 = new JTable(); 
+		table_1.setBounds(22, 28, 218, 146);
+		contentPane.add(table_1);
+		
+	
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
@@ -66,5 +76,4 @@ public class Statistics extends JFrame {
 		
 		
 	}
-
 }
