@@ -20,8 +20,8 @@ args = vars(ap.parse_args())
 # define the lower and upper boundaries of the "green"
 # ball in the HSV color space, then initialize the
 # list of tracked points
-Orange1Upper = (28,216,294)
-Orange1Lower = (6,142,161)
+Orange1Upper = (30,259,295)
+Orange1Lower = (8,181,161)
 # OrangeLower = (0,145,200)
 # OrangeUpper = (30,200,300)
 
@@ -43,9 +43,9 @@ fsm = 0 # 0 - waiting request, 1 - detecting, 2 - active ball, 3 - descent
 HOST = "localhost";
 PORT = 8013;
 
-socketIn = socket.socket();             # handles incoming requests
-socketIn.bind((HOST, PORT));            # binds to a host and port
-socketIn.listen(5);                     # enables server to accept incoming
+# socketIn = socket.socket();             # handles incoming requests
+# socketIn.bind((HOST, PORT));            # binds to a host and port
+# socketIn.listen(5);                     # enables server to accept incoming
 
 pts = deque(maxlen = args["buffer"])
 counter = 0
@@ -57,12 +57,12 @@ while(True):
 
     if(fsm == 0):                           # waiting on connection
 
-        conn, addr = socketIn.accept();     # loop will freeze on this command, runs when SmartServe
-        print("Got connection from", addr); # sends a request
-        msg = conn.recv(1024);              # parses msg... could be "TEST","DETECT"
+        # conn, addr = socketIn.accept();     # loop will freeze on this command, runs when SmartServe
+        # print("Got connection from", addr); # sends a request
+        # msg = conn.recv(1024);              # parses msg... could be "TEST","DETECT"
 
         # DEBUGGING
-        # msg = b'DETECT'
+        msg = b'DETECT'
         # print(msg);
 
         if("TEST" in msg.decode("UTF8")):
@@ -80,7 +80,7 @@ while(True):
 
     if(fsm == 1 or fsm == 2 or fsm == 3):
 
-        if((datetime.now() - start).seconds > 5):
+        if((datetime.now() - start).seconds > 50):
 
             fps.stop()
             print("[INFO] elasped time: {:.2f}".format(fps.elapsed()))
@@ -95,7 +95,9 @@ while(True):
 
         else:
             # grab the current frame
-            frame = cv2.resize(vs.read(), (0,0), fx=0.5, fy=0.5)
+            frame = cv2.resize(vs.read(), (0,0), fx=0.15, fy=0.15)
+            print("grabbed");
+            # frame = vs.read();
             fps.update()
             # print(type(frame));
             # resize the frame, blur it, and convert it to the HSV
@@ -165,25 +167,27 @@ while(True):
                     cv2.line(frame, pts[i - 1], pts[i], (0, 0, 255), thickness)
                     # check to see if enough points have been accumulated in
                     # the buffer
-                if counter >= 10 and i == 10 and pts[-10] is not None:
+                if counter >= 1 and i == 1 and pts[0] is not None:
                     # compute the difference between the x and y
                     # coordinates and re-initialize the direction
                     # text variables
-                    dX = pts[-10][0] - pts[i][0]
-                    dY = pts[-10][1] - pts[i][1]
+                    dX = pts[0][0] - pts[i][0]
+                    dY = pts[0][1] - pts[i][1]
                     (dirX, dirY) = ("", "")
-
+                    
+                    print("i:" + str(i));
+                    
                     if(fsm == 1):       # check if active
                         print("in state 1")
-                        if(dX < -5):
+                        if(dX < -1):
                             fsm = 2;
                     elif(fsm == 2):     # check if descending
                         print("in state 2")
-                        if(dY > 5):
+                        if(dY < -1):
                             fsm = 3;
                     elif(fsm == 3):     # if ascending, return GOOD
                         print("in state 3")
-                        if(dY < -5):
+                        if(dY > 1):
 
                             fps.stop()
                             print("[INFO] elasped time: {:.2f}".format(fps.elapsed()))
@@ -209,15 +213,15 @@ while(True):
 
             # show the frame to our screen
             # cv2.imshow("Frame", cv2.resize(mask, (0,0), fx=2.5, fy=2.5) )
-            # border = cv2.copyMakeBorder(
-            #     frame,
-            #     top = BORDERWIDTH,
-            #     bottom = BORDERWIDTH,
-            #     left = BORDERWIDTH,
-            #     right = BORDERWIDTH,
-            #     borderType = cv2.BORDER_CONSTANT,
-            #     value = RED)
-            # cv2.imshow('border', border)
+            border = cv2.copyMakeBorder(
+                cv2.resize(frame, (0,0), fx=1.1, fy=1.1),
+                top = BORDERWIDTH,
+                bottom = BORDERWIDTH,
+                left = BORDERWIDTH,
+                right = BORDERWIDTH,
+                borderType = cv2.BORDER_CONSTANT,
+                value = RED)
+            cv2.imshow('border', border)
             # cv2.imshow("shape",thresh)
             key = cv2.waitKey(1) & 0xFF
             counter += 1
