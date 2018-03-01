@@ -49,33 +49,33 @@ socketIn.listen(5);                     # enables server to accept incoming
 pts = deque(maxlen = args["buffer"])
 counter = 0
 (dX, dY) = (0,0)
-vs= WebcamVideoStream(src=1).start()
+vs= WebcamVideoStream(src=0).start()
 
 def checkLeft(deque):
     for i in range(1,10):
         d = deque[0][0]-deque[i][0]
-        if(d<-5):
+        if(d<-20):
             return True
     return False
 
 def checkRight(deque):
     for i in range(1,10):
         d = deque[0][0]-deque[i][0]
-        if(d>5):
+        if(d>20):
             return True
     return False
 
 def checkDown(deque):
     for i in range(1,10):
         d = deque[0][1]-deque[i][1]
-        if(d<-5):
+        if(d>20):
             return True
     return False
 
 def checkUp(deque):
     for i in range(1,10):
         d = deque[0][1]-deque[i][1]
-        if(d>5):
+        if(d<-20):
             return True
     return False
 while(True):
@@ -105,7 +105,7 @@ while(True):
 
     if(fsm == 1 or fsm == 2 or fsm == 3):
 
-        if((datetime.now() - start).seconds > 8):
+        if((datetime.now() - start).seconds > 30):
             # socket for outgoing messages
             socketOut = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
             socketOut.connect((HOST, PORT + 1));
@@ -117,7 +117,7 @@ while(True):
         else:
             # grab the current frame
             frame = vs.read()
-            frame = cv2.resize(frame,0.2,0.2)
+            frame = cv2.resize(frame,(0,0), fx = 0.3, fy = 0.3)
             # resize the frame, blur it, and convert it to the HSV
             # color space
             hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
@@ -199,28 +199,26 @@ while(True):
                     cv2.putText(frame, "dx: {}, dy: {}".format(dX, dY),
                     (10, frame.shape[0] - 10), cv2.FONT_HERSHEY_SIMPLEX,
                     0.35, (0, 0, 255), 1)
+            if counter >= 10 and len(pts) >= 11:
+                if(fsm == 1):       # check if active
+                    print("in state 1")
+                    if checkRight(pts):
+                        fsm = 2;
+                elif(fsm == 2):     # check if descending
+                    print("in state 2")
+                    if checkDown(pts):
+                        fsm = 3;
+                elif(fsm == 3):     # if ascending, return GOOD
+                    print("in state 3")
+                    if checkUp(pts):
+                        # socket for outgoing messages
+                        print("hit")
+                        socketOut = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
+                        socketOut.connect((HOST, PORT + 1));
 
-            if(fsm == 1):       # check if active
-                print("in state 1")
-                if checkRight(pts):
-                    fsm = 2;
-            elif(fsm == 2):     # check if descending
-                print("in state 2")
-                if checkDown(pts):
-                    fsm = 3;
-            elif(fsm == 3):     # if ascending, return GOOD
-                print("in state 3")
-                if checkUp(pts):
-                    # socket for outgoing messages
-                    print("hit")
-                    socketOut = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
-                    socketOut.connect((HOST, PORT + 1));
-
-                    socketOut.send(b'GOOD\n');
-                    fsm = 0;    # HIT!
-                    pts = deque(maxlen = args["buffer"])
-
-
+                        socketOut.send(b'GOOD\n');
+                        fsm = 0;    # HIT!
+                        pts = deque(maxlen = args["buffer"])
 
 
             # show the frame to our screen
