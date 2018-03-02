@@ -41,7 +41,7 @@ def callProc(conn, id):
 	cur = conn.cursor()
 
 	#Calling proc
-	args = [4,0,0,0,0]
+	args = [id,0,0,0,0]
 	result_args = cur.callproc('next_shot',args)
 	return result_args
 
