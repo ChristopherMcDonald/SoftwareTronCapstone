@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.26)  19 JAN 2018 21:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.26)  4 MAR 2018 20:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -428,7 +428,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.7 ...e {7}{\ignorespaces EXAMPLE}}{20}{figure.7}
+l.7 ...erator Worm Gear Parameters}}{20}{figure.7}
                                                    [1])
 \tf@lof=\write5
 \openout5 = `Design.lof'.
@@ -840,16 +840,12 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 597.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 597.
 Package rerunfilecheck Info: File `Design.out' has not changed.
 (rerunfilecheck)             Checksum: C6CD855D01CACC5B7CC1E249CE6C8C67;1876.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 597.
  ) 
 Here is how much of TeX's memory you used:
  6509 strings out of 494447
  95617 string characters out of 6166766
- 192169 words of memory out of 5000000
+ 193289 words of memory out of 5000000
  9628 multiletter control sequences out of 15000+600000
  12309 words of font info for 45 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
@@ -864,7 +860,7 @@ ic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2016basic/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2016basic/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2016basic/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Design.pdf (28 pages, 3005710 bytes).
+Output written on Design.pdf (28 pages, 3008379 bytes).
 PDF statistics:
  446 PDF objects out of 1000 (max. 8388607)
  367 compressed objects within 4 object streams
