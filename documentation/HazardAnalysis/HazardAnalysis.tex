@@ -15,7 +15,7 @@
     citecolor=black,
     filecolor=blue,
     linkcolor=black,
-    urlcolor=black
+    urlcolor=blue
 }
 
 \begin{document}
@@ -120,7 +120,7 @@ The following terms and definitions will be used throughout this document:
 
 \section{System}
 \subsection{High-Level Design}
-The high-level design document covers in great detail the design of the system and can be found \href{run:../SystemDesign/Design.pdf}{here}. As a summary, the mechanical aspects include a hopper to hold all the table tennis balls and a spinning disk with cut outs to force feed the balls into a barrel. The barrel can hold multiple balls, that are then pushed up the barrel as the aforementioned disk spins. Once a ball reaches the end of the barrel, the ball will be shot out via a spinning wheel affixed to a motor attached to the end of the barrel. The entire mechanism is fixed to a rotating platform to have variable yaw. The spinning wheel can shoot at various speeds and can be manually set to multiple orientations by rotating in the roll direction, to achieve different types of spin. The shooting assembly will also have multiple manual settings for rotating in the y-axis, in order to achieve different yaw and ball trajectories.  \\ \\
+The high-level design document covers in great detail the design of the system and can be found \href{https://github.com/ChristopherMcDonald/SoftwareTronCapstone/blob/develop/documentation/SystemDesign/Design.pdf}{here}. As a summary, the mechanical aspects include a hopper to hold all the table tennis balls and a spinning disk with cut outs to force feed the balls into a barrel. The barrel can hold multiple balls, that are then pushed up the barrel as the aforementioned disk spins. Once a ball reaches the end of the barrel, the ball will be shot out via a spinning wheel affixed to a motor attached to the end of the barrel. The entire mechanism is fixed to a rotating platform to have variable yaw. The spinning wheel can shoot at various speeds and can be manually set to multiple orientations by rotating in the roll direction, to achieve different types of spin. The shooting assembly will also have multiple manual settings for rotating in the y-axis, in order to achieve different yaw and ball trajectories.  \\ \\
 The electrical components include an Arduino, motors, a breadboard, a motor driver, an H bridge, and a power supply to control the motors needed to spin the mechanism and wheel. There will also be a general purpose computer to run the software-based components and a USB camera to use for the computer vision sub-system. 
 \subsection{Scope \& Boundary}
 The hazards outlined below will cover the hardware, electrical and software aspects of the SmartServe system. \\ \\
