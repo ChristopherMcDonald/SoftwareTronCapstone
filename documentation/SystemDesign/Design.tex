@@ -81,6 +81,7 @@
    Dec 17, 2017 & 1.3 & Added CRC card intro and reviewed & Christopher McDonald \\ \hline
    Dec 21, 2017 & 1.4 & Edited entire document & Sharon Platkin \\ \hline
    Dec 21, 2017 & 1.5 & Added Arduino Diagrams and Shooter Information & Nisarg Patel \\ \hline	
+   Mar 9, 2018 & 2.0 & Added Likely and Unlikely Changes & Christopher McDonald \\ \hline	
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -203,6 +204,10 @@ The trainee would begin by starting the system from its off state. This will tri
 Although possible, there are some actions a user could take which would be considered abnormal. If a user hits the ball and it immediately leaves the viewable area of the computer vision, whether it never returns or does so after 1.5 seconds, it should be considered a failed return. A user could also replace the table with a different one without calibrating the system to the new table. Furthermore, the user could misplace the system such that it is not centre with the table or at the edge of the table. The proper placement can be found in Figure \ref{fig:table-tennis-top-view}. The system will require the user to load the balls into the shooting mechanism's hopper which will need to be a particular size and colour to work optimally.
 \subsubsection{Error Handling}
 If the system should encounter an error, it should display the details of it through the User Interface subsystem. In addition to this, it must take measures to ensure the safety of the user and integrity of the system. This includes stopping all training and pending actions for the system to perform. For example, an error could be a jammed table tennis ball or the system has run out of balls to use.
+\subsection{Likely Changes}
+Some aspects of the system design will likely change as the project progresses which will be excluded within this document. This is done so the design is considered complete and the next stages of design and implementation can be done. The first likely change would be to the computer vision subsystem, as the introduction of another camera would change the high level design of this subsystem. The additional camera would track a 3rd dimension, which is along the short side of the table. This change would propagate through the system since the Shot Recommendation subsystem would need to consider this new data for recommending new shots. The Data Storage subsystem will also be changed to hold the new data.
+\subsection{Unlikely Changes}
+The overall architecture of the system will not change, although additional subsystems could be added or existing ones could be changed. The degrees of freedom for a shot will not change. The Smart Serve subsystem will likely not change, although the data being processed between states may change. 
 \section{Subsystems Overview}
 \subsection{Smart Serve}
 The Smart Serve subsystem will provide the means of interfacing with all the subsystems and enforcing timing constraints. For all intents and purposes, it can be considered the main process and hub of the system. In the event a subsystem is taking too long to respond, this subsystem must be able to continue operation to meet timing requirements. The various states and transitions can be found in Figure \ref{fig:fsm}. The FSM (Finite State Machine) diagram shows each state should have an \textit{exit option} if a service takes longer than allowed to preform an action.
