@@ -18,6 +18,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class Login extends JFrame {
 
@@ -27,6 +28,7 @@ public class Login extends JFrame {
 	
 
 	int user_id;
+	private JTextField errorMsg;
 	
 	/**
 	 * Launch the application.
@@ -79,16 +81,34 @@ public class Login extends JFrame {
 		btnNewButton.setBounds(166, 153, 89, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Object[] loginObj = new Object[]{userNameInput.getText(), passwordInput.getText()};
-				try {
-					ResultSet rs = SQLConnector.query("login_proc",loginObj);
-					rs.next();
-					user_id = rs.getInt(1);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				View.loginf.setVisible(false);
-				View.profilef.setVisible(true);
+					Object[] loginObj = new Object[]{userNameInput.getText(), passwordInput.getText()};
+					try {
+						ResultSet rs = SQLConnector.query("login_proc",loginObj);
+						int counter = 0;
+						while(rs.next()) {
+							counter++;
+						}
+						if (counter > 0) {
+							rs.previous();
+							user_id = rs.getInt(1);
+							//System.out.print(user_id);
+							View.loginf.setVisible(false);
+							View.profilef.setVisible(true);
+						}
+						else {
+							errorMsg = new JTextField();
+							errorMsg.setHorizontalAlignment(SwingConstants.CENTER);
+							errorMsg.setText("Incorrect Email or Password");
+							errorMsg.setBounds(118, 187, 194, 20);
+							contentPane.add(errorMsg);
+							errorMsg.setColumns(10);
+							//System.out.println("error");
+						}
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				
+				
 			}
 		});
 		
@@ -97,6 +117,8 @@ public class Login extends JFrame {
 		lblLogIn.setFont(new Font("Century", Font.PLAIN, 35));
 		lblLogIn.setBounds(149, 4, 137, 69);
 		contentPane.add(lblLogIn);
+		
+		
 
 	}
 }
