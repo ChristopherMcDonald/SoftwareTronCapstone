@@ -82,8 +82,9 @@
    Dec 21, 2017 & 1.4 & Edited entire document & Sharon Platkin \\ \hline
    Dec 21, 2017 & 1.5 & Added Arduino Diagrams and Shooter Information & Nisarg Patel \\ \hline	
    Mar 9, 2018 & 2.0 & Added Likely / Unlikely Changes and Assumptions, Removed Shot Optimizer & Christopher McDonald \\ \hline	
-   Mar 10, 2018 & 2.1 & Added details on CV and SR, fixed Start Sequence Diagram & Christopher McDonald \\ \hline
-   Mar 10, 2018 & 2.2 & Fixed CRC cards for changes to requirements & Christopher McDonald \\ \hline	
+   Mar 9, 2018 & 2.1 & Added motor specifications & Janak Patel \\ \hline	
+   Mar 10, 2018 & 2.2 & Added details on CV and SR, fixed Start Sequence Diagram & Christopher McDonald \\ \hline
+   Mar 10, 2018 & 2.3 & Fixed CRC cards for changes to requirements & Christopher McDonald \\ \hline
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -248,7 +249,27 @@ The User Interface subsystem will be the means of translating user requests into
 \subsection{Shooting Mechanism}
 The Shooting Mechanism will be the subsystem which actually fires the ball towards the user. A microcontroller will be used as the point of contact and set any actuators required to fire a specified shot. It must complete this action within 1.5 seconds for the Computer Vision to detect the ball returned by the user. \\\\
 The Shooting Mechanism will consist of three main sub parts: Automatic Feeder, Automatic Panning, Ball Shooter. The functionality of the Automatic Feeder part will be to automatically control the feeding rate of the ping pong balls into the shooting barrel and feed the balls into the barrel as initiated by the program. The functionality of the Automatic Panning will be to rotate the entire shooting mechanism or the shooting barrel about the z-axis so the mechanism is able to cover all of the shooting zones as specified in the requirements. Additionally, the functionality of the ball shooter is actually shoot out ping pong balls from the shooting barrel. Please refer to figure \ref{fig:shootingmechanismoutline} for visual representation. \\\\
-In terms of electrical components, Arduino UNO microcontroller will be used to control all of the IPO (Input Process Output) processes between the sensors, actuators and Smart Serve. For the ball shooter, a DC Motor will be used as the system will require high speeds and high torques to shoot out ping pong balls. The details on the DC motor can be found at https://secure.sayal.com/STORE/View\_SPEC.asp?SKU=230437. The DC Motor will be controlled using the PWM method for speed control. Additionally, a Stepper Motor will be utilized for the automatic feeding of the balls into shooting barrel functionality as the Stepper motor would not require any position encoder as well as the stepper motor will have predictable movements. Details on the stepper motor can be found at https://www.seeedstudio.com/Gear-Stepper-Motor-with-Driver-p-1685.html. For the automatic panning part of the shooting mechanism, a servo or a stepper motor will be utilized however that would be further refined after rigorous prototyping and simulations. Please refer to Figure \ref{fig:electricalwiringdiagrambb}, Figure \ref{fig:electricalwiringdiagramschematic}, and Figure \ref{fig:electricalwiringdiagrampcb} for an overview of Electrical Bread Board, Schematic and PCB layout diagrams of how the Shooting Mechanism system outline.
+In terms of electrical components, Arduino UNO microcontroller will be used to control all of the IPO (Input Process Output) processes between the sensors, actuators and Smart Serve. For the ball shooter, a DC Motor will be used as the system will require high speeds and high torques to shoot out ping pong balls. The details on the DC motor can be found below in Table \ref{table:motorspecs} (SAYAL Electronics SKU No. 230437). The DC Motor will be controlled using the PWM method for speed control. Additionally, a Stepper Motor will be utilized for the automatic feeding of the balls into shooting barrel functionality as the Stepper motor would not require any position encoder as well as the stepper motor will have predictable movements. Details on the stepper motor can be found at https://www.seeedstudio.com/Gear-Stepper-Motor-with-Driver-p-1685.html. For the automatic panning part of the shooting mechanism, a servo or a stepper motor will be utilized however that would be further refined after rigorous prototyping and simulations. Please refer to Figure \ref{fig:electricalwiringdiagrambb}, Figure \ref{fig:electricalwiringdiagramschematic}, and Figure \ref{fig:electricalwiringdiagrampcb} for an overview of Electrical Bread Board, Schematic and PCB layout diagrams of how the Shooting Mechanism system outline.
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|}
+	\hline 
+	Motor Type & DC \\ 
+	\hline 
+	Operating Voltage & 3V - 6V \\ 
+	\hline 
+	Max. Speed & 17000RPM \\ 
+	\hline 
+	Shaft Diameter & 2 mm \\ 
+	\hline 
+	Torque & 20.72 g/cm \\ 
+	\hline 
+\end{tabular} 
+\caption{Shooting Motor Specifications}
+\label{table:motorspecs}
+\end{center}
+\end{table}
 
 \begin{figure}[H]
    \centering
