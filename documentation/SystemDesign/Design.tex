@@ -82,7 +82,8 @@
    Dec 21, 2017 & 1.4 & Edited entire document & Sharon Platkin \\ \hline
    Dec 21, 2017 & 1.5 & Added Arduino Diagrams and Shooter Information & Nisarg Patel \\ \hline	
    Mar 9, 2018 & 2.0 & Added Likely / Unlikely Changes and Assumptions, Removed Shot Optimizer & Christopher McDonald \\ \hline	
-   Mar 10, 2018 & 2.1 & Added details on CV and SR, fixed Start Sequence Diagram & Christopher McDonald \\ \hline	
+   Mar 10, 2018 & 2.1 & Added details on CV and SR, fixed Start Sequence Diagram & Christopher McDonald \\ \hline
+   Mar 10, 2018 & 2.2 & Fixed CRC cards for changes to requirements & Christopher McDonald \\ \hline	
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -340,7 +341,7 @@ The following sections will include one CRC card for each subsystem. A CRC card 
 \textbf{Responsibilities:} & \textbf{Collaborators:} \\ \hline
 \begin{itemize}
 \item \textbf{F7}: load a previously saved state
-\item \textbf{MS1}: must support adding different modes to the system
+\item \textbf{F14}: implements a training mode
 \end{itemize}
 &
 \begin{itemize}
@@ -361,8 +362,8 @@ The following sections will include one CRC card for each subsystem. A CRC card 
 \multicolumn{2}{|c|}{\textbf{Smart Serve}}             \\ \hline
 \textbf{Responsibilities:} & \textbf{Collaborators:} \\ \hline
 \begin{itemize}
-\item \textbf{F13}: implements a training mode
-\item \textbf{F14}: implements a one-shot mode
+\item \textbf{F14}: implements a training mode
+\item \textbf{F15}: implements a one-shot mode
 \end{itemize}
 &
 \begin{itemize}
@@ -440,8 +441,8 @@ The following sections will include one CRC card for each subsystem. A CRC card 
 \begin{itemize}
 \item \textbf{F1}: shoots the table tennis ball towards the user at various locations
 \item \textbf{F2}: shoots the table tennis ball towards the user at various speeds
-\item \textbf{F3}: shoots the table tennis ball towards the user at various Yaw
-\item \textbf{F4}: shoots the table tennis ball towards the user with spin along 2 axes
+\item \textbf{F3}: shoots the table tennis ball towards the user at various degrees of Yaw
+\item \textbf{F4}: shoots the table tennis ball towards the user with various degrees of roll
 \item \textbf{HS1}: always hit the table at least once per shot
 \item \textbf{HS2}: not shoot the ball faster than 22 m/s
 \item \textbf{HS3}: have no exposed electrical wiring or components
