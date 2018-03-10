@@ -3,34 +3,35 @@
 \BOOKMARK [2][-]{subsection.1.2}{Document Overview}{section.1}% 3
 \BOOKMARK [2][-]{subsection.1.3}{Naming Conventions and Terminology}{section.1}% 4
 \BOOKMARK [2][-]{subsection.1.4}{Project Scope}{section.1}% 5
-\BOOKMARK [1][-]{section.2}{System Description}{}% 6
-\BOOKMARK [2][-]{subsection.2.1}{System Architecture}{section.2}% 7
-\BOOKMARK [2][-]{subsection.2.2}{Subsystems}{section.2}% 8
-\BOOKMARK [2][-]{subsection.2.3}{Use Cases}{section.2}% 9
-\BOOKMARK [3][-]{subsubsection.2.3.1}{Start Training}{subsection.2.3}% 10
-\BOOKMARK [3][-]{subsubsection.2.3.2}{Stop Training}{subsection.2.3}% 11
-\BOOKMARK [3][-]{subsubsection.2.3.3}{View Results}{subsection.2.3}% 12
-\BOOKMARK [3][-]{subsubsection.2.3.4}{Tune Parameters}{subsection.2.3}% 13
-\BOOKMARK [3][-]{subsubsection.2.3.5}{Start System}{subsection.2.3}% 14
-\BOOKMARK [2][-]{subsection.2.4}{Behaviour Description}{section.2}% 15
-\BOOKMARK [3][-]{subsubsection.2.4.1}{Normal Operation}{subsection.2.4}% 16
-\BOOKMARK [3][-]{subsubsection.2.4.2}{Abnormal Operation}{subsection.2.4}% 17
-\BOOKMARK [3][-]{subsubsection.2.4.3}{Error Handling}{subsection.2.4}% 18
-\BOOKMARK [2][-]{subsection.2.5}{Likely Changes}{section.2}% 19
-\BOOKMARK [2][-]{subsection.2.6}{Unlikely Changes}{section.2}% 20
-\BOOKMARK [1][-]{section.3}{Subsystems Overview}{}% 21
-\BOOKMARK [2][-]{subsection.3.1}{Smart Serve}{section.3}% 22
-\BOOKMARK [2][-]{subsection.3.2}{Computer Vision}{section.3}% 23
-\BOOKMARK [2][-]{subsection.3.3}{Shot Recommendation}{section.3}% 24
-\BOOKMARK [2][-]{subsection.3.4}{Shooting Model}{section.3}% 25
-\BOOKMARK [2][-]{subsection.3.5}{Data Storage}{section.3}% 26
-\BOOKMARK [2][-]{subsection.3.6}{User Interface}{section.3}% 27
-\BOOKMARK [2][-]{subsection.3.7}{Shooting Mechanism}{section.3}% 28
-\BOOKMARK [1][-]{section.4}{Class Responsibility Collaboration \(CRC\) Cards}{}% 29
-\BOOKMARK [2][-]{subsection.4.1}{SmartServe}{section.4}% 30
-\BOOKMARK [2][-]{subsection.4.2}{Computer Vision}{section.4}% 31
-\BOOKMARK [2][-]{subsection.4.3}{Shot Recommendation}{section.4}% 32
-\BOOKMARK [2][-]{subsection.4.4}{Shooting Model}{section.4}% 33
-\BOOKMARK [2][-]{subsection.4.5}{Data Storage}{section.4}% 34
-\BOOKMARK [2][-]{subsection.4.6}{User Interface}{section.4}% 35
-\BOOKMARK [2][-]{subsection.4.7}{Shooting Mechanism}{section.4}% 36
+\BOOKMARK [2][-]{subsection.1.5}{Assumptions}{section.1}% 6
+\BOOKMARK [1][-]{section.2}{System Description}{}% 7
+\BOOKMARK [2][-]{subsection.2.1}{System Architecture}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.2}{Subsystems}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.3}{Use Cases}{section.2}% 10
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Start Training}{subsection.2.3}% 11
+\BOOKMARK [3][-]{subsubsection.2.3.2}{Stop Training}{subsection.2.3}% 12
+\BOOKMARK [3][-]{subsubsection.2.3.3}{View Results}{subsection.2.3}% 13
+\BOOKMARK [3][-]{subsubsection.2.3.4}{Tune Parameters}{subsection.2.3}% 14
+\BOOKMARK [3][-]{subsubsection.2.3.5}{Start System}{subsection.2.3}% 15
+\BOOKMARK [2][-]{subsection.2.4}{Behaviour Description}{section.2}% 16
+\BOOKMARK [3][-]{subsubsection.2.4.1}{Normal Operation}{subsection.2.4}% 17
+\BOOKMARK [3][-]{subsubsection.2.4.2}{Abnormal Operation}{subsection.2.4}% 18
+\BOOKMARK [3][-]{subsubsection.2.4.3}{Error Handling}{subsection.2.4}% 19
+\BOOKMARK [2][-]{subsection.2.5}{Likely Changes}{section.2}% 20
+\BOOKMARK [2][-]{subsection.2.6}{Unlikely Changes}{section.2}% 21
+\BOOKMARK [1][-]{section.3}{Subsystems Overview}{}% 22
+\BOOKMARK [2][-]{subsection.3.1}{Smart Serve}{section.3}% 23
+\BOOKMARK [2][-]{subsection.3.2}{Computer Vision}{section.3}% 24
+\BOOKMARK [2][-]{subsection.3.3}{Shot Recommendation}{section.3}% 25
+\BOOKMARK [2][-]{subsection.3.4}{Shooting Model}{section.3}% 26
+\BOOKMARK [2][-]{subsection.3.5}{Data Storage}{section.3}% 27
+\BOOKMARK [2][-]{subsection.3.6}{User Interface}{section.3}% 28
+\BOOKMARK [2][-]{subsection.3.7}{Shooting Mechanism}{section.3}% 29
+\BOOKMARK [1][-]{section.4}{Class Responsibility Collaboration \(CRC\) Cards}{}% 30
+\BOOKMARK [2][-]{subsection.4.1}{SmartServe}{section.4}% 31
+\BOOKMARK [2][-]{subsection.4.2}{Computer Vision}{section.4}% 32
+\BOOKMARK [2][-]{subsection.4.3}{Shot Recommendation}{section.4}% 33
+\BOOKMARK [2][-]{subsection.4.4}{Shooting Model}{section.4}% 34
+\BOOKMARK [2][-]{subsection.4.5}{Data Storage}{section.4}% 35
+\BOOKMARK [2][-]{subsection.4.6}{User Interface}{section.4}% 36
+\BOOKMARK [2][-]{subsection.4.7}{Shooting Mechanism}{section.4}% 37
