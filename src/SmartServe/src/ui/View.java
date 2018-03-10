@@ -10,8 +10,16 @@ import runnables.*;
 
 public class View {
 	
+	public static Welcome welcomef = new Welcome();
+	public static Signup signupf = new Signup();
+	public static Login loginf = new Login();
+	public static Profile profilef = new Profile();
+	public static Control controlf = new Control();
+	public static Statistics statsf = new Statistics();
+	
 	private static Controller control;
-	private static boolean paused = true;		
+	private static boolean paused = true;	
+	
 	public static void main(String[] args) {
 		
 		JFrame f = new JFrame();				//creating instance of JFrame  
@@ -46,6 +54,7 @@ public class View {
 		f.setSize(400,500);						//400 width and 500 height  
 		f.setLayout(null);						//using no layout managers  
 		f.setVisible(true);						//making the frame visible  
+		welcomef.setVisible(true);
 		
 		startBtn.setEnabled(true);				//start button enabled
         pauseBtn.setEnabled(false);				//pause button disabled
