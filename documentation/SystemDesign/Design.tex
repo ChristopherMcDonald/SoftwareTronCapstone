@@ -81,7 +81,7 @@
    Dec 17, 2017 & 1.3 & Added CRC card intro and reviewed & Christopher McDonald \\ \hline
    Dec 21, 2017 & 1.4 & Edited entire document & Sharon Platkin \\ \hline
    Dec 21, 2017 & 1.5 & Added Arduino Diagrams and Shooter Information & Nisarg Patel \\ \hline	
-   Mar 9, 2018 & 2.0 & Added Likely and Unlikely Changes, Removed Shot Optimizer & Christopher McDonald \\ \hline	
+   Mar 9, 2018 & 2.0 & Added Likely / Unlikely Changes and Assumptions, Removed Shot Optimizer & Christopher McDonald \\ \hline	
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -124,6 +124,8 @@ The following terms and definitions will be used throughout this document:
 \end{figure}
 \subsection{Project Scope}
 The system will only attempt to shoot balls from the shooting mechanism straight towards the user side. Notably, the system will not attempt to return any shots from the user. After the user has returned a shot, the Computer Vision (CV) subsystem will be utilized to determine if the user's shot lands on the table or not. Additionally, the characteristics of the shot following any return will be determined by the system's mode and the proficiency of the player if available.
+\subsection{Assumptions}
+This design assumes the user supplies a functioning webcam, a capable computer to run the software and can connect to the SmartServe system via USB. The computer should have proficient computing power, as the CV subsystem will suffer in proficiency as a result. It is also assumed the use cases described here cover all interactions the user will attempt to have with the system. We assume the user has a ITTF-approved table, an orange table tennis ball and a paddle to use.
 \section{System Description}
 \subsection{System Architecture}
 The system will follow a service-oriented architecture. This means that a central subsystem will interface with several services that serve a single purpose. Some subsystems will be simply told what needs to be done and others will be asked for some return value. This is done to implement separation of concerns where one subsystem doesn't know everything about the system and only what is necessary to satisfy their requirements. It also allows for easy increments of versioning, where one subsystem can be used as long as it is functional and easily swapped out for a newer version with extra features or increased performance. Moreover, this system has heavy timing constraints and an unpredictable environment so some actions must be taken in absence of a service's response. For example, the computer vision may take longer to track a ball depending on its trajectory where the system must shoot another ball in order to keep the user engaged.
