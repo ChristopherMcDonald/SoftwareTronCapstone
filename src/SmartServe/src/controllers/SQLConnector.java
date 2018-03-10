@@ -32,19 +32,28 @@ public class SQLConnector {
 				 *returns boolean - successful save?
 				 *passed into signup_proc
 				 */
-				Object[] users = new Object[]{"Sharon", "apples"};
+				
+				//example;
+				//Object[] users = new Object[]{"Sharon", "march10"};
+				
 				/*myReturns 
 				 *@Params user_id, shot_id, returned, timestamp
 				 *returns boolean - successful save?
 				 *passed into returned proc
 				 */
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-				Object[] myReturns = new Object[]{25, 1, 1, sdf.format(new Date(System.currentTimeMillis()))};
+				
+				//example;
+				//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+				//Object[] myReturns = new Object[]{25, 1, 1, sdf.format(new Date(System.currentTimeMillis()))};
+				
 				/*Signin 
 				 *@Params username, password
 				 *returns userid as resultset
 				 *passed into login proc
 				 */
+				/* Examples!
+				 * 
+				 * 
 				Object[] signin = new Object[]{"Sharon", "apples"};
 
 				//signup_proc saves the user to the database
@@ -53,8 +62,11 @@ public class SQLConnector {
 				save("returned",myReturns);
 				//login proc gets the user id of a user
 				//getInt(1) gets first cell from resultset 
-				query("login_proc",signin).getInt(1);
-
+				ResultSet rs = query("login_proc",signin);
+				rs.next();
+				int result = rs.getInt(1);
+				*/
+				
 				myConn.close();
 			}catch (SQLException e) {
 				e.printStackTrace();
