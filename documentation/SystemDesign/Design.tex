@@ -81,7 +81,7 @@
    Dec 17, 2017 & 1.3 & Added CRC card intro and reviewed & Christopher McDonald \\ \hline
    Dec 21, 2017 & 1.4 & Edited entire document & Sharon Platkin \\ \hline
    Dec 21, 2017 & 1.5 & Added Arduino Diagrams and Shooter Information & Nisarg Patel \\ \hline	
-   Mar 9, 2018 & 2.0 & Added Likely and Unlikely Changes & Christopher McDonald \\ \hline	
+   Mar 9, 2018 & 2.0 & Added Likely and Unlikely Changes, Removed Shot Optimizer & Christopher McDonald \\ \hline	
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -137,7 +137,6 @@ The system will be broken down into subsystems with the following purposes:
 \item \textbf{Shot Recommendation}: provides best shot
 \item \textbf{Data Storage}: storing the data
 \item \textbf{Shooting Model}: modelling the shot's trajectory
-\item \textbf{Shot Optimizer}: optimizing the distance travelled by the shooting mechanism
 \item \textbf{User Interface}: taking input from the user and showing output
 \end{itemize}
 The diagram for this breakdown can be found in Figure \ref{fig:sub}.
@@ -156,7 +155,7 @@ The diagram including all use cases can be found in Figure \ref{fig:usecase}. Th
    \label{fig:usecase}
 \end{figure}
 \subsubsection{Start Training}
-The user interface will have ways to allow the user to start this action which makes the Smart Serve subsystem prepare for a shot to shoot towards the user. To do this, it needs to request a shot to use from the Shot Recommendation subsystem. The shot includes the following parameters: desired location on the table, the speed of the shot and the angular velocity of the ball. The Smart Serve subsystem can then use the Shooting Model to translate this information into pitch, yaw and angular velocity to shoot the ball so it matches the desired shot. The Smart Serve subsystem can then use the Shooting Mechanism's current position and the desired shot to request the optimal position to shoot the ball using the Shot Optimizer. After doing so, it will instruct the shooting mechanism to shoot the ball in the desired way and start the CV subsystem to begin tracking for a successful return. Only until the CV subsystem returns the pass or failed return data, can it update the Data Storage and Shot Recommendation subsystems with this new information. The former will store the result and the data for the shot together, where the latter will update the model used to generate shot recommendations. After doing all this, it can begin preparing for a new shot.
+The user interface will have ways to allow the user to start this action which makes the Smart Serve subsystem prepare for a shot to shoot towards the user. To do this, it needs to request a shot to use from the Shot Recommendation subsystem. The shot includes the following parameters: desired location on the table, the speed of the shot and the angular velocity of the ball. The Smart Serve subsystem can then use the Shooting Model to translate this information into pitch, yaw and angular velocity to shoot the ball so it matches the desired shot. After doing so, it will instruct the shooting mechanism to shoot the ball in the desired way and start the CV subsystem to begin tracking for a successful return. Only until the CV subsystem returns the pass or failed return data, can it update the Data Storage and Shot Recommendation subsystems with this new information. The former will store the result and the data for the shot together, where the latter will update the model used to generate shot recommendations. After doing all this, it can begin preparing for a new shot.
 \begin{figure}[H]
    \centering
    \includegraphics[width=\textwidth]{img/SequenceDiagram-Start.png}
@@ -237,8 +236,6 @@ The Shooting Model subsystem will be a service to the Smart Serve subsystem whic
    \caption{Shooting Model I/O}
    \label{fig:shotmodel}
 \end{figure}
-\subsection{Shot Optimizer}
-The Shot Optimizer will be a service to the Smart Serve subsystem which provides means of reducing the travel time the shooting mechanism needs to do in order to shoot the desired shot. This will simply scan each possible orientation and pick one which minimizes the distance travelled for the mechanism.
 \subsection{Data Storage}
 The Data Storage subsystem will store all the details for each shot, the user's profile and the return rates for each user. It will need to have interfaces for saving data and querying data out of the system in a variety of formats. Ideally, it will require minimal detail and configuration for the subsystem which uses it due to the variety of implementations of these subsystems.
 \subsection{User Interface}
@@ -300,7 +297,6 @@ The following sections will include one CRC card for each subsystem. A CRC card 
 \item Computer Vision
 \item Shot Recommendation
 \item Shooting Model
-\item Shot Optimizer
 \item Data Storage
 \item User Interface
 \item Shooting Mechanism
@@ -370,26 +366,6 @@ The following sections will include one CRC card for each subsystem. A CRC card 
 \end{itemize} \\ \hline
 \end{tabular}
 \caption{Shooting Model CRC Card}
-\end{table}
-
-\subsection{Shot Optimizer}
-
-\begin{table}[H]
-\centering
-\label{my-label}
-\begin{tabular}{ | >{\raggedright\arraybackslash}p{0.4\textwidth} | >{\raggedright\arraybackslash}p{0.4\textwidth} | }
-\hline
-\multicolumn{2}{|c|}{\textbf{Smart Serve}}             \\ \hline
-\textbf{Responsibilities:} & \textbf{Collaborators:} \\ \hline
-\begin{itemize}
-\item \textbf{P6}: minimize the latency between the current shooting mechanism position and the next desired position
-\end{itemize}
-&
-\begin{itemize}
-\item Smart Serve
-\end{itemize} \\ \hline
-\end{tabular}
-\caption{Shot Optimizer Card}
 \end{table}
 
 \subsection{Data Storage}
