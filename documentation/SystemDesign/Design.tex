@@ -82,6 +82,7 @@
    Dec 21, 2017 & 1.4 & Edited entire document & Sharon Platkin \\ \hline
    Dec 21, 2017 & 1.5 & Added Arduino Diagrams and Shooter Information & Nisarg Patel \\ \hline	
    Mar 9, 2018 & 2.0 & Added Likely / Unlikely Changes and Assumptions, Removed Shot Optimizer & Christopher McDonald \\ \hline	
+   Mar 10, 2018 & 2.0 & Added details on CV and SR, fixed Start Sequence Diagram & Christopher McDonald \\ \hline	
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -220,7 +221,8 @@ The Smart Serve subsystem will provide the means of interfacing with all the sub
 \end{figure}
 
 \subsection{Computer Vision}
-The Computer Vision subsystem will be a service to the Smart Serve subsystem to determine if a shot is successfully returned. When sent a request to begin tracking the ball, it will do so and return a true when the ball bounces off the table or false when it doesn't. In the event the ball never enters frame, it will assume the return was failed after a fixed amount of time.
+The Computer Vision subsystem will be a service to the Smart Serve subsystem to determine if a shot is successfully returned. When sent a request to begin tracking the ball, it will do so and return a true when the ball bounces off the table or false when it doesn't. In the event the ball never enters frame, it will assume the return was failed after a fixed amount of time. \\ \\
+The FSM will be updated every frame captured within the CV subsystem. Once a frame is captured, the position of the ball will be compared against the previous position and a difference in position can be calculated. Based on how it moved, the state of the FSM will or will not change. Since the ball is being viewed on the System's side, a valid return is when it is moving towards the system, travels downward and then upward while still in frame. The states and transitions of the FSM represent this.
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.4\textwidth]{img/cvFSM.png}
@@ -228,8 +230,8 @@ The Computer Vision subsystem will be a service to the Smart Serve subsystem to 
    \label{fig:cv}
 \end{figure}
 \subsection{Shot Recommendation}
-The Shot Recommendation subsystem will be a service to the Smart Serve subsystem to determine which shot should be taken next. The way the subsystem decides on the shot will be determined by the training mode the user selects. These will include shooting the same shot every time, pseudo-randomly picking a shot or using reinforcement learning algorithms to decide the next shot. The last mode will be based on previous performance by the user.
-
+The Shot Recommendation subsystem will be a service to the Smart Serve subsystem to determine which shot should be taken next. The way the subsystem decides on the shot will be determined by the training mode the user selects. These will include shooting the same shot every time, pseudo-randomly picking a shot or using reinforcement learning algorithms to decide the next shot. The last mode will be based on previous performance by the user. \\ \\
+The training mode will utilize a variation of a Upper Confidence Bound (UCB) algorithm. The subsystem will attempt to predict the actual return rate for each type of shot for a particular player by holding a range of values the actual return rate exists within. The initial state is from 0 - 100\% and the range for a individual shot closes when the shot is attempted. The minimum will rise if it is returned successfully and the maximum is lowered if the player misses it. When a shot is needed, the subsystem will select one shot from the shots with the lowest minimum bound since they have the highest chance of being the player's weakest points. This provides the important benefit of exploring different shots at the beginning and exploiting some later in the training phase. 
 \subsection{Shooting Model}
 The Shooting Model subsystem will be a service to the Smart Serve subsystem which provides the means of mapping a desired shot to the details needed to take the shot. The input and output for the system can be found in Figure \ref{fig:shotmodel}. The output will be an array of many combinations of pitch, yaw, speed and angular velocity that satisfy the input shot details.
 \begin{figure}[htbp]
