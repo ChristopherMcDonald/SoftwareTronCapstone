@@ -28,7 +28,6 @@ public class Login extends JFrame {
 	
 
 	int user_id;
-	private JTextField errorMsg;
 	
 	/**
 	 * Launch the application.
@@ -68,14 +67,19 @@ public class Login extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		userNameInput = new JTextField();
-		userNameInput.setBounds(226, 81, 86, 20);
+		userNameInput.setBounds(226, 90, 86, 20);
 		contentPane.add(userNameInput);
 		userNameInput.setColumns(10);
 		
 		passwordInput = new JTextField();
-		passwordInput.setBounds(226, 106, 86, 20);
+		passwordInput.setBounds(226, 114, 86, 20);
 		contentPane.add(passwordInput);
 		passwordInput.setColumns(10);
+		
+		JLabel errorMsg = new JLabel();
+		errorMsg.setHorizontalAlignment(SwingConstants.CENTER);
+		errorMsg.setBounds(118, 187, 194, 20);
+		contentPane.add(errorMsg);
 		
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.setBounds(166, 153, 89, 23);
@@ -96,12 +100,8 @@ public class Login extends JFrame {
 							View.profilef.setVisible(true);
 						}
 						else {
-							errorMsg = new JTextField();
-							errorMsg.setHorizontalAlignment(SwingConstants.CENTER);
+							
 							errorMsg.setText("Incorrect Email or Password");
-							errorMsg.setBounds(118, 187, 194, 20);
-							contentPane.add(errorMsg);
-							errorMsg.setColumns(10);
 							//System.out.println("error");
 						}
 					} catch (SQLException e) {
