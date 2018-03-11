@@ -9,20 +9,25 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controllers.SQLConnector;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class Signup extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField nameInput;
+	private JTextField emailInput;
+	private JTextField passwordInput1;
+	private JTextField passwordInput2;
 	private JButton btnSignUp;
 	private JLabel lblSignUp;
 
@@ -69,32 +74,59 @@ public class Signup extends JFrame {
 		lblConfirmPassword.setBounds(121, 159, 94, 14);
 		contentPane.add(lblConfirmPassword);
 		
-		textField = new JTextField();
-		textField.setBounds(226, 81, 86, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		nameInput = new JTextField();
+		nameInput.setBounds(226, 81, 86, 20);
+		contentPane.add(nameInput);
+		nameInput.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(226, 106, 86, 20);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		emailInput = new JTextField();
+		emailInput.setBounds(226, 106, 86, 20);
+		contentPane.add(emailInput);
+		emailInput.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(226, 131, 86, 20);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		passwordInput1 = new JTextField();
+		passwordInput1.setBounds(226, 131, 86, 20);
+		contentPane.add(passwordInput1);
+		passwordInput1.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(226, 156, 86, 20);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
+		passwordInput2 = new JTextField();
+		passwordInput2.setBounds(226, 156, 86, 20);
+		contentPane.add(passwordInput2);
+		passwordInput2.setColumns(10);
+		
+		JLabel errorMsg = new JLabel("");
+		errorMsg.setHorizontalAlignment(SwingConstants.CENTER);
+		errorMsg.setBounds(121, 220, 191, 14);
+		contentPane.add(errorMsg);
 		
 		btnSignUp = new JButton("Sign Up");
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Sign Up Successful", "Confirmation", JOptionPane.PLAIN_MESSAGE);
-				View.signupf.setVisible(false);
-				View.welcomef.setVisible(true);
+				Object[] signUpObj = new Object[]{emailInput.getText(), passwordInput1.getText()};
+				try {
+					//TODO: fix to check only username, not both
+					ResultSet rs = SQLConnector.query("login_proc",signUpObj);
+					int counter = 0;
+					while(rs.next()) {
+						counter++;
+					}
+					if (counter > 1) {
+						errorMsg.setText("User exists, please create a new user");
+					}
+					else if(!passwordInput1.getText().equals(passwordInput2.getText())){
+						errorMsg.setText("Passwords do not match"); 
+					}
+					else {
+						SQLConnector.save("signup_proc",signUpObj);
+						JOptionPane.showMessageDialog(null, "Sign Up Successful", "Confirmation", JOptionPane.PLAIN_MESSAGE);
+						View.signupf.setVisible(false);
+						View.welcomef.setVisible(true);
+					}
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				
+				
 			}
 		});
 		btnSignUp.setBounds(166, 184, 89, 23);
@@ -104,6 +136,6 @@ public class Signup extends JFrame {
 		lblSignUp.setFont(new Font("Century", Font.PLAIN, 35));
 		lblSignUp.setBounds(149, 4, 137, 69);
 		contentPane.add(lblSignUp);
+		
 	}
-
 }
