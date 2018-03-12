@@ -57,7 +57,7 @@ class BinarySearch:
                 # increment min!
                 self.vals[i] = (self.vals[i][0] + 1, self.vals[i][1]);
             elif not returned and self.vals[i][1] != 0:
-                # increment max!
+                # decrement max!
                 self.vals[i] = (self.vals[i][0], self.vals[i][1] - 1);
 
         # move the changed value up/down to order values based on
