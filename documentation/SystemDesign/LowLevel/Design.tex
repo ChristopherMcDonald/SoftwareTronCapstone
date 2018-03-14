@@ -80,6 +80,8 @@
    Jan 16, 2018 & 1.6 & Edited Document, refined and defragged definitions & Sharon Platkin \& Christopher McDonald \\ \hline
    Jan 19, 2018 & 1.6 & Added work done by Hardware Team & Nisarg Patel \& Jared Rayner \& Janak Patel \& Christopher McDonald \\ \hline
    Mar 13, 2018 & 2.0 & Added how to handle errors and exceptions & Christopher McDonald \\ \hline
+   Mar 13, 2018 & 2.1 & Removed shot optimizer  & Christopher McDonald \\ \hline
+   Mar 13, 2018 & 2.2 & Added trace matrix & Christopher McDonald \\ \hline
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -109,7 +111,6 @@ The following terms and definitions will be used throughout this document:
 \item \textbf{Shooting Mechanism}: refers to the part of the system that shoots the table tennis balls towards the user side (player) Please refer to Figure \ref{fig:table-tennis-top-view} for visual illustration\
 \item \textbf{SM}: shooting mechanism subsystem
 \item \textbf{SModel}: shooting model subsystem
-\item \textbf{SO}: shot optimizer subsystem
 \item \textbf{SR}: shot recommendation subsystem
 \item \textbf{SS}: smartserve subsystem
 \item \textbf{System}: encompasses both the hardware and software parts of SmartServe
@@ -254,38 +255,6 @@ Methods and formulas being used to identify the required details needed to take 
 \item \textbf{getShotDetails} - double landingXCoord, double landingYCoord \\ returns: \textit{Shot} \\ description: calculates details to take the desired shot and stores them within the ADT.
 \end{itemize}
 
-\subsection{Shot Optimizer Modules}
-\subsubsection*{Controller}
-\textbf{Responsibilities} \\
-This module is responsible for facilitating the communication with the Shot Optimizer subsystem (SO). This includes sending and receiving messages as well as ensuring proper testing of the connection is performed. \\ \\
-\textbf{Secrets} \\ 
-The connection to the SO. \\ \\
-\textbf{MID} 
-\begin{itemize}
-\item \textbf{connect} - int  port, [optional] String ip \\ returns: \textit{boolean} \\ description: instantiates all dependancies and ensures services are working as expected.
-\item \textbf{getOrientation} - Position  position \\ returns: \textit{Orientation} \\ description: returns the optimal orientation data to orient the SM.
-\end{itemize}
-
-\subsubsection*{Orientation}
-\textbf{Responsibilities} \\
-None. \\ \\
-\textbf{Secrets} \\
-None. \\ \\
-\textbf{MID}
-\begin{itemize}
-\item \textbf{Orientation} - double yaw, double pitch \\ description: constructs a Orientation object
-\end{itemize}
-
-\subsubsection*{Position}
-\textbf{Responsibilities} \\
-None. \\ \\
-\textbf{Secrets} \\
-None. \\ \\
-\textbf{MID}
-\begin{itemize}
-\item \textbf{Position} - double xPos, double yPos \\ description: constructs a Position object
-\end{itemize}
-
 \subsection{Computer Vision Modules}
 \subsubsection*{Detect}
 \textbf{Responsibilities} \\
@@ -374,8 +343,6 @@ The SM will implement an interface using an Arduino. The SS will use libraries f
 The SS will communicate to the CV via sockets over the TCP protocol using the Java Networking libraries and the Python socket libraries. The SS will initiate the communication to start tracking and expect a return value based on whether it was returned or not. The SS will timeout in the event the CV does not return a value after 1.5 seconds.
 \subsection{SmartServe to User Interface}
 The SS and the User Interface subsystem (UI) will both be programmed using Java. The UI system can interface with the SS by calling exposed public methods based on user input.
-\subsection{SmartServe to Shot Optimizer}
-The SS and the SO will both be programmed using Java. The SS system can interface with the SO by calling exposed public methods based on user input.
 \subsection{SmartServe to ShootingModel}
 The SS and the SModel will both be programmed using Java. The SS system can interface with the SModel by calling exposed public methods based on user input.
 \subsection{SmartServe to Data Storage}
@@ -584,11 +551,68 @@ For the ball shooter, a DC Motor purchased from Sayal Electronics and Hobbies is
 \subsubsection*{Arduino}
 Arduino UNO microcontroller is used to control all of the IPO (Input Process Output) processes between the sensors, actuators and Smart Serve. Arduino is chosen because it has a hardware platform setup and allows programming and serial communication over USB so designing so a PCB is not necessary. It is fast for our purposes, there is a lot of libraries available to use and lots of hardware modules designed for Arduino UNO. Also, this microcontroller easily interfaces with the hardware used in this prototype. 
 
+\section{Module-Requirement Traceability Matrix}
+\begin{table}[H]
+\centering
+\caption{Module-Functional Requirement Traceability Matrix}
+\label{my-label}
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\hline
+Requirement ID & SS & SR & SM & CV & DS & SMech & UI \\ \hline
+F1             &    &    & X  &    &    & X     &    \\ \hline
+F2             &    &    &    &    &    & X     &    \\ \hline
+F3             &    &    &    &    &    & X     &    \\ \hline
+F4             &    &    &    &    &    & X     &    \\ \hline
+F5             &    &    &    & X  &    &       &    \\ \hline
+F6             &    &    &    &    & X  &       &    \\ \hline
+F7             &    &    &    &    & X  &       &    \\ \hline
+F8             &    &    &    &    & X  &       &    \\ \hline
+F9             &    &    &    &    & X  &       &    \\ \hline
+F10            & X  &    &    &    &    &       & X  \\ \hline
+F11            & X  &    &    &    &    &       & X  \\ \hline
+F12            & X  &    &    &    &    &       & X  \\ \hline
+F13            &    &    &    &    & X  &       & X  \\ \hline
+F14            &    & X  &    &    &    &       &    \\ \hline
+F15            &    & X  &    &    &    &       &    \\ \hline
+F16            & X  &    &    &    & X  &       & X  \\ \hline
+F17            & X  &    &    &    & X  &       & X  \\ \hline
+F18            & X  &    &    &    &    &       &    \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Module Non-Functional Requirement Traceability Matrix}
+\label{my-label}
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\hline
+Requirement ID & SS & SR & SM & CV & DS & SMech & UI \\ \hline
+LF1            &    &    &    &    &    &       & X  \\ \hline
+UH1            &    &    &    &    &    &       & X  \\ \hline
+UH2            &    &    &    &    &    &       & X  \\ \hline
+P1             &    &    &    &    &    &       & X  \\ \hline
+P2             & X  &    &    &    & X  &       &    \\ \hline
+P4             &    &    &    &    & X  &       &    \\ \hline
+P5             & X  &    &    &    &    &       &    \\ \hline
+OE2            &    &    &    & X  &    &       &    \\ \hline
+MS2            & X  &    &    &    & X  &       & X  \\ \hline
+S1             &    &    &    &    & X  &       &    \\ \hline
+S2             &    &    &    &    & X  &       &    \\ \hline
+P1             & X  &    &    &    & X  &       &    \\ \hline
+LC1            &    &    &    &    &    &       &    \\ \hline
+HS1            &    &    & X  &    &    & X     &    \\ \hline
+HS2            &    &    &    &    &    & X     &    \\ \hline
+HS3            &    &    &    &    &    & X     &    \\ \hline
+HS4            &    &    &    &    &    & X     &    \\ \hline
+HS5            &    &    &    &    &    & X     &    \\ \hline
+\end{tabular}
+\end{table}
+\newpage
 \section{Appendix}
 
 \begin{sidewaysfigure}[ht]
    \centering
-   \includegraphics[width=1.1\textwidth]{diagram/DCD.png} % requires the graphicx package
+   \includegraphics[width=\textwidth]{diagram/DCD.png} % requires the graphicx package
    \caption{Detailed Class Diagram}
    \label{fig:dcd}
 \end{sidewaysfigure}
