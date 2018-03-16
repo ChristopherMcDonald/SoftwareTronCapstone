@@ -1,0 +1,597 @@
+\documentclass[11pt]{article}
+\usepackage{geometry}
+\geometry{letterpaper}
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage{rotating}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=blue,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\begin{document}
+
+\begin{titlepage}
+	\newcommand{\HRule}{\rule{\linewidth}{0.2mm}}
+	\begin{center}
+	\textsc{\LARGE McMaster University}\\[1.5cm]
+
+	\textsc{\Large SmartServe}\\[0.5cm]
+	\textsc{\large Software \& Mechatronics Capstone}\\[0.5cm]
+
+	\HRule\\[0.4cm]
+		{\huge\bfseries Component Design}\\[0.4cm]
+	\HRule\\[0.4cm]
+
+	\begin{minipage}[t][][t]{0.5\textwidth}
+		\begin{flushleft} \large
+			\emph{Authors:}\\
+			Christopher McDonald - \textit{001312456} \\
+			Harit Patel - \textit{001317372}\\
+			Janak Patel - \textit{001307060} \\
+			Jared Rayner - \textit{001311702}\\
+			Nisarg Patel - \textit{001322805} \\
+			Sam Hamel - \textit{001321692} \\
+			Sharon Platkin - \textit{001316625} \\
+		\end{flushleft}
+	\end{minipage}
+	~
+	\begin{minipage}[t][][t]{0.4\textwidth}
+		\begin{flushright} \large
+			\emph{Professor:} \\
+			Dr. Alan Wassyng \\[0.4cm]
+			\emph{Teaching Assistants:} \\
+			Bennett Mackenzie \\
+			Nicholas Annable \\
+			Stephen Wynn-Williams \\
+			Viktor Smirnov
+		\end{flushright}
+	\end{minipage}\\[2cm]
+
+	\includegraphics[width=0.3\textwidth]{../logo.png} \\
+	{\large Last compiled on \today}
+	\end{center}
+
+\end{titlepage}
+
+\tableofcontents
+\listoffigures
+
+\vfill
+\begin{figure}[H]
+   \centering
+   \noindent\begin{tabularx}{\textwidth}{| >{\centering\arraybackslash}m{0.2\textwidth} | >{\centering\arraybackslash}m{0.2\textwidth} | >{\centering\arraybackslash}m{0.2\textwidth} | >{\centering\arraybackslash}m{0.285\textwidth} |}
+   \hline
+   \textbf{Date} & \textbf{Revision} & \textbf{Comments} & \textbf{Author(s)} \\ \hline
+   Dec 29, 2017 & 1.0 & Structure made for document including headings & Christopher McDonald \\ \hline
+   Jan 11, 2018 & 1.1 & Added content for ShotRecommendation and SmartServe systems, and Communication Protocols Sections & Christopher McDonald \\ \hline
+   Jan 11, 2018 & 1.2 & Added content for Document Overview & Christopher McDonald \\ \hline
+   Jan 12, 2018 & 1.3 & Added Data Storage and User Interface modules & Sharon Platkin \\ \hline
+   Jan 13, 2018 & 1.4 & Added details for Shooting Mech, CV, Shot Optimizer, Shooting Model subsystems & Harit Patel \& Sam Hamel \\ \hline
+   Jan 15, 2018 & 1.5 & Edited Module Guide, Added Detailed Class Diagram & Sharon Platkin \\ \hline
+   Jan 16, 2018 & 1.6 & Edited Document, refined and defragged definitions & Sharon Platkin \& Christopher McDonald \\ \hline
+   Jan 19, 2018 & 1.6 & Added work done by Hardware Team & Nisarg Patel \& Jared Rayner \& Janak Patel \& Christopher McDonald \\ \hline
+
+   \end{tabularx}
+   \caption{Revision History}
+\end{figure}
+\newpage
+\section{Introduction}
+\subsection{Project Overview}
+SmartServe is an autonomous table tennis training system for table tennis players with various skill levels. SmartServe aids in diagnosing and improving a player's performance over time. The system trains table tennis players by shooting table tennis balls towards the player and detects successful returns from the player. The system can further adapt to the player's weaknesses and help them overcome it through further training. Importantly, SmartServe alleviates the problems of finding and working with a coach for players, as well as coaches trying to train multiple players simultaneously. The system will be deemed a success if the table tennis players and coaches can enjoy and see some value added by using SmartServe. \\\\
+The project started at the beginning of the Fall 2017 academic term and will conclude at the end of the Winter 2018 term. In addition, the core project team consists of final year Software and Mechatronics Engineering students who are enrolled in the MECHTRON 4TB6/SFWRENG 4G06 capstone project course.
+\subsection{Document Overview}
+This document will add more detail into the subsystems introduced in the High-Level System Design document (HLSD) found \href{run:../Design.pdf}{here}. The HLSD omitted details such as how the subsystems would work, how they are built and how communication will be handled between them. This document will cover all of those details and introduce how each subsystem will be programmed by defining the language and libraries required. \\ \\
+All software developers on the development team should read this document when building the subsystems to ensure the correct data is being sent and communication portals are set up correctly. Each subsystem will hold one to many modules and each module will contain one to many methods or variables. A detailed class diagram will organize all the subsystems and their modules with arrows indicating which module uses another one.
+\subsection{Naming Conventions and Terminology}
+\label{sec:definitions}
+The following terms and definitions will be used throughout this document:
+\begin{itemize}
+% Alphabetical order is highly preferred as it eases user navigation
+\item \textbf{ACID}: a database transaction which is atomic, consistent, isolated and durable
+\item \textbf{ADT}: abstract data type
+\item \textbf{CV}: computer vision subsystem
+\item \textbf{DS}: data storage subsystem
+\item \textbf{FPS}: frames per second
+\item \textbf{FSM}: finite state machine, shows transitions between states
+\item \textbf{GUI}: graphical user interface
+\item \textbf{IPO}: input process output
+\item \textbf{Pitch}: rotation along the y-axis; this rotation angle primarily dictates the range of the ball from the net to the edge of the table on the user side
+\item \textbf{Roll}: rotation along the x-axis
+\item \textbf{Shooting Mechanism}: refers to the part of the system that shoots the table tennis balls towards the user side (player) Please refer to Figure \ref{fig:table-tennis-top-view} for visual illustration\
+\item \textbf{SM}: shooting mechanism subsystem
+\item \textbf{SModel}: shooting model subsystem
+\item \textbf{SO}: shot optimizer subsystem
+\item \textbf{SR}: shot recommendation subsystem
+\item \textbf{SS}: smartserve subsystem
+\item \textbf{System}: encompasses both the hardware and software parts of SmartServe
+\item \textbf{System Side}: the side of the table where the electromechanical system is placed; it is the opposite side of the User Side Please refer to Figure \ref{fig:table-tennis-top-view} for visual illustration
+\item \textbf{TCP:} transmission control protocol
+\item \textbf{Team}: all team members of the core capstone project, as noted in the list of Authors
+\item \textbf{UI}: user interface subsystem
+\item \textbf{User Side}: the side of the table where the user (player) is standing
+\item \textbf{Yaw}: rotation along the z-axis; this rotation angle primarily dictates the panning functionality of the shooting mechanism from the right side to the left side of the table
+\end{itemize}
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.75\textwidth]{../img/Table-Tennis-Top-View.png} %requires the graphicx package
+   \caption{Top View of the Tennis Table}
+   \label{fig:table-tennis-top-view}
+\end{figure}
+
+\section{Detailed Class Diagram}
+The Detailed Class Diagram is shown in Figure \ref{fig:dcd}, found in the Appendix.
+
+\section{Module Guide}
+\subsection{SmartServe Modules} % Chris - edited by Sharon
+\subsubsection*{Controller}
+\textbf{Responsibilities} \\
+The controller handles all the timing constraints and sequential events for shooting balls towards the player. It is the interface for the UI to allow the user to preform any and all actions. \\ \\
+\textbf{Secrets} \\
+The sequence and timing constraints of the shooting procedure. \\ \\
+\textbf{MID}
+\begin{itemize}
+\item \textbf{boot} - none \\ returns: \textit{boolean} \\ description: instantiates all dependancies and ensures services are working as expected
+\item \textbf{startTraining} - Mode m \\ returns: \textit{boolean} \\ description: starts the shooting procedure given a certain training Mode
+\item \textbf{stopTraining} - none \\ returns: \textit{boolean} \\ description: stops the training procedure
+\item \textbf{setShootingParameters} - ShootingParameters sp \\ returns: \textit{boolean} \\ description: sets the shooting parameters for certain table sizes
+\end{itemize}
+
+\subsubsection*{ArduinoConnector}
+\textbf{Responsibilities} \\
+This module is responsible for facilitating the communication with the Arduino which is part of the Shooting Mechanism subsystem (SM). This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
+\textbf{Secrets} \\
+The connection to the Arduino. \\ \\
+\textbf{MID}
+\begin{itemize}
+\item \textbf{test} - int port \\ returns: \textit{boolean} \\ description: tests connection to the Arduino
+\item \textbf{shoot} - float pitch, float yaw, float angularVelocity \\ returns: \textit{none} \\ description: instructs Arduino to shoot the ball in a certain way
+\item \textbf{position} - none \\ returns: \textit{Position} \\ description: returns the position of the mechanism
+\end{itemize}
+
+\subsubsection*{ShotRecommendationConnector}
+\textbf{Responsibilities} \\
+This module is responsible for facilitating the communication with the ShotRecommendation subsystem (SR). This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
+\textbf{Secrets} \\
+The connection to the SR. \\ \\
+\textbf{MID}
+\begin{itemize}
+\item \textbf{connect} - int port, [optional] String ip \\ returns: \textit{boolean} \\ description: instantiates all dependancies and ensures services are working as expected
+\item \textbf{getRecommendation} - none \\ returns: \textit{Shot} \\ description: returns the shot data to shoot towards the player
+
+\item \textbf{updateModel} - Shot shot, boolean returned \\ returns: \textit{none} \\ description: sends data to SR on whether a R was returned or not
+\end{itemize}
+
+\subsubsection*{CVConnector}
+\textbf{Responsibilities} \\
+This module is responsible for facilitating the communication with the Computer Vision subsystem (CV). This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
+\textbf{Secrets} \\
+The connection to the CV system. \\ \\
+\textbf{MID}
+\begin{itemize}
+\item \textbf{connect} - int port \\ returns: \textit{boolean} \\ description: tests connection to CV subsystem
+\item \textbf{start} - none \\ returns: \textit{boolean} \\ description: instructs CV to begin tracking and return data for shot
+
+\end{itemize}
+
+\subsubsection*{SQLConnector}
+\textbf{Responsibilities} \\
+This module is responsible for facilitating the communication with the Data Storage subsystem (DS). This includes sending and receiving messages as well as ensuring proper testing of the connection is preformed. \\ \\
+\textbf{Secrets} \\
+The connection to the DS. \\ \\
+\textbf{MID}
+\begin{itemize}
+\item \textbf{connect} - int port, [optional] String ip \\ returns: \textit{boolean} \\ description: tests connection to DS on port \textit{port} at the IP Address \textit{ip} or \textit{localhost} if ip is unavailable
+\item \textbf{query} - String procedure, Map\textless String, String\textgreater values \\ returns: \textit{ResultSet} \\ description: returns data from database based on procedure ran and values given
+\item \textbf{save} - String procedure, Map\textless String, String\textgreater values \\ returns: \textit{boolean} \\ description: returns success information on write to database based on procedure ran and values given
+\end{itemize}
+
+\subsubsection*{ShootingParameters}
+\textbf{Responsibilities} \\
+None. \\ \\
+\textbf{Secrets} \\
+None. \\ \\
+\textbf{MID}
+\begin{itemize}
+\item \textbf{ShootingParameters} - double tableWidth, double tableLength \\ description: constructs a ShootingParameters object
+\end{itemize}
+
+\subsection{Shot Recommendation Modules} % Chris - edited by Sharon
+\subsubsection*{Controller}
+\textbf{Responsibilities} \\
+This module will act as the API interface for the SR. As such, it will accept requests and return the appropriate data. It will also communicate will other modules should a user of this system need to do so. \\ \\
+\textbf{Secrets} \\
+The process for handling SR requests. \\ \\
+\textbf{MID}
+\begin{itemize}
+\item \textbf{listen} - none \\ returns: \textit{none} \\ description: waits for a request made for a shot
+\item \textbf{query} - String procedure, Map\textless String, String\textgreater values, [optional] int port, [optional] String ip \\ returns: \textit{Cursor} \\ description: gets data from a stored procedure using some set of values for a MySQL instance on port \textit{port} at the IP Address \textit{ip}
+\end{itemize}
+
+\subsubsection*{Model}
+\textbf{Responsibilities} \\
+This module will hold the data for each user in such a way information can be extracted. It will contain an internal model which is built from the data and use it to recommend a new shot. \\ \\
+\textbf{Secrets} \\
+The algorithm to build the model. \\ \\
+\textbf{MID}
+\begin{itemize}
+\item Model \textbf{model} - representation of shot performance data for extracting information
+\item \textbf{Model} - none \\ description: constructs a new Model
+\item \textbf{train} - Cursor cur \\ returns: \textit{none} \\ description: using some data from Cursor, this will train the model
+\item \textbf{next} - none \\ returns: \textit{Shot} \\ description: returns a shot based on the user's past performance
+\end{itemize}
+
+\subsection{Shooting Model Modules}
+\subsubsection*{Shot}
+\textbf{Responsibilities} \\
+Specific details (such as yaw and speed) that are required to take the desired shot are stored within this abstract data type module. \\ \\
+\textbf{Secrets} \\ 
+None \\  \\
+\textbf{MID} 
+\begin{itemize}
+\item \textbf{Shot} - Orientation orientation, double velocity \\ description: constructor to store the shooting model details in an abstract data type.
+\item \textbf{toString} - none \\ returns: \textit{String} \\ description: Returns shooting details in a printable string format.
+\end{itemize}
+
+\subsubsection*{ShootingModel}
+\textbf{Responsibilities} \\
+Responsible for mapping a desired shot to the details needed to take the shot. \\ \\
+\textbf{Secrets} \\ 
+Methods and formulas being used to identify the required details needed to take the desired shot. \\  \\
+\textbf{MID} 
+\begin{itemize}
+\item \textbf{ShootingModel} - double initialHeight, double xInitialHeight, double pitch \\ description: instantiates the ShootingModel subsystem (SModel).
+% TODO: Harit change these god awful names
+\item \textbf{getShotDetails} - double landingXCoord, double landingYCoord \\ returns: \textit{Shot} \\ description: calculates details to take the desired shot and stores them within the ADT.
+\end{itemize}
+
+\subsection{Shot Optimizer Modules}
+\subsubsection*{Controller}
+\textbf{Responsibilities} \\
+This module is responsible for facilitating the communication with the Shot Optimizer subsystem (SO). This includes sending and receiving messages as well as ensuring proper testing of the connection is performed. \\ \\
+\textbf{Secrets} \\ 
+The connection to the SO. \\ \\
+\textbf{MID} 
+\begin{itemize}
+\item \textbf{connect} - int  port, [optional] String ip \\ returns: \textit{boolean} \\ description: instantiates all dependancies and ensures services are working as expected.
+\item \textbf{getOrientation} - Position  position \\ returns: \textit{Orientation} \\ description: returns the optimal orientation data to orient the SM.
+\end{itemize}
+
+\subsubsection*{Orientation}
+\textbf{Responsibilities} \\
+None. \\ \\
+\textbf{Secrets} \\
+None. \\ \\
+\textbf{MID}
+\begin{itemize}
+\item \textbf{Orientation} - double yaw, double pitch \\ description: constructs a Orientation object
+\end{itemize}
+
+\subsubsection*{Position}
+\textbf{Responsibilities} \\
+None. \\ \\
+\textbf{Secrets} \\
+None. \\ \\
+\textbf{MID}
+\begin{itemize}
+\item \textbf{Position} - double xPos, double yPos \\ description: constructs a Position object
+\end{itemize}
+
+\subsection{Computer Vision Modules}
+\subsubsection*{Detect}
+\textbf{Responsibilities} \\
+This module detects successful returns from the user, and sends that data to the SmartServe subsystem (SS).\\
+\textbf{Secrets} \\ 
+Success criteria of returns and how the camera feed is analyzed.\\ 
+\textbf{MID} 
+\begin{itemize}
+\item \textbf{detect} - CameraCapture cap \\ returns: \textit{none} \\ description: Detects if the ball was succesfully returned by the user and calls the Send function
+\item \textbf{send} - none \\ returns: \textit{none} \\ description: Sends a signal to SS indicating that a successful return was made
+\end{itemize}
+
+\subsubsection*{CameraCapture}
+\textbf{Responsibilities} \\
+None. \\ \\
+\textbf{Secrets} \\
+None. \\ \\
+\textbf{MID}
+\begin{itemize}
+\item \textbf{CameraCapture} - none\\ description: constructs a CameraCapture object
+\end{itemize}
+
+\subsection{Data Storage Modules}
+\subsubsection*{Global}
+\textbf{Responsibilities} \\
+Communicates with the database to create, delete and update rows in various tables.  \\ \\
+\textbf{Secrets} \\
+All connection information between the sub-systems, table contents.\\ \\
+\textbf{MID} \\
+\begin{itemize}
+\item User \textbf{user} - String userName, String password, int userId \\ description: representation of a user
+\item Shot \textbf{shotType} - int zoneId, int omegaId, int shotId \\ description: representation of a shot type
+\item Zone \textbf{zone} -  int zoneId, double xLoc, double yLoc \\ description: representation of a zone on the table, used as a look up table
+\item Omega \textbf{omega} - int omegaId, double angle, double velocity \\ description: representation of angular velocity of the ball, used as a look up table
+\item ReturnRate \textbf{returnRate} - int userId, int shotId,  Timestamp timeStamp, boolean returned \\ description: return statistics for each user
+\item \textbf{signUp} - String userName, String password \\ returns: \textit{none} \\ description: adds a user row to the \textit{User} table
+\item \textbf{nextShot} - int zone \\ returns: \textit{Shot} \\ description: determines which shot type to perform
+\item \textbf{returned} - Timestamp timeStamp, User user, Shot shot \\ returns: \textit{none} \\ description: updates returnRate table for user for performance statistics
+\item \textbf{signIn} - User user \\ returns: \textit{boolean} \\ description: validates and authenticates the user
+
+\end{itemize}
+
+\subsection{Shooting Mechanism Modules}
+This module will be specified in the hardware component design of the SM.
+\subsection{User Interface Modules}
+\subsubsection*{Controller}
+\textbf{Responsibilities} \\
+Responsible for translating the desired action of the user from the View module to the SS. \\ \\
+\textbf{Secrets} \\
+Connection between modules and sub-systems. \\ \\
+\textbf{MID}
+\begin{itemize}
+\item \textbf{main} - String[] args \\ returns: \textit{none} \\ description: calls the View module to initialize the UI
+\item \textbf{setTrainingMode} - Mode m \\ returns: \textit{none} \\ description: sets mode from View module and sends it to SS
+\item \textbf{setShootingParameters} - ShootingParameters \\ returns: \textit{none} \\ description: sets shooting parameters from View module and sends it to SS
+\item \textbf{setStatistics} - String statParam \\ returns: \textit{none} \\ description: sets statistics parameters and sends them to View module
+\item \textbf{signUp} - User user \\ returns: \textit{none} \\ description: gets user information from view module and sends it to SS
+\item \textbf{login} - User user \\ returns: \textit{boolean} \\ description: gets user name and password from the View module and authenticates by calling SS
+\end{itemize}
+\subsubsection*{View}
+\textbf{Responsibilities} \\
+The view module will contain all the actual visual aspects of the system that the user will interact with. This includes text, pictures, buttons, etc. \\ \\
+\textbf{Secrets} \\
+The structure and implementation of the view. \\ \\
+\textbf{MID}
+\begin{itemize}
+\item \textbf{start} - none \\ returns: \textit{none} \\ description: general user interface code, called to initiate UI
+\item \textbf{selectMode} - MouseEvent me\\ returns: \textit{Mode} \\ description: listens for a mouse click on mode types, and returns that mode
+\item \textbf{calibrate} - none \\ returns: \textit{ShootingParameters} \\ description: collects user input for table size in order to calibrate the system
+\item \textbf{startTrainingBtn} - MouseEvent me \\ returns: \textit{boolean} \\ description: listens for mouse click on start training button
+\item \textbf{stopTrainingBtn} - MouseEvent me \\ returns: \textit{boolean} \\ description: listens for mouse click on stop training button
+\item \textbf{viewStatsBtn} - MouseEvent me \\ returns: \textit{none} \\ description: listens for mouse click on statistics button and displays statistics to the user
+\item \textbf{signUpBtn} - MouseEvent me \\ returns: \textit{User} \\ description: listens for mouse click on sign up button and collects user information
+\item \textbf{loginBtn} - MouseEvent me \\ returns: \textit{User} \\ description: listens for mouse click on sign in button and displays profile if authenticated properly
+\end{itemize}
+
+\section{Communication Protocols} % Chris
+\subsection{SmartServe to Shot Recommendation}
+The SR will use Python to leverage machine learning libraries like SciKit Learn and the SS will be implemented in Java. In order for the SS to communicate to the SR, it will make an HTTP request with some data and receive an HTTP response encoded using JSON. This allows the use of a reliable means of communication and flexibility to host the SR remotely if need be. \\ \\
+The SS will make a GET request to the SR for requesting a shot to use and can make POST request to give data regarding whether a shot was returned or not. In the event the HTTP request takes too long, the SS should handle it accordingly by timing out and using random shots or continuing the program. \\ \\
+HTTP libraries are standard in Java and a microframework for handling HTTP requests can be used for Python like \href{http://flask.pocoo.org}{flask}.
+\subsection{SmartServe to Shooting Mechanism}
+The SM will implement an interface using an Arduino. The SS will use libraries for communicating to the Arduino to communicate to the SM which can be found \href{http://fizzed.com/oss/rxtx-for-java}{here} for 64-bit Windows and Linux installations and \href{http://blog.iharder.net/2009/08/18/rxtx-java-6-and-librxtxserial-jnilib-on-intel-mac-os-x/}{here} for 64-bit macOS installations. The SS does not need a response from the system, as it will tell the SM where to shoot and how to do so but does not need a response.
+\subsection{SmartServe to Computer Vision}
+The SS will communicate to the CV via sockets over the TCP protocol using the Java Networking libraries and the Python socket libraries. The SS will initiate the communication to start tracking and expect a return value based on whether it was returned or not. The SS will timeout in the event the CV does not return a value after 1.5 seconds.
+\subsection{SmartServe to User Interface}
+The SS and the User Interface subsystem (UI) will both be programmed using Java. The UI system can interface with the SS by calling exposed public methods based on user input.
+\subsection{SmartServe to Shot Optimizer}
+The SS and the SO will both be programmed using Java. The SS system can interface with the SO by calling exposed public methods based on user input.
+\subsection{SmartServe to ShootingModel}
+The SS and the SModel will both be programmed using Java. The SS system can interface with the SModel by calling exposed public methods based on user input.
+\subsection{SmartServe to Data Storage}
+The SS is programmed in Java and the DS will be implemented using Stored Procedures held in a MySQL database instance. In order for the SS to use the DS, a \href{https://dev.mysql.com/downloads/connector/j/5.1.html}{SQLConnector} can be used to do so.
+\subsection{Shot Recommendation to Data Storage}
+The SR is programmed in Python and the DS will be implemented using Stored Procedures held in a MySQL database instance. In order for the SR to use the DS, a \href{https://dev.mysql.com/doc/connector-python/en/}{SQLConnector} can be used to do so.
+
+\section{Hardware Design}
+\subsection{Mechanical Components}
+\subsubsection*{Shift Adapter}
+The shaft adapter is designed to fit snugly on the stepper motor shaft and provides a more robust connection with the \textit{spinning feeder cutout}. The shaft adapter is designed to allow the feeder cutout to sit at a precise height where it could rotate without any obstructions and push the table tennis balls into the \textit{Inner Tube}. The shaft adapter will bring the spinning feeder cutout to a height such that the contant point of the ball is in the middle (biggest diameter of the ball).
+
+\begin{center}
+\begin{minipage}[b]{0.6\textwidth}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/1.jpg}
+    \caption{Shaft Adapter 3D}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/2.jpg}
+    \caption{2D Engineering Drawing of Shaft Adapter}
+  \end{minipage}
+\end{figure}
+\end{minipage}
+\end{center}
+
+\subsubsection*{Panning Control}
+The functionality of the Automatic Panning will be to rotate the entire shooting mechanism or the shooting barrel about the z-axis so the mechanism is able to cover all of the shooting zones as specified in the requirements. \\ \\
+The components designed for the panning stage include an acrylic base plate, a rapid prototyped worm wheel gear ring, the worm, and a motor bracket. The base plate clearance mounting holes were made using a workshop drill press / milling machine. The rapid prototyped stepper motor bracket is mounted to the base plate and adjusted so that correct gear engagement is achieved. The Lazy Susan bearing is positioned 10 mm above the plate using spacers and longer \#6?32 screws, washers, and nuts. The worm gear is designed as a ring shape to reduce rapid prototyping material consumption. A corresponding hole pattern mates to the top plate of the Lazy Susan bearing. The optical switch is used to home the system at power up and align the system in the direction required with a reference and from there on the system will always be aware of its position. Optical switches allow for high repeatability making it a very applicable sensor to use in the prototype. 
+
+\begin{center}
+\begin{minipage}[b]{0.8\textwidth}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/3.jpg}
+    \caption{Base Design and Assembly}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/4.jpg}
+    \caption{Worm Gear Coupler}
+  \end{minipage}
+\end{figure}
+\end{minipage}
+\end{center}
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.6\textwidth]{img/5.jpg} % requires the graphicx package
+   \caption{Azimuth Stage Autodesk Inventor Design Accelerator Worm Gear Parameters}
+   \label{fig:hw5}
+\end{figure}
+
+\subsubsection*{Spinning Feeder Cutout}
+The spinning feeder cutout is fixed to the shaft of the stepper motor inside the bucket to guide the table tennis balls into the \textit{Inner Tube}. The cutout is laser cut from a thin and sturdy sheet of wood so it has enough thickness (contact surface area) to easily push the table tennis balls around. There will be a lot of balls going in and out of the feeder cutout continuously so it has the sharp edges to hold the ball in once its captured and 45mm diameter semi circles to easily allow the 40mm table tennis balls to slide into the pockets.  
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.3\textwidth]{img/6.jpg} % requires the graphicx package
+   \caption{Feeder Cutout from topview for laser cutting  }
+   \label{fig:hw6}
+\end{figure}
+
+\subsubsection*{Inner Tube}
+The inner tube is designed to hold table tennis balls to be shot out by the shooting mechanism, as well as have solid support hold the shooting mechanism pipe structure. The diameter of the inner tube is 45mm to allow the ball to be easily fed into the tube but restrict jittering when traveling through the pipe.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.2\textwidth]{img/7.jpg} % requires the graphicx package
+   \caption{CAD design of a Inner Tube }
+   \label{fig:hw7}
+\end{figure}
+
+ 
+\subsubsection*{Motor Bracket and Outer Tube}
+A custom designed motor bracket is used to mount the DC motor onto the outer PVC tube to create our preliminary shooting mechanism. The motor has a cylindrical housing thus making it difficult to fix onto anything especially onto another cylindrical object, the Outer Tube. The motor has to be mounted securely and tightly to minimize the vibrations into the shooting mechanism which could translate onto the entire system.  
+
+\begin{center}
+\begin{minipage}[b]{1.0\textwidth}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.2\textwidth}
+    \includegraphics[width=\textwidth]{img/8.jpg}
+    \caption{Motor Bracket}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.2\textwidth}
+    \includegraphics[width=\textwidth]{img/9.jpg}
+    \caption{Outer Tube }
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.2\textwidth}
+    \includegraphics[width=\textwidth]{img/10.jpg}
+    \caption{Motor with Motor Bracket attached to the Outer Tube }
+  \end{minipage}
+\end{figure}
+\end{minipage}
+\end{center}
+
+\subsubsection*{Roll Control}
+The roll control part will act as a manual control for the user to decide the type of spin to give the table tennis ball for the current session. The roll control part acts as the male end of a locking mechanism, which will fix the shooter in either a 0, 90, 180, or 270 degree angle. With the roll control settings, the user will be able to manually change the roll setting to experience a topspin, backspin, and left or right spin.The roll control part will be fixed on the base end of the inner shaft of the shooter. The outer shaft of the shooter will then be able to lock into the desired position.
+
+\begin{center}
+\begin{minipage}[b]{0.8\textwidth}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/11.jpg}
+    \caption{CAD design for Roll Control component }
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/12.jpg}
+    \caption{2D Engineering Drawing of Roll Control Component}
+  \end{minipage}
+\end{figure}
+\end{minipage}
+\end{center}
+
+\subsubsection*{Base, Support Brackets and Bucket}
+The base is made out of a hardwood and laser cut to an appropriate size. The base acts as a fixture to attach the bucket supports to the azimuth stage. There are two metal support brackets which are made out of stainless steel, and lift the bucket to an appropriate height above the base. The bottom of the supports are screwed into the hardwood base, and the top of the supports are bolted to the bucket. The bucket is 8in x 7in and is large enough to hold at least 20 balls without overfilling.
+
+\begin{center}
+\begin{minipage}[b]{0.8\textwidth}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/13.jpg}
+    \caption{Base with Support Brackets attached }
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/14.jpg}
+    \caption{Bucket with Inner Tune and Roll Control attached }
+  \end{minipage}
+\end{figure}
+\end{minipage}
+\end{center}
+
+\subsubsection*{Pitch Control}
+The pitch control consists of a screw that pierces through the support beam and bucket, to hold the shooter at a certain angle. The range of angles are as followed: -15°,0°,15°,30°,45°, and are set by pre drilled holes in the bucket. This design needs to be optimized with a bolt in order to further secure the pitch and eliminate error.
+
+\begin{center}
+\begin{minipage}[b]{0.6\textwidth}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/15.jpg}
+    \caption{Pitch Control slots }
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/16.jpg}
+    \caption{Pitch Control Holding Pin from Inside }
+  \end{minipage}
+\end{figure}
+\end{minipage}
+\end{center}
+
+\subsection{Electrical Components}
+\subsubsection*{Stepper Motors}
+We chose a Japan Servo KP35FM2-035 stepper motor for the panning assembly because of its torque and step accuracy. To make the panning smooth as possible the motor provides 200 steps per revolution (1.8 degrees per step) from this stepper is sufficient for our purposes. The max torque is 700 g/cm at 24 VDC / 500mA but due to microcontroller restrictions and we are only using a torque of approximately 250g/cm to operate at a around 9VDC. At this lower voltage the stepper motor combined with the worm gear train provides enough torque to move the system (panning) at a sufficient speed.
+A gear stepper motor (model 28BYJ48) with a driver is utilized for the automatic feeding of the balls into shooting barrel functionality as the stepper motor would not require any position encoder as well as the stepper motor will have predictable movements. This motor generates 300 g/cm torque at a voltage of 5VDC. This motor will be continuously running during the operation of the system at varying speeds and a ball will enter the Inner Tube at every quarter turn of the Feeder Cutout. The stepper has 64 steps per revolution (5.625 degrees per step) so every 16 steps the stepper moves, a ball will be fed into the feeder. This low-step count motor is good for our purposes because it allows the stepper to function at higher RPMs than other higher step count similar frame size motors. 
+
+\begin{center}
+\begin{minipage}[b]{0.8\textwidth}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/17.jpg}
+    \caption{Gear Stepper Motor (Model 28BYJ48) with a Driver}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/18.jpg}
+    \caption{Stepper Motor 28BYJ48 Mounting Holes}
+  \end{minipage}
+\end{figure}
+\end{minipage}
+\end{center}
+
+\subsubsection*{DC Motors}
+For the ball shooter, a DC Motor purchased from Sayal Electronics and Hobbies is used as the system will require high speeds and high torques to shoot out ping pong balls. The DC motor operates between 3-6 volts, can reach a max RPM of 17,000, has a 2mm shaft diameter and max torque of 20.72 g/cm. Although the table tennis balls don't account for much weight the motor torque needs to be sufficient enough so that the wheel attached to the shaft can push on the ball, make contact and toss it out as required speeds. The DC Motor will be controlled using the PWM method for speed control.
+
+\begin{center}
+\begin{minipage}[b]{0.6\textwidth}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/19.jpg}
+    \caption{MOTOR DC 3-6VOLTS 17000RPM 2MM SHAFT 20.72G/CM TORQUE}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/20.jpg}
+    \caption{DC Motor attached to the Motor Bracket onto the Outer Tube}
+  \end{minipage}
+\end{figure}
+\end{minipage}
+\end{center}
+
+\subsubsection*{Arduino}
+Arduino UNO microcontroller is used to control all of the IPO (Input Process Output) processes between the sensors, actuators and Smart Serve. Arduino is chosen because it has a hardware platform setup and allows programming and serial communication over USB so designing so a PCB is not necessary. It is fast for our purposes, there is a lot of libraries available to use and lots of hardware modules designed for Arduino UNO. Also, this microcontroller easily interfaces with the hardware used in this prototype. 
+
+\section{Appendix}
+
+\begin{sidewaysfigure}[ht]
+   \centering
+   \includegraphics[width=1.1\textwidth]{diagram/DCD.png} % requires the graphicx package
+   \caption{Detailed Class Diagram}
+   \label{fig:dcd}
+\end{sidewaysfigure}
+
+
+
+\end{document}

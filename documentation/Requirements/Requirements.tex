@@ -40,13 +40,13 @@
 	\begin{minipage}[t][][t]{0.5\textwidth}
 		\begin{flushleft} \large
 			\emph{Authors:}\\
-			Christopher McDonald\\
-			Harit Patel \\
-			Janak Patel \\
-			Jared Rayner  \\
-			Nisarg Patel  \\
-			Sam Hamel \\
-			Sharon Platkin \\
+			Christopher McDonald - \textit{001312456} \\
+			Harit Patel - \textit{001317372}\\
+			Janak Patel - \textit{001307060} \\
+			Jared Rayner - \textit{001311702}\\
+			Nisarg Patel - \textit{001322805} \\
+			Sam Hamel - \textit{001321692} \\
+			Sharon Platkin - \textit{001316625} \\
 		\end{flushleft}
 	\end{minipage}
 	~
@@ -90,25 +90,33 @@
 \end{figure}
 
 \newpage
-%THIS DOCUMENT MUST INCLUDE
-%-Scope
-%-Context Diagram showing boundaries---???
-%-Monitored and controller variables (with units)
-%-Constraints
-%-Behavior overview including notation---???
-%-Diagrams showing functional decomposition---???
-%-Required behavior description (keep away from design as much as possible)
-%-Rationale where necessary - includes simulation analysis if you have any
-%-Performance requirements
-%-Normal operation (optional if handled in requirements with undesired event handling)
-%-Undesired event handling(optional if handled in requirements with normal operation) --- ???
-%-List of requirements that are likely to change
-%-List of requirements that are not likely to change ---???
-%-References
+
+% TA Comments - Rev 1
+%FIXED (see diagram in Appendix): What is a "4x4 grid"?
+%FIXED (see accuracy added to fit crit for F2): Repeatability requirement on speed of ball? Angle of shooting mechanism or shot?
+%FIXED (angular velocity is a function of speed by our design, and thus accuracy / repeatability would be the same added 5 degrees of error for degree): Add quantification of and a requirement on magnitude and repeatability of spin
+%COMMENT by Janak: I think this requires a discussion. Magnitude of the spin is dependent on speed of the motor which might give us unrealistic spins at realistic speeds, will know with more testing. Going to need metrics for measuring spins also which could get challenging depending on how accurately we want to measure it.     
+%FIXED (switched to 95): Detecting only 90% of returns may undermine the ability to train a person. Maybe aim for higher.
+%COMMENT by Harit: Actually I thought 90% was quite reasonable to simply capture repeated mistakes and areas of improvement. Especially since SmartServe is catered to non-professional players
+%COMMENY by Chris: fixed, good call ^
+%COMMENT by Chris: yeah, I dunno. I just changed to appease him.
+%IGNORED (will remove if it becomes necessary): Specific timeline isn't really needed for project overview. Might have to cut it in the future for extra space.
+%FIXED (switched to 'Display'): Define ?Open Profile? from figure 8?
+%??? (I don't know about this one, as per the Volere template cards it appears to be internal people, link here - http://www.volere.co.uk/pdf%20files/06%20Atomic%20Requirements.pdf): Originator of the requirements is not a specific team member, but rather of the defined stakeholders.
+%COMMENT By Harit: I think he means the originator should be the stakeholder this requirement should be satisfied for. But I've never seen this before, should confirm with Alan. If change is needed, in most case it will be the player or the coach.
+%COMMENT by Chris: good with asking Alan,
+%FIXED (updated description): The system must be able to support 1000 users? - 1000 players? 1 player and 999 trainers? Make it less ambiguous.
+%FIXED (removed requirement, did NOT update identifiers): The software for the system will execute on Linux, Windows and MacOS operating systems? - I thought the system was self contained, and as such it would be used with whatever embedded OS of your choosing. This seems to be more of a requirement for a standalone software package, not a self-contained system.
+%IGNORED (I can defend it :P politics can be within customer organization, team's organization or country politicts, link here - https://www.utdallas.edu/~chung/SYSM6309/NFR-18-4-on-1.pdf): Requirement P1. How is this a political requirement? Seems to be a straightforward
+%COMMENT by Harit: HAHA good shit!
+%COMMENT by Janak: Requirement ID for Political Requirements and Performance requirements will both have a "P" suffix. Do the Req IDs have to be unique? 
+%IGNORED (see above): Don?t try to dig for requirements, if you have no political requirements, put none. In fact, political requirements by itself is not a concept, not in context of engineering.
+
+% NOTES: we will not be adjusting / refragging Requirement identifiers
 
 \section{Introduction}
 \subsection{Project Overview}
-SmartServe is an autonomous table tennis training system for table tennis players with various skill levels. SmartServe aids in diagnosing and improving a player's performance over time. The system trains table tennis players by shooting table tennis balls towards the player and detects successful returns from the player. The system can further adapt to the player's weaknesses and help them overcome it through further training. Importantly, SmartServe alleviates the problems of finding and working with a coach for players, as well as coaches trying to train multiple players simultaneously. The system will be deemed a success if the table tennis players and coaches, can enjoy and see a value added by using SmartServe.\\\\
+SmartServe is an autonomous table tennis training system for table tennis players with various skill levels. SmartServe aids in diagnosing and improving a player's performance over time. The system trains table tennis players by shooting table tennis balls towards the player and detects successful returns from the player. The system can further adapt to the player's weaknesses and help them overcome it through further training. Importantly, SmartServe alleviates the problems of finding and working with a coach for players, as well as coaches trying to train multiple players simultaneously. The system will be deemed a success if the table tennis players and coaches can enjoy and see value in using SmartServe.\\\\
 The project started at the beginning of the Fall 2017 academic term and will conclude at the end of the Winter 2018 term. In addition, the core project team consists of final year Software and Mechatronics Engineering students who are enrolled in the MECHTRON 4TB6/SFWRENG 4G06 capstone project course.
 \subsection{Naming Conventions and Terminology}
 \label{sec:definitions}
@@ -161,7 +169,7 @@ The client for this project comprises of the core development \hyperref[sec:defi
 The primary users of this project are table tennis players. Our proposed \hyperref[sec:definitions]{system} will adapt to various playing styles and levels, and hence segmenting those players down further is not required at this stage. These users are more likely to play competitively, but could also play recreationally with friends or within a club focused around the sport. \\\\
 The secondary users of this project are table tennis coaches. Although this \hyperref[sec:definitions]{system} could replace a coach, a coach could find value in using this system to aid in training and assisting multiple players at one time. The system will provide analytics on players performance that can be very useful when training someone over a long period of time.
 \subsubsection{Faculty}
-The Department of Computing and Software is also a key stakeholder for this project. The development \hyperref[sec:definitions]{team} are students of this department and would thus represent it through the work they perform. This project is also the amalgamation of the knowledge attained by the \hyperref[sec:definitions]{team} over their undergraduate degrees. If the project is unsuccessful, the department loses the opportunity to showcase it for future students and donors.
+The Department of Computing and Software at McMaster University is also a key stakeholder for this project. The development \hyperref[sec:definitions]{team} are students of this department and would thus represent it through the work they perform. This project is also the amalgamation of the knowledge attained by the \hyperref[sec:definitions]{team} over their undergraduate degrees. If the project is unsuccessful, the department loses the opportunity to showcase it for future students and donors.
 
 \section{Project Scope}
 \subsection{The Scope of the Work and the Product}
@@ -192,7 +200,7 @@ The following are secondary use cases:
    \label{fig:usecase}
 \end{figure}
 \subsection{Mandated Constraints}
-The first constraint placed on the project is time. The deliverable and presentation dates have been set, concluding with the presentations booked for April 28, 2018. Therefore, the \hyperref[sec:definitions]{team} must successfully submit all of the deliverables and complete the project by April 28th, 2018. Additionally, a budget constraint of \$750 on the Bill of Materials (BOM) for the final product is also enforced.
+The first constraint placed on the project is time. The deliverable and presentation dates have been set, concluding with the presentations booked for April 27, 2018. Therefore, the \hyperref[sec:definitions]{team} must successfully submit all of the deliverables and complete the project by April 27th, 2018. Additionally, a budget constraint of \$750 on the Bill of Materials (BOM) for the final product is also enforced.
 \subsection{Undesired Behaviour} 
 The shooting mechanism should not start, pause or end a session without the user triggering the event. The \hyperref[sec:definitions]{system} must also refrain from shooting the ball outside the speed and angle ranges specified. Furthermore, the system should not attempt to shoot balls when it runs out of balls. \\\\
 
@@ -236,7 +244,7 @@ The shooting mechanism should not start, pause or end a session without the user
 	\noindent\textbf{Requirement ID}: F1 \hfill \textbf{Requirement Type}: F \hfill\\\\
 	\noindent\textbf{Description}: The \hyperref[sec:definitions]{shooting mechanism} shoots the table tennis ball towards the \hyperref[sec:definitions]{user side} at various locations \\
 	\textbf{Rationale}: Provides variability in the shots made towards the user \\
-	\textbf{Fit Criterion}: The \hyperref[sec:definitions]{shooting mechanism} can hit a specified section of a 4x4 grid with an accuracy of 75\%\\\\
+	\textbf{Fit Criterion}: The \hyperref[sec:definitions]{shooting mechanism} can hit a specified section of a 4x4 grid with an accuracy of 75\%, an example of this grid can be found in Figure \ref{fig:zones}\\\\
 	\textbf{Originator}: Sharon Platkin \\\\
 	\textbf{Priority}: High \hfill \\
 	\noindent\textbf{History}: Created Oct. 20, 2017
@@ -246,7 +254,7 @@ The shooting mechanism should not start, pause or end a session without the user
 	\noindent\textbf{Requirement ID}: F2 \hfill \textbf{Requirement Type}: F \hfill\\\\
 	\noindent\textbf{Description}: The \hyperref[sec:definitions]{shooting mechanism} shoots the table tennis ball towards the \hyperref[sec:definitions]{user side} at various speeds \\
 	\textbf{Rationale}: Provides variability in the shots made towards the user \\
-	\textbf{Fit Criterion}: Since the fastest recorded speed of a table tennis ball is 31.25 m/s, the system should be able to match at least half this speed~\autocite{thoughtco}. Specifically, the \hyperref[sec:definitions]{shooting mechanism} must shoot at speeds ranging from 10 to 15 m/s at discrete increments of 0.5 \\\\
+	\textbf{Fit Criterion}: Since the fastest recorded speed of a table tennis ball is 31.25 m/s, the system should be able to match at least half this speed~\autocite{thoughtco}. Specifically, the \hyperref[sec:definitions]{shooting mechanism} must shoot at speeds ranging from 10 to 15 m/s at discrete increments of 0.5 within 0.1 m/s of error \\\\
 	\textbf{Originator}: Sharon Platkin \\\\
 	\textbf{Priority}: High \hfill \\
 	\noindent\textbf{History}: Created Oct. 20, 2017
@@ -264,9 +272,9 @@ The shooting mechanism should not start, pause or end a session without the user
 
 \begin{framed}
 	\noindent\textbf{Requirement ID}: F4 \hfill \textbf{Requirement Type}: F \hfill\\\\
-	\noindent\textbf{Description}: The \hyperref[sec:definitions]{shooting mechanism} shoots the table tennis ball towards the \hyperref[sec:definitions]{user side} of the table with spin along 2 axes \\
+	\noindent\textbf{Description}: The \hyperref[sec:definitions]{shooting mechanism} shoots the table tennis ball towards the \hyperref[sec:definitions]{user side} of the table with various degrees of roll \\
 	\textbf{Rationale}: Provides variability in the shots made towards the user \\
-	\textbf{Fit Criterion}: The \hyperref[sec:definitions]{shooting mechanism} can spin the ball at 0 to 360 degrees in discrete increments of 45 degrees on the longitudinal axis\\\\ % longitudinal - refers to lengthwise as opposed to across
+	\textbf{Fit Criterion}: The \hyperref[sec:definitions]{shooting mechanism} can spin the ball at 0 to 360 degrees in discrete increments of 45 degrees on the longitudinal axis with 5 degrees of error\\\\ % longitudinal - refers to lengthwise as opposed to across
 	\textbf{Originator}: Sharon Platkin \\\\
 	\textbf{Priority}: High \hfill \\
 	\noindent\textbf{History}: Created Oct. 20, 2017
@@ -470,7 +478,7 @@ The shooting mechanism should not start, pause or end a session without the user
 
 \begin{framed}
 	\noindent\textbf{Requirement ID}: P4 \hfill\\\\
-	\noindent\textbf{Description}: The \hyperref[sec:definitions]{system} must be able to support 1000 users \\
+	\noindent\textbf{Description}: The \hyperref[sec:definitions]{system} must be able to support a total of 1000 users, consisting of players and coaches \\
 	\textbf{Rationale}: If the system is used by a company, they will have a large amount of users using the system\\
 	\textbf{Fit Criterion}: The system can store up to a thousand user profiles and their accompanying performance history data \\\\
 	\textbf{Originator}: Sam Hamel \\\\
@@ -489,13 +497,6 @@ The shooting mechanism should not start, pause or end a session without the user
 \end{framed}
 
 \subsection{Operational and Environmental Requirements}
-\begin{framed}
-	\noindent\textbf{Requirement ID}: OE1 \hfill\\\\
-	\noindent\textbf{Description}: The software for the \hyperref[sec:definitions]{system} will execute on Linux, Windows and MacOS operating systems \\
-	\textbf{Originator}: Sam Hamel \\\\
-	\textbf{Priority}: High \hfill \\
-	\noindent\textbf{History}: Created Oct. 27, 2017
-\end{framed}
 
 \begin{framed}
 	\noindent\textbf{Requirement ID}: OE2 \\\\
@@ -506,15 +507,6 @@ The shooting mechanism should not start, pause or end a session without the user
 \end{framed}
 
 \subsection{Maintainability and Support Requirements}
-\begin{framed}
-	\noindent\textbf{Requirement ID}: MS1 \\\\
-	\noindent\textbf{Description}: The \hyperref[sec:definitions]{system} will be able to support adding different modes to the system\\
-	\textbf{Rationale}: New modes might be deemed necessary later in development, and should be easily added into the system \\
-	\textbf{Fit Criterion}: The system will be able to add new shooting modes into the system so long as no changes need to be made to the hardware \\\\
-	\textbf{Originator}: Sam Hamel \\\\
-	\textbf{Priority}: High \hfill \\
-	\noindent\textbf{History}: Created Oct. 27, 2017
-\end{framed}
 
 \begin{framed}
 	\noindent\textbf{Requirement ID}: MS2 \\\\
@@ -652,9 +644,17 @@ As noted in the Project Goals document, many of the anticipated changes include 
 \section{Appendix}
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{img/angles.png}
+\includegraphics[width=0.7\textwidth]{img/angles.png}
 \caption{Valid Range of Shot Calculation}
 \label{fig:calc}
+\end{figure}
+\section{Appendix}
+\subsection{Figures}
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.7\textwidth]{diagrams/Zones.png} % requires the graphicx package
+   \caption{Table Tennis Table with 4x4 Grid Zones}
+   \label{fig:zones}
 \end{figure}
 \section{References}
 \printbibliography

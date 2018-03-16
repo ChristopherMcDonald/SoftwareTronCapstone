@@ -1,0 +1,63 @@
+\contentsline {table}{\numberline {1}{\ignorespaces Testing Schedule}}{6}{table.1}
+\contentsline {table}{\numberline {2}{\ignorespaces Feeding Mechanism Rotation Test}}{7}{table.2}
+\contentsline {table}{\numberline {3}{\ignorespaces Shooting Control Test}}{7}{table.3}
+\contentsline {table}{\numberline {4}{\ignorespaces Four Position Roll Test}}{8}{table.4}
+\contentsline {table}{\numberline {5}{\ignorespaces Adjustable Pitch Control Test}}{8}{table.5}
+\contentsline {table}{\numberline {6}{\ignorespaces Panning Shooting Mechanism Test}}{9}{table.6}
+\contentsline {table}{\numberline {7}{\ignorespaces Shut Off Power Switch Test}}{9}{table.7}
+\contentsline {table}{\numberline {8}{\ignorespaces Ball Detection Test}}{10}{table.8}
+\contentsline {table}{\numberline {9}{\ignorespaces Ball Upward Detection Test}}{10}{table.9}
+\contentsline {table}{\numberline {10}{\ignorespaces Ball Downward Detection Test}}{11}{table.10}
+\contentsline {table}{\numberline {11}{\ignorespaces Ball Rightward Detection Test}}{11}{table.11}
+\contentsline {table}{\numberline {12}{\ignorespaces Ball Leftward Detection Test}}{12}{table.12}
+\contentsline {table}{\numberline {13}{\ignorespaces CV Timeout Test}}{12}{table.13}
+\contentsline {table}{\numberline {14}{\ignorespaces CV Transition: State 1 to 2}}{13}{table.14}
+\contentsline {table}{\numberline {15}{\ignorespaces CV Transition: State 2 to 3}}{13}{table.15}
+\contentsline {table}{\numberline {16}{\ignorespaces CV Transition: State 3 to 0}}{14}{table.16}
+\contentsline {table}{\numberline {17}{\ignorespaces Hit Signal to SmartServe Test}}{14}{table.17}
+\contentsline {table}{\numberline {18}{\ignorespaces ShotRecommender Listen Test}}{15}{table.18}
+\contentsline {table}{\numberline {19}{\ignorespaces ShotRecommender Query Test}}{15}{table.19}
+\contentsline {table}{\numberline {20}{\ignorespaces ShotRecommender Random Shot Test}}{16}{table.20}
+\contentsline {table}{\numberline {21}{\ignorespaces ShotRecommender Training Shot Test}}{16}{table.21}
+\contentsline {table}{\numberline {22}{\ignorespaces ShotRecommender UpdateModel Test}}{17}{table.22}
+\contentsline {table}{\numberline {23}{\ignorespaces ShootingModel calculateYawAngle Test}}{17}{table.23}
+\contentsline {table}{\numberline {24}{\ignorespaces ShootingModel calculateVeolocty Test}}{18}{table.24}
+\contentsline {table}{\numberline {25}{\ignorespaces ShootingModel netHeightChecker Test}}{18}{table.25}
+\contentsline {table}{\numberline {26}{\ignorespaces Data Storage Sign Up Test}}{19}{table.26}
+\contentsline {table}{\numberline {27}{\ignorespaces Data Storage Next Shot Test}}{19}{table.27}
+\contentsline {table}{\numberline {28}{\ignorespaces Data Storage Returned Test}}{20}{table.28}
+\contentsline {table}{\numberline {29}{\ignorespaces Data Storage Sign In Test}}{20}{table.29}
+\contentsline {table}{\numberline {30}{\ignorespaces Data Storage Statistics Test}}{21}{table.30}
+\contentsline {table}{\numberline {31}{\ignorespaces User Interface Display Test}}{21}{table.31}
+\contentsline {table}{\numberline {32}{\ignorespaces User Interface Button Test}}{22}{table.32}
+\contentsline {table}{\numberline {33}{\ignorespaces User Interface Mode Test}}{22}{table.33}
+\contentsline {table}{\numberline {34}{\ignorespaces User Interface Sign up Test}}{23}{table.34}
+\contentsline {table}{\numberline {35}{\ignorespaces User Interface Sign up Test}}{23}{table.35}
+\contentsline {table}{\numberline {36}{\ignorespaces User Interface Log In Test}}{24}{table.36}
+\contentsline {table}{\numberline {37}{\ignorespaces User Interface Statistics Test}}{24}{table.37}
+\contentsline {table}{\numberline {38}{\ignorespaces ShotRecommendation Connection Test - Pass}}{25}{table.38}
+\contentsline {table}{\numberline {39}{\ignorespaces ShotRecommendation Connection Test - Fail}}{25}{table.39}
+\contentsline {table}{\numberline {40}{\ignorespaces ShotRecommendation Request Shot - Random}}{26}{table.40}
+\contentsline {table}{\numberline {41}{\ignorespaces ShotRecommendation Request Shot - Train}}{26}{table.41}
+\contentsline {table}{\numberline {42}{\ignorespaces ShotRecommendation Request Shot - One-shot}}{27}{table.42}
+\contentsline {table}{\numberline {43}{\ignorespaces ShotRecommendation Model Update}}{27}{table.43}
+\contentsline {table}{\numberline {44}{\ignorespaces ShotRecommendation Request Shot - One-shot}}{28}{table.44}
+\contentsline {table}{\numberline {45}{\ignorespaces ComputerVisionController Connection Test - Pass}}{28}{table.45}
+\contentsline {table}{\numberline {46}{\ignorespaces ComputerVisionController Connection Test - Fail}}{29}{table.46}
+\contentsline {table}{\numberline {47}{\ignorespaces ComputerVisionController Detect Test - Timeout}}{29}{table.47}
+\contentsline {table}{\numberline {48}{\ignorespaces ComputerVisionController Detect Test - Detect}}{30}{table.48}
+\contentsline {table}{\numberline {49}{\ignorespaces SQLConnector Connection Test - Pass}}{30}{table.49}
+\contentsline {table}{\numberline {50}{\ignorespaces SQLConnector Connection Test - Pass}}{31}{table.50}
+\contentsline {table}{\numberline {51}{\ignorespaces SQLConnector Query Test - Signup}}{31}{table.51}
+\contentsline {table}{\numberline {52}{\ignorespaces SQLConnector Query Test - Returned}}{32}{table.52}
+\contentsline {table}{\numberline {53}{\ignorespaces SQLConnector Query Test - Returned}}{32}{table.53}
+\contentsline {table}{\numberline {54}{\ignorespaces ArduinoController Connection Test - Pass}}{33}{table.54}
+\contentsline {table}{\numberline {55}{\ignorespaces ArduinoController Connection Test - Fail}}{33}{table.55}
+\contentsline {table}{\numberline {56}{\ignorespaces ArduinoController Test - Pan}}{34}{table.56}
+\contentsline {table}{\numberline {57}{\ignorespaces ArduinoController Test - Pan}}{34}{table.57}
+\contentsline {table}{\numberline {58}{\ignorespaces ArduinoController Test - Shoot}}{35}{table.58}
+\contentsline {table}{\numberline {59}{\ignorespaces ArduinoController Test - Shoot}}{35}{table.59}
+\contentsline {table}{\numberline {60}{\ignorespaces Matrix to Match Tests to Functional Requirements [1]}}{36}{table.60}
+\contentsline {table}{\numberline {61}{\ignorespaces Matrix to Match Tests to Functional Requirements [2]}}{37}{table.61}
+\contentsline {table}{\numberline {62}{\ignorespaces Matrix to Match Tests to Non-Functional Requirements [1]}}{38}{table.62}
+\contentsline {table}{\numberline {63}{\ignorespaces Matrix to Match Tests to Non-Functional Requirements [2]}}{39}{table.63}

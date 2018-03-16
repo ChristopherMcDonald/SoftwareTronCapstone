@@ -1,0 +1,21 @@
+\BOOKMARK [1][-]{section.1}{Executive Summary of Testing}{}% 1
+\BOOKMARK [1][-]{section.2}{Introduction}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Project Overview}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Document Overview}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Naming Conventions and Terminology}{section.2}% 5
+\BOOKMARK [1][-]{section.3}{Testing Philosophy}{}% 6
+\BOOKMARK [2][-]{subsection.3.1}{Approach}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.2}{Schedule}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.3}{Environment}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.4}{Code Reviews}{section.3}% 10
+\BOOKMARK [1][-]{section.4}{Test Cases}{}% 11
+\BOOKMARK [2][-]{subsection.4.1}{Electromechanical Subsystems}{section.4}% 12
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Shooting Mechanism}{subsection.4.1}% 13
+\BOOKMARK [2][-]{subsection.4.2}{Software Subsystems}{section.4}% 14
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Computer Vision}{subsection.4.2}% 15
+\BOOKMARK [3][-]{subsubsection.4.2.2}{ShotRecommender}{subsection.4.2}% 16
+\BOOKMARK [3][-]{subsubsection.4.2.3}{Shooting Model}{subsection.4.2}% 17
+\BOOKMARK [3][-]{subsubsection.4.2.4}{Data Storage}{subsection.4.2}% 18
+\BOOKMARK [3][-]{subsubsection.4.2.5}{User Interface}{subsection.4.2}% 19
+\BOOKMARK [3][-]{subsubsection.4.2.6}{SmartServe}{subsection.4.2}% 20
+\BOOKMARK [1][-]{section.5}{Test Case-Requirement Traceability Matrix}{}% 21
