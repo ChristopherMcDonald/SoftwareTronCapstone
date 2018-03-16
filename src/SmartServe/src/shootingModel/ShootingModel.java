@@ -7,7 +7,6 @@ public class ShootingModel {
     public double yDistance;
     public double yaw;
     public double yInitialHeight;
-    public double pitch;
     public double gravity = 9.8;
     public double velocity;
 
@@ -65,7 +64,7 @@ public class ShootingModel {
      * Calculates velocity in Yaw direction
      * @return vel [Velocity (meters/second)]
      */
-    public double calculateVelocity(){
+    public double calculateVelocity(double pitch){
         double vel = Math.sqrt((Math.pow(distance, 2)*gravity)/(2*Math.pow(Math.cos(pitch),2)*(yInitialHeight+distance*Math.tan(pitch))));
         //System.out.println("Velocity: "+vel+" m/s");
         return vel;
@@ -77,9 +76,8 @@ public class ShootingModel {
      * @param landingXCoord [X Coordinate on the grid for landing position]
      * @param landingYCoord [X Coordinate on the grid for landing position]
      */
-    public ShootingModel(double initialHeight, double pitch){
+    public ShootingModel(double initialHeight){
         yInitialHeight = initialHeight;
-        this.pitch = pitch;
     }
 
     /**
@@ -88,16 +86,16 @@ public class ShootingModel {
      * @param landingYCoord [Y Coordinate on the grid for landing position]
      * @return [ShootingDetails to get Yaw(degrees), Velocity(meters/second)]
      */
-    public ShootingDetails getShootingDetails(double landingXCoord, double landingYCoord){
+    public ShootingDetails getShootingDetails(double landingXCoord, double landingYCoord, double pitch){
         distance = calculateDistance(landingXCoord, landingYCoord);
         yaw = calculateYawAngle(xDistance, yDistance);
-        velocity = calculateVelocity();
+        velocity = calculateVelocity(pitch);
         return new ShootingDetails(yaw, velocity);
     }
 
     public static void main(String []args){
-        ShootingModel shooter = new ShootingModel(0.0762, 45);
-        ShootingDetails details = shooter.getShootingDetails(0.6,0.6);
+        ShootingModel shooter = new ShootingModel(0.0762);
+        ShootingDetails details = shooter.getShootingDetails(0.6,0.6,45);
         System.out.println(details.toString());
     }
 }

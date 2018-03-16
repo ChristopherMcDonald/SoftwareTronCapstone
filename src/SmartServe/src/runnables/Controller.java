@@ -52,6 +52,9 @@ public class Controller implements Runnable {
 	private ShootingParameters sp;
 	private Mode m;
 	private RunState state;
+	
+	// utility classes
+	ShootingModel sm;
 
 	// sockets
 	ServerSocket welcomeSocket;
@@ -94,6 +97,8 @@ public class Controller implements Runnable {
 			}
 			System.out.println("Connected to SQL");
 			
+			sm = new ShootingModel(0.08);
+			
 		} catch(NotConnectedException nce) {
 			nce.printStackTrace();
 			return false;
@@ -114,16 +119,9 @@ public class Controller implements Runnable {
 		while(this.state != RunState.TERMINATE) {
 			System.out.println("Getting Next Shot...");
 			Shot s = ShotRecommendationController.getRecommendation(m);
-			ShootingDetails sd = (new ShootingModel(0.08, 45)).getShootingDetails(s.x, s.y); 	// TODO get shootingModel outta here
-																							// TODO ensure height is functional
-			// QUICK YAW FIX
-			int[] yaws = new int[]{80, 85, 90, 95, 100};
-			Random r = new Random();
-			ShotDetail sd1 = new ShotDetail(45f, yaws[r.nextInt(5)], (float) sd.getVelocity(), 0f);	// TODO variable pitch and angular direction
+			ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, 45);
 			
-			// TODO optimize shots
-			
-			pan.shoot(sd1);
+			pan.shoot(new ShotDetail(45f, (float) sd.getYaw(), (float) s.velocity, (float) s.rollAngle));
 			shooter.shoot(75);
 			boolean returned = cvController.start();
 			System.out.println(returned ? "Ball Returned" : "Ball Not Returned");

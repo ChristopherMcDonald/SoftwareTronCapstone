@@ -15,10 +15,10 @@ public class Shot {
 		System.out.println(s1);
 	}
 	
-	public double x; // x location
-	public double y; // y location
-	public double v; // ball speed
-	public double w; // angular direction
+	public double xLoc; // x location
+	public double yLoc; // y location
+	public double velocity; // ball speed
+	public double rollAngle; // angular direction
 	
 	/**
 	 * Constructor for a Shot
@@ -28,10 +28,10 @@ public class Shot {
 	 * @param w - angular direction of the ball
 	 */
 	public Shot(double x, double y, double v, double w) {
-		this.x = x;
-		this.y = y;
-		this.w = w;
-		this.v = v;
+		this.xLoc = x;
+		this.yLoc = y;
+		this.rollAngle = w;
+		this.velocity = v;
 	}
 	
 	/**
@@ -46,15 +46,15 @@ public class Shot {
 			nums[i] = Double.parseDouble(num);
 		}
 		
-		x = nums[0];
-		y = nums[1];
-		v = nums[2];
-		w = nums[3];
+		xLoc = nums[0];
+		yLoc = nums[1];
+		velocity = nums[2];
+		rollAngle = nums[3];
 	}
 
 	@Override
 	public String toString() {
-		return String.format("X=%1$,.2f,Y=%2$,.2f,V=%3$,.2f,W=%4$,.2f", x, y, v, w);
+		return String.format("X=%1$,.2f,Y=%2$,.2f,V=%3$,.2f,W=%4$,.2f", xLoc, yLoc, velocity, rollAngle);
 	}
 	
 }
