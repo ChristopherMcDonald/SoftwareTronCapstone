@@ -1,14 +1,14 @@
 #include "Arduino.h"
 #include "AutomaticRoll.h"
 
-#define Azimuth_Motor_Direction 7 // LOW = CW , HIGH = CCW
-#define Azimuth_Motor_Clock 6
-#define Azimuth_Optical_Sensor 2 // HIGH = Triggered
+#define Roll_Motor_Direction 5 // LOW = CW , HIGH = CCW
+#define Roll_Motor_Clock 4
+#define Roll_Optical_Sensor 3 // HIGH = Triggered
 #define Stepper_Motor_Delay 1
 #define location_limit_max 178 // You dont want the system to exceed 178 deg, if exceeded the limit switch would be interrupted at 180 deg
 #define location_limit_min 0
 
-int AzimuthErrorFlag = 1; // 1 = Error, 0 = No Error
+int ErrorFlag = 1; // 1 = Error, 0 = No Error
 
 AutomaticRoll::AutomaticRoll() // Constructor
 {
@@ -18,27 +18,27 @@ AutomaticRoll::AutomaticRoll() // Constructor
   location_diff = 0.0;
   current_location = 0.0;
 
-  /* Initialize all Sensors and Actuators for the Azimuth Stage */
+  /* Initialize all Sensors and Actuators for the Roll */
 
-  // Initialize Azimuth Stage Motors as OUTPUT
-  pinMode(Azimuth_Motor_Direction, OUTPUT);
-  pinMode(Azimuth_Motor_Clock, OUTPUT);
+  // Initialize Roll Motor as OUTPUT
+  pinMode(Roll_Motor_Direction, OUTPUT);
+  pinMode(Roll_Motor_Clock, OUTPUT);
 
-  // Initialize Azimuth Stage Opto Sensor as INPUT
-  pinMode(Azimuth_Optical_Sensor, INPUT);
+  // Initialize Roll Opto Sensor as INPUT
+  pinMode(Roll_Optical_Sensor, INPUT);
 
-  Serial.println("\nAutomatic Panning Initialized");
+  Serial.println("\nAutomatic Roll Initialized");
   Serial.println("");
 }
 
 bool AutomaticRoll::home_assembly(String motor_direction)
 {
-  Serial.println("Moving Azimuth Stage to the Home Position");
+  Serial.println("Moving Roll to the Home Position");
   for (int i = 0; i < 720; i++) // 360 / 0.5
   {
-    if (digitalRead(Azimuth_Optical_Sensor) == HIGH) // Sensor Triggered
+    if (digitalRead(Roll_Optical_Sensor) == HIGH) // Sensor Triggered
     {
-      Serial.println("Azimuth Stage = Home Position");
+      Serial.println("Roll = Home Position");
       current_location = 0.00; // Set Current Position to 0.00 as HOME
       return true;
     }
@@ -46,50 +46,50 @@ bool AutomaticRoll::home_assembly(String motor_direction)
     {
       if (motor_direction == "CCW")
       {
-        move_by_degrees("CCW", 0.5); // Move the Azimuth Stage with a precision of 0.5 degree
+        move_by_degrees("CCW", 0.5); // Move the Roll with a precision of 0.5 degree
       }
       else
       {
-        move_by_degrees("CW", 0.5); // Move the Azimuth Stage with a precision of 0.5 degree
+        move_by_degrees("CW", 0.5); // Move the Roll with a precision of 0.5 degree
       }
     }
   }
-  Serial.println("ERROR: Aziumth Stage moved from 0 - 360 degrees CW, Home Position not reached. Try cleaning the optical sensor or perhaps go in CCW position.");
+  Serial.println("ERROR: Roll moved from 0 - 360 degrees CW, Home Position not reached. Try cleaning the optical sensor or perhaps go in CCW position.");
   return false;
 }
 
 void AutomaticRoll::move_by_degrees(String motor_direction, double degrees_to_move)
 {
   /* Convert degrees to the # of steps */
-  int azimuth_steps = (degrees_to_move / 0.05);
-  Serial.print("Azimuth Steps > ");
-  Serial.print(azimuth_steps);
+  int steps_to_take = (degrees_to_move / 0.05);
+  Serial.print("Roll Steps > ");
+  Serial.print(steps_to_take);
   Serial.println("");
 
-  /* Set Direction PIN on Azimuth Stage */
+  /* Set Direction PIN on Roll */
   if (motor_direction == "CW")
   {
-    digitalWrite(Azimuth_Motor_Direction, LOW); // LOW = Clock Wise direction
-    Serial.println("Azimuth Motor Direction -> Clockwise");
+    digitalWrite(Roll_Motor_Direction, LOW); // LOW = Clock Wise direction
+    Serial.println("Roll Motor Direction -> Clockwise");
   }
   else if (motor_direction == "CCW")
   {
-    digitalWrite(Azimuth_Motor_Direction, HIGH); // HIGH = Counter Clock Wise direction
-    Serial.println("Azimuth Motor Direction -> Counter Clockwise");
+    digitalWrite(Roll_Motor_Direction, HIGH); // HIGH = Counter Clock Wise direction
+    Serial.println("Roll Motor Direction -> Counter Clockwise");
   }
   else
   {
-    Serial.println("ERROR: motor direction not specified properly...setting Azimuth to CW");
+    Serial.println("ERROR: motor direction not specified properly...setting Roll to CW");
     motor_direction = "CW";
-    digitalWrite(Azimuth_Motor_Direction, LOW); // LOW = Clock Wise direction
+    digitalWrite(Roll_Motor_Direction, LOW); // LOW = Clock Wise direction
   }
 
   /* Send Clock Signals to the Stepper Motor to move in the direction specified */
-  for (int i = 0; i < azimuth_steps; i++)
+  for (int i = 0; i < steps_to_take; i++)
   {
-    digitalWrite(Azimuth_Motor_Clock, HIGH);
+    digitalWrite(Roll_Motor_Clock, HIGH);
     delay(Stepper_Motor_Delay);
-    digitalWrite(Azimuth_Motor_Clock, LOW);
+    digitalWrite(Roll_Motor_Clock, LOW);
     delay(Stepper_Motor_Delay);
 
     // Update current position
