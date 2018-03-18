@@ -1,33 +1,36 @@
+#include <AutomaticRoll.h>
 #include <AutomaticPanning.h>
 
-AutomaticPanning* myautopan = new AutomaticPanning();
+AutomaticRoll* myautoroll;
+AutomaticPanning* myautopan;
 
 void setup() 
 {
   // put your setup code here, to run once:
-  
+  myautoroll = new AutomaticRoll();
+  myautopan = new AutomaticPanning();
   Serial.begin(9600);
-  myautopan->home_assembly("CW");
+  myautoroll->home_assembly("CW");
 }
 
 void loop() 
 {
   // put your main code here, to run repeatedly:
-  if(!(myautopan->move_to_location(45)))
+  if(!(myautoroll->move_to_location(15)))
   {
     Serial.println("Unable to Move to Location 45 deg");
   }
 
-  if(!(myautopan->move_to_location(90)))
+  if(!(myautoroll->move_to_location(10)))
   {
     Serial.println("Unable to Move to Location 90 deg");
   }
   
-  if(!(myautopan->move_to_location(35)))
+  if(!(myautoroll->move_to_location(20)))
   {
     Serial.println("Unable to Move to Location 35 deg");
   }
 
   Serial.print("\nCurrent Location = ");
-  Serial.println(myautopan->get_current_location());
+  Serial.println(myautoroll->get_current_location());
 }

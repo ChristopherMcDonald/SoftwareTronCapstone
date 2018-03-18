@@ -1,20 +1,22 @@
 #include <AutomaticPanning.h>
+#include <AutomaticRoll.h>
 
 AutomaticPanning* myautopan = new AutomaticPanning();
+AutomaticRoll* myautoroll = new AutomaticRoll();
 
 String data;        //variable to store incoming data from JAVA
 
-int LEDpin = 12;  //pin number LED is connected to
-
 void setup() {
-  pinMode(LEDpin, OUTPUT);
   Serial.begin(9600);
-  digitalWrite(LEDpin, HIGH);
+  myautoroll->home_assembly("CW");
   myautopan->home_assembly("CW");
-  Serial.write('A');
+  delay(1000);
 }
 
 void loop() {
+
+    // pan values from 0 to 180
+    // roll 0 to 270
   
   if(Serial.available() > 0)
   { //if data has been written to the Serial stream
@@ -38,10 +40,12 @@ void loop() {
       double ang = data.substring(2).toDouble();
      
       if(myautopan->move_to_location(pan)) {
-        Serial.write('C');
-      } else {
+        if(myautoroll->move_to_location(ang/3)) {
+          Serial.write('C');
+          } else {
+            Serial.write('B');
+          }
+        } else {
         Serial.write('B');
       }
-      
-  }
 }
