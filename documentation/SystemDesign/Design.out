@@ -35,3 +35,25 @@
 \BOOKMARK [2][-]{subsection.4.5}{Data Storage}{section.4}% 35
 \BOOKMARK [2][-]{subsection.4.6}{User Interface}{section.4}% 36
 \BOOKMARK [2][-]{subsection.4.7}{Shooting Mechanism}{section.4}% 37
+\BOOKMARK [1][-]{section.5}{Detailed Class Diagram}{}% 38
+\BOOKMARK [1][-]{section.6}{Module Guide}{}% 39
+\BOOKMARK [2][-]{subsection.6.1}{SmartServe Modules}{section.6}% 40
+\BOOKMARK [2][-]{subsection.6.2}{Shot Recommendation Modules}{section.6}% 41
+\BOOKMARK [2][-]{subsection.6.3}{Shooting Model Modules}{section.6}% 42
+\BOOKMARK [2][-]{subsection.6.4}{Computer Vision Modules}{section.6}% 43
+\BOOKMARK [2][-]{subsection.6.5}{Data Storage Modules}{section.6}% 44
+\BOOKMARK [2][-]{subsection.6.6}{Shooting Mechanism Modules}{section.6}% 45
+\BOOKMARK [2][-]{subsection.6.7}{User Interface Modules}{section.6}% 46
+\BOOKMARK [1][-]{section.7}{Communication Protocols}{}% 47
+\BOOKMARK [2][-]{subsection.7.1}{SmartServe to Shot Recommendation}{section.7}% 48
+\BOOKMARK [2][-]{subsection.7.2}{SmartServe to Shooting Mechanism}{section.7}% 49
+\BOOKMARK [2][-]{subsection.7.3}{SmartServe to Computer Vision}{section.7}% 50
+\BOOKMARK [2][-]{subsection.7.4}{SmartServe to User Interface}{section.7}% 51
+\BOOKMARK [2][-]{subsection.7.5}{SmartServe to ShootingModel}{section.7}% 52
+\BOOKMARK [2][-]{subsection.7.6}{SmartServe to Data Storage}{section.7}% 53
+\BOOKMARK [2][-]{subsection.7.7}{Shot Recommendation to Data Storage}{section.7}% 54
+\BOOKMARK [1][-]{section.8}{Hardware Design}{}% 55
+\BOOKMARK [2][-]{subsection.8.1}{Mechanical Components}{section.8}% 56
+\BOOKMARK [2][-]{subsection.8.2}{Electrical Components}{section.8}% 57
+\BOOKMARK [1][-]{section.9}{Module-Requirement Traceability Matrix}{}% 58
+\BOOKMARK [1][-]{section.10}{Appendix}{}% 59
