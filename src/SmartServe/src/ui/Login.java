@@ -27,7 +27,7 @@ public class Login extends JFrame {
 	private JTextField passwordInput;
 	
 
-	int user_id;
+	static int user_id;
 	
 	/**
 	 * Launch the application.
