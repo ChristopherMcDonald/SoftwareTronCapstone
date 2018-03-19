@@ -2,6 +2,7 @@ package ui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 
 import javax.swing.*;
 
@@ -42,6 +43,7 @@ public class View {
 	    final JComboBox<String> modeDropDown = new JComboBox<String>(modes); //creating instance of JComboBox(Dropdown)
 	    modeDropDown.setBounds(100, 150, 200,40);		//x acis, y axis, width, height
 	    
+	    System.out.print(new Date(System.currentTimeMillis()));
 	    
 	    f.add(title);									//add title in JFrame
 	    
@@ -98,6 +100,7 @@ public class View {
 		     }
 		   }
 		 );
+
 		
 		stopBtn.addActionListener(new ActionListener() { //buttons active when stop is pressed
 		     public void actionPerformed(ActionEvent ae) {
