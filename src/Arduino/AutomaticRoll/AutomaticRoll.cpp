@@ -12,7 +12,7 @@ int ErrorFlag = 1; // 1 = Error, 0 = No Error
 
 AutomaticRoll::AutomaticRoll() // Constructor
 {
-  Serial.begin(9600); 
+  // Serial.begin(9600); 
 
   target_location = 0.0;
   location_diff = 0.0;
