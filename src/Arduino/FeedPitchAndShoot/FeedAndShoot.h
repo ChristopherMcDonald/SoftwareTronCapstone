@@ -12,7 +12,7 @@ class FeedAndShoot
 
 	private:
 		int stepperspeed, dcspeed;
-		
+
 		//void set_stepperspeed(int);
 
 
