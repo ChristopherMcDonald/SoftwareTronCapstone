@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import adt.Mode;
+import enums.Mode;
 import runnables.*;
 
 public class View {
@@ -30,7 +30,7 @@ public class View {
 		JButton stopBtn = new JButton("Stop");			//creating instance of JButton  
 		stopBtn.setBounds(250,100,100, 40);				//x axis, y axis, width, height  
 		
-		String[] modes = { Mode.RANDOM.toString(), Mode.SINGLE.toString(), Mode.TRAIN.toString()};		//training modes
+		String[] modes = { Mode.RANDOM.toString(), Mode.ONESHOT.toString(), Mode.TRAIN.toString()};		//training modes
 	    final JComboBox<String> modeDropDown = new JComboBox<String>(modes); //creating instance of JComboBox(Dropdown)
 	    modeDropDown.setBounds(100, 150, 200,40);		//x acis, y axis, width, height
 	    

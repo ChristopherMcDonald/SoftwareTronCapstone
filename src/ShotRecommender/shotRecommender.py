@@ -29,7 +29,13 @@ def getNextShot():
 								user='root',
 								password='smarTserve91',
 								port=3306);
-	shotId = model.shots.getNext();
+	if(mode == "RANDOM"):
+		shotId = random.choice(model.shots.keys);
+	elif(mode == "ONESHOT"):
+		shotId = mode = request.args.get("shot");
+	else:
+		shotId = model.shots.getNext();
+
 	if conn.is_connected():
 		print('Connected to MySQL database');
 		values = callProc(conn, shotId);

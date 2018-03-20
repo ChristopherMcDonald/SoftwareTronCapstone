@@ -5,26 +5,25 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
 
 import org.omg.CORBA.portable.InputStream;
 
-import adt.Mode;
 import adt.Shot;
+import enums.Mode;
 import errors.NotConnectedException;
 
 public class ShotRecommendationController {
 	
 	private static final String targetURL = "http://localhost:8080/nextShot";
 	
-	public static Shot getRecommendation(Mode m) {
-		 
+	private static Shot makeRequest(URL url) {
 		HttpURLConnection connection = null;
-		try {			  
-		    //Create connection
-		    URL url = new URL(targetURL + "?mode=" + m.toString());
+		try {
+			
 		    connection = (HttpURLConnection) url.openConnection();
 		    connection.setRequestMethod("GET");
 
@@ -58,6 +57,14 @@ public class ShotRecommendationController {
 		  if (connection != null) {
 			  connection.disconnect();
 		  }
-	  	}
-	}	
+	  }
+	}
+	
+	public static Shot getRecommendation(Mode m) throws MalformedURLException {
+		return makeRequest(new URL(targetURL + "?mode=" + m.toString()));
+	}
+	
+	public static Shot getRecommendation(int shotId) throws MalformedURLException {
+		return makeRequest(new URL(targetURL + "?mode=" + Mode.ONESHOT + "&shot=" + shotId));
+	}
 }
