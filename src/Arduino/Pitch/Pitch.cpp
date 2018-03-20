@@ -13,7 +13,7 @@ Pitch::Pitch() // Constructor
 	current_location = 0.0;
 	target_location = 90.0; // Go home position by default
 
-	myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+	myservo.attach(12);  // attaches the servo on pin 9 to the servo object
 }
 
 bool Pitch::move_to_location(double desired_location)
