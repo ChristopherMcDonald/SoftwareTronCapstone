@@ -2,9 +2,9 @@
 #include "Pitch.h"
 #include "Servo.h"
 
-#define MaxPitchLimit 135
-#define MinPitchLimit 45
-#define HomeLocation 90.0
+#define MaxPitchLimit 100
+#define MinPitchLimit 30
+#define HomeLocation 70.0
 
 Servo myservo; // create servo object to control a servo
 
