@@ -20,12 +20,19 @@ import enums.RunState;
 import errors.NotConnectedException;
 import shootingModel.ShootingDetails;
 import shootingModel.ShootingModel;
+import ui.Login;
 
 public class Controller implements Runnable {
 	
+	int user_id;
+	
+	Controller(int uID){
+		user_id = uID;
+	}
+	
 	public static void main(String[] args) throws InterruptedException {
 		
-		Controller c = new Controller();
+		Controller c = new Controller(Login.user_id);
 		Thread t = new Thread(c);
 		t.start();
 	}
