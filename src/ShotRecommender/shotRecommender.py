@@ -39,7 +39,7 @@ def getNextShot():
 	if conn.is_connected():
 		print('Connected to MySQL database');
 		values = callProc(conn, shotId);
-		outputString = 'X='+str(values[1])+',Y='+str(values[2])+',V='+str(values[3])+',W='+str(values[4])
+		outputString = 'X='+str(values[1])+',Y='+str(values[2])+',V='+str(values[3])+',W='+str(values[4])+',ID='+str(shotId)
 	print(outputString)
 
 	conn.close()

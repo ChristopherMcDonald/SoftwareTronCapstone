@@ -98,7 +98,6 @@ public class ArduinoController {
 		if(arduino == null) {
 			throw new NotConnectedException("Arduino", port);
 		}
-//		double intensity = (speed - 10)*10 + 50; // scales speed which is 10 - 15 to 50% - 100%
 		
 		String toSend = Double.toString(speed);
 		

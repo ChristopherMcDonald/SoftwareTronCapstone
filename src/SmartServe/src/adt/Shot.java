@@ -19,6 +19,7 @@ public class Shot {
 	public double yLoc; // y location
 	public double velocity; // ball speed
 	public double rollAngle; // angular direction
+	public int shotId;
 	
 	/**
 	 * Constructor for a Shot
@@ -27,11 +28,12 @@ public class Shot {
 	 * @param v - absolute speed of the ball
 	 * @param w - angular direction of the ball
 	 */
-	public Shot(double x, double y, double v, double w) {
+	public Shot(double x, double y, double v, double w, int id) {
 		this.xLoc = x;
 		this.yLoc = y;
 		this.rollAngle = w;
 		this.velocity = v;
+		this.shotId = id;
 	}
 	
 	/**
@@ -39,10 +41,10 @@ public class Shot {
 	 * @param shotDetail
 	 */
 	public Shot(String shotDetail) {
-		String[] details = shotDetail.split(","); // TODO make sure this is okay
+		String[] details = shotDetail.split(",");
 		Double[] nums = new Double[details.length];
 		for(int i = 0; i < details.length; i++) {
-			String num = details[i].substring(2, details[i].length() - 1); // TODO make sure this is okay
+			String num = details[i].substring(2, details[i].length() - 1);
 			nums[i] = Double.parseDouble(num);
 		}
 		
@@ -50,11 +52,12 @@ public class Shot {
 		yLoc = nums[1];
 		velocity = nums[2];
 		rollAngle = nums[3];
+		shotId = Integer.parseInt(details[4].substring(2, details[4].length() - 1));
 	}
 
 	@Override
 	public String toString() {
-		return String.format("X=%1$,.2f,Y=%2$,.2f,V=%3$,.2f,W=%4$,.2f", xLoc, yLoc, velocity, rollAngle);
+		return String.format("X=%1$,.2f,Y=%2$,.2f,V=%3$,.2f,W=%4$,.2f,ID=%d", xLoc, yLoc, velocity, rollAngle, shotId);
 	}
 	
 }

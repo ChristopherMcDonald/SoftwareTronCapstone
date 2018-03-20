@@ -2,19 +2,13 @@ package controllers;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.net.URL;
-
-import org.omg.CORBA.portable.InputStream;
 
 import adt.Shot;
 import enums.Mode;
-import errors.NotConnectedException;
 
 public class ShotRecommendationController {
 	

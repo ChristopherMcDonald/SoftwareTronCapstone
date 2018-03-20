@@ -1,13 +1,14 @@
 package runnables;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.ServerSocket;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Random;
 
-import adt.ShootingParameters;
+//import adt.ShootingParameters;
 import adt.Shot;
 import adt.ShotDetail;
 import controllers.ArduinoController;
@@ -27,11 +28,8 @@ public class Controller implements Runnable {
 		Controller c = new Controller();
 		Thread t = new Thread(c);
 		t.start();
-		
 		c.pause();
-		
 		c.resume();
-		
 		c.terminate();
 	}
 
@@ -40,16 +38,18 @@ public class Controller implements Runnable {
 		try {
 			boot();
 			begin();
-			shoot();
+			
+//			shoot();
+			demoShoot();
+			
 			close();
-		} catch (NotConnectedException | IOException | InterruptedException | SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (NotConnectedException | IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	// global variables
-	private ShootingParameters sp;
+//	private ShootingParameters sp;
 	private Mode m;
 	private RunState state;
 	
@@ -119,20 +119,35 @@ public class Controller implements Runnable {
 		while(this.state != RunState.TERMINATE) {
 			System.out.println("Getting Next Shot...");
 			Shot s = ShotRecommendationController.getRecommendation(m);
-			ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, 45);
+			Random r = new Random();
+			int[] pitches = new int[] {10, 20, 30, 40}; // TODO integrate pitch into possible shot list
+			ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, pitches[r.nextInt(pitches.length)]);
 			
 			pan.shoot(new ShotDetail(45f, (float) sd.getYaw(), (float) s.velocity, (float) s.rollAngle));
-			shooter.shoot(75);
+			shooter.shoot(s.velocity);
 			boolean returned = cvController.start();
 			System.out.println(returned ? "Ball Returned" : "Ball Not Returned");
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-			// TODO fill below with userID and shotID
-			Object[] myReturns = new Object[]{25, 1, returned ? 1 : 0, sdf.format(new Date(System.currentTimeMillis()))};
+			// TODO fill below with userID
+			Object[] myReturns = new Object[]{25, s.shotId, returned ? 1 : 0, sdf.format(new Date(System.currentTimeMillis()))};
 			SQLConnector.save("returned", myReturns);
 			while(this.state == RunState.PAUSED) {
 				System.out.println("System is Paused...");
 				Thread.sleep(10);
 			}
+		}
+	}
+	
+	private void demoShoot() throws MalformedURLException, NotConnectedException {
+		for(int n : new int[]{7, 87, 167, 247}) {
+			System.out.println("Getting Next Shot...");
+			Shot s = ShotRecommendationController.getRecommendation(n);
+			ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, 20); // NOTE: hardcoded 20 for demo
+			
+			pan.shoot(new ShotDetail(20, (float) sd.getYaw(), (float) s.velocity, (float) s.rollAngle));
+			shooter.shoot(s.velocity);
+			boolean returned = cvController.start();
+			System.out.println(returned ? "Ball Returned" : "Ball Not Returned");
 		}
 	}
 	
