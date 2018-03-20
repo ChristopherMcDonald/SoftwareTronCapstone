@@ -11,9 +11,9 @@ void setup()
 
 void loop()
 {
-  if(!(mypitch->move_to_location(75)))
+  if(!(mypitch->move_to_location(60)))
   {
-    Serial.println("Unable to Move to Location 45 deg");
+    Serial.println("Unable to Move to Location 60 deg");
   }
   Serial.print("\nCurrent Location = ");
   Serial.println(mypitch->get_current_location());
