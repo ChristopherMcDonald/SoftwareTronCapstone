@@ -49,6 +49,7 @@ public class Statistics extends JFrame {
 	double velocityOutput;
 	boolean returnOutput;
 	Date dateOutput;
+	private JTable statsTable;
 	
 
 	/**
@@ -73,12 +74,13 @@ public class Statistics extends JFrame {
 	public Statistics() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(200, 200, 613, 296);
+		setBounds(200, 200, 656, 296);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
 		
 		JLabel lblStats = new JLabel("Statistics");
 		lblStats.setHorizontalAlignment(SwingConstants.CENTER);
@@ -267,12 +269,12 @@ public class Statistics extends JFrame {
 		contentPane.add(btnZone16);
 		
 		dateInput0 = new JTextField();
-		dateInput0.setBounds(133, 176, 57, 20);
+		dateInput0.setBounds(133, 176, 47, 20);
 		contentPane.add(dateInput0);
 		dateInput0.setColumns(10);
 		
 		dateInputF = new JTextField();
-		dateInputF.setBounds(212, 176, 57, 20);
+		dateInputF.setBounds(200, 176, 47, 20);
 		contentPane.add(dateInputF);
 		dateInputF.setColumns(10);
 		
@@ -298,7 +300,7 @@ public class Statistics extends JFrame {
 		
 		JLabel dash0 = new JLabel("-");
 		dash0.setHorizontalAlignment(SwingConstants.CENTER);
-		dash0.setBounds(200, 179, 9, 14);
+		dash0.setBounds(190, 179, 9, 14);
 		contentPane.add(dash0);
 		
 		JLabel dash1 = new JLabel("-");
@@ -323,20 +325,16 @@ public class Statistics extends JFrame {
 		dateLbl.setBounds(133, 162, 136, 14);
 		contentPane.add(dateLbl);
 		
-		resultTable = new JTable();
-		resultTable.setBounds(279, 71, 308, 156);
-		String[] columnNames = {"Zone",
-                "Velocity",
-                "Angle",
-                "Returned?",
-                "Date"};
-		contentPane.add(resultTable);
-		
+		String[] cols = {"Zone", "Velocity" , "Angle", "Returned?","Date"};
+	    DefaultTableModel model = new DefaultTableModel(cols,0);
+	    statsTable = new JTable(model);
+	    model.addRow(cols);
+	    statsTable.setBounds(267, 71, 363, 152);
+		contentPane.add(statsTable);
 		
 		JButton btnNewButton = new JButton("Get Statistics");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.print(zonesString);
 				Object[] statsObj = new Object[]{
 						Login.user_id,
 						zonesString,
@@ -349,6 +347,7 @@ public class Statistics extends JFrame {
 						//outputs 
 						0,0,0,0,0
 				};
+				int numRows = 0;
 				try {
 					ResultSet rs = SQLConnector.query("statistics",statsObj);
 					
@@ -359,6 +358,7 @@ public class Statistics extends JFrame {
 						angleOutput = rs.getDouble("@angle_out");
 						returnOutput = rs.getBoolean("@returned_out");
 						dateOutput = rs.getDate("@date_out");
+						numRows++;
 					}
 					
 				
@@ -366,11 +366,18 @@ public class Statistics extends JFrame {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
+				
+			    Object[] row = {zoneOutput, velocityOutput,angleOutput,returnOutput,dateOutput};
+			    for (int i=0; i<numRows; i++) {
+			    	model.addRow(row);
+			    }
+		        
+			    
 			}
 		});
-		btnNewButton.setBounds(76, 204, 125, 23);
-		contentPane.add(btnNewButton);
-		
+		btnNewButton.setBounds(66, 204, 125, 23);
+		contentPane.add(btnNewButton); 
+        
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
