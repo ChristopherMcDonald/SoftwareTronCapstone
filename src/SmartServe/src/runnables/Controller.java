@@ -28,9 +28,6 @@ public class Controller implements Runnable {
 		Controller c = new Controller();
 		Thread t = new Thread(c);
 		t.start();
-		c.pause();
-		c.resume();
-		c.terminate();
 	}
 
 	@Override
@@ -124,7 +121,7 @@ public class Controller implements Runnable {
 			ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, pitches[r.nextInt(pitches.length)]);
 			
 			pan.shoot(new ShotDetail(45f, (float) sd.getYaw(), (float) s.velocity, (float) s.rollAngle));
-			shooter.shoot(s.velocity);
+			shooter.shoot(s.velocity, 45f);
 			boolean returned = cvController.start();
 			System.out.println(returned ? "Ball Returned" : "Ball Not Returned");
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -144,8 +141,8 @@ public class Controller implements Runnable {
 			Shot s = ShotRecommendationController.getRecommendation(n);
 			ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, 20); // NOTE: hardcoded 20 for demo
 			
-			pan.shoot(new ShotDetail(20, (float) sd.getYaw(), (float) s.velocity, (float) s.rollAngle));
-			shooter.shoot(s.velocity);
+			pan.shoot(new ShotDetail(30, (float) sd.getYaw(), (float) s.velocity, (float) s.rollAngle));
+			shooter.shoot(s.velocity, 30);
 			boolean returned = cvController.start();
 			System.out.println(returned ? "Ball Returned" : "Ball Not Returned");
 		}

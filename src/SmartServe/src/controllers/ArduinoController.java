@@ -10,14 +10,16 @@ public class ArduinoController {
 	
 	public static void main(String[] args) throws IOException, InterruptedException, NotConnectedException {
 		ArduinoController pan = new ArduinoController();
-		ArduinoController shooter = new ArduinoController();
 		String port2 = "cu.usbserial-A700fk4c";
-		String port1 = "cu.usbmodem14131";
-		System.out.println(pan.test(port2, 9600));
-		System.out.println(shooter.test(port1, 19200));
+		System.out.println(pan.test(port2, 19200));
 
-		pan.shoot(new ShotDetail(0.0f, 80.0f, 0.0f, 0.0f));
-		shooter.shoot(100);
+		
+//		ArduinoController shooter = new ArduinoController();
+//		String port1 = "cu.usbmodem14541";
+//		System.out.println(shooter.test(port1, 9600));
+
+		pan.shoot(new ShotDetail(0.0f, 45.0f, 0.0f, 30.0f));
+//		shooter.shoot(100, 45);
 	}
 	
 	private Arduino arduino; // holds the port if successfully connects
@@ -34,7 +36,7 @@ public class ArduinoController {
 			byte[] b = new byte[1];
 			arduino.getSerialPort().readBytes(b, 1);
 			
-			while(b[0] != 65) {
+			while(b[0] != 'A') {
 				b = new byte[1];
 				arduino.getSerialPort().readBytes(b, 1);
 			}
@@ -69,17 +71,18 @@ public class ArduinoController {
 		if(arduino == null) {
 			throw new NotConnectedException("Arduino", port);
 		}
-		String toSend = String.format("P=%.0f,Y=%.0f,V=%.0f,Z=%.0f", sd.pitch, sd.yaw, sd.velocity, sd.angular);
+		String toSend = Double.toString(sd.yaw) + "," + Double.toString(sd.angular);
 
 		// DEBUGGING
-		System.out.println("Panning to " + sd.yaw);
+		System.out.println("Sending " + toSend);
 		
 		arduino.serialWrite(toSend);
 		
 		byte[] b = new byte[1];
 		arduino.getSerialPort().readBytes(b, 1);
 		
-		while(b[0] != 67) {
+		while(b[0] != 'B') {
+			System.out.println(b[0]);
 			b = new byte[1];
 			arduino.getSerialPort().readBytes(b, 1);
 		}
@@ -94,15 +97,14 @@ public class ArduinoController {
 	 * @param speed in m/s
 	 * @throws NotConnectedException
 	 */
-	public void shoot(double speed) throws NotConnectedException {
+	public void shoot(double speed, double pitch) throws NotConnectedException {
 		if(arduino == null) {
 			throw new NotConnectedException("Arduino", port);
 		}
 		
-		String toSend = Double.toString(speed);
-		
+		String toSend =  Double.toString(speed) + "," + Double.toString(pitch);
+		System.out.println("Sending:" + toSend);
 		arduino.serialWrite(toSend);
-		
 	}
 	
 	/**
