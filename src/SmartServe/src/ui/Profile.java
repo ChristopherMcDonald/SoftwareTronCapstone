@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Insets;
 import java.awt.Choice;
 import javax.swing.JButton;
 
@@ -52,12 +53,13 @@ public class Profile extends JFrame {
 		lblProfile.setBounds(149, 4, 137, 69);
 		contentPane.add(lblProfile);
 		
-		JLabel lblUserNameSharon = new JLabel("User Name: Sharon Platkin");
-		lblUserNameSharon.setBounds(144, 84, 142, 14);
-		contentPane.add(lblUserNameSharon);
+		JLabel lblUserName = new JLabel("User Name: " + View.getUsername());
+		lblUserName.setBounds(144, 84, 142, 14);
+		contentPane.add(lblUserName);
 		
 		JButton btnChangePassword = new JButton("Change Password");
 		btnChangePassword.setBounds(149, 110, 119, 23);
+		btnChangePassword.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnChangePassword);
 		
 		JButton btnLogOut = new JButton("Log Out");

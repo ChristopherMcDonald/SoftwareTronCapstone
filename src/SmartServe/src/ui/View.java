@@ -17,10 +17,9 @@ public class View {
 	public static Profile profilef = new Profile();
 	public static Control controlf = new Control();
 	public static Statistics statsf = new Statistics();
-	
-	private static Controller control;
-	private static boolean paused = true;	
-	static int user_id;
+		
+	public static int user_id;
+	public static String username;
 	
 	public static void main(String[] args) {
 		
@@ -64,55 +63,22 @@ public class View {
         stopBtn.setEnabled(false);  			//stop button disabled
         modeDropDown.setEnabled(true);			//mode drop down enabled
 
-		
-		startBtn.addActionListener(new ActionListener() { // buttons active when start is pressed
-		     public void actionPerformed(ActionEvent ae) {
-		        startBtn.setEnabled(false);
-		        pauseBtn.setEnabled(true);
-		        stopBtn.setEnabled(true);  
-		        modeDropDown.setEnabled(false);
-		        
-		        control = new Controller(user_id);
-		        control.setMode(Mode.valueOf(modeDropDown.getSelectedItem().toString()));
-				Thread t = new Thread(control);
-				t.start();
-				
-		     }
-		   }
-		 );
-		
-		pauseBtn.addActionListener(new ActionListener() { //buttons active when pause is pressed
-		     public void actionPerformed(ActionEvent ae) {
-		        startBtn.setEnabled(false);
-		        pauseBtn.setEnabled(true);
-		        stopBtn.setEnabled(true);  
-		        modeDropDown.setEnabled(false);
-		        
-		        if(paused) { 				//if pause then continue
-		        	paused = false;
-		        	pauseBtn.setText("Continue");
-		        	control.pause();
-		        }
-		        else {						//if continue then pause
-		        	paused = true;
-		        	pauseBtn.setText("Pause");
-		        	control.resume();
-		        }
-		     }
-		   }
-		 );
 
 		
-		stopBtn.addActionListener(new ActionListener() { //buttons active when stop is pressed
-		     public void actionPerformed(ActionEvent ae) {
-		        startBtn.setEnabled(true);
-		        pauseBtn.setEnabled(false);
-		        stopBtn.setEnabled(false);  
-		        modeDropDown.setEnabled(true);
-		        control.terminate();
-		     }
-		     
-		   }
-		 );
+		
 	}  
+	public static void setUsername(String name) {
+		username = name;
+	}
+	public static String getUsername() {
+		return username;
+	}
+	
+	public static void setUserid(int id) {
+		user_id = id;
+	}
+	
+	public static int getUserid() {
+		return user_id;
+	}
 }  
