@@ -12,7 +12,9 @@ import enums.Mode;
 
 public class ShotRecommendationController {
 	
-	private static final String targetURL = "http://localhost:8080/nextShot";
+	private static final String baseURL = "http://localhost:8080/";
+	private static final String nextShotURL = baseURL + "nextShot";
+	private static final String startURL = baseURL + "start";
 	
 	private static Shot makeRequest(URL url) {
 		HttpURLConnection connection = null;
@@ -55,10 +57,50 @@ public class ShotRecommendationController {
 	}
 	
 	public static Shot getRecommendation(Mode m) throws MalformedURLException {
-		return makeRequest(new URL(targetURL + "?mode=" + m.toString()));
+		return makeRequest(new URL(nextShotURL + "?mode=" + m.toString()));
 	}
 	
 	public static Shot getRecommendation(int shotId) throws MalformedURLException {
-		return makeRequest(new URL(targetURL + "?mode=" + Mode.ONESHOT + "&shot=" + shotId));
+		return makeRequest(new URL(nextShotURL + "?mode=" + Mode.ONESHOT + "&shot=" + shotId));
+	}
+	
+	public static boolean setModel() {
+		HttpURLConnection connection = null;
+		try {
+			URL url = new URL(startURL);
+		    connection = (HttpURLConnection) url.openConnection();
+		    connection.setRequestMethod("GET");
+
+		    connection.setUseCaches(false);
+		    connection.setDoOutput(true);
+
+		    //Send request
+		    DataOutputStream wr = new DataOutputStream (
+		        connection.getOutputStream());
+		    wr.close();
+
+		    //Get Response  
+		    java.io.InputStream is =  connection.getInputStream();
+		    BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+		    StringBuilder response = new StringBuilder(); 
+		    String line;
+		    
+		    while ((line = rd.readLine()) != null) {
+		      response.append(line);
+		      response.append('\r');
+		    }
+		    
+		    rd.close();
+		    String res = response.toString();
+		    return new Boolean(res);
+		    
+	  } catch (Exception e) {
+		  e.printStackTrace();
+		  return false;
+	  } finally {
+		  if (connection != null) {
+			  connection.disconnect();
+		  }
+	  }
 	}
 }

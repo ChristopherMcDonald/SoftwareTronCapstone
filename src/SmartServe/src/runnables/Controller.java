@@ -79,13 +79,13 @@ public class Controller implements Runnable {
 	public boolean boot() {
 		try {
 			pan = new ArduinoController();
-			if(!pan.test("cu.usbserial-A700fk4c", 9600)) {
+			if(!pan.test("cu.usbserial-A700fk4c", 19200)) {
 				return false;
 			}
 			System.out.println("Connected to Panning");
 			
 			shooter = new ArduinoController();
-			if(!shooter.test("cu.usbmodem14531", 19200)) {
+			if(!shooter.test("cu.usbmodem14141", 9600)) {
 				return false;
 			}
 			System.out.println("Connected to Shooter");
@@ -101,9 +101,12 @@ public class Controller implements Runnable {
 			}
 			System.out.println("Connected to SQL");
 			
+			ShotRecommendationController.setModel();
+			System.out.println("Connected to and started SR Model");
+			
 			sm = new ShootingModel(0.08);
 			
-		} catch(NotConnectedException nce) {
+		} catch(Exception nce) {
 			nce.printStackTrace();
 			return false;
 		}
@@ -125,10 +128,11 @@ public class Controller implements Runnable {
 			Shot s = ShotRecommendationController.getRecommendation(m);
 			Random r = new Random();
 			int[] pitches = new int[] {10, 20, 30, 40}; // TODO integrate pitch into possible shot list
-			ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, pitches[r.nextInt(pitches.length)]);
+			int pitch = pitches[r.nextInt(pitches.length)];
+			ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, pitch);
 			
-			pan.shoot(new ShotDetail(45f, (float) sd.getYaw(), (float) s.velocity, (float) s.rollAngle));
-			shooter.shoot(s.velocity, 45f);
+			pan.shoot(new ShotDetail(pitch, (float) sd.getYaw(), (float) s.velocity, (float) s.rollAngle));
+			shooter.shoot(s.velocity, pitch);
 			boolean returned = cvController.start();
 			System.out.println(returned ? "Ball Returned" : "Ball Not Returned");
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -143,16 +147,7 @@ public class Controller implements Runnable {
 	}
 	
 	private void demoShoot() throws MalformedURLException, NotConnectedException {
-		for(int n : new int[]{7, 87, 167, 247}) {
-			System.out.println("Getting Next Shot...");
-			Shot s = ShotRecommendationController.getRecommendation(n);
-			ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, 20); // NOTE: hardcoded 20 for demo
-			
-			pan.shoot(new ShotDetail(30, (float) sd.getYaw(), (float) s.velocity, (float) s.rollAngle));
-			shooter.shoot(s.velocity, 30);
-			boolean returned = cvController.start();
-			System.out.println(returned ? "Ball Returned" : "Ball Not Returned");
-		}
+		
 	}
 	
 	/**

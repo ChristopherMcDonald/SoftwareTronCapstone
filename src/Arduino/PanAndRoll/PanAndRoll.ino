@@ -9,7 +9,7 @@ String data;        //variable to store incoming data from JAVA
 void setup() {
   // make sure this matches one in Java
   Serial.begin(19200);
-  myautoroll->home_assembly("CW");
+  myautoroll->home_assembly("CCW");
   myautopan->home_assembly("CW");
   delay(2000);
 }

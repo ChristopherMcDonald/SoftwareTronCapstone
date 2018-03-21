@@ -58,7 +58,7 @@ while(True):
         conn, addr = socketIn.accept();     # loop will freeze on this command, runs when SmartServe
         print("Got connection from", addr); # sends a request
         msg = conn.recv(1024);              # parses msg... could be "TEST", "DETECT"
-        
+
         # DEBUGGING
         # msg = b'DETECT'
         # print(msg);
@@ -184,7 +184,7 @@ while(True):
                             print("hit")
                             socketOut = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
                             socketOut.connect((HOST, PORT + 1));
-                            
+
                             socketOut.send(b'GOOD\n');
                             fsm = 0;    # HIT!
                             pts = deque(maxlen = args["buffer"])
