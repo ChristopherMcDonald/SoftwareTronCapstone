@@ -329,13 +329,14 @@ public class Statistics extends JFrame {
 		String[] cols = {"Zone", "Velocity" , "Angle", "Returned?","Date"};
 	    DefaultTableModel model = new DefaultTableModel(cols,0);
 	    statsTable = new JTable(model);
-	    model.addRow(cols);
 	    statsTable.setBounds(281, 57, 363, 170);
 		contentPane.add(statsTable);
 		
 		JButton btnNewButton = new JButton("Get Statistics");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				model.setRowCount(0);
+			    model.addRow(cols);
 				Object[] statsObj = new Object[]{
 						//Login.user_id,
 						35,
@@ -347,7 +348,7 @@ public class Statistics extends JFrame {
 						dateInput0.getText(),
 						dateInputF.getText()
 				};
-				int numRows = 0;
+			
 				try {
 					ResultSet rs = SQLConnector.query("statistics",statsObj);
 					
@@ -358,7 +359,9 @@ public class Statistics extends JFrame {
 						angleOutput = rs.getDouble("angle");
 						returnOutput = rs.getBoolean("returned");
 						dateOutput = rs.getDate("time_stamp");
-						numRows++;
+						Object[] row = {zoneOutput, velocityOutput,angleOutput,returnOutput,dateOutput};
+				    	model.addRow(row);
+						
 					}
 					
 				
@@ -367,11 +370,6 @@ public class Statistics extends JFrame {
 					e.printStackTrace();
 				}
 				
-			    Object[] row = {zoneOutput, velocityOutput,angleOutput,returnOutput,dateOutput};
-			    for (int i=0; i<numRows; i++) {
-			    	model.addRow(row);
-			    }
-		        
 			    
 			}
 		});
