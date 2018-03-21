@@ -87,7 +87,6 @@ public class Control extends JFrame {
 		        modeDropDown.setEnabled(false);
 		        
 		        control = new Controller(View.getUserid());
-		        System.out.print(View.getUserid());
 		        control.setMode(Mode.valueOf(modeDropDown.getSelectedItem().toString()));
 				Thread t = new Thread(control);
 				t.start();
