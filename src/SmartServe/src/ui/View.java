@@ -20,6 +20,7 @@ public class View {
 	
 	private static Controller control;
 	private static boolean paused = true;	
+	static int user_id;
 	
 	public static void main(String[] args) {
 		
@@ -71,7 +72,7 @@ public class View {
 		        stopBtn.setEnabled(true);  
 		        modeDropDown.setEnabled(false);
 		        
-		        control = new Controller();
+		        control = new Controller(user_id);
 		        control.setMode(Mode.valueOf(modeDropDown.getSelectedItem().toString()));
 				Thread t = new Thread(control);
 				t.start();
