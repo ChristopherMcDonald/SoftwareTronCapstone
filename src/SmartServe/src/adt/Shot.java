@@ -45,7 +45,7 @@ public class Shot {
 		Double[] nums = new Double[details.length];
 		for(int i = 0; i < details.length; i++) {
 			String num = details[i].substring(2, details[i].length() - 1);
-			nums[i] = Double.parseDouble(num);
+			nums[i] = Double.valueOf(num);
 		}
 		
 		xLoc = nums[0];

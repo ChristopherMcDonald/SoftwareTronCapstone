@@ -11,16 +11,16 @@ app = Flask(__name__)
 shot = random.randint(2, 1585)
 model = None;
 
-@app.route('/start', methods = ['GET'])
+@app.route('/start', methods = ['POST'])
 def start():
 	global model;
 	playerId = request.args.get("player");
 	model = Model(id);
 	print("New Model Made...");
-	return "ready";
+	return "true";
 
 # takes in argument mode, ex. http://locahost:8080/nextShot?mode=#######
-@app.route('/nextShot', methods = ['GET'])
+@app.route('/nextShot', methods = ['POST'])
 def getNextShot():
 	global model;
 	mode = request.args.get("mode");
@@ -39,14 +39,14 @@ def getNextShot():
 	if conn.is_connected():
 		print('Connected to MySQL database');
 		values = callProc(conn, shotId);
-		outputString = 'X='+str(values[1])+',Y='+str(values[2])+',V='+str(values[3])+',W='+str(values[4])+',ID='+str(shotId)
+		outputString = 'X='+str(values[1])+',Y='+str(values[2])+',V='+str(values[4])+',W='+str(values[3])+',I='+str(shotId)
 	print(outputString)
 
 	conn.close()
 	return outputString
 
 # accessible via http://localhost/update?id=4&returned=1
-@app.route('/update', methods = ['GET'])
+@app.route('/update', methods = ['POST'])
 def update():
 	global model;
 	shotId = int(request.args.get("id"));

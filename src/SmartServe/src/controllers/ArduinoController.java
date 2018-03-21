@@ -14,12 +14,12 @@ public class ArduinoController {
 		System.out.println(pan.test(port2, 19200));
 
 		
-//		ArduinoController shooter = new ArduinoController();
-//		String port1 = "cu.usbmodem14541";
-//		System.out.println(shooter.test(port1, 9600));
+		ArduinoController shooter = new ArduinoController();
+		String port1 = "cu.usbmodem14641";
+		System.out.println(shooter.test(port1, 9600));
 
 		pan.shoot(new ShotDetail(0.0f, 45.0f, 0.0f, 30.0f));
-//		shooter.shoot(100, 45);
+		shooter.shoot(15, 30); // 20 -> 45, 65 -> 0
 	}
 	
 	private Arduino arduino; // holds the port if successfully connects
@@ -74,7 +74,7 @@ public class ArduinoController {
 		String toSend = Double.toString(sd.yaw) + "," + Double.toString(sd.angular);
 
 		// DEBUGGING
-		System.out.println("Sending " + toSend);
+		System.out.println("Sending to Panner " + Double.toString(sd.yaw) + "," + Double.toString(sd.angular));
 		
 		arduino.serialWrite(toSend);
 		
@@ -82,7 +82,6 @@ public class ArduinoController {
 		arduino.getSerialPort().readBytes(b, 1);
 		
 		while(b[0] != 'B') {
-			System.out.println(b[0]);
 			b = new byte[1];
 			arduino.getSerialPort().readBytes(b, 1);
 		}
@@ -102,8 +101,8 @@ public class ArduinoController {
 			throw new NotConnectedException("Arduino", port);
 		}
 		
-		String toSend =  Double.toString(speed) + "," + Double.toString(pitch);
-		System.out.println("Sending:" + toSend);
+		String toSend = Double.toString(speed) + "," + Double.toString(pitch);
+		System.out.println("Sending Speed and Pitch:" + toSend);
 		arduino.serialWrite(toSend);
 	}
 	
