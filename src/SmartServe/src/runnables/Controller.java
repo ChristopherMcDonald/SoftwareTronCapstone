@@ -26,7 +26,7 @@ public class Controller implements Runnable {
 	
 	int user_id;
 	
-	Controller(int uID){
+	public Controller(int uID){
 		user_id = uID;
 	}
 	
