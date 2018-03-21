@@ -28,6 +28,7 @@ public class Login extends JFrame {
 	
 
 	public static int user_id;
+	public static String username;
 	
 	/**
 	 * Launch the application.
@@ -59,11 +60,11 @@ public class Login extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Email");
-		lblNewLabel.setBounds(118, 93, 46, 14);
+		lblNewLabel.setBounds(118, 93, 98, 14);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Password");
-		lblNewLabel_1.setBounds(118, 117, 46, 14);
+		lblNewLabel_1.setBounds(118, 117, 98, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		userNameInput = new JTextField();
@@ -94,8 +95,8 @@ public class Login extends JFrame {
 						}
 						if (counter > 0) {
 							rs.previous();
-							user_id = rs.getInt(1);
-							//System.out.print(user_id);
+							View.setUserid(rs.getInt(1));
+							View.setUsername(userNameInput.getText());
 							View.loginf.setVisible(false);
 							View.profilef.setVisible(true);
 						}
@@ -116,9 +117,9 @@ public class Login extends JFrame {
 		JLabel lblLogIn = new JLabel("Log In");
 		lblLogIn.setFont(new Font("Century", Font.PLAIN, 35));
 		lblLogIn.setBounds(149, 4, 137, 69);
-		contentPane.add(lblLogIn);
-		
-		
+		contentPane.add(lblLogIn);		
 
 	}
+	
+	
 }

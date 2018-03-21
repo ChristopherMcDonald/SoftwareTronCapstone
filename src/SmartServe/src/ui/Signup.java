@@ -59,38 +59,38 @@ public class Signup extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblName = new JLabel("Name");
-		lblName.setBounds(121, 84, 46, 14);
+		lblName.setBounds(86, 84, 81, 14);
 		contentPane.add(lblName);
 		
 		JLabel lblEmail = new JLabel("Email");
-		lblEmail.setBounds(121, 109, 46, 14);
+		lblEmail.setBounds(86, 109, 81, 14);
 		contentPane.add(lblEmail);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(121, 134, 46, 14);
+		lblPassword.setBounds(86, 134, 81, 14);
 		contentPane.add(lblPassword);
 		
 		JLabel lblConfirmPassword = new JLabel("Confirm Password");
-		lblConfirmPassword.setBounds(121, 159, 94, 14);
+		lblConfirmPassword.setBounds(86, 159, 129, 14);
 		contentPane.add(lblConfirmPassword);
 		
 		nameInput = new JTextField();
-		nameInput.setBounds(226, 81, 86, 20);
+		nameInput.setBounds(197, 81, 115, 20);
 		contentPane.add(nameInput);
 		nameInput.setColumns(10);
 		
 		emailInput = new JTextField();
-		emailInput.setBounds(226, 106, 86, 20);
+		emailInput.setBounds(197, 106, 115, 20);
 		contentPane.add(emailInput);
 		emailInput.setColumns(10);
 		
 		passwordInput1 = new JTextField();
-		passwordInput1.setBounds(226, 131, 86, 20);
+		passwordInput1.setBounds(197, 131, 115, 20);
 		contentPane.add(passwordInput1);
 		passwordInput1.setColumns(10);
 		
 		passwordInput2 = new JTextField();
-		passwordInput2.setBounds(226, 156, 86, 20);
+		passwordInput2.setBounds(197, 156, 115, 20);
 		contentPane.add(passwordInput2);
 		passwordInput2.setColumns(10);
 		
