@@ -9,6 +9,8 @@
 public class ShootingModel {
 
 	// Instantiate necessary variables
+	public double xCoord;
+	public double yCoord;
 	public double distance;
 	public double xDistance;
 	public double yDistance;
@@ -48,6 +50,8 @@ public class ShootingModel {
 	 * @return totalDistance [Total distance (meters) the ball must travel]
 	 */
 	public double calculateDistance(double landingXCoord, double landingYCoord){
+		xCoord = landingXCoord;
+		yCoord = landingYCoord;
 		xDistance = calculateXDistance(landingXCoord);
 		yDistance = calculateYDistance(landingYCoord);
 		double distSquared = Math.pow(xDistance, 2) + Math.pow(yDistance, 2);
@@ -62,9 +66,12 @@ public class ShootingModel {
 	 * @param xDist [Distance (meters) the ball must travel in X direction]
 	 * @return yawAngle [Yaw angle (degrees)]
 	 */
-	private double calculateYawAngle(double yDist, double xDist){
-		double yawAngle = Math.atan(yDist/xDist);
-		System.out.println("Angle in the X Plane: " + Math.toDegrees(yawAngle));
+	private double calculateYawAngle(double xDist, double yDist){
+		double yawAngle = Math.toDegrees(Math.atan(yDist/xDist));
+		if (xCoord <= 0.7625) {
+			yawAngle = 180-yawAngle;
+		} 
+		System.out.println("Angle in the X Plane: " + yawAngle);
 		return yawAngle;
 	}
 
