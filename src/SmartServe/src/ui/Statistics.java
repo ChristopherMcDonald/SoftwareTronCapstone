@@ -74,7 +74,7 @@ public class Statistics extends JFrame {
 	public Statistics() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(200, 200, 656, 296);
+		setBounds(200, 200, 670, 297);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -85,7 +85,7 @@ public class Statistics extends JFrame {
 		JLabel lblStats = new JLabel("Statistics");
 		lblStats.setHorizontalAlignment(SwingConstants.CENTER);
 		lblStats.setFont(new Font("Century", Font.PLAIN, 35));
-		lblStats.setBounds(211, 4, 153, 69);
+		lblStats.setBounds(241, 0, 153, 69);
 		contentPane.add(lblStats);
 		
 		JSeparator separator = new JSeparator();
@@ -269,7 +269,7 @@ public class Statistics extends JFrame {
 		contentPane.add(btnZone16);
 		
 		dateInput0 = new JTextField();
-		dateInput0.setBounds(133, 176, 47, 20);
+		dateInput0.setBounds(127, 176, 47, 20);
 		contentPane.add(dateInput0);
 		dateInput0.setColumns(10);
 		
@@ -279,7 +279,7 @@ public class Statistics extends JFrame {
 		dateInputF.setColumns(10);
 		
 		velocityInput0 = new JTextField();
-		velocityInput0.setBounds(133, 84, 29, 20);
+		velocityInput0.setBounds(127, 84, 29, 20);
 		contentPane.add(velocityInput0);
 		velocityInput0.setColumns(10);
 		
@@ -289,7 +289,7 @@ public class Statistics extends JFrame {
 		velocityInputF.setColumns(10);
 		
 		angleInput0 = new JTextField();
-		angleInput0.setBounds(133, 131, 29, 20);
+		angleInput0.setBounds(127, 131, 29, 20);
 		contentPane.add(angleInput0);
 		angleInput0.setColumns(10);
 		
@@ -300,12 +300,12 @@ public class Statistics extends JFrame {
 		
 		JLabel dash0 = new JLabel("-");
 		dash0.setHorizontalAlignment(SwingConstants.CENTER);
-		dash0.setBounds(190, 179, 9, 14);
+		dash0.setBounds(184, 179, 9, 14);
 		contentPane.add(dash0);
 		
 		JLabel dash1 = new JLabel("-");
 		dash1.setHorizontalAlignment(SwingConstants.CENTER);
-		dash1.setBounds(170, 86, 9, 14);
+		dash1.setBounds(166, 86, 9, 14);
 		contentPane.add(dash1);
 		
 		JLabel dash2 = new JLabel("-");
@@ -314,22 +314,23 @@ public class Statistics extends JFrame {
 		contentPane.add(dash2);
 		
 		JLabel velocityLbl = new JLabel("Velocity Range");
-		velocityLbl.setBounds(134, 71, 77, 14);
+		velocityLbl.setBounds(127, 71, 113, 14);
 		contentPane.add(velocityLbl);
 		
 		JLabel angleLbl = new JLabel("Angle Range");
-		angleLbl.setBounds(133, 114, 66, 14);
+		angleLbl.setBounds(127, 114, 124, 14);
 		contentPane.add(angleLbl);
 		
 		JLabel dateLbl = new JLabel("Date Range (YYYY-MM-DD)");
-		dateLbl.setBounds(133, 162, 136, 14);
+		dateLbl.setBounds(127, 162, 190, 14);
+		
 		contentPane.add(dateLbl);
 		
 		String[] cols = {"Zone", "Velocity" , "Angle", "Returned?","Date"};
 	    DefaultTableModel model = new DefaultTableModel(cols,0);
 	    statsTable = new JTable(model);
 	    model.addRow(cols);
-	    statsTable.setBounds(267, 71, 363, 152);
+	    statsTable.setBounds(281, 57, 363, 170);
 		contentPane.add(statsTable);
 		
 		JButton btnNewButton = new JButton("Get Statistics");

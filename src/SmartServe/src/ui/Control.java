@@ -9,6 +9,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import adt.Mode;
+import runnables.Controller;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.Font;
@@ -20,6 +23,9 @@ import java.awt.SystemColor;
 public class Control extends JFrame {
 
 	private JPanel contentPane;
+
+	private static Controller control;
+	private static boolean paused = true;
 
 	/**
 	 * Launch the application.
@@ -60,16 +66,74 @@ public class Control extends JFrame {
 		JButton pauseBtn = new JButton("Pause");		  
 		pauseBtn.setBounds(159,71,100, 40);	
 		contentPane.add(pauseBtn);
+		pauseBtn.setEnabled(false);
 		
 		JButton stopBtn = new JButton("Stop");			 
 		stopBtn.setBounds(270,71,100, 40);				
 		contentPane.add(stopBtn);
+		stopBtn.setEnabled(false);
 		
-		String[] modes = { "Random", "Single", "Train"};
-		JComboBox modeComboBox = new JComboBox(modes);
-		modeComboBox.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		modeComboBox.setBounds(160, 127, 100, 20);
-		contentPane.add(modeComboBox);
+		String[] modes = { Mode.TRAIN.toString(), Mode.SINGLE.toString(), Mode.RANDOM.toString()};		
+	    final JComboBox<String> modeDropDown = new JComboBox<String>(modes); 
+		modeDropDown.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		modeDropDown.setBounds(160, 127, 100, 20);
+		contentPane.add(modeDropDown);
+		
+		startBtn.addActionListener(new ActionListener() { // buttons active when start is pressed
+		     public void actionPerformed(ActionEvent ae) {
+		        startBtn.setEnabled(false);
+		        pauseBtn.setEnabled(true);
+		        stopBtn.setEnabled(true);  
+		        modeDropDown.setEnabled(false);
+		        
+		        control = new Controller(View.getUserid());
+		        System.out.print(View.getUserid());
+		        control.setMode(Mode.valueOf(modeDropDown.getSelectedItem().toString()));
+				Thread t = new Thread(control);
+				t.start();
+				
+		     }
+		   }
+		 );
+		
+		pauseBtn.addActionListener(new ActionListener() { //buttons active when pause is pressed
+		     public void actionPerformed(ActionEvent ae) {
+		        startBtn.setEnabled(false);
+		        pauseBtn.setEnabled(true);
+		        stopBtn.setEnabled(true);  
+		        modeDropDown.setEnabled(false);
+		        
+		        if(paused) { 				//if pause then continue
+		        	paused = false;
+		        	pauseBtn.setText("Continue");
+		        	control.pause();
+		        }
+		        else {						//if continue then pause
+		        	paused = true;
+		        	pauseBtn.setText("Pause");
+		        	control.resume();
+		        }
+		     }
+		   }
+		 );
+		
+		stopBtn.addActionListener(new ActionListener() { //buttons active when stop is pressed
+		     public void actionPerformed(ActionEvent ae) {
+		        startBtn.setEnabled(true);
+		        pauseBtn.setEnabled(false);
+		        stopBtn.setEnabled(false);  
+		        modeDropDown.setEnabled(true);
+		        control.terminate();
+		     }
+		     
+		   }
+		 );
+		
+		
+		
+		
+		
+		
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
