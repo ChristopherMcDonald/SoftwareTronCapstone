@@ -336,16 +336,15 @@ public class Statistics extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Object[] statsObj = new Object[]{
-						Login.user_id,
+						//Login.user_id,
+						35,
 						zonesString,
 						velocityInput0.getText(), 
 						velocityInputF.getText(),
 						angleInput0.getText(),
 						angleInputF.getText(),
 						dateInput0.getText(),
-						dateInputF.getText(),
-						//outputs 
-						0,0,0,0,0
+						dateInputF.getText()
 				};
 				int numRows = 0;
 				try {
@@ -353,11 +352,11 @@ public class Statistics extends JFrame {
 					
 					//loop through get results
 					while(rs.next()) {
-						zoneOutput = rs.getInt("@zone_out");
-						velocityOutput = rs.getDouble("@velocity_out");
-						angleOutput = rs.getDouble("@angle_out");
-						returnOutput = rs.getBoolean("@returned_out");
-						dateOutput = rs.getDate("@date_out");
+						zoneOutput = rs.getInt("zone_id");
+						velocityOutput = rs.getDouble("velocity");
+						angleOutput = rs.getDouble("angle");
+						returnOutput = rs.getBoolean("returned");
+						dateOutput = rs.getDate("time_stamp");
 						numRows++;
 					}
 					
