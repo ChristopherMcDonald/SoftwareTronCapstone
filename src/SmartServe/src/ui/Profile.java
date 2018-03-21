@@ -16,6 +16,7 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Choice;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
 public class Profile extends JFrame {
 
@@ -49,16 +50,19 @@ public class Profile extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblProfile = new JLabel("Profile");
+		lblProfile.setHorizontalAlignment(SwingConstants.CENTER);
 		lblProfile.setFont(new Font("Century", Font.PLAIN, 35));
-		lblProfile.setBounds(149, 4, 137, 69);
+		lblProfile.setBounds(144, 4, 137, 69);
 		contentPane.add(lblProfile);
 		
-		JLabel lblUserName = new JLabel("User Name: " + View.getUsername());
-		lblUserName.setBounds(144, 84, 142, 14);
+		JLabel lblUserName = new JLabel();
+		lblUserName.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblUserName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUserName.setBounds(125, 84, 156, 14);
 		contentPane.add(lblUserName);
 		
 		JButton btnChangePassword = new JButton("Change Password");
-		btnChangePassword.setBounds(149, 110, 119, 23);
+		btnChangePassword.setBounds(144, 109, 119, 23);
 		btnChangePassword.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnChangePassword);
 		
@@ -70,8 +74,11 @@ public class Profile extends JFrame {
 				View.welcomef.setVisible(true);
 			}
 		});
-		btnLogOut.setBounds(159, 144, 89, 23);
+		btnLogOut.setBounds(154, 143, 89, 23);
 		contentPane.add(btnLogOut);
+		
+
+		lblUserName.setText("Welcome " + View.getUsername());
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);

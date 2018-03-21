@@ -96,7 +96,7 @@ public class Signup extends JFrame {
 		
 		JLabel errorMsg = new JLabel("");
 		errorMsg.setHorizontalAlignment(SwingConstants.CENTER);
-		errorMsg.setBounds(121, 220, 191, 14);
+		errorMsg.setBounds(121, 237, 191, 14);
 		contentPane.add(errorMsg);
 		
 		btnSignUp = new JButton("Sign Up");
@@ -129,13 +129,23 @@ public class Signup extends JFrame {
 				
 			}
 		});
-		btnSignUp.setBounds(166, 184, 89, 23);
+		btnSignUp.setBounds(166, 186, 89, 23);
 		contentPane.add(btnSignUp);
 		
 		lblSignUp = new JLabel("Sign Up");
 		lblSignUp.setFont(new Font("Century", Font.PLAIN, 35));
 		lblSignUp.setBounds(149, 4, 137, 69);
 		contentPane.add(lblSignUp);
+		
+		JButton btnBack = new JButton("Cancel");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				View.signupf.setVisible(false);
+				View.welcomef.setVisible(true);
+			}
+		});
+		btnBack.setBounds(166, 214, 89, 23);
+		contentPane.add(btnBack);
 		
 	}
 }
