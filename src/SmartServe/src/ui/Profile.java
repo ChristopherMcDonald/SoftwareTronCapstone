@@ -1,5 +1,4 @@
 package ui;
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -14,12 +13,15 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Insets;
-import java.awt.Choice;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
 public class Profile extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 	/**

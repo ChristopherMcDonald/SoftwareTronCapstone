@@ -1,5 +1,4 @@
 package ui;
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,7 +8,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import adt.Mode;
+import enums.Mode;
 import runnables.Controller;
 
 import javax.swing.JButton;
@@ -17,10 +16,14 @@ import javax.swing.JComboBox;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Color;
 import java.awt.SystemColor;
 
 public class Control extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private JPanel contentPane;
 
@@ -73,7 +76,7 @@ public class Control extends JFrame {
 		contentPane.add(stopBtn);
 		stopBtn.setEnabled(false);
 		
-		String[] modes = { Mode.TRAIN.toString(), Mode.SINGLE.toString(), Mode.RANDOM.toString()};		
+		String[] modes = { Mode.TRAIN.toString(), Mode.ONESHOT.toString(), Mode.RANDOM.toString()};		
 	    final JComboBox<String> modeDropDown = new JComboBox<String>(modes); 
 		modeDropDown.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		modeDropDown.setBounds(160, 127, 100, 20);

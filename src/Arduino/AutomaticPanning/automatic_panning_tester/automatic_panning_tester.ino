@@ -13,20 +13,20 @@ void setup()
 void loop() 
 {
   // put your main code here, to run repeatedly:
-  if(!(myautopan->move_to_location(10)))
+  if(!(myautopan->move_to_location(72)))
   {
     Serial.println("Unable to Move to Location 45 deg");
   }
 
-  if(!(myautopan->move_to_location(15)))
-  {
-    Serial.println("Unable to Move to Location 90 deg");
-  }
-  
-  if(!(myautopan->move_to_location(20)))
-  {
-    Serial.println("Unable to Move to Location 35 deg");
-  }
+//  if(!(myautopan->move_to_location(15)))
+//  {
+//    Serial.println("Unable to Move to Location 90 deg");
+//  }
+//  
+//  if(!(myautopan->move_to_location(20)))
+//  {
+//    Serial.println("Unable to Move to Location 35 deg");
+//  }
 
   Serial.print("\nCurrent Location = ");
   Serial.println(myautopan->get_current_location());
