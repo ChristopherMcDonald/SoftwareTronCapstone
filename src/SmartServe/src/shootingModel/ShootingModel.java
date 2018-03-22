@@ -2,6 +2,8 @@ package shootingModel;
 
 public class ShootingModel {
     // Instantiate necessary variables
+	public double xCoord;
+	public double yCoord;
     public double distance;
     public double xDistance;
     public double yDistance;
@@ -28,7 +30,7 @@ public class ShootingModel {
      */
     private double calculateYDistance(double landingYCoord){
         //The location of the shooter is at 0 m from the edge
-        double yDist = Math.abs(landingYCoord - 0);
+        double yDist = Math.abs(landingYCoord + 1.37);
         return yDist;
     }
 
@@ -55,9 +57,14 @@ public class ShootingModel {
      * @return yawAngle [Yaw angle (degrees)]
      */
     private double calculateYawAngle(double yDist, double xDist){
-        double yawAngle = Math.atan(yDist/xDist);
-        //System.out.println("Angle in the X Plane: " + Math.toDegrees(yawAngle));
-        return yawAngle;
+    		double yawAngle = Math.toDegrees(Math.atan(xDist/yDist));
+		if (xCoord <= 0.7625) {
+			yawAngle += 90;
+		} else {
+			yawAngle = 90 - yawAngle;
+		}
+		System.out.println("Angle in the X Plane: " + yawAngle);
+		return yawAngle;
     }
 
     /**
@@ -87,15 +94,17 @@ public class ShootingModel {
      * @return [ShootingDetails to get Yaw(degrees), Velocity(meters/second)]
      */
     public ShootingDetails getShootingDetails(double landingXCoord, double landingYCoord, double pitch){
+    		xCoord = landingXCoord;
+    		yCoord = landingYCoord;
         distance = calculateDistance(landingXCoord, landingYCoord);
-        yaw = calculateYawAngle(xDistance, yDistance);
+        yaw = calculateYawAngle(yDistance, xDistance);
         velocity = calculateVelocity(pitch);
         return new ShootingDetails(yaw, velocity);
     }
 
-    public static void main(String []args){
-        ShootingModel shooter = new ShootingModel(0.0762);
-        ShootingDetails details = shooter.getShootingDetails(0.6,0.6,45);
-        System.out.println(details.toString());
-    }
+//    public static void main(String []args){
+//        ShootingModel shooter = new ShootingModel(0.0762);
+//        ShootingDetails details = shooter.getShootingDetails(0.6,0.6,45);
+//        System.out.println(details.toString());
+//    }
 }

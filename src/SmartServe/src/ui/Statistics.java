@@ -1,5 +1,4 @@
 package ui;
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Insets;
@@ -12,37 +11,32 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import com.mysql.jdbc.ResultSetMetaData;
-
 import controllers.SQLConnector;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
-import javax.swing.JSplitPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
-import java.beans.PropertyChangeListener;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.beans.PropertyChangeEvent;
 
 public class Statistics extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTable table;
-	private JTable table_1;
 	private JTextField dateInput0;
 	private JTextField dateInputF;
 	private JTextField velocityInput0;
 	private JTextField velocityInputF;
 	private JTextField angleInput0;
 	private JTextField angleInputF;
-	private JTable resultTable;
-	
 	String zonesString = "";
 	int zoneOutput;
 	double angleOutput;

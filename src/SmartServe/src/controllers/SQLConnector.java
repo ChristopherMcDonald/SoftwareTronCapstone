@@ -1,22 +1,15 @@
 package controllers;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.SimpleDateFormat;
 
 public class SQLConnector {
 
-	private int port; // port if successfully connect
-	private String address; // address if successfully connect
 	static Connection myConn;
-
 
 	public static void main(String[] args) {
 		//if connection is successful
