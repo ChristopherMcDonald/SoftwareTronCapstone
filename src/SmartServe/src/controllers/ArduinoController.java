@@ -15,7 +15,7 @@ public class ArduinoController {
 
 		
 		ArduinoController shooter = new ArduinoController();
-		String port1 = "cu.usbmodem14641";
+		String port1 = "cu.usbmodem14141";
 		System.out.println(shooter.test(port1, 9600));
 
 		pan.shoot(new ShotDetail(0.0f, 45.0f, 0.0f, 30.0f));

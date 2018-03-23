@@ -79,8 +79,8 @@ public class Profile extends JFrame {
 		btnLogOut.setBounds(154, 143, 89, 23);
 		contentPane.add(btnLogOut);
 		
-
-		lblUserName.setText("Welcome " + View.getUsername());
+		//todo: change name
+		lblUserName.setText("Welcome " + "Sharon Platkin");
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);

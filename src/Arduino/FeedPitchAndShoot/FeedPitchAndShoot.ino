@@ -3,7 +3,6 @@
 #include <Pitch.h>
 #include <AutomaticRoll.h>
 
-
 AutomaticRoll* myautoroll;
 Pitch* mypitch;
 FeedAndShoot* myfeedandshoot = new FeedAndShoot();
@@ -35,9 +34,9 @@ void loop() {
     if (!(myfeedandshoot->set_dcspeed(vel))) {
       Serial.println("Error in Setting DC Speed");
     }
-    delay(5000);                              // allows speed up of motor
+    delay(3000);                              // allows speed up of motor
     mypitch->move_to_location(pitch);         // corrects for zero being off on servo, 60 is home
-    myfeedandshoot->move_by_steps(550);       // 600 Steps for 1 shot or 550 tested
+    myfeedandshoot->move_by_steps(515);       // 600 Steps for 1 shot or 550 tested
   }
   
   

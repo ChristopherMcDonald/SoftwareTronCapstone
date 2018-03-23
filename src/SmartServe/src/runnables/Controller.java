@@ -34,6 +34,7 @@ public class Controller implements Runnable {
 		
 		Controller c = new Controller(Login.user_id);
 		Thread t = new Thread(c);
+		c.m = Mode.TRAIN;
 		t.start();
 	}
 
@@ -43,8 +44,11 @@ public class Controller implements Runnable {
 			boot();
 			begin();
 			
-//			shoot();
-			demoShoot();
+			shoot(); // training
+			//for (int i=0; i<2;i++) {
+			//	demoShoot(); //fixed positions
+			//}
+
 			
 			close();
 		} catch (NotConnectedException | IOException e) {
@@ -91,7 +95,7 @@ public class Controller implements Runnable {
 			System.out.println("Connected to Panning");
 			
 			shooter = new ArduinoController();
-			if(!shooter.test("cu.usbmodem14441", 9600)) {
+			if(!shooter.test("cu.usbmodem14141", 9600)) {
 				return false;
 			}
 			System.out.println("Connected to Shooter");
@@ -134,11 +138,18 @@ public class Controller implements Runnable {
 			System.out.println("Getting Next Shot...");
 			Shot s = ShotRecommendationController.getRecommendation(m);
 			Random r = new Random();
-			int[] pitches = new int[] {10, 20, 30, 40}; // TODO integrate pitch into possible shot list
+			int[] pitches = new int[] {10}; // TODO integrate pitch into possible shot list
 			int pitch = pitches[r.nextInt(pitches.length)];
 			ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, pitch);
 			
+			if(s.rollAngle > 270) {
+				s.rollAngle = 270;
+			}
+			
 			pan.shoot(new ShotDetail(pitch, (float) sd.getYaw(), (float) s.velocity, (float) s.rollAngle));
+			//harit to change velocity -> ifs and elses
+			s.velocity = getVelocityTemp(s.yLoc);
+				
 			shooter.shoot(s.velocity, pitch);
 			boolean returned = cvController.start();
 			System.out.println(returned ? "Ball Returned" : "Ball Not Returned");
@@ -153,47 +164,91 @@ public class Controller implements Runnable {
 		}
 	}
 	
+	private double getVelocityTemp(double yLoc) {
+		double velocity;
+		if(yLoc <= 0.2) {
+			velocity = 13;
+		} else if(yLoc <= 0.55) {
+			velocity = 15;
+		} else if(yLoc <= 0.9) {
+			velocity = 17;
+		} else {
+			velocity = 18;
+		}
+		return velocity;
+	}
+	
 	private void demoShoot() throws MalformedURLException, NotConnectedException, InterruptedException, SQLException {
 //		int[] shots = {12, 60, 252, 204, 12, 60, 252, 204};
 //		
 //		for(int id : shots) {
 			System.out.println("Getting Next Shot...");
 			Shot s = ShotRecommendationController.getRecommendation(7);
-			int pitch = 10;
+			int pitch30 = 30;
+			int pitch20 = 20;
+			int pitch10 = 10;
+			int power12 = 12;
+			int power15 = 15;
+			int power17 = 17;
+			int power18 = 18;
+			int power14 = 14;
 //			ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, pitch);
 //			
 //			double velocity = 13 + ( Math.round(s.yLoc - 0.171) / 0.343)*2;
 			
+			/*pitch,yaw,power
+			 * zone 2- 
+			 * zone 3-
+			 * zone 4-
+			 * zone 5-10,100,18
+			 * zone 6-
+			 * zone 7-20,95,18
+			 * zone 8-
+			 * zone 9-
+			 * zone 10-
+			 * zone 11-20,85,18
+			 * zone 12-
+			 * zone 13-
+			 * zone 14-
+			 * zone 15-
+			 * zone 16-
+			 * zone 17-10,78,18
+			 */
 			
-			pan.shoot(new ShotDetail(60 - pitch, 100, (float) 19, (float) s.rollAngle));
-			shooter.shoot(19, 60 - pitch);
+			
+			//5, 17, 7, 11
+			//first is fake shot
+			pan.shoot(new ShotDetail(0, 100, 0, (float) s.rollAngle));
+			shooter.shoot(power18, 60 - pitch10);
+			
+			Thread.sleep(10000);
+			
+			pan.shoot(new ShotDetail(0, 100, 0, (float) s.rollAngle));
+			shooter.shoot(power18, 60 - pitch10);
 			
 			Thread.sleep(10000);
 			
-			pan.shoot(new ShotDetail(60 - pitch, 78, (float) 19, (float) s.rollAngle));
-			shooter.shoot(19, 60 - pitch);
+			
+			pan.shoot(new ShotDetail(0, 78, (float) 0, (float) s.rollAngle));
+			shooter.shoot(power18, 60 - pitch10);
 			
 			Thread.sleep(10000);
 			
-			pan.shoot(new ShotDetail(60 - pitch, 100, (float) 19, (float) s.rollAngle));
-			shooter.shoot(19, 60 - pitch);
+			
+			pan.shoot(new ShotDetail(0, 95, 0, (float) s.rollAngle));
+			shooter.shoot(power14, 60 - pitch10);
 			
 			Thread.sleep(10000);
 			
-			pan.shoot(new ShotDetail(60 - pitch, 78, (float) 19, (float) s.rollAngle));
-			shooter.shoot(19, 60 - pitch);
+			
+			pan.shoot(new ShotDetail(0, 85, (float) 0, (float) s.rollAngle));
+			shooter.shoot(power14, 60 - pitch10);
 			
 			Thread.sleep(10000);
 			
-			pan.shoot(new ShotDetail(60 - pitch, 100, (float) 19, (float) s.rollAngle));
-			shooter.shoot(19, 60 - pitch);
+
 			
-			Thread.sleep(10000);
 			
-			pan.shoot(new ShotDetail(60 - pitch, 78, (float) 19, (float) s.rollAngle));
-			shooter.shoot(19, 60 - pitch);
-			
-			Thread.sleep(10000);
 			
 			
 			
