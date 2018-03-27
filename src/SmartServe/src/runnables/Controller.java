@@ -13,6 +13,8 @@ import adt.Shot;
 import adt.ShotDetail;
 import controllers.ArduinoController;
 import controllers.CVConnector;
+import controllers.PanAndRollArduinoController;
+import controllers.PitchAndShootArduinoController;
 import controllers.SQLConnector;
 import controllers.ShotRecommendationController;
 import enums.Mode;
@@ -24,46 +26,29 @@ import ui.Login;
 
 public class Controller implements Runnable {
 	
-	int user_id;
+	int userId;
 	
 	public Controller(int uID){
-		user_id = uID;
+		userId = uID;
 	}
 	
-	public static void main(String[] args) throws InterruptedException {
-		
-		Controller c = new Controller(Login.user_id);
-		Thread t = new Thread(c);
-		c.m = Mode.TRAIN;
-		t.start();
-	}
-
 	@Override
 	public void run() {
 		try {
-			boot();
-			begin();
-			
-			shoot(); // training
-			//for (int i=0; i<2;i++) {
-			//	demoShoot(); //fixed positions
-			//}
-
-			
-			close();
+			if(boot()) {
+				begin();
+				shoot();
+			}
 		} catch (NotConnectedException | IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	// global variables
-//	private ShootingParameters sp;
 	private Mode m;
 	private RunState state;
 	
@@ -74,8 +59,8 @@ public class Controller implements Runnable {
 	ServerSocket welcomeSocket;
 
 	// controllers
-	private ArduinoController pan;
-	private ArduinoController shooter;
+	private PanAndRollArduinoController pan;
+	private PitchAndShootArduinoController shooter;
 
 	private CVConnector cvController;
 	private static final int CV_PORT = 8013;
@@ -88,13 +73,13 @@ public class Controller implements Runnable {
 	 */
 	public boolean boot() {
 		try {
-			pan = new ArduinoController();
+			pan = new PanAndRollArduinoController();
 			if(!pan.test("cu.usbserial-A700fk4c", 19200)) {
 				return false;
 			}
 			System.out.println("Connected to Panning");
 			
-			shooter = new ArduinoController();
+			shooter = new PitchAndShootArduinoController();
 			if(!shooter.test("cu.usbmodem14141", 9600)) {
 				return false;
 			}
@@ -141,21 +126,18 @@ public class Controller implements Runnable {
 			int[] pitches = new int[] {10}; // TODO integrate pitch into possible shot list
 			int pitch = pitches[r.nextInt(pitches.length)];
 			ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, pitch);
-			
-			if(s.rollAngle > 270) {
-				s.rollAngle = 270;
-			}
-			
-			pan.shoot(new ShotDetail(pitch, (float) sd.getYaw(), (float) s.velocity, (float) s.rollAngle));
 			//harit to change velocity -> ifs and elses
 			s.velocity = getVelocityTemp(s.yLoc);
-				
-			shooter.shoot(s.velocity, pitch);
+			
+			shooter.adjustSpeed(s.velocity);
+			pan.shoot(sd.getYaw(), s.rollAngle);
+			shooter.shoot(pitch);
+			
 			boolean returned = cvController.start();
 			System.out.println(returned ? "Ball Returned" : "Ball Not Returned");
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 			// TODO fill below with userID
-			Object[] myReturns = new Object[]{25, s.shotId, returned ? 1 : 0, sdf.format(new Date(System.currentTimeMillis()))};
+			Object[] myReturns = new Object[]{userId, s.shotId, returned ? 1 : 0, sdf.format(new Date(System.currentTimeMillis()))};
 			SQLConnector.save("returned", myReturns);
 			while(this.state == RunState.PAUSED) {
 				System.out.println("System is Paused...");
@@ -176,83 +158,6 @@ public class Controller implements Runnable {
 			velocity = 18;
 		}
 		return velocity;
-	}
-	
-	private void demoShoot() throws MalformedURLException, NotConnectedException, InterruptedException, SQLException {
-//		int[] shots = {12, 60, 252, 204, 12, 60, 252, 204};
-//		
-//		for(int id : shots) {
-			System.out.println("Getting Next Shot...");
-			Shot s = ShotRecommendationController.getRecommendation(7);
-			int pitch30 = 30;
-			int pitch20 = 20;
-			int pitch10 = 10;
-			int power12 = 12;
-			int power15 = 15;
-			int power17 = 17;
-			int power18 = 18;
-			int power14 = 14;
-//			ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, pitch);
-//			
-//			double velocity = 13 + ( Math.round(s.yLoc - 0.171) / 0.343)*2;
-			
-			/*pitch,yaw,power
-			 * zone 2- 
-			 * zone 3-
-			 * zone 4-
-			 * zone 5-10,100,18
-			 * zone 6-
-			 * zone 7-20,95,18
-			 * zone 8-
-			 * zone 9-
-			 * zone 10-
-			 * zone 11-20,85,18
-			 * zone 12-
-			 * zone 13-
-			 * zone 14-
-			 * zone 15-
-			 * zone 16-
-			 * zone 17-10,78,18
-			 */
-			
-			
-			//5, 17, 7, 11
-			//first is fake shot
-			pan.shoot(new ShotDetail(0, 100, 0, (float) s.rollAngle));
-			shooter.shoot(power18, 60 - pitch10);
-			
-			Thread.sleep(10000);
-			
-			pan.shoot(new ShotDetail(0, 100, 0, (float) s.rollAngle));
-			shooter.shoot(power18, 60 - pitch10);
-			
-			Thread.sleep(10000);
-			
-			
-			pan.shoot(new ShotDetail(0, 78, (float) 0, (float) s.rollAngle));
-			shooter.shoot(power18, 60 - pitch10);
-			
-			Thread.sleep(10000);
-			
-			
-			pan.shoot(new ShotDetail(0, 95, 0, (float) s.rollAngle));
-			shooter.shoot(power14, 60 - pitch10);
-			
-			Thread.sleep(10000);
-			
-			
-			pan.shoot(new ShotDetail(0, 85, (float) 0, (float) s.rollAngle));
-			shooter.shoot(power14, 60 - pitch10);
-			
-			Thread.sleep(10000);
-			
-
-			
-			
-			
-			
-			
-//		}
 	}
 	
 	/**
