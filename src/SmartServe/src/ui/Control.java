@@ -131,12 +131,6 @@ public class Control extends JFrame {
 		   }
 		 );
 		
-		
-		
-		
-		
-		
-		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
