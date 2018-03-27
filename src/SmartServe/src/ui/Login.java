@@ -88,8 +88,9 @@ public class Login extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 					Object[] loginObj = new Object[]{userNameInput.getText(), passwordInput.getText()};
+					String[] loginTypes = new String[] {"String", "String"};
 					try {
-						ResultSet rs = SQLConnector.query("login_proc",loginObj);
+						ResultSet rs = SQLConnector.query("login_proc",loginObj, loginTypes);
 						int counter = 0;
 						while(rs.next()) {
 							counter++;

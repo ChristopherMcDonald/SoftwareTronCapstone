@@ -137,8 +137,9 @@ public class Controller implements Runnable {
 			System.out.println(returned ? "Ball Returned" : "Ball Not Returned");
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 			// TODO fill below with userID
-			Object[] myReturns = new Object[]{userId, s.shotId, returned ? 1 : 0, sdf.format(new Date(System.currentTimeMillis()))};
-			SQLConnector.save("returned", myReturns);
+			Object[] myReturns = new Object[]{25, s.shotId, returned ? 1 : 0, sdf.format(new Date(System.currentTimeMillis()))};
+			String[] returnTypes = new String[] {"Integer", "Integer", "Integer", "Date"};
+			SQLConnector.save("returned", myReturns, returnTypes);
 			while(this.state == RunState.PAUSED) {
 				System.out.println("System is Paused...");
 				Thread.sleep(10);

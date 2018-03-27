@@ -17,48 +17,6 @@ public class SQLConnector {
 			try {
 				//connect for real
 				myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/smartserve?useSSL=false","root", "smarTserve91");
-
-				/*Data to get from UI*/
-				
-				/*Users 
-				 *@Params username, password
-				 *returns boolean - successful save?
-				 *passed into signup_proc
-				 */
-				
-				//example;
-				//Object[] users = new Object[]{"Sharon", "march10"};
-				
-				/*myReturns 
-				 *@Params user_id, shot_id, returned, timestamp
-				 *returns boolean - successful save?
-				 *passed into returned proc
-				 */
-				
-				//example;
-				//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-				//Object[] myReturns = new Object[]{25, 1, 1, sdf.format(new Date(System.currentTimeMillis()))};
-				
-				/*Signin 
-				 *@Params username, password
-				 *returns userid as resultset
-				 *passed into login proc
-				 */
-				/* Examples!
-				 * 
-				 * 
-				Object[] signin = new Object[]{"Sharon", "apples"};
-
-				//signup_proc saves the user to the database
-				save("signup_proc",users);
-				//returned proc saves the return stats to the database
-				save("returned",myReturns);
-				//login proc gets the user id of a user
-				//getInt(1) gets first cell from resultset 
-				ResultSet rs = query("login_proc",signin);
-				rs.next();
-				int result = rs.getInt(1);
-				*/
 				
 				myConn.close();
 			}catch (SQLException e) {
@@ -91,7 +49,7 @@ public class SQLConnector {
 		return false;
 	}
 
-	public static ResultSet query(String proc, Object[] values) throws SQLException {
+	public static ResultSet query(String proc, Object[] values, String[] types) throws SQLException {
 		myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/smartserve?useSSL=false","root", "smarTserve91");
 		
 		String argus = "(";
@@ -103,10 +61,23 @@ public class SQLConnector {
 
 		for(int j = 0; j < values.length; j++) {
 			
-			switch(values[j].getClass().getSimpleName()) {
-				case("Double"): 	cs.setDouble(j+1, (Double) values[j]); break;
-				case("String"): 	cs.setString(j+1, (String) values[j]); break;
-				case("Integer"): 	cs.setInt(j+1, (Integer) values[j]); break;
+			switch(types[j]) {
+				case("Double"): 
+					if(values[j] == null) 	cs.setNull(j + 1, java.sql.Types.DOUBLE);
+					else					cs.setDouble(j+1, (Double) values[j]);
+					break;
+				case("String"):
+					if(values[j] == null) 	cs.setNull(j + 1, java.sql.Types.VARCHAR);
+					else					cs.setString(j+1, (String) values[j]);
+					break;
+				case("Integer"): 	
+					if(values[j] == null) 	cs.setNull(j + 1, java.sql.Types.INTEGER);
+					else					cs.setInt(j+1, (Integer) values[j]);
+					break;
+				case("Date"):
+					if(values[j] == null) 	cs.setNull(j + 1, java.sql.Types.DATE);
+					else 					cs.setDate(j+1, (Date) values[j]);
+					break;
 				default:			throw new IllegalArgumentException();
 			}
 			
@@ -116,7 +87,7 @@ public class SQLConnector {
 		return cs.getResultSet();
 	}
 
-	public static boolean save(String proc, Object[] values) throws SQLException {
+	public static boolean save(String proc, Object[] values, String[] types) throws SQLException {
 		myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/smartserve?useSSL=false","root", "smarTserve91");
 		
 		String argus = "(";
@@ -127,12 +98,25 @@ public class SQLConnector {
 		CallableStatement cs = myConn.prepareCall("{call "+ proc + argus + "?)}");
 
 		for(int j = 0; j < values.length; j++) {
+
 			
-			switch(values[j].getClass().getSimpleName()) {
-				case("Double"): 	cs.setDouble(j+1, (Double) values[j]); break;
-				case("String"): 	cs.setString(j+1, (String) values[j]); break;
-				case("Integer"): 	cs.setInt(j+1, (Integer) values[j]); break;
-				case("Date"):		cs.setDate(j+1, (Date) values[j]); break;
+			switch(types[j]) {
+				case("Double"): 
+					if(values[j] == null) 	cs.setNull(j + 1, java.sql.Types.DOUBLE);
+					else					cs.setDouble(j+1, (Double) values[j]);
+					break;
+				case("String"):
+					if(values[j] == null) 	cs.setNull(j + 1, java.sql.Types.VARCHAR);
+					else					cs.setString(j+1, (String) values[j]);
+					break;
+				case("Integer"): 	
+					if(values[j] == null) 	cs.setNull(j + 1, java.sql.Types.INTEGER);
+					else					cs.setInt(j+1, (Integer) values[j]);
+					break;
+				case("Date"):
+					if(values[j] == null) 	cs.setNull(j + 1, java.sql.Types.DATE);
+					else 					cs.setDate(j+1, (Date) values[j]);
+					break;
 				default:			throw new IllegalArgumentException();
 			}
 			

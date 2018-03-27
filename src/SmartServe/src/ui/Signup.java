@@ -104,9 +104,10 @@ public class Signup extends JFrame {
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Object[] signUpObj = new Object[]{emailInput.getText(), passwordInput1.getText()};
+				String[] signTypes = new String[] {"String", "String"};
 				try {
 					//TODO: fix to check only username, not both
-					ResultSet rs = SQLConnector.query("login_proc",signUpObj);
+					ResultSet rs = SQLConnector.query("login_proc",signUpObj, signTypes);
 					int counter = 0;
 					while(rs.next()) {
 						counter++;
@@ -118,7 +119,7 @@ public class Signup extends JFrame {
 						errorMsg.setText("Passwords do not match"); 
 					}
 					else {
-						SQLConnector.save("signup_proc",signUpObj);
+						SQLConnector.save("signup_proc",signUpObj, signTypes);
 						JOptionPane.showMessageDialog(null, "Sign Up Successful", "Confirmation", JOptionPane.PLAIN_MESSAGE);
 						View.signupf.setVisible(false);
 						View.welcomef.setVisible(true);
