@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 public class Statistics extends JFrame {
 
@@ -342,9 +343,13 @@ public class Statistics extends JFrame {
 						dateInput0.getText(),
 						dateInputF.getText()
 				};
+				
+				String[] statsTypes = new String[] {
+						"Integer", "String", "Integer", "Integer", "Integer", "Integer", "String", "String"
+				};
 			
 				try {
-					ResultSet rs = SQLConnector.query("statistics",statsObj);
+					ResultSet rs = SQLConnector.query("statistics", statsObj, statsTypes);
 					
 					//loop through get results
 					while(rs.next()) {
