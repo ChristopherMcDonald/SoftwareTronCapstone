@@ -343,7 +343,11 @@ public class Statistics extends JFrame {
 						dateInput0.getText(),
 						dateInputF.getText()
 				};
-				
+				for(int i=0; i < statsObj.length; i++) {
+					if(statsObj[i].equals("")) {
+						statsObj[i] = null;
+					}
+				}
 				String[] statsTypes = new String[] {
 						"Integer", "String", "Integer", "Integer", "Integer", "Integer", "String", "String"
 				};
@@ -363,7 +367,6 @@ public class Statistics extends JFrame {
 						
 					}
 					
-				
 
 				} catch (SQLException e) {
 					e.printStackTrace();
