@@ -6,6 +6,7 @@ from datetime import datetime
 import socket, time;
 from enum import Enum;
 from imutils.video import WebcamVideoStream
+from imutils.video import FPS
 
 ap = argparse.ArgumentParser();
 ap.add_argument(
@@ -28,6 +29,8 @@ Orange1Lower = (6,142,161)
 BLUE = [255,0,0]
 GREEN = [0,255,0]
 RED = [0,0,255]
+YELLOW = [0,255,255];
+borderColour = RED;
 BORDERWIDTH = 5
 
 # up/down travel variables
@@ -50,44 +53,47 @@ pts = deque(maxlen = args["buffer"])
 counter = 0
 (dX, dY) = (0,0)
 vs= WebcamVideoStream(src=1).start()
+fps = FPS().start();
+backsub = cv2.createBackgroundSubtractorMOG2();
+backsub.setVarThreshold(1750);
 
 def checkLeft(deque):
     for i in range(1,10):
         d = deque[0][0]-deque[i][0]
-        if(d<-10):
+        if(d<-30):
             return True
     return False
 
 def checkRight(deque):
     for i in range(1,10):
         d = deque[0][0]-deque[i][0]
-        if(d>10):
+        if(d>30):
             return True
     return False
 
 def checkDown(deque):
     for i in range(1,10):
         d = deque[0][1]-deque[i][1]
-        if(d>10):
+        if(d>30):
             return True
     return False
 
 def checkUp(deque):
     for i in range(1,10):
         d = deque[0][1]-deque[i][1]
-        if(d<-10):
+        if(d<-30):
             return True
     return False
 while(True):
 
     if(fsm == 0):                           # waiting on connection
 
-        conn, addr = socketIn.accept();     # loop will freeze on this command, runs when SmartServe
-        print("Got connection from", addr); # sends a request
-        msg = conn.recv(1024);              # parses msg... could be "TEST", "DETECT"
+        # conn, addr = socketIn.accept();     # loop will freeze on this command, runs when SmartServe
+        # print("Got connection from", addr); # sends a request
+        # msg = conn.recv(1024);              # parses msg... could be "TEST", "DETECT"
 
         # DEBUGGING
-        # msg = b'DETECT'
+        msg = b'DETECT'
         # print(msg);
 
         if("TEST" in msg.decode("UTF8")):
@@ -106,6 +112,9 @@ while(True):
     if(fsm == 1 or fsm == 2 or fsm == 3):
 
         if((datetime.now() - start).seconds > 30):
+            fps.stop()
+            print("[INFO] elasped time: {:.2f}".format(fps.elapsed()))
+            print("[INFO] approx. FPS: {:.2f}".format(fps.fps()))
             # socket for outgoing messages
             socketOut = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
             socketOut.connect((HOST, PORT + 1));
@@ -117,7 +126,7 @@ while(True):
         else:
             # grab the current frame
             frame = vs.read()
-            frame = cv2.resize(frame,(0,0), fx = 0.4, fy = 0.4)
+            frame = cv2.resize(frame,(0,0), fx = 0.2, fy = 0.2)
             # resize the frame, blur it, and convert it to the HSV
             # color space
             hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
@@ -128,9 +137,11 @@ while(True):
             mask = cv2.inRange(hsv, Orange1Lower, Orange1Upper)
             thresh = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             blurred = cv2.GaussianBlur(thresh, (9, 9), 0)
+            
+            mask = backsub.apply(frame);
 
-            mask = cv2.erode(mask, None, iterations=2)
-            mask = cv2.dilate(mask, None, iterations=2)
+            # mask = cv2.erode(mask, None, iterations=2)
+            # mask = cv2.dilate(mask, None, iterations=2)
 
 
             circles = cv2.HoughCircles(blurred, cv2.HOUGH_GRADIENT, 1, 2000, 25, 250, 10, 10)  # ret=[[Xpos,Ypos,Radius],...]
@@ -162,7 +173,8 @@ while(True):
                 c = max(cnts, key=cv2.contourArea)
                 ((x, y), radius) = cv2.minEnclosingCircle(c)
                 M = cv2.moments(c)
-                center = (int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"]))
+                if (M["m00"] != 0):
+                    center = (int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"]))
 
                 # only proceed if the radius meets a minimum size
                 if radius > 2:
@@ -202,16 +214,22 @@ while(True):
                     0.35, (0, 0, 255), 1)
             if counter >= 10 and len(pts) >= 11:
                 if(fsm == 1):       # check if active
-                    print("in state 1")
-                    if checkRight(pts):
+                    print("in state 1- found ball")
+                    if checkLeft(pts):
                         fsm = 2;
+                        borderColour = YELLOW;
                 elif(fsm == 2):     # check if descending
-                    print("in state 2")
+                    print("in state 2 - going towards player")
                     if checkDown(pts):
                         fsm = 3;
+                        borderColour = BLUE;
                 elif(fsm == 3):     # if ascending, return GOOD
-                    print("in state 3")
+                    print("in state 3 - going down")
                     if checkUp(pts):
+                        
+                        fps.stop()
+                        print("[INFO] elasped time: {:.2f}".format(fps.elapsed()))
+                        print("[INFO] approx. FPS: {:.2f}".format(fps.fps()))
                         # socket for outgoing messages
                         print("hit")
                         socketOut = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
@@ -221,9 +239,6 @@ while(True):
                         fsm = 0;    # HIT!
                         pts = deque(maxlen = args["buffer"])
 
-
-            # show the frame to our screen
-            cv2.imshow("Frame", mask)
             border = cv2.copyMakeBorder(
                 frame,
                 top = BORDERWIDTH,
@@ -231,11 +246,12 @@ while(True):
                 left = BORDERWIDTH,
                 right = BORDERWIDTH,
                 borderType = cv2.BORDER_CONSTANT,
-                value = RED)
+                value = borderColour)
             cv2.imshow('border', border)
-           ## cv2.imshow("shape",thresh)
             key = cv2.waitKey(1) & 0xFF
             counter += 1
+            
+            fps.update()
 
             # if the 'q' key is pressed, stop the l3oop
             if key == ord("q"):
