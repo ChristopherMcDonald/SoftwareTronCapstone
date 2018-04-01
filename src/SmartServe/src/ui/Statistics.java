@@ -1,4 +1,5 @@
 package ui;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Insets;
@@ -87,119 +88,120 @@ public class Statistics extends JFrame {
 		separator.setBounds(211, 84, 0, 143);
 		contentPane.add(separator);
 		
-		JButton btnZone1 = new JButton("5");
-		btnZone1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				zonesString += "5,";
-			}
-		});
-		btnZone1.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
-		btnZone1.setBounds(10, 71, 29, 29);
-		btnZone1.setMargin(new Insets(2, 2, 2, 2));
-		contentPane.add(btnZone1);
-		
-		JButton btnZone2 = new JButton("9");
+
+		JButton btnZone2 = new JButton("2");
 		btnZone2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				zonesString += "9,";
+				btnZone2.setBackground(new Color(200,200,200));
+				zonesString += "2,";
 			}
 		});
 		btnZone2.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
-		btnZone2.setBounds(38, 71, 29, 29);
+		btnZone2.setBounds(10, 155, 29, 29);
 		btnZone2.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnZone2);
 		
-		JButton btnZone3 = new JButton("13");
+		JButton btnZone3 = new JButton("3");
 		btnZone3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				zonesString += "13,";
-			}
-		});
-		btnZone3.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
-		btnZone3.setBounds(66, 71, 29, 29);
-		btnZone3.setMargin(new Insets(2, 2, 2, 2));
-		contentPane.add(btnZone3);
-		
-		JButton btnZone4 = new JButton("17");
-		btnZone4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				zonesString += "17,";
-			}
-		});
-		btnZone4.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
-		btnZone4.setBounds(94, 71, 29, 29);
-		btnZone4.setMargin(new Insets(2, 2, 2, 2));
-		contentPane.add(btnZone4);
-		
-		JButton btnZone5 = new JButton("4");
-		btnZone5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				zonesString += "4,";
-			}
-		});
-		btnZone5.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
-		btnZone5.setBounds(10, 99, 29, 29);
-		btnZone5.setMargin(new Insets(2, 2, 2, 2));
-		contentPane.add(btnZone5);
-		
-		JButton btnZone6 = new JButton("8");
-		btnZone6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				zonesString += "8,";
-			}
-		});
-		btnZone6.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
-		btnZone6.setBounds(38, 99, 29, 29);
-		btnZone6.setMargin(new Insets(2, 2, 2, 2));
-		contentPane.add(btnZone6);
-		
-		JButton btnZone7 = new JButton("12");
-		btnZone7.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				zonesString += "12,";
-			}
-		});
-		btnZone7.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
-		btnZone7.setBounds(66, 99, 29, 29);
-		btnZone7.setMargin(new Insets(2, 2, 2, 2));
-		contentPane.add(btnZone7);
-		
-		JButton btnZone8 = new JButton("16");
-		btnZone8.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				zonesString += "16,";
-			}
-		});
-		btnZone8.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
-		btnZone8.setBounds(94, 99, 29, 29);
-		btnZone8.setMargin(new Insets(2, 2, 2, 2));
-		contentPane.add(btnZone8);
-		
-		JButton btnZone9 = new JButton("3");
-		btnZone9.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+				btnZone3.setBackground(new Color(200,200,200));
 				zonesString += "3,";
 			}
 		});
-		btnZone9.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
-		btnZone9.setBounds(10, 127, 29, 29);
-		btnZone9.setMargin(new Insets(2, 2, 2, 2));
-		contentPane.add(btnZone9);
+		btnZone3.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
+		btnZone3.setBounds(10, 127, 29, 29);
+		btnZone3.setMargin(new Insets(2, 2, 2, 2));
+		contentPane.add(btnZone3);
 		
-		JButton btnZone10 = new JButton("7");
-		btnZone10.addActionListener(new ActionListener() {
+		JButton btnZone4 = new JButton("4");
+		btnZone4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				btnZone4.setBackground(new Color(200,200,200));
+				zonesString += "4,";
+			}
+		});
+		btnZone4.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
+		btnZone4.setBounds(10, 99, 29, 29);
+		btnZone4.setMargin(new Insets(2, 2, 2, 2));
+		contentPane.add(btnZone4);
+		
+		JButton btnZone5 = new JButton("5");
+		btnZone5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnZone5.setBackground(new Color(200,200,200));
+				zonesString += "5,";
+			}
+		});
+		btnZone5.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
+		btnZone5.setBounds(10, 71, 29, 29);
+		btnZone5.setMargin(new Insets(2, 2, 2, 2));
+		contentPane.add(btnZone5);
+		
+		JButton btnZone6 = new JButton("6");
+		btnZone6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnZone6.setBackground(new Color(200,200,200));
+				zonesString += "6,";
+			}
+		});
+		btnZone6.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
+		btnZone6.setBounds(38, 155, 29, 29);
+		btnZone6.setMargin(new Insets(2, 2, 2, 2));
+		contentPane.add(btnZone6);
+		
+		JButton btnZone7 = new JButton("7");
+		btnZone7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnZone7.setBackground(new Color(200,200,200));
 				zonesString += "7,";
 			}
 		});
+		btnZone7.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
+		btnZone7.setBounds(38, 127, 29, 29);
+		btnZone7.setMargin(new Insets(2, 2, 2, 2));
+		contentPane.add(btnZone7);
+		
+		JButton btnZone8 = new JButton("8");
+		btnZone8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnZone8.setBackground(new Color(200,200,200));
+				zonesString += "8,";
+			}
+		});
+		btnZone8.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
+		btnZone8.setBounds(38, 99, 29, 29);
+		btnZone8.setMargin(new Insets(2, 2, 2, 2));
+		contentPane.add(btnZone8);
+		
+		JButton btnZone9 = new JButton("9");
+		btnZone9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				btnZone9.setBackground(new Color(200,200,200));
+				zonesString += "9,";
+			}
+		});
+		btnZone9.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
+		btnZone9.setBounds(38, 71, 29, 29);
+		btnZone9.setMargin(new Insets(2, 2, 2, 2));
+		contentPane.add(btnZone9);
+		
+		JButton btnZone10 = new JButton("10");
+		btnZone10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnZone10.setBackground(new Color(200,200,200));
+				zonesString += "10,";
+			}
+		});
 		btnZone10.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
-		btnZone10.setBounds(38, 127, 29, 29);
+		btnZone10.setBounds(66, 155, 29, 29);
 		btnZone10.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnZone10);
 		
 		JButton btnZone11 = new JButton("11");
 		btnZone11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				btnZone11.setBackground(new Color(200,200,200));
 				zonesString += "11,";
 			}
 		});
@@ -208,61 +210,78 @@ public class Statistics extends JFrame {
 		btnZone11.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnZone11);
 		
-		JButton btnZone12 = new JButton("15");
+		JButton btnZone12 = new JButton("12");
 		btnZone12.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				zonesString += "15,";
+				btnZone12.setBackground(new Color(200,200,200));
+				zonesString += "12,";
 			}
 		});
 		btnZone12.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
-		btnZone12.setBounds(94, 127, 29, 29);
+		btnZone12.setBounds(66, 99, 29, 29);
 		btnZone12.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnZone12);
 		
-		JButton btnZone13 = new JButton("2");
+		JButton btnZone13 = new JButton("13");
 		btnZone13.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				zonesString += "2,";
+				btnZone13.setBackground(new Color(200,200,200));
+				zonesString += "13,";
 			}
 		});
 		btnZone13.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
-		btnZone13.setBounds(10, 155, 29, 29);
+		btnZone13.setBounds(66, 71, 29, 29);
 		btnZone13.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnZone13);
 		
-		JButton btnZone14 = new JButton("6");
+		JButton btnZone14 = new JButton("14");
 		btnZone14.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				zonesString += "6,";
-			}
-		});
-		btnZone14.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
-		btnZone14.setBounds(38, 155, 29, 29);
-		btnZone14.setMargin(new Insets(2, 2, 2, 2));
-		contentPane.add(btnZone14);
-		
-		JButton btnZone15 = new JButton("10");
-		btnZone15.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				zonesString += "10,";
-			}
-		});
-		btnZone15.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
-		btnZone15.setBounds(66, 155, 29, 29);
-		btnZone15.setMargin(new Insets(2, 2, 2, 2));
-		contentPane.add(btnZone15);
-		
-		JButton btnZone16 = new JButton("14");
-		btnZone16.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+				btnZone14.setBackground(new Color(200,200,200));
 				zonesString += "14,";
 			}
 		});
+		btnZone14.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
+		btnZone14.setBounds(94, 155, 29, 29);
+		btnZone14.setMargin(new Insets(2, 2, 2, 2));
+		contentPane.add(btnZone14);
+		
+		JButton btnZone15 = new JButton("15");
+		btnZone15.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnZone15.setBackground(new Color(200,200,200));
+				zonesString += "15,";
+			}
+		});
+		btnZone15.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
+		btnZone15.setBounds(94, 127, 29, 29);
+		btnZone15.setMargin(new Insets(2, 2, 2, 2));
+		contentPane.add(btnZone15);
+		
+		JButton btnZone16 = new JButton("16");
+		btnZone16.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnZone16.setBackground(new Color(200,200,200));
+				zonesString += "16,";
+			}
+		});
 		btnZone16.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
-		btnZone16.setBounds(94, 155, 29, 29);
+		btnZone16.setBounds(94, 99, 29, 29);
 		btnZone16.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnZone16);
 		
+		JButton btnZone17 = new JButton("17");
+		btnZone17.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnZone17.setBackground(new Color(200,200,200));
+				zonesString += "17,";
+			}
+		});
+		btnZone17.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
+		btnZone17.setBounds(94, 71, 29, 29);
+		btnZone17.setMargin(new Insets(2, 2, 2, 2));
+		contentPane.add(btnZone17);
+
 		dateInput0 = new JTextField();
 		dateInput0.setBounds(127, 176, 47, 20);
 		contentPane.add(dateInput0);
