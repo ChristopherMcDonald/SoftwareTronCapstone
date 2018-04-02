@@ -88,12 +88,23 @@ public class Statistics extends JFrame {
 		separator.setBounds(211, 84, 0, 143);
 		contentPane.add(separator);
 		
-
+		
 		JButton btnZone2 = new JButton("2");
 		btnZone2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnZone2.setBackground(new Color(200,200,200));
-				zonesString += "2,";
+			boolean selected = true;
+			int index;
+			public void actionPerformed(ActionEvent arg0) {	
+				if(selected) {
+					btnZone2.setBackground(new Color(200,200,200));
+					selected = false;
+					zonesString += "2,";
+				}
+				else {
+					btnZone2.setBackground(null);
+					selected = true;
+					index = zonesString.indexOf('2');
+					zonesString = zonesString.substring(0, index) + zonesString.substring(index+2);
+				}
 			}
 		});
 		btnZone2.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
@@ -103,9 +114,20 @@ public class Statistics extends JFrame {
 		
 		JButton btnZone3 = new JButton("3");
 		btnZone3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnZone3.setBackground(new Color(200,200,200));
-				zonesString += "3,";
+			boolean selected = true;
+			int index;
+			public void actionPerformed(ActionEvent arg0) {	
+				if(selected) {
+					btnZone3.setBackground(new Color(200,200,200));
+					selected = false;
+					zonesString += "3,";
+				}
+				else {
+					btnZone3.setBackground(null);
+					selected = true;
+					index = zonesString.indexOf('3');
+					zonesString = zonesString.substring(0, index) + zonesString.substring(index+2);
+				}
 			}
 		});
 		btnZone3.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
@@ -115,9 +137,20 @@ public class Statistics extends JFrame {
 		
 		JButton btnZone4 = new JButton("4");
 		btnZone4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnZone4.setBackground(new Color(200,200,200));
-				zonesString += "4,";
+			boolean selected = true;
+			int index;
+			public void actionPerformed(ActionEvent arg0) {	
+				if(selected) {
+					btnZone4.setBackground(new Color(200,200,200));
+					selected = false;
+					zonesString += "4,";
+				}
+				else {
+					btnZone4.setBackground(null);
+					selected = true;
+					index = zonesString.indexOf('4');
+					zonesString = zonesString.substring(0, index) + zonesString.substring(index+2);
+				}
 			}
 		});
 		btnZone4.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
@@ -127,9 +160,20 @@ public class Statistics extends JFrame {
 		
 		JButton btnZone5 = new JButton("5");
 		btnZone5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnZone5.setBackground(new Color(200,200,200));
-				zonesString += "5,";
+			boolean selected = true;
+			int index;
+			public void actionPerformed(ActionEvent arg0) {	
+				if(selected) {
+					btnZone5.setBackground(new Color(200,200,200));
+					selected = false;
+					zonesString += "5,";
+				}
+				else {
+					btnZone5.setBackground(null);
+					selected = true;
+					index = zonesString.indexOf('5');
+					zonesString = zonesString.substring(0, index) + zonesString.substring(index+2);
+				}
 			}
 		});
 		btnZone5.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
@@ -139,9 +183,20 @@ public class Statistics extends JFrame {
 		
 		JButton btnZone6 = new JButton("6");
 		btnZone6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnZone6.setBackground(new Color(200,200,200));
-				zonesString += "6,";
+			boolean selected = true;
+			int index;
+			public void actionPerformed(ActionEvent arg0) {	
+				if(selected) {
+					btnZone6.setBackground(new Color(200,200,200));
+					selected = false;
+					zonesString += "6,";
+				}
+				else {
+					btnZone6.setBackground(null);
+					selected = true;
+					index = zonesString.indexOf('6');
+					zonesString = zonesString.substring(0, index) + zonesString.substring(index+2);
+				}
 			}
 		});
 		btnZone6.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
@@ -151,9 +206,20 @@ public class Statistics extends JFrame {
 		
 		JButton btnZone7 = new JButton("7");
 		btnZone7.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnZone7.setBackground(new Color(200,200,200));
-				zonesString += "7,";
+			boolean selected = true;
+			int index;
+			public void actionPerformed(ActionEvent arg0) {	
+				if(selected) {
+					btnZone7.setBackground(new Color(200,200,200));
+					selected = false;
+					zonesString += "7,";
+				}
+				else {
+					btnZone7.setBackground(null);
+					selected = true;
+					index = zonesString.indexOf('7');
+					zonesString = zonesString.substring(0, index) + zonesString.substring(index+2);
+				}
 			}
 		});
 		btnZone7.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
@@ -163,9 +229,20 @@ public class Statistics extends JFrame {
 		
 		JButton btnZone8 = new JButton("8");
 		btnZone8.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnZone8.setBackground(new Color(200,200,200));
-				zonesString += "8,";
+			boolean selected = true;
+			int index;
+			public void actionPerformed(ActionEvent arg0) {	
+				if(selected) {
+					btnZone8.setBackground(new Color(200,200,200));
+					selected = false;
+					zonesString += "8,";
+				}
+				else {
+					btnZone8.setBackground(null);
+					selected = true;
+					index = zonesString.indexOf('8');
+					zonesString = zonesString.substring(0, index) + zonesString.substring(index+2);
+				}
 			}
 		});
 		btnZone8.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
@@ -175,10 +252,20 @@ public class Statistics extends JFrame {
 		
 		JButton btnZone9 = new JButton("9");
 		btnZone9.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-				btnZone9.setBackground(new Color(200,200,200));
-				zonesString += "9,";
+			boolean selected = true;
+			int index;
+			public void actionPerformed(ActionEvent arg0) {	
+				if(selected) {
+					btnZone9.setBackground(new Color(200,200,200));
+					selected = false;
+					zonesString += "9,";
+				}
+				else {
+					btnZone9.setBackground(null);
+					selected = true;
+					index = zonesString.indexOf('9');
+					zonesString = zonesString.substring(0, index) + zonesString.substring(index+2);
+				}
 			}
 		});
 		btnZone9.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
@@ -188,9 +275,20 @@ public class Statistics extends JFrame {
 		
 		JButton btnZone10 = new JButton("10");
 		btnZone10.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnZone10.setBackground(new Color(200,200,200));
-				zonesString += "10,";
+			boolean selected = true;
+			int index;
+			public void actionPerformed(ActionEvent arg0) {	
+				if(selected) {
+					btnZone10.setBackground(new Color(200,200,200));
+					selected = false;
+					zonesString += "10,";
+				}
+				else {
+					btnZone10.setBackground(null);
+					selected = true;
+					index = zonesString.indexOf("10");
+					zonesString = zonesString.substring(0, index) + zonesString.substring(index+3);
+				}
 			}
 		});
 		btnZone10.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
@@ -200,9 +298,20 @@ public class Statistics extends JFrame {
 		
 		JButton btnZone11 = new JButton("11");
 		btnZone11.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnZone11.setBackground(new Color(200,200,200));
-				zonesString += "11,";
+			boolean selected = true;
+			int index;
+			public void actionPerformed(ActionEvent arg0) {	
+				if(selected) {
+					btnZone11.setBackground(new Color(200,200,200));
+					selected = false;
+					zonesString += "11,";
+				}
+				else {
+					btnZone11.setBackground(null);
+					selected = true;
+					index = zonesString.indexOf("11");
+					zonesString = zonesString.substring(0, index) + zonesString.substring(index+3);
+				}
 			}
 		});
 		btnZone11.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
@@ -212,9 +321,20 @@ public class Statistics extends JFrame {
 		
 		JButton btnZone12 = new JButton("12");
 		btnZone12.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnZone12.setBackground(new Color(200,200,200));
-				zonesString += "12,";
+			boolean selected = true;
+			int index;
+			public void actionPerformed(ActionEvent arg0) {	
+				if(selected) {
+					btnZone12.setBackground(new Color(200,200,200));
+					selected = false;
+					zonesString += "12,";
+				}
+				else {
+					btnZone12.setBackground(null);
+					selected = true;
+					index = zonesString.indexOf("12");
+					zonesString = zonesString.substring(0, index) + zonesString.substring(index+3);
+				}
 			}
 		});
 		btnZone12.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
@@ -224,9 +344,20 @@ public class Statistics extends JFrame {
 		
 		JButton btnZone13 = new JButton("13");
 		btnZone13.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnZone13.setBackground(new Color(200,200,200));
-				zonesString += "13,";
+			boolean selected = true;
+			int index;
+			public void actionPerformed(ActionEvent arg0) {	
+				if(selected) {
+					btnZone13.setBackground(new Color(200,200,200));
+					selected = false;
+					zonesString += "13,";
+				}
+				else {
+					btnZone13.setBackground(null);
+					selected = true;
+					index = zonesString.indexOf("13");
+					zonesString = zonesString.substring(0, index) + zonesString.substring(index+3);
+				}
 			}
 		});
 		btnZone13.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
@@ -236,9 +367,20 @@ public class Statistics extends JFrame {
 		
 		JButton btnZone14 = new JButton("14");
 		btnZone14.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnZone14.setBackground(new Color(200,200,200));
-				zonesString += "14,";
+			boolean selected = true;
+			int index;
+			public void actionPerformed(ActionEvent arg0) {	
+				if(selected) {
+					btnZone14.setBackground(new Color(200,200,200));
+					selected = false;
+					zonesString += "14,";
+				}
+				else {
+					btnZone14.setBackground(null);
+					selected = true;
+					index = zonesString.indexOf("14");
+					zonesString = zonesString.substring(0, index) + zonesString.substring(index+3);
+				}
 			}
 		});
 		btnZone14.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
@@ -248,9 +390,20 @@ public class Statistics extends JFrame {
 		
 		JButton btnZone15 = new JButton("15");
 		btnZone15.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnZone15.setBackground(new Color(200,200,200));
-				zonesString += "15,";
+			boolean selected = true;
+			int index;
+			public void actionPerformed(ActionEvent arg0) {	
+				if(selected) {
+					btnZone15.setBackground(new Color(200,200,200));
+					selected = false;
+					zonesString += "15,";
+				}
+				else {
+					btnZone15.setBackground(null);
+					selected = true;
+					index = zonesString.indexOf("15");
+					zonesString = zonesString.substring(0, index) + zonesString.substring(index+3);
+				}
 			}
 		});
 		btnZone15.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
@@ -260,9 +413,20 @@ public class Statistics extends JFrame {
 		
 		JButton btnZone16 = new JButton("16");
 		btnZone16.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnZone16.setBackground(new Color(200,200,200));
-				zonesString += "16,";
+			boolean selected = true;
+			int index;
+			public void actionPerformed(ActionEvent arg0) {	
+				if(selected) {
+					btnZone16.setBackground(new Color(200,200,200));
+					selected = false;
+					zonesString += "16,";
+				}
+				else {
+					btnZone16.setBackground(null);
+					selected = true;
+					index = zonesString.indexOf("16");
+					zonesString = zonesString.substring(0, index) + zonesString.substring(index+3);
+				}
 			}
 		});
 		btnZone16.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
@@ -272,9 +436,20 @@ public class Statistics extends JFrame {
 		
 		JButton btnZone17 = new JButton("17");
 		btnZone17.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnZone17.setBackground(new Color(200,200,200));
-				zonesString += "17,";
+			boolean selected = true;
+			int index;
+			public void actionPerformed(ActionEvent arg0) {	
+				if(selected) {
+					btnZone17.setBackground(new Color(200,200,200));
+					selected = false;
+					zonesString += "17,";
+				}
+				else {
+					btnZone17.setBackground(null);
+					selected = true;
+					index = zonesString.indexOf("17");
+					zonesString = zonesString.substring(0, index) + zonesString.substring(index+3);
+				}
 			}
 		});
 		btnZone17.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 13));
