@@ -35,14 +35,14 @@ public class Statistics extends JFrame {
 	private JPanel contentPane;
 	private JTextField dateInput0;
 	private JTextField dateInputF;
-	private JTextField velocityInput0;
-	private JTextField velocityInputF;
-	private JTextField angleInput0;
-	private JTextField angleInputF;
+	private JTextField rollInput0;
+	private JTextField rollInputF;
+	private JTextField pitchInput0;
+	private JTextField pitchInputF;
 	String zonesString = "";
 	int zoneOutput;
-	double angleOutput;
-	double velocityOutput;
+	double pitchOutput;
+	double rollOutput;
 	boolean returnOutput;
 	Date dateOutput;
 	private JTable statsTable;
@@ -467,25 +467,25 @@ public class Statistics extends JFrame {
 		contentPane.add(dateInputF);
 		dateInputF.setColumns(10);
 		
-		velocityInput0 = new JTextField();
-		velocityInput0.setBounds(127, 84, 29, 20);
-		contentPane.add(velocityInput0);
-		velocityInput0.setColumns(10);
+		rollInput0 = new JTextField();
+		rollInput0.setBounds(127, 84, 29, 20);
+		contentPane.add(rollInput0);
+		rollInput0.setColumns(10);
 		
-		velocityInputF = new JTextField();
-		velocityInputF.setBounds(189, 84, 29, 20);
-		contentPane.add(velocityInputF);
-		velocityInputF.setColumns(10);
+		rollInputF = new JTextField();
+		rollInputF.setBounds(189, 84, 29, 20);
+		contentPane.add(rollInputF);
+		rollInputF.setColumns(10);
 		
-		angleInput0 = new JTextField();
-		angleInput0.setBounds(127, 131, 29, 20);
-		contentPane.add(angleInput0);
-		angleInput0.setColumns(10);
+		pitchInput0 = new JTextField();
+		pitchInput0.setBounds(127, 131, 29, 20);
+		contentPane.add(pitchInput0);
+		pitchInput0.setColumns(10);
 		
-		angleInputF = new JTextField();
-		angleInputF.setBounds(189, 131, 29, 20);
-		contentPane.add(angleInputF);
-		angleInputF.setColumns(10);
+		pitchInputF = new JTextField();
+		pitchInputF.setBounds(189, 131, 29, 20);
+		contentPane.add(pitchInputF);
+		pitchInputF.setColumns(10);
 		
 		JLabel dash0 = new JLabel("-");
 		dash0.setHorizontalAlignment(SwingConstants.CENTER);
@@ -502,20 +502,20 @@ public class Statistics extends JFrame {
 		dash2.setBounds(170, 134, 9, 14);
 		contentPane.add(dash2);
 		
-		JLabel velocityLbl = new JLabel("Velocity Range");
-		velocityLbl.setBounds(127, 71, 113, 14);
-		contentPane.add(velocityLbl);
+		JLabel rollLbl = new JLabel("Roll Range");
+		rollLbl.setBounds(127, 71, 113, 14);
+		contentPane.add(rollLbl);
 		
-		JLabel angleLbl = new JLabel("Angle Range");
-		angleLbl.setBounds(127, 114, 124, 14);
-		contentPane.add(angleLbl);
+		JLabel pitchLbl = new JLabel("Pitch Range");
+		pitchLbl.setBounds(127, 114, 124, 14);
+		contentPane.add(pitchLbl);
 		
 		JLabel dateLbl = new JLabel("Date Range (YYYY-MM-DD)");
 		dateLbl.setBounds(127, 162, 190, 14);
 		
 		contentPane.add(dateLbl);
 		
-		String[] cols = {"Zone", "Velocity" , "Angle", "Returned?","Date"};
+		String[] cols = {"Zone", "Roll" , "Pitch", "Returned?","Date"};
 	    DefaultTableModel model = new DefaultTableModel(cols,0);
 	    statsTable = new JTable(model);
 	    statsTable.setBounds(281, 57, 363, 170);
@@ -530,10 +530,10 @@ public class Statistics extends JFrame {
 						//Login.user_id,
 						35,
 						zonesString,
-						velocityInput0.getText(), 
-						velocityInputF.getText(),
-						angleInput0.getText(),
-						angleInputF.getText(),
+						rollInput0.getText(), 
+						rollInputF.getText(),
+						pitchInput0.getText(),
+						pitchInputF.getText(),
 						dateInput0.getText(),
 						dateInputF.getText()
 				};
@@ -543,7 +543,7 @@ public class Statistics extends JFrame {
 					}
 				}
 				String[] statsTypes = new String[] {
-						"Integer", "String", "Integer", "Integer", "Integer", "Integer", "String", "String"
+						"Integer", "String", "String", "String", "String", "String", "String", "String"
 				};
 			
 				try {
@@ -552,11 +552,11 @@ public class Statistics extends JFrame {
 					//loop through get results
 					while(rs.next()) {
 						zoneOutput = rs.getInt("zone_id");
-						velocityOutput = rs.getDouble("velocity");
-						angleOutput = rs.getDouble("angle");
+						rollOutput = rs.getDouble("roll");
+						pitchOutput = rs.getDouble("pitch");
 						returnOutput = rs.getBoolean("returned");
 						dateOutput = rs.getDate("time_stamp");
-						Object[] row = {zoneOutput, velocityOutput,angleOutput,returnOutput,dateOutput};
+						Object[] row = {zoneOutput, rollOutput,pitchOutput,returnOutput,dateOutput};
 				    	model.addRow(row);
 						
 					}
@@ -595,7 +595,5 @@ public class Statistics extends JFrame {
 		
 		JMenuItem mntmStatistics = new JMenuItem("Statistics");
 		menuBar.add(mntmStatistics);
-		
-		
 	}
 }
