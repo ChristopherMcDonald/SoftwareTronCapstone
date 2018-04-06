@@ -77,6 +77,7 @@
    Feb 13, 2018 & 1.2 & UI and DS Tests & Sharon Platkin \\ \hline
    Feb 15, 2018 & 1.3 & SM, SMC, SS, CV and SR & Christopher McDonald \& Harit Patel \& Sam Hamel \\ \hline
    Feb 16-17, 2018 & 1.4 & Executive Summary and Testing & Christopher McDonald \& Sharon Platkin  \\ \hline
+   Apr 6, 2018 & 2.0 & Added integration tests and fixed grammar & Christopher McDonald  \\ \hline
    \end{tabularx}
    \caption{Revision History}
 \end{figure}
@@ -116,26 +117,35 @@ The following terms and definitions will be used throughout this document:
 
 \section{Testing Philosophy}
 \subsection{Approach}
-The approach to testing will be to separate the subsystems as much as possible and test them accordingly. Every subsystem will be unit tested in JUnit or PyUnit if implemented in Java or Python respectively. The shooting mechanism will be tested manually to ensure it is functional properly. Stubbing a service or dependancy can be done to return consistent, reliable and predictable results. For instance, the SmartServe system may use a stub for the CV subsystem to return a predefined sequence of pass/fail flags.
+The approach to testing will be to separate the subsystems as much as possible and test them accordingly. Every subsystem will be unit tested in JUnit or PyUnit if implemented in Java or Python respectively. The shooting mechanism will be tested manually to ensure it is functional properly. Stubbing a service or dependancy can be done to return consistent, reliable and predictable results. For instance, the SmartServe system may use a stub for the CV subsystem to return a predefined sequence of pass/fail flags. \\
+When preforming the tests, every test will be run three times unless specified otherwise. The test must be satisfied for 2 or 3 of the attempts to be determined successful.
 \subsection{Schedule}
 \begin{table}[H]
 \centering
-\caption{Testing Schedule}
 \label{my-label}
 \begin{tabular}{|l|l|l|}
 \hline
-\multicolumn{3}{|c|}{\textbf{Testing Schedule}}  \\ \hline
 \textbf{Task} & \textbf{Date} & \textbf{Notes} \\ \hline
 Complete Test Cases & February 13, 2018 & N/A \\ \hline
 Run Tests (First) & February 16, 2018 & N/A \\ \hline
 Edit Test Cases & March 9, 2018 & N/A \\ \hline
 Run Tests (Second) & March 16, 2018 & N/A \\ \hline
 \end{tabular}
+\caption{Testing Schedule}
 \end{table}
 \subsection{Environment}
 The SmartServe system uses heavy computation power due to the CV and ML models, so the system which runs the test will have the following details. The system will be a 15-inch Macbook Pro (Late 2016) running macOS High Sierra (10.13). The Macbook Pro has an 2.6 GHz Intel Core i7 CPU and a Radeon Pro 450 2GB GPU. The location will be in Thode Makerspace where the CV will be adjusted as necessary for those lighting conditions.
 \subsection{Code Reviews}
 As per the Development Plan document, the team will be using branches on GitHub to control additions into the source code. The list of Pull Requests can be found here \href{https://github.com/ChristopherMcDonald/SoftwareTronCapstone/pulls?utf8=?&q=is\%3Apr}{here}. Although it is impossible to test whether it is better that they were made as opposed to all members contributing to the same branch, few commits have had to be made directly to the develop branch, and 0 to the master branch, which indicates the system is working as expected.
+\subsection{Setup Instructions}
+The following items should be preformed in succession to set up the system for testing.
+\begin{itemize}
+\item Data Storage: delete the \textit{smartserve} database if it exists, and dump the only SQL file in \texttt{src/Database} into a new \textit{smartserve} database
+\item Arduino: add the .cpp and .h files for \texttt{AutomaticPanning}, \texttt{AutomaticRoll}, \texttt{Pitch} and \texttt{FeedAndShoot}, then load the FeedPitchAndShoot sketch onto the top Arduino, and PanAndRoll sketch onto the bottom Arduino
+\item ComputerVision: connect the webcam over USB, and run \texttt{src/ComputerVision/cv.py} using Python 3.6
+\item ShotRecommender: run the \texttt{src/ShotRecommender/shotRecommender.py} using Python 3.6
+\item SmartServe: replace the port strings in the \texttt{Controller.java} with the associated ports using the Arduino desktop application for both ardunios
+\end{itemize}
 \section{Test Cases}
 \subsection{Electromechanical Subsystems}
 \subsubsection{Shooting Mechanism}
@@ -1089,6 +1099,73 @@ As per the Development Plan document, the team will be using branches on GitHub 
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ArduinoController Test - Shoot}
+\end{table}
+\end{center}
+
+\subsection{Hardware Integration Testing}
+\subsubsection{Shooting Testing}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: HI1	&Status: ???\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{Shooting Test - Shot 1}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The system can fetch a shot with ID: 48 and shoot it}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: N/A}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The system is in the home position.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: one-shot mode set at ID 48.}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: The shot hits zone 17, with a pitch of 30 and roll angle of 0.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ???}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{Shooting Test - Shot 1}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: HI2	&Status: ???\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{Shooting Test - Shot 2}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The system can fetch a shot with ID: 91 and shoot it}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: N/A}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The system is in the home position.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: one-shot mode set at ID 91.}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: The shot hits zone 12, with a pitch of 10 and roll angle of 90.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ???}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{Shooting Test - Shot 2}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: HI3	&Status: ???\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{Shooting Test - Consecutive Shots}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The system can shoot two shots consecutively with IDs 148 and 193.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: N/A}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The system is in the home position.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: one-shot mode set at ID 148 and then 193.}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: The shot hits zone 5, with a pitch of 10 and roll angle of 180, which is followed by another shot that hits zone 2 with a pitch of 0 and roll angle of 270. }	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ???}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{Shooting Test - Consecutive Shots}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|l r|}\hline&\\[-2mm]
+	Test ID: HI4	&Status: ???\\[-3mm]
+	\multicolumn{2}{|c|}{\textbf{\large{Shooting Test - Repeatability}}}\\&\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Description: The system can shoot three shots consecutively with IDs 148, 193 and 148.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The same zone is hit for the first and third shot, at the same pitch and roll angles.}\\[1mm]\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The system is in the home position.}\\[4mm]
+	\multicolumn{2}{|p{\textwidth}|}{Input: one-shot mode set at ID 148, 193 and then 148.}\\[2mm]\hline
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: the first and third shot should be identical}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ???}\\\hline&\\[-3mm]
+	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
+\end{tabular}
+\caption{Shooting Test - Repeatability}
 \end{table}
 \end{center}
 
