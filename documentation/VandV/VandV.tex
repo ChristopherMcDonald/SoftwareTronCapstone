@@ -13,7 +13,7 @@
     citecolor=black,
     filecolor=blue,
     linkcolor=black,
-    urlcolor=black
+    urlcolor=blue
 }
 
 
@@ -92,7 +92,7 @@ SmartServe is an autonomous table tennis training system for table tennis player
 The project started at the beginning of the Fall 2017 academic term and will conclude at the end of the Winter 2018 term. In addition, the core project team consists of final year Software and Mechatronics Engineering students who are enrolled in the MECHTRON 4TB6/SFWRENG 4G06 capstone project course.
 \subsection{Document Overview}
 This document will provide details of all formal testing methods and results performed on the SmartServe system. The first part of testing includes detailing how it will be performed and the details of the system on which it is run. This matters due to details which can affect the testing outcomes like operating system, lighting or performance of hardware. The schedule for the test will also be detailed alongside the major deliverables to have clear outcomes to explain to stakeholders. The testing will be preformed off of the \textit{master} branch as it stands during the beginning of the testing phase. \\ \\
-The actual testing will then be detailed as test cases based on what subsystem they are testing. As needed, the communication will be tested in between the subsystems to ensure communication is working as intended. Lastly, a test case-requirement matrix will be provided which maps what test cases test which requirement. This will give the reader a simple way to check if a requirement is fully satisfied.
+The actual testing will then be detailed as test cases based on what subsystem they are testing. As needed, the communication will be tested in between the subsystems to ensure communication is working as intended. Lastly, a test case-requirement matrix will be provided which maps what test cases test which requirement. This will give the reader a simple way to check if a requirement is fully satisfied. Supporting documents include the requirements which can be found \href{https://github.com/ChristopherMcDonald/SoftwareTronCapstone/blob/develop/documentation/Requirements/Requirements.pdf}{here}.
 \subsection{Naming Conventions and Terminology}
 \label{sec:definitions}
 The following terms and definitions will be used throughout this document:
@@ -118,7 +118,7 @@ The following terms and definitions will be used throughout this document:
 \section{Testing Philosophy}
 \subsection{Approach}
 The approach to testing will be to separate the subsystems as much as possible and test them accordingly. Every subsystem will be unit tested in JUnit or PyUnit if implemented in Java or Python respectively. The shooting mechanism will be tested manually to ensure it is functioning properly. Stubbing a service or dependancy can be done to return consistent, reliable and predictable results. For instance, the SmartServe system may use a stub for the CV subsystem to return a predefined sequence of pass/fail flags. \\
-When preforming the tests, every test will be run three times unless specified otherwise. The test must be satisfied at least two of the three attempts to be determined successful.
+When preforming the tests, every test will be run three times unless specified otherwise. The test must be satisfied at least two of the three attempts to be determined successful. 
 \subsection{Schedule}
 \begin{table}[H]
 \centering
