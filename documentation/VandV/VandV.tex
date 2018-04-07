@@ -117,8 +117,8 @@ The following terms and definitions will be used throughout this document:
 
 \section{Testing Philosophy}
 \subsection{Approach}
-The approach to testing will be to separate the subsystems as much as possible and test them accordingly. Every subsystem will be unit tested in JUnit or PyUnit if implemented in Java or Python respectively. The shooting mechanism will be tested manually to ensure it is functional properly. Stubbing a service or dependancy can be done to return consistent, reliable and predictable results. For instance, the SmartServe system may use a stub for the CV subsystem to return a predefined sequence of pass/fail flags. \\
-When preforming the tests, every test will be run three times unless specified otherwise. The test must be satisfied for 2 or 3 of the attempts to be determined successful.
+The approach to testing will be to separate the subsystems as much as possible and test them accordingly. Every subsystem will be unit tested in JUnit or PyUnit if implemented in Java or Python respectively. The shooting mechanism will be tested manually to ensure it is functioning properly. Stubbing a service or dependancy can be done to return consistent, reliable and predictable results. For instance, the SmartServe system may use a stub for the CV subsystem to return a predefined sequence of pass/fail flags. \\
+When preforming the tests, every test will be run three times unless specified otherwise. The test must be satisfied at least two of the three attempts to be determined successful.
 \subsection{Schedule}
 \begin{table}[H]
 \centering
