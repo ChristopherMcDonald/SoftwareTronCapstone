@@ -118,7 +118,7 @@ The following terms and definitions will be used throughout this document:
 \section{Testing Philosophy}
 \subsection{Approach}
 The approach to testing will be to separate the subsystems as much as possible and test them accordingly. Every subsystem will be unit tested in JUnit or PyUnit if implemented in Java or Python respectively. The shooting mechanism will be tested manually to ensure it is functioning properly. Stubbing a service or dependancy can be done to return consistent, reliable and predictable results. For instance, the SmartServe system may use a stub for the CV subsystem to return a predefined sequence of pass/fail flags. \\
-When preforming the tests, every test will be run three times unless specified otherwise. The test must be satisfied at least two of the three attempts to be determined successful. 
+When performing the tests, every test will be run three times unless specified otherwise. The test must be satisfied at least two of the three attempts to be determined successful. 
 \subsection{Schedule}
 \begin{table}[H]
 \centering
@@ -1130,7 +1130,7 @@ The following items should be preformed in succession to set up the system for t
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: N/A}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The system is in the home position.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: one-shot mode set at ID 48.}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: The shot hits zone 17, with a pitch of 30 and roll angle of 0.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ???}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: The shot hits zone 17, with a pitch of 20 and roll angle of 0.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: ???}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{Shooting Test - Shot 1}
@@ -1355,6 +1355,21 @@ HI3&&&&&&&&&&&&&&X&X&&& \\ \hline
 HI4&&&&&&&&&&&&&&X&X&&& \\ \hline
 \end{tabular}
 \end{table}
+
+\section{Appendix}
+\begin{figure}[H]
+\begin{center}
+\begin{tabular}{ | m{2cm} | m{2cm}| m{3cm} |m{3cm} | } 
+ \hline
+   \textbf{Shot ID} & \textbf{Zone ID} & \textbf{Roll (degrees, x-axis)} & \textbf{Pitch (degrees, y-axis )} \\ \hline
+   48 & 17 & 0 & 20  \\ \hline 
+   91 & 12 & 90 & 10  \\ \hline 
+   148 & 5 & 180 & 10 \\ \hline 
+   193 & 2 & 270 & 0 \\ \hline 
+\end{tabular}
+   \caption{Shot details for tested shots}
+\end{center}
+\end{figure}
 
 \end{document}
 
