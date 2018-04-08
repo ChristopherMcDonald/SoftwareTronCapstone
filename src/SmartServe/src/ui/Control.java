@@ -156,5 +156,14 @@ public class Control extends JFrame {
 		});
 		menuBar.add(mntmStatistics);
 		
+		JMenuItem mntmTests = new JMenuItem("Testing");
+		mntmTests.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				View.controlf.setVisible(false);
+				View.testf.setVisible(true);
+			}
+		});
+		menuBar.add(mntmTests);
+		
 	}
 }
