@@ -39,7 +39,7 @@ def getNextShot():
 	if conn.is_connected():
 		print('Connected to MySQL database');
 		values = callProc(conn, shotId);
-		outputString = 'X='+str(values[1])+',Y='+str(values[2])+',V='+str(values[4])+',W='+str(values[3])+',I='+str(shotId)
+		outputString = 'X='+str(values[1])+',Y='+str(values[2])+',P='+str(values[4])+',R='+str(values[3])+',I='+str(shotId)
 	print(outputString)
 
 	conn.close()
@@ -66,8 +66,5 @@ def callProc(conn, id):
 	#cur.execute( "SELECT user_name, password FROM user" )
 	#for user_name, password in cur.fetchall() :
 	#	return (user_name + password)
-
-
-
 
 app.run(host="localhost", port=8080)

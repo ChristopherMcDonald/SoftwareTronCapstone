@@ -6,6 +6,7 @@ import java.net.ServerSocket;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Random;
 
 //import adt.ShootingParameters;
@@ -27,6 +28,7 @@ import ui.Login;
 public class Controller implements Runnable {
 	
 	int userId;
+	int[] shotIds;
 	
 	public Controller(int uID){
 		userId = uID;
@@ -37,7 +39,12 @@ public class Controller implements Runnable {
 		try {
 			if(boot()) {
 				begin();
-				shoot();
+				if(shotIds != null) {
+					for(int id : shotIds)
+						shoot(id);
+				} else {
+					shoot();
+				}
 			}
 		} catch (NotConnectedException | IOException e) {
 			e.printStackTrace();
@@ -111,7 +118,6 @@ public class Controller implements Runnable {
 	
 	/**
 	 * starts the training loop
-	 * @param m - Mode to train in
 	 * @throws NotConnectedException 
 	 * @throws InterruptedException 
 	 * @throws IOException 
@@ -122,24 +128,50 @@ public class Controller implements Runnable {
 		while(this.state != RunState.TERMINATE) {
 			System.out.println("Getting Next Shot...");
 			Shot s = ShotRecommendationController.getRecommendation(m);
-			Random r = new Random();
-			int[] pitches = new int[] {10}; // TODO integrate pitch into possible shot list
-			int pitch = pitches[r.nextInt(pitches.length)];
-			ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, pitch);
+			ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, s.pitch);
 			//harit to change velocity -> ifs and elses
-			s.velocity = getVelocityTemp(s.yLoc);
+			double vel = getVelocityTemp(s.yLoc);
 			
-			shooter.adjustSpeed(s.velocity);
+			shooter.adjustSpeed(vel);
 			pan.shoot(sd.getYaw(), s.rollAngle);
-			shooter.shoot(pitch);
+			shooter.shoot(s.pitch);
 			
 			boolean returned = cvController.start();
 			System.out.println(returned ? "Ball Returned" : "Ball Not Returned");
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-			// TODO fill below with userID
-			Object[] myReturns = new Object[]{25, s.shotId, returned ? 1 : 0, sdf.format(new Date(System.currentTimeMillis()))};
+			Object[] myReturns = new Object[]{userId, s.shotId, returned ? 1 : 0, sdf.format(new Date(System.currentTimeMillis()))};
 			String[] returnTypes = new String[] {"Integer", "Integer", "Integer", "Date"};
 			SQLConnector.save("returned", myReturns, returnTypes);
+			while(this.state == RunState.PAUSED) {
+				System.out.println("System is Paused...");
+				Thread.sleep(10);
+			}
+		}
+	}
+	
+	/**
+	 * starts the training loop
+	 * @param id - the shot to shoot
+	 * @throws NotConnectedException 
+	 * @throws InterruptedException 
+	 * @throws IOException 
+	 * @throws SQLException 
+	 */
+	@SuppressWarnings("unused")
+	private void shoot(int id) throws NotConnectedException, IOException, InterruptedException, SQLException {
+		while(this.state != RunState.TERMINATE) {
+			System.out.println("Getting Next Shot...");
+			Shot s = ShotRecommendationController.getRecommendation(id);
+			ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, s.pitch);
+			//harit to change velocity -> ifs and elses
+			double vel = getVelocityTemp(s.yLoc);
+			
+			shooter.adjustSpeed(vel);
+			pan.shoot(sd.getYaw(), s.rollAngle);
+			shooter.shoot(s.pitch);
+			
+			boolean returned = cvController.start();
+			System.out.println(returned ? "Ball Returned" : "Ball Not Returned");
 			while(this.state == RunState.PAUSED) {
 				System.out.println("System is Paused...");
 				Thread.sleep(10);
@@ -178,4 +210,6 @@ public class Controller implements Runnable {
 	public void terminate() { this.state = RunState.TERMINATE; }
 
 	public void setMode(Mode m) { this.m = m; }
+	
+	public void setShots(int... id) { this.shotIds = id; }
 }
