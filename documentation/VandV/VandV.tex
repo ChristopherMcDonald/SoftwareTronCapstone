@@ -83,7 +83,8 @@
 \end{figure}
 \newpage
 \section{Executive Summary of Testing}
-The testing completed on February 17th, 2018 has yielded 44 passes, 10 failures, and 3 pending. Pending tests have not been executed due to lack of relevnce at this stage. The failures in their entirety can be attributed to features that are in progress or that have not yet been implemented including; automated roll and pitch as well as the machine learning model. Given that the failure rate is roughly 17\%, the team does not recommend operation of the project at this time. \\ \\
+% 62 tests
+The testing completed on April 8th, 2018 has yielded ? passes, ? failures, and ? pending. Pending tests have not been executed due to lack of relevance at this stage. The failures in their entirety can be attributed to features that are in progress or that have not yet been implemented including; automated roll and pitch as well as the machine learning model. Given that the failure rate is roughly 17\%, the team does not recommend operation of the project at this time. \\ \\
 An important note to consider is that most errors are localized in the Shooting Mechanism and ShotRecommender subsystems. The team would also like to expand testing further to have higher coverage of the system and increase their confidence in its reliability. \\ \\
 The team will continue developing the system until March 9th where tests will be redefined and added to satisfy the team's ideals. After which, the second round of testing will commence.
 \section{Introduction}
@@ -128,8 +129,8 @@ When performing the tests, every test will be run three times unless specified o
 \textbf{Task} & \textbf{Date} & \textbf{Notes} \\ \hline
 Complete Test Cases & February 13, 2018 & N/A \\ \hline
 Run Tests (First) & February 16, 2018 & N/A \\ \hline
-Edit Test Cases & March 9, 2018 & N/A \\ \hline
-Run Tests (Second) & March 16, 2018 & N/A \\ \hline
+Edit Test Cases & March 23, 2018 & N/A \\ \hline
+Run Tests (Second) & April 8, 2018 & N/A \\ \hline
 \end{tabular}
 \caption{Testing Schedule}
 \end{table}
@@ -186,7 +187,7 @@ The following items should be preformed in succession to set up the system for t
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SMC3	&Status: FAIL\\[-3mm]
+	Test ID: SMC3	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{Four Position Roll Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The system rotates the Shooting Control to one of the four default positions.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: Rotates to the indicated position.}\\[1mm]\hline&\\[-3mm]
@@ -194,7 +195,7 @@ The following items should be preformed in succession to set up the system for t
 }\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Integer between 0-3 indicating the desired default position.}\\[2mm]\hline
 	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: The shooting control rotates to the requested default position.
-}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: Not implemented}\\\hline&\\[-3mm]
+}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{Four Position Roll Test}
@@ -204,14 +205,14 @@ The following items should be preformed in succession to set up the system for t
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SMC4	&Status: FAIL\\[-3mm]
+	Test ID: SMC4	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{Adjustable Pitch Control Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The pitch control angles the shooting mechanism at the desired pitch level.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: Rotate to the desired pitch level with a tolerance of 5 degrees.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: N/A}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Integer between -15 deg to 45 deg indicating pitch angle.}\\[2mm]\hline
 	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Rotate to the desired pitch level with a tolerance of 5 degrees.
-}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: Not implemented}\\\hline&\\[-3mm]
+}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{Adjustable Pitch Control Test}
@@ -238,14 +239,14 @@ The following items should be preformed in succession to set up the system for t
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SMC6	&Status: PENDING\\[-3mm]
+	Test ID: SMC6	&Status: FAIL\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{Shut Off Power Switch Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: Switch on the machine cuts power to the system in case of an emergent situation}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: Systems shuts off when flicking the switch}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: Machine must be on}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
 	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Power shuts off when the switch is used
-}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: N/A}\\\hline&\\[-3mm]
+}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: No switch implemented}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: System is off}\\\hline
 \end{tabular}
 \caption{Shut Off Power Switch Test}
@@ -485,13 +486,13 @@ The following items should be preformed in succession to set up the system for t
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SR4	&Status: FAIL\\[-3mm]
+	Test ID: SR4	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommender Training Shot Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommender receives a request for a shot.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The service generates a shot.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The service is running on port 8080.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: an HTTP request with ``Train" as the mode parameter}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: a random shot which adheres to requirements}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: Model not found}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: a random shot which adheres to requirements}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ShotRecommender Training Shot Test}
@@ -501,13 +502,13 @@ The following items should be preformed in succession to set up the system for t
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SR5	&Status: FAIL\\[-3mm]
+	Test ID: SR5	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommender UpdateModel Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommender receives a status update for a shot.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The service changes the model in response.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The service is running on port 8080.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: an HTTP request with the shot id and returned boolean as parameters.}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: the model is updated}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: Model not found}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: the model is updated}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ShotRecommender UpdateModel Test}
@@ -634,13 +635,13 @@ The following items should be preformed in succession to set up the system for t
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: DS5	&Status: PENDING\\[-3mm]
+	Test ID: DS5	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{Data Storage Statistics Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: Data Storage provides return rate given a time frame}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: Returns return information given a range of time stamp inputs }\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The SQL database is running on port 3306.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Time stamp range }\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Return stats within the inputed range}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: N/A}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Return stats within the inputed range}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{Data Storage Statistics Test}
@@ -701,30 +702,13 @@ The following items should be preformed in succession to set up the system for t
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: UI4	&Status: FAIL \\[-3mm]
+	Test ID: UI4	&Status: PASS \\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{User Interface Sign up Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: When signup button is pressed, user is added with given parameters}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: User inputs are sent to Data Storage}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: Application UI is running}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: User name and user password}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Return user parameters}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: Page not implemented}\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
-\end{tabular}
-\caption{User Interface Sign up Test}
-\end{table}
-\end{center}
-
-
-\begin{center}
-\begin{table}[H]
-\begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: UI4	&Status: FAIL \\[-3mm]
-	\multicolumn{2}{|c|}{\textbf{\large{User Interface Sign up Test}}}\\&\\\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Description: When signup button is pressed, user is added with given parameters}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: User inputs are sent to Data Storage}\\[1mm]\hline&\\[-3mm]
-	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: Application UI is running}\\[4mm]
-	\multicolumn{2}{|p{\textwidth}|}{Input: User name and user password}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Return user parameters}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: Page not implemented}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Return user parameters}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{User Interface Sign up Test}
@@ -734,13 +718,13 @@ The following items should be preformed in succession to set up the system for t
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: UI5	&Status: FAIL \\[-3mm]
+	Test ID: UI5	&Status: PASS \\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{User Interface Log In Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: When login button is pressed, user is authenticated}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: User inputs are sent to Data Storage}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: Application UI is running}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: User name and user password}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Return true if password matches user name}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: Page not implemented}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Return true if password matches user name}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{User Interface Log In Test}
@@ -750,13 +734,13 @@ The following items should be preformed in succession to set up the system for t
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: UI6	&Status: PENDING \\[-3mm]
+	Test ID: UI6	&Status: PASS \\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{User Interface Statistics Test}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: Statistics show on page}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: Relevant page shows when statistics tab is pressed}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: Application UI is running}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: N/A}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Statistics page displays}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: N/A}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Statistics page displays}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{User Interface Statistics Test}
@@ -816,13 +800,13 @@ The following items should be preformed in succession to set up the system for t
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SS4	&Status: FAIL\\[-3mm]
+	Test ID: SS4	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommendation Request Shot - Train}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommendation class will call the \textit{getRecommendation} method with Training mode as a parameter.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The method should a shot of the form ``X=A.BC,Y=A.BC,V=A.BC,W=A.BC" where the values are within the requirements of the system.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The ShotRecommendation server is running on port 8080.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: Mode.Train}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: A valid shot, in string form.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: Model not found}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: A valid shot, in string form.}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ShotRecommendation Request Shot - Train}
@@ -848,13 +832,13 @@ The following items should be preformed in succession to set up the system for t
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SS6	&Status: FAIL\\[-3mm]
+	Test ID: SS6	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommendation Model Update}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommendation class will call the \textit{updateModel} method.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The ShotRecommender does not throw an error and the model is updated.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The ShotRecommendation server is running on port 8080.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: a previously request shot and false}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: N/A}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: Model not found}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: N/A}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ShotRecommendation Model Update}
@@ -864,13 +848,13 @@ The following items should be preformed in succession to set up the system for t
 \begin{center}
 \begin{table}[H]
 \begin{tabular}{|l r|}\hline&\\[-2mm]
-	Test ID: SS7	&Status: FAIL\\[-3mm]
+	Test ID: SS7	&Status: PASS\\[-3mm]
 	\multicolumn{2}{|c|}{\textbf{\large{ShotRecommendation Model Update}}}\\&\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Description: The ShotRecommendation class will call the \textit{updateModel} method.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pass/Fail Condition: The ShotRecommender does not throw an error and the model is updated.}\\[1mm]\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Pre-Conditions: The ShotRecommendation server is running on port 8080.}\\[4mm]
 	\multicolumn{2}{|p{\textwidth}|}{Input: a previously request shot and true}\\[2mm]\hline
-	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: N/A}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: Model not found}\\\hline&\\[-3mm]
+	\multicolumn{1}{|p{0.49\textwidth}}{Expected Results: Model reflects updated information}	&\multicolumn{1}{|p{0.45\textwidth}|}{Actual Results: As expected}\\\hline&\\[-3mm]
 	\multicolumn{2}{|p{\textwidth}|}{Post-Conditions: N/A}\\\hline
 \end{tabular}
 \caption{ShotRecommendation Request Shot - One-shot}
