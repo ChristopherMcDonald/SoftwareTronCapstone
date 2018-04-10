@@ -52,6 +52,11 @@ socketIn.listen(5);                     # enables server to accept incoming
 pts = deque(maxlen = args["buffer"])
 counter = 0
 (dX, dY) = (0,0)
+cap = cv2.VideoCapture(1);
+resizeX = 0.42;
+resizeY = 0.42;
+width  = cap.get(cv2.CAP_PROP_FRAME_WIDTH)*resizeX;
+height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)*resizeY;
 vs= WebcamVideoStream(src=1).start()
 fps = FPS().start();
 backsub = cv2.createBackgroundSubtractorMOG2();
@@ -84,16 +89,29 @@ def checkUp(deque):
         if(d<-30):
             return True
     return False
+
+def validateBounce(deque):
+    prev = deque[0];
+    for i in range(1, len(deque)):
+        # if current.height > prev.height
+        if (deque[i][1] > prev[1]):
+            print("found hit at..."); # DEBUG MODE
+            print((deque[i][0] + prev[0]) / 2); # DEBUG MODE
+            return ( (deque[i][0] + prev[0]) / 2) >= (width / 2.0);
+        prev = deque[1];
+
+    return ((deque[len(deque)][0] - deque[len(deque) - 1][0]) / 2.0) >= (width / 2.0);
+
 while(True):
 
     if(fsm == 0):                           # waiting on connection
 
-        # conn, addr = socketIn.accept();     # loop will freeze on this command, runs when SmartServe
-        # print("Got connection from", addr); # sends a request
-        # msg = conn.recv(1024);              # parses msg... could be "TEST", "DETECT"
+        conn, addr = socketIn.accept();     # loop will freeze on this command, runs when SmartServe
+        print("Got connection from", addr); # sends a request
+        msg = conn.recv(1024);              # parses msg... could be "TEST", "DETECT"
 
         # DEBUGGING
-        msg = b'DETECT'
+        # msg = b'DETECT'
         # print(msg);
 
         if("TEST" in msg.decode("UTF8")):
@@ -125,8 +143,8 @@ while(True):
 
         else:
             # grab the current frame
-            frame = vs.read()
-            frame = cv2.resize(frame,(0,0), fx = 0.2, fy = 0.2)
+            frame = vs.read();
+            frame = cv2.resize(frame,(0,0), fx = resizeX, fy = resizeY);
             # resize the frame, blur it, and convert it to the HSV
             # color space
             hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
@@ -137,7 +155,7 @@ while(True):
             mask = cv2.inRange(hsv, Orange1Lower, Orange1Upper)
             thresh = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             blurred = cv2.GaussianBlur(thresh, (9, 9), 0)
-            
+
             mask = backsub.apply(frame);
 
             # mask = cv2.erode(mask, None, iterations=2)
@@ -147,9 +165,6 @@ while(True):
             circles = cv2.HoughCircles(blurred, cv2.HOUGH_GRADIENT, 1, 2000, 25, 250, 10, 10)  # ret=[[Xpos,Ypos,Radius],...]
 
             if(circles is not None):
-                ##mask = cv2.inRange(hsv, OrangeLower, OrangeUpper)
-                ##mask = cv2.erode(mask, None, iterations=2)
-                ##mask = cv2.dilate(mask, None, iterations=2)
                 circles = np.uint16(np.around(circles))
 
                 for i in circles[0, :]:
@@ -177,7 +192,7 @@ while(True):
                     center = (int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"]))
 
                 # only proceed if the radius meets a minimum size
-                if radius > 2:
+                if radius > 2 and counter > 5:
                     # draw the circle and centroid on the frame,
                     # then update the list of tracked points
                     cv2.circle(frame, (int(x), int(y)), int(radius),
@@ -215,7 +230,7 @@ while(True):
             if counter >= 10 and len(pts) >= 11:
                 if(fsm == 1):       # check if active
                     print("in state 1- found ball")
-                    if checkLeft(pts):
+                    if checkRight(pts):
                         fsm = 2;
                         borderColour = YELLOW;
                 elif(fsm == 2):     # check if descending
@@ -226,12 +241,16 @@ while(True):
                 elif(fsm == 3):     # if ascending, return GOOD
                     print("in state 3 - going down")
                     if checkUp(pts):
-                        
+
                         fps.stop()
                         print("[INFO] elasped time: {:.2f}".format(fps.elapsed()))
                         print("[INFO] approx. FPS: {:.2f}".format(fps.fps()))
+
+                        if(validateBounce(pts)):
+                            print("valid hit");
+                        else:
+                            print("invalid hit");
                         # socket for outgoing messages
-                        print("hit")
                         socketOut = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
                         socketOut.connect((HOST, PORT + 1));
 
@@ -239,18 +258,23 @@ while(True):
                         fsm = 0;    # HIT!
                         pts = deque(maxlen = args["buffer"])
 
-            border = cv2.copyMakeBorder(
-                frame,
-                top = BORDERWIDTH,
-                bottom = BORDERWIDTH,
-                left = BORDERWIDTH,
-                right = BORDERWIDTH,
-                borderType = cv2.BORDER_CONSTANT,
-                value = borderColour)
-            cv2.imshow('border', border)
+
+            # show the frame to our screen
+            # cv2.imshow("Frame", mask)
+            # cv2.line(frame, (int(width/2), 0), (int(width/2), int(height)), BLUE, 5);
+            # border = cv2.copyMakeBorder(
+            #     frame,
+            #     top = BORDERWIDTH,
+            #     bottom = BORDERWIDTH,
+            #     left = BORDERWIDTH,
+            #     right = BORDERWIDTH,
+            #     borderType = cv2.BORDER_CONSTANT,
+            #     value = borderColour)
+            # cv2.imshow('border', border)
+           ## cv2.imshow("shape",thresh)
             key = cv2.waitKey(1) & 0xFF
             counter += 1
-            
+
             fps.update()
 
             # if the 'q' key is pressed, stop the l3oop
