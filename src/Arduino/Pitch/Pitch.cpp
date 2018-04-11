@@ -4,7 +4,7 @@
 
 #define MaxPitchLimit 100
 #define MinPitchLimit 30
-#define HomeLocation 70.0
+#define HomeLocation 50.0
 
 Servo myservo; // create servo object to control a servo
 
@@ -20,13 +20,23 @@ bool Pitch::move_to_location(double desired_location)
 {
 	if (MinPitchLimit <= desired_location && desired_location <= MaxPitchLimit)
 	{
-		myservo.write(desired_location); // move the servo to the desired location
-		set_current_location(desired_location);
+        while (current_location != desired_location) {
+            if (current_location > desired_location){
+                current_location-=1;
+            }
+            else{
+                current_location+=1;
+            }
+            myservo.write(current_location);
+            delay(30);
+        }
+
+        set_current_location(desired_location);
 		return true;
-	}	
+	}
 	else
 	{
-		Serial.println("Target Location Out of Reach");
+//        Serial.println("Target Location Out of Reach");
     	return false;
 	}
 }
@@ -41,9 +51,9 @@ bool Pitch::home_assembly()
 	}
 	else
 	{
-		Serial.println("Unable to Home the Servo Motor");
+//        Serial.println("Unable to Home the Servo Motor");
 		return false;
-	}	
+	}
 }
 
 double Pitch::get_current_location()
