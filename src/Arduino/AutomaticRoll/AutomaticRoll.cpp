@@ -5,14 +5,14 @@
 #define Roll_Motor_Clock 4
 #define Roll_Optical_Sensor 3 // HIGH = Triggered
 #define Stepper_Motor_Delay 1
-#define location_limit_max 178 // You dont want the system to exceed 178 deg, if exceeded the limit switch would be interrupted at 180 deg
+#define location_limit_max 270 // You dont want the system to exceed 178 deg, if exceeded the limit switch would be interrupted at 180 deg
 #define location_limit_min 0
 
 int ErrorFlag = 1; // 1 = Error, 0 = No Error
 
 AutomaticRoll::AutomaticRoll() // Constructor
 {
-  // Serial.begin(9600); 
+  // Serial.begin(9600);
 
   target_location = 0.0;
   location_diff = 0.0;
@@ -27,18 +27,18 @@ AutomaticRoll::AutomaticRoll() // Constructor
   // Initialize Roll Opto Sensor as INPUT
   pinMode(Roll_Optical_Sensor, INPUT);
 
-  Serial.println("\nAutomatic Roll Initialized");
-  Serial.println("");
+//  Serial.println("\nAutomatic Roll Initialized");
+//  Serial.println("");
 }
 
 bool AutomaticRoll::home_assembly(String motor_direction)
 {
-  Serial.println("Moving Roll to the Home Position");
-  for (int i = 0; i < 720; i++) // 360 / 0.5
+  //Serial.println("Moving Roll to the Home Position");
+  for (int i = 0; i < 1200; i++) // 360 / 0.5
   {
     if (digitalRead(Roll_Optical_Sensor) == HIGH) // Sensor Triggered
     {
-      Serial.println("Roll = Home Position");
+      //Serial.println("Roll = Home Position");
       current_location = 0.00; // Set Current Position to 0.00 as HOME
       return true;
     }
@@ -46,40 +46,40 @@ bool AutomaticRoll::home_assembly(String motor_direction)
     {
       if (motor_direction == "CCW")
       {
-        move_by_degrees("CCW", 0.5); // Move the Roll with a precision of 0.5 degree
+        move_by_degrees("CCW", 0.3); // Move the Roll with a precision of 0.5 degree
       }
       else
       {
-        move_by_degrees("CW", 0.5); // Move the Roll with a precision of 0.5 degree
+        move_by_degrees("CW", 0.3); // Move the Roll with a precision of 0.5 degree
       }
     }
   }
-  Serial.println("ERROR: Roll moved from 0 - 360 degrees CW, Home Position not reached. Try cleaning the optical sensor or perhaps go in CCW position.");
+  //Serial.println("ERROR: Roll moved from 0 - 360 degrees CW, Home Position not reached. Try cleaning the optical sensor or perhaps go in CCW position.");
   return false;
 }
 
 void AutomaticRoll::move_by_degrees(String motor_direction, double degrees_to_move)
 {
   /* Convert degrees to the # of steps */
-  int steps_to_take = (degrees_to_move / 0.05);
-  Serial.print("Roll Steps > ");
-  Serial.print(steps_to_take);
-  Serial.println("");
+  int steps_to_take = (degrees_to_move / 0.3);
+//  Serial.print("Roll Steps > ");
+//  Serial.print(steps_to_take);
+//  Serial.println("");
 
   /* Set Direction PIN on Roll */
   if (motor_direction == "CW")
   {
     digitalWrite(Roll_Motor_Direction, LOW); // LOW = Clock Wise direction
-    Serial.println("Roll Motor Direction -> Clockwise");
+//    Serial.println("Roll Motor Direction -> Clockwise");
   }
   else if (motor_direction == "CCW")
   {
     digitalWrite(Roll_Motor_Direction, HIGH); // HIGH = Counter Clock Wise direction
-    Serial.println("Roll Motor Direction -> Counter Clockwise");
+//    Serial.println("Roll Motor Direction -> Counter Clockwise");
   }
   else
   {
-    Serial.println("ERROR: motor direction not specified properly...setting Roll to CW");
+//    Serial.println("ERROR: motor direction not specified properly...setting Roll to CW");
     motor_direction = "CW";
     digitalWrite(Roll_Motor_Direction, LOW); // LOW = Clock Wise direction
   }
@@ -95,11 +95,11 @@ void AutomaticRoll::move_by_degrees(String motor_direction, double degrees_to_mo
     // Update current position
     if (motor_direction == "CW") // Subtraction from current pos if direction is CW
     {
-      set_current_location(get_current_location() - 0.05); // Current Position is in degrees
+      set_current_location(get_current_location() + 0.3); // Current Position is in degrees
     }
     else if (motor_direction == "CCW") // Addition from current pos if direction is CCW
     {
-      set_current_location(get_current_location() + 0.05); // Update Current Position is in degrees
+      set_current_location(get_current_location() - 0.3); // Update Current Position is in degrees
     }
   }
 }
@@ -112,19 +112,19 @@ bool AutomaticRoll::move_to_location(double desired_location)
     location_diff = target_location - current_location;
     if (location_diff >= 0)
     {
-      move_by_degrees("CCW", location_diff);
+      move_by_degrees("CW", location_diff);
       return true;
     }
     else
     {
       location_diff = -1*location_diff;
-      move_by_degrees("CW", location_diff);
+      move_by_degrees("CCW", location_diff);
       return true;
     }
    }
   else
   {
-    Serial.println("Target Location Out of Reach");
+//    Serial.println("Target Location Out of Reach");
     return false;
   }
 }
