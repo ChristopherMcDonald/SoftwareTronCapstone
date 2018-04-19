@@ -105,7 +105,6 @@ public class Login extends JFrame {
 						else {
 							
 							errorMsg.setText("Incorrect Email or Password");
-							//System.out.println("error");
 						}
 					} catch (SQLException e) {
 						e.printStackTrace();
