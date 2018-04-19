@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Insets;
+import java.awt.SystemColor;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -29,24 +30,35 @@ import java.util.Arrays;
 public class Statistics extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTextField dateInput0;
-	private JTextField dateInputF;
-	private JTextField rollInput0;
-	private JTextField rollInputF;
-	private JTextField pitchInput0;
-	private JTextField pitchInputF;
-	String zonesString = "";
+	private static JPanel contentPane;
+
+	private static JTextField dateInput0;
+	private static JTextField dateInputF;
+	private static JTextField rollInput0;
+	private static JTextField rollInputF;
+	private static JTextField pitchInput0;
+	private static JTextField pitchInputF;
+	private static String zonesString = "";
+	private static JLabel lblNoResults = new JLabel("No Results Found!");
+
 	int zoneOutput;
 	double pitchOutput;
 	double rollOutput;
 	boolean returnOutput;
 	Date dateOutput;
-	private JTable statsTable;
-	
+	private static Object[][] outputData; //row, values
+
+	static int rowCount;
+	private static String[] cols = {"Zone", "Roll" , "Pitch", "Returned?","Date"};
+	private static DefaultTableModel model = new DefaultTableModel(cols,0);;
+	private static JTable statsTable = new JTable(model);;
+
+	static boolean graphView = false;
+	static boolean chartView = true;
+
 
 	/**
 	 * Launch the application.
@@ -68,32 +80,189 @@ public class Statistics extends JFrame {
 	 * Create the frame.
 	 */
 	public Statistics() {
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 200, 670, 297);
-		
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		
+
+		createLbls();
+		createZoneBtns();
+		createTextInputs();
+		setJMenuBar(createMenu());
+
+		JButton btnGetStats = new JButton("Get Statistics");
+		btnGetStats.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Object[] statsObj = new Object[]{
+						//View.getUserid(),
+						35,
+						zonesString,
+						rollInput0.getText(),
+						rollInputF.getText(),
+						pitchInput0.getText(),
+						pitchInputF.getText(),
+						dateInput0.getText(),
+						dateInputF.getText()
+				};
+				for(int i=0; i < statsObj.length; i++) {
+					if(statsObj[i].equals("")) {
+						statsObj[i] = null;
+					}
+				}
+				String[] statsTypes = new String[] {
+						"Integer", "String", "String", "String", "String", "String", "String", "String"
+				};
+				try {
+					ResultSet rs = SQLConnector.query("statistics", statsObj, statsTypes);
+					if(rs.last()) {
+						rowCount = rs.getRow();
+						lblNoResults.setVisible(false);
+						rs.beforeFirst();
+						outputData = new Object[rowCount][5];
+
+						int counter = 0;
+						//loop through get results
+						while(rs.next()) {
+							zoneOutput = rs.getInt("zone_id");
+							rollOutput = rs.getDouble("roll");
+							pitchOutput = rs.getDouble("pitch");
+							returnOutput = rs.getBoolean("returned");
+							dateOutput = rs.getDate("time_stamp");
+							outputData[counter][0] = zoneOutput;
+							outputData[counter][1] = rollOutput;
+							outputData[counter][2] = pitchOutput;
+							outputData[counter][3] = returnOutput;
+							outputData[counter][4] = dateOutput;
+							counter++;
+						}
+						if(chartView) {
+							showChart();
+
+						}
+						else {
+							showGraph();
+						}
+					}
+					else {
+						outputData = new Object[rowCount][5];
+						noResults();
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+
+			}
+		});
+		btnGetStats.setBounds(66, 204, 125, 23);
+		contentPane.add(btnGetStats);
+
+		JButton btnChartView = new JButton("Chart View");
+		btnChartView.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(rowCount!=0) {
+					graphView = false;
+					chartView = true;
+					showChart();
+				}
+				else {
+					noResults();
+				}
+			}
+		});
+		btnChartView.setBounds(555, 33, 89, 23);
+		btnChartView.setMargin(new Insets(2, 2, 2, 2));
+		contentPane.add(btnChartView);
+
+		JButton btnGraphView = new JButton("Graph View");
+		btnGraphView.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(rowCount!=0) {
+					graphView = true;
+					chartView = false;
+					showGraph();
+				}
+				else {
+					noResults();
+				}
+			}
+		});
+		btnGraphView.setBounds(467, 33, 89, 23);
+		btnGraphView.setMargin(new Insets(2, 2, 2, 2));
+		contentPane.add(btnGraphView);
+
+	}
+
+
+	public static void showChart() {
+			model.setRowCount(0);
+		    model.addRow(cols);
+		    statsTable.setBounds(281, 57, 363, 170);
+			contentPane.add(statsTable);
+			for(int i=0; i < outputData.length; i++) {
+				model.addRow(outputData[i]);
+			}
+
+	    	statsTable.setVisible(true);
+	}
+
+	public static void showGraph() {
+    	//TODO graph
+	}
+
+	public static void noResults() {
+		lblNoResults.setFont(new Font("Century", Font.PLAIN, 20));
+		lblNoResults.setBounds(421, 130, 200, 23);
+		contentPane.add(lblNoResults);
+		lblNoResults.setVisible(true);
+		statsTable.setVisible(false);
+	}
+
+	public static void createLbls() {
 		JLabel lblStats = new JLabel("Statistics");
 		lblStats.setHorizontalAlignment(SwingConstants.CENTER);
 		lblStats.setFont(new Font("Century", Font.PLAIN, 35));
 		lblStats.setBounds(241, 0, 153, 69);
 		contentPane.add(lblStats);
-		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(211, 84, 0, 143);
-		contentPane.add(separator);
-		
-		
+
+
+		JLabel dash0 = new JLabel("-");
+		dash0.setHorizontalAlignment(SwingConstants.CENTER);
+		dash0.setBounds(184, 179, 9, 14);
+		contentPane.add(dash0);
+
+		JLabel dash1 = new JLabel("-");
+		dash1.setHorizontalAlignment(SwingConstants.CENTER);
+		dash1.setBounds(166, 86, 9, 14);
+		contentPane.add(dash1);
+
+		JLabel dash2 = new JLabel("-");
+		dash2.setHorizontalAlignment(SwingConstants.CENTER);
+		dash2.setBounds(170, 134, 9, 14);
+		contentPane.add(dash2);
+
+		JLabel rollLbl = new JLabel("Roll Range");
+		rollLbl.setBounds(127, 71, 113, 14);
+		contentPane.add(rollLbl);
+
+		JLabel pitchLbl = new JLabel("Pitch Range");
+		pitchLbl.setBounds(127, 114, 124, 14);
+		contentPane.add(pitchLbl);
+
+		JLabel dateLbl = new JLabel("Date Range (YYYY-MM-DD)");
+		dateLbl.setBounds(127, 162, 190, 14);
+		contentPane.add(dateLbl);
+	}
+
+	public static void createZoneBtns() {
 		JButton btnZone2 = new JButton("2");
 		btnZone2.addActionListener(new ActionListener() {
 			boolean selected = true;
 			int index;
-			public void actionPerformed(ActionEvent arg0) {	
+			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
 					btnZone2.setBackground(new Color(200,200,200));
 					selected = false;
@@ -111,12 +280,12 @@ public class Statistics extends JFrame {
 		btnZone2.setBounds(10, 155, 29, 29);
 		btnZone2.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnZone2);
-		
+
 		JButton btnZone3 = new JButton("3");
 		btnZone3.addActionListener(new ActionListener() {
 			boolean selected = true;
 			int index;
-			public void actionPerformed(ActionEvent arg0) {	
+			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
 					btnZone3.setBackground(new Color(200,200,200));
 					selected = false;
@@ -134,12 +303,12 @@ public class Statistics extends JFrame {
 		btnZone3.setBounds(10, 127, 29, 29);
 		btnZone3.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnZone3);
-		
+
 		JButton btnZone4 = new JButton("4");
 		btnZone4.addActionListener(new ActionListener() {
 			boolean selected = true;
 			int index;
-			public void actionPerformed(ActionEvent arg0) {	
+			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
 					btnZone4.setBackground(new Color(200,200,200));
 					selected = false;
@@ -157,12 +326,12 @@ public class Statistics extends JFrame {
 		btnZone4.setBounds(10, 99, 29, 29);
 		btnZone4.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnZone4);
-		
+
 		JButton btnZone5 = new JButton("5");
 		btnZone5.addActionListener(new ActionListener() {
 			boolean selected = true;
 			int index;
-			public void actionPerformed(ActionEvent arg0) {	
+			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
 					btnZone5.setBackground(new Color(200,200,200));
 					selected = false;
@@ -180,12 +349,12 @@ public class Statistics extends JFrame {
 		btnZone5.setBounds(10, 71, 29, 29);
 		btnZone5.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnZone5);
-		
+
 		JButton btnZone6 = new JButton("6");
 		btnZone6.addActionListener(new ActionListener() {
 			boolean selected = true;
 			int index;
-			public void actionPerformed(ActionEvent arg0) {	
+			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
 					btnZone6.setBackground(new Color(200,200,200));
 					selected = false;
@@ -203,12 +372,12 @@ public class Statistics extends JFrame {
 		btnZone6.setBounds(38, 155, 29, 29);
 		btnZone6.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnZone6);
-		
+
 		JButton btnZone7 = new JButton("7");
 		btnZone7.addActionListener(new ActionListener() {
 			boolean selected = true;
 			int index;
-			public void actionPerformed(ActionEvent arg0) {	
+			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
 					btnZone7.setBackground(new Color(200,200,200));
 					selected = false;
@@ -226,12 +395,12 @@ public class Statistics extends JFrame {
 		btnZone7.setBounds(38, 127, 29, 29);
 		btnZone7.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnZone7);
-		
+
 		JButton btnZone8 = new JButton("8");
 		btnZone8.addActionListener(new ActionListener() {
 			boolean selected = true;
 			int index;
-			public void actionPerformed(ActionEvent arg0) {	
+			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
 					btnZone8.setBackground(new Color(200,200,200));
 					selected = false;
@@ -249,12 +418,12 @@ public class Statistics extends JFrame {
 		btnZone8.setBounds(38, 99, 29, 29);
 		btnZone8.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnZone8);
-		
+
 		JButton btnZone9 = new JButton("9");
 		btnZone9.addActionListener(new ActionListener() {
 			boolean selected = true;
 			int index;
-			public void actionPerformed(ActionEvent arg0) {	
+			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
 					btnZone9.setBackground(new Color(200,200,200));
 					selected = false;
@@ -272,12 +441,12 @@ public class Statistics extends JFrame {
 		btnZone9.setBounds(38, 71, 29, 29);
 		btnZone9.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnZone9);
-		
+
 		JButton btnZone10 = new JButton("10");
 		btnZone10.addActionListener(new ActionListener() {
 			boolean selected = true;
 			int index;
-			public void actionPerformed(ActionEvent arg0) {	
+			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
 					btnZone10.setBackground(new Color(200,200,200));
 					selected = false;
@@ -295,12 +464,12 @@ public class Statistics extends JFrame {
 		btnZone10.setBounds(66, 155, 29, 29);
 		btnZone10.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnZone10);
-		
+
 		JButton btnZone11 = new JButton("11");
 		btnZone11.addActionListener(new ActionListener() {
 			boolean selected = true;
 			int index;
-			public void actionPerformed(ActionEvent arg0) {	
+			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
 					btnZone11.setBackground(new Color(200,200,200));
 					selected = false;
@@ -318,12 +487,12 @@ public class Statistics extends JFrame {
 		btnZone11.setBounds(66, 127, 29, 29);
 		btnZone11.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnZone11);
-		
+
 		JButton btnZone12 = new JButton("12");
 		btnZone12.addActionListener(new ActionListener() {
 			boolean selected = true;
 			int index;
-			public void actionPerformed(ActionEvent arg0) {	
+			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
 					btnZone12.setBackground(new Color(200,200,200));
 					selected = false;
@@ -341,12 +510,12 @@ public class Statistics extends JFrame {
 		btnZone12.setBounds(66, 99, 29, 29);
 		btnZone12.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnZone12);
-		
+
 		JButton btnZone13 = new JButton("13");
 		btnZone13.addActionListener(new ActionListener() {
 			boolean selected = true;
 			int index;
-			public void actionPerformed(ActionEvent arg0) {	
+			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
 					btnZone13.setBackground(new Color(200,200,200));
 					selected = false;
@@ -364,12 +533,12 @@ public class Statistics extends JFrame {
 		btnZone13.setBounds(66, 71, 29, 29);
 		btnZone13.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnZone13);
-		
+
 		JButton btnZone14 = new JButton("14");
 		btnZone14.addActionListener(new ActionListener() {
 			boolean selected = true;
 			int index;
-			public void actionPerformed(ActionEvent arg0) {	
+			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
 					btnZone14.setBackground(new Color(200,200,200));
 					selected = false;
@@ -387,12 +556,12 @@ public class Statistics extends JFrame {
 		btnZone14.setBounds(94, 155, 29, 29);
 		btnZone14.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnZone14);
-		
+
 		JButton btnZone15 = new JButton("15");
 		btnZone15.addActionListener(new ActionListener() {
 			boolean selected = true;
 			int index;
-			public void actionPerformed(ActionEvent arg0) {	
+			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
 					btnZone15.setBackground(new Color(200,200,200));
 					selected = false;
@@ -410,12 +579,12 @@ public class Statistics extends JFrame {
 		btnZone15.setBounds(94, 127, 29, 29);
 		btnZone15.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnZone15);
-		
+
 		JButton btnZone16 = new JButton("16");
 		btnZone16.addActionListener(new ActionListener() {
 			boolean selected = true;
 			int index;
-			public void actionPerformed(ActionEvent arg0) {	
+			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
 					btnZone16.setBackground(new Color(200,200,200));
 					selected = false;
@@ -433,12 +602,12 @@ public class Statistics extends JFrame {
 		btnZone16.setBounds(94, 99, 29, 29);
 		btnZone16.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnZone16);
-		
+
 		JButton btnZone17 = new JButton("17");
 		btnZone17.addActionListener(new ActionListener() {
 			boolean selected = true;
 			int index;
-			public void actionPerformed(ActionEvent arg0) {	
+			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
 					btnZone17.setBackground(new Color(200,200,200));
 					selected = false;
@@ -457,124 +626,42 @@ public class Statistics extends JFrame {
 		btnZone17.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnZone17);
 
+	}
+
+	public static void createTextInputs() {
 		dateInput0 = new JTextField();
 		dateInput0.setBounds(127, 176, 47, 20);
 		contentPane.add(dateInput0);
 		dateInput0.setColumns(10);
-		
+
 		dateInputF = new JTextField();
 		dateInputF.setBounds(200, 176, 47, 20);
 		contentPane.add(dateInputF);
 		dateInputF.setColumns(10);
-		
+
 		rollInput0 = new JTextField();
 		rollInput0.setBounds(127, 84, 29, 20);
 		contentPane.add(rollInput0);
 		rollInput0.setColumns(10);
-		
+
 		rollInputF = new JTextField();
 		rollInputF.setBounds(189, 84, 29, 20);
 		contentPane.add(rollInputF);
 		rollInputF.setColumns(10);
-		
+
 		pitchInput0 = new JTextField();
 		pitchInput0.setBounds(127, 131, 29, 20);
 		contentPane.add(pitchInput0);
 		pitchInput0.setColumns(10);
-		
+
 		pitchInputF = new JTextField();
 		pitchInputF.setBounds(189, 131, 29, 20);
 		contentPane.add(pitchInputF);
 		pitchInputF.setColumns(10);
-		
-		JLabel dash0 = new JLabel("-");
-		dash0.setHorizontalAlignment(SwingConstants.CENTER);
-		dash0.setBounds(184, 179, 9, 14);
-		contentPane.add(dash0);
-		
-		JLabel dash1 = new JLabel("-");
-		dash1.setHorizontalAlignment(SwingConstants.CENTER);
-		dash1.setBounds(166, 86, 9, 14);
-		contentPane.add(dash1);
-		
-		JLabel dash2 = new JLabel("-");
-		dash2.setHorizontalAlignment(SwingConstants.CENTER);
-		dash2.setBounds(170, 134, 9, 14);
-		contentPane.add(dash2);
-		
-		JLabel rollLbl = new JLabel("Roll Range");
-		rollLbl.setBounds(127, 71, 113, 14);
-		contentPane.add(rollLbl);
-		
-		JLabel pitchLbl = new JLabel("Pitch Range");
-		pitchLbl.setBounds(127, 114, 124, 14);
-		contentPane.add(pitchLbl);
-		
-		JLabel dateLbl = new JLabel("Date Range (YYYY-MM-DD)");
-		dateLbl.setBounds(127, 162, 190, 14);
-		
-		contentPane.add(dateLbl);
-		
-		String[] cols = {"Zone", "Roll" , "Pitch", "Returned?","Date"};
-	    DefaultTableModel model = new DefaultTableModel(cols,0);
-	    statsTable = new JTable(model);
-	    statsTable.setBounds(281, 57, 363, 170);
-		contentPane.add(statsTable);
-		
-		JButton btnNewButton = new JButton("Get Statistics");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				model.setRowCount(0);
-			    model.addRow(cols);
-				Object[] statsObj = new Object[]{
-						//Login.user_id,
-						35,
-						zonesString,
-						rollInput0.getText(), 
-						rollInputF.getText(),
-						pitchInput0.getText(),
-						pitchInputF.getText(),
-						dateInput0.getText(),
-						dateInputF.getText()
-				};
-				for(int i=0; i < statsObj.length; i++) {
-					if(statsObj[i].equals("")) {
-						statsObj[i] = null;
-					}
-				}
-				String[] statsTypes = new String[] {
-						"Integer", "String", "String", "String", "String", "String", "String", "String"
-				};
-			
-				try {
-					ResultSet rs = SQLConnector.query("statistics", statsObj, statsTypes);
-					
-					//loop through get results
-					while(rs.next()) {
-						zoneOutput = rs.getInt("zone_id");
-						rollOutput = rs.getDouble("roll");
-						pitchOutput = rs.getDouble("pitch");
-						returnOutput = rs.getBoolean("returned");
-						dateOutput = rs.getDate("time_stamp");
-						Object[] row = {zoneOutput, rollOutput,pitchOutput,returnOutput,dateOutput};
-				    	model.addRow(row);
-						
-					}
-					
-
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				
-			    
-			}
-		});
-		btnNewButton.setBounds(66, 204, 125, 23);
-		contentPane.add(btnNewButton); 
-        
+	}
+	public static JMenuBar createMenu() {
 		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
+
 		JMenuItem mntmProfile = new JMenuItem("Profile");
 		mntmProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -583,7 +670,7 @@ public class Statistics extends JFrame {
 			}
 		});
 		menuBar.add(mntmProfile);
-		
+
 		JMenuItem mntmControl = new JMenuItem("Control");
 		mntmControl.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -592,10 +679,11 @@ public class Statistics extends JFrame {
 			}
 		});
 		menuBar.add(mntmControl);
-		
+
 		JMenuItem mntmStatistics = new JMenuItem("Statistics");
+		mntmStatistics.setBackground(SystemColor.activeCaption);
 		menuBar.add(mntmStatistics);
-		
+
 		JMenuItem mntmTests = new JMenuItem("Testing");
 		mntmTests.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -604,5 +692,7 @@ public class Statistics extends JFrame {
 			}
 		});
 		menuBar.add(mntmTests);
+
+        return menuBar;
 	}
 }
