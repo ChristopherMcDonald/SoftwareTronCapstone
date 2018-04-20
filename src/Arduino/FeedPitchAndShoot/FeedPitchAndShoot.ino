@@ -26,7 +26,7 @@ void loop() {
         if(type == "V") {
             myfeedandshoot->set_dcspeed(val);
         } else { // type == "P"
-            mypitch->move_to_location(val);
+            mypitch->move_to_location(65.0 - val);
             myfeedandshoot->move_by_steps(515);
         }
     }

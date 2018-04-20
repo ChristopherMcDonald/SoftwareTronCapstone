@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -26,6 +27,22 @@ public class Tests extends JFrame {
 
 	private JPanel contentPane;
 	private Controller control;
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Tests frame = new Tests();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	public Tests() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

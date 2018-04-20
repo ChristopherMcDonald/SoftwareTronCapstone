@@ -4,6 +4,17 @@ import errors.NotConnectedException;
 
 public class PitchAndShootArduinoController extends ArduinoController {
 	
+	public static void main(String[] args) throws NotConnectedException, InterruptedException {
+		PitchAndShootArduinoController shooter = new PitchAndShootArduinoController();
+		if(!shooter.test("cu.usbmodem14441", 9600)) {
+			System.out.println("NOT Connected to Shooter");
+		} else {
+			System.out.println("Connected to Shooter");
+		}
+		
+		shooter.adjustSpeed(70.0f);
+	}
+	
 	/**
 	 * instructs Arduino to shoot a ball at a given speed, must be done after shoot(ShotDetail)
 	 * @param speed in m/s

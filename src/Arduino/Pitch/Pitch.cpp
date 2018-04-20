@@ -4,7 +4,7 @@
 
 #define MaxPitchLimit 100
 #define MinPitchLimit 30
-#define HomeLocation 50.0
+#define HomeLocation 65.0
 
 Servo myservo; // create servo object to control a servo
 

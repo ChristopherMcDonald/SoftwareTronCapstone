@@ -34,6 +34,7 @@ AutomaticRoll::AutomaticRoll() // Constructor
 bool AutomaticRoll::home_assembly(String motor_direction)
 {
   //Serial.println("Moving Roll to the Home Position");
+  move_by_degrees("CW", 2.1); // jitter to fix homing problem
   for (int i = 0; i < 1200; i++) // 360 / 0.5
   {
     if (digitalRead(Roll_Optical_Sensor) == HIGH) // Sensor Triggered
