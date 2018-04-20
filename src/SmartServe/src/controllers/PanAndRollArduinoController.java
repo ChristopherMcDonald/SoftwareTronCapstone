@@ -7,6 +7,19 @@ import errors.NotConnectedException;
 
 public class PanAndRollArduinoController extends ArduinoController {
 	
+	public static void main(String[] args) throws NotConnectedException, InterruptedException {
+		PanAndRollArduinoController pan = new PanAndRollArduinoController();
+		if(!pan.test("cu.usbserial-A700fk4c", 19200)) {
+			System.out.println("NOT Connected to Panning");
+		} else {
+			System.out.println("Connected to Panning");
+		}
+		
+		pan.shoot(90.0f, 90.0f);
+		
+		Thread.sleep(10000);
+	}
+	
 	/**
 	 * instructs Arduino to shoot at a certain pitch and yaw and angularVelocity
 	 * @param pitch

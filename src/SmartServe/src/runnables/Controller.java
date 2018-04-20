@@ -71,8 +71,12 @@ public class Controller implements Runnable {
 
 	private CVConnector cvController;
 	private static final int CV_PORT = 8013;
-
 	private static final int SQL_PORT = 3306;
+	private static final String PAN_PORT = "cu.usbserial-A700fk4c";
+	private static final String SHOOT_PORT = "cu.usbmodem14141";
+	private static final int PAN_SERIAL = 19200;
+	private static final int SHOOT_SERIAL = 9600;
+	
 
 	/**
 	 * initiates all connectors
@@ -81,13 +85,13 @@ public class Controller implements Runnable {
 	public boolean boot() {
 		try {
 			pan = new PanAndRollArduinoController();
-			if(!pan.test("cu.usbserial-A700fk4c", 19200)) {
+			if(!pan.test(PAN_PORT, PAN_SERIAL)) {
 				return false;
 			}
 			System.out.println("Connected to Panning");
 			
 			shooter = new PitchAndShootArduinoController();
-			if(!shooter.test("cu.usbmodem14141", 9600)) {
+			if(!shooter.test(SHOOT_PORT, SHOOT_SERIAL)) {
 				return false;
 			}
 			System.out.println("Connected to Shooter");
@@ -140,12 +144,17 @@ public class Controller implements Runnable {
 			System.out.println(returned ? "Ball Returned" : "Ball Not Returned");
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 			Object[] myReturns = new Object[]{userId, s.shotId, returned ? 1 : 0, sdf.format(new Date(System.currentTimeMillis()))};
-			String[] returnTypes = new String[] {"Integer", "Integer", "Integer", "Date"};
+			String[] returnTypes = new String[] {"Integer", "Integer", "Integer", "String"};
 			SQLConnector.save("returned", myReturns, returnTypes);
 			while(this.state == RunState.PAUSED) {
 				System.out.println("System is Paused...");
 				Thread.sleep(10);
 			}
+		}
+		
+		// if connected, init shutdown prod
+		if(shooter.test(SHOOT_PORT, SHOOT_SERIAL)) {
+			shooter.adjustSpeed(0.0f);
 		}
 	}
 	
@@ -172,10 +181,6 @@ public class Controller implements Runnable {
 			
 			boolean returned = cvController.start();
 			System.out.println(returned ? "Ball Returned" : "Ball Not Returned");
-			while(this.state == RunState.PAUSED) {
-				System.out.println("System is Paused...");
-				Thread.sleep(10);
-			}
 		}
 	}
 	
