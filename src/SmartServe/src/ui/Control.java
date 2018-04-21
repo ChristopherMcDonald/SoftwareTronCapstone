@@ -17,6 +17,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
+import javax.swing.JTextField;
 
 public class Control extends JFrame {
 
@@ -29,7 +30,8 @@ public class Control extends JFrame {
 
 	private static Controller control;
 	private static boolean paused = true;
-
+	private JLabel lblZone;
+	private JTextField zoneInput;
 	/**
 	 * Launch the application.
 	 */
@@ -78,6 +80,28 @@ public class Control extends JFrame {
 
 		String[] modes = { Mode.TRAIN.toString(), Mode.ONESHOT.toString(), Mode.RANDOM.toString()};
 	    final JComboBox<String> modeDropDown = new JComboBox<String>(modes);
+
+        lblZone = new JLabel("Which Zone? (2-17)");
+		lblZone.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblZone.setBounds(149, 158, 137, 14);
+		contentPane.add(lblZone);
+		lblZone.setVisible(false);
+
+		zoneInput = new JTextField();
+		zoneInput.setBounds(184, 183, 54, 20);
+		contentPane.add(zoneInput);
+		zoneInput.setColumns(10);
+		zoneInput.setVisible(false);
+
+	    modeDropDown.addActionListener (new ActionListener () {
+	        public void actionPerformed(ActionEvent e) {
+	        	if (modeDropDown.getSelectedItem().equals("ONESHOT")){
+	        		lblZone.setVisible(true);
+	        		zoneInput.setVisible(true);
+	        	}
+	        }
+	    });
+        
 		modeDropDown.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		modeDropDown.setBounds(160, 127, 100, 20);
 		contentPane.add(modeDropDown);

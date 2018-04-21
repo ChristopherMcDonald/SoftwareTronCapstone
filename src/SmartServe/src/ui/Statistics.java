@@ -26,6 +26,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
+import javax.swing.JInternalFrame;
 
 public class Statistics extends JFrame {
 
@@ -194,23 +195,29 @@ public class Statistics extends JFrame {
 		btnGraphView.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnGraphView);
 
+//		JInternalFrame internalFrame = new JInternalFrame("");
+//		internalFrame.setBounds(278, 67, 366, 157);
+//		contentPane.add(internalFrame);
+//		internalFrame.setVisible(true);
+
 	}
 
 
 	public static void showChart() {
-			model.setRowCount(0);
-		    model.addRow(cols);
-		    statsTable.setBounds(281, 57, 363, 170);
-			contentPane.add(statsTable);
-			for(int i=0; i < outputData.length; i++) {
-				model.addRow(outputData[i]);
-			}
-
-	    	statsTable.setVisible(true);
+		model.setRowCount(0);
+	    model.addRow(cols);
+	    statsTable.setBounds(281, 57, 363, 170);
+		contentPane.add(statsTable);
+		for(int i=0; i < outputData.length; i++) {
+			model.addRow(outputData[i]);
+		}
+    	statsTable.setVisible(true);
 	}
 
 	public static void showGraph() {
-    	//TODO graph
+		final Graph statsGraph = new Graph("Graph");
+		contentPane.add(statsGraph.chartPanel);
+		statsGraph.pack();
 	}
 
 	public static void noResults() {
