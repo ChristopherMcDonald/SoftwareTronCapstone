@@ -26,14 +26,21 @@ import shootingModel.ShootingModel;
 import ui.Login;
 
 public class Controller implements Runnable {
-	
+
 	int userId;
 	int[] shotIds;
-	
+    int singleZone;
+
 	public Controller(int uID){
 		userId = uID;
 	}
-	
+
+	public Controller(int uID, int zone){
+		userId = uID;
+		singleZone = zone;
+		//TODO: map this to the shot if mode is single shot
+	}
+
 	@Override
 	public void run() {
 		try {
@@ -58,7 +65,7 @@ public class Controller implements Runnable {
 	// global variables
 	private Mode m;
 	private RunState state;
-	
+
 	// utility classes
 	ShootingModel sm;
 
@@ -76,7 +83,7 @@ public class Controller implements Runnable {
 	private static final String SHOOT_PORT = "cu.usbmodem14141";
 	private static final int PAN_SERIAL = 19200;
 	private static final int SHOOT_SERIAL = 9600;
-	
+
 
 	/**
 	 * initiates all connectors
@@ -89,7 +96,7 @@ public class Controller implements Runnable {
 				return false;
 			}
 			System.out.println("Connected to Panning");
-			
+
 			shooter = new PitchAndShootArduinoController();
 			if(!shooter.test(SHOOT_PORT, SHOOT_SERIAL)) {
 				return false;
@@ -106,26 +113,26 @@ public class Controller implements Runnable {
 				return false;
 			}
 			System.out.println("Connected to SQL");
-			
+
 			ShotRecommendationController.setModel();
 			System.out.println("Connected to and started SR Model");
-			
+
 			sm = new ShootingModel(0.08);
-			
+
 		} catch(Exception nce) {
 			nce.printStackTrace();
 			return false;
 		}
-		
+
 		return true;
 	}
-	
+
 	/**
 	 * starts the training loop
-	 * @throws NotConnectedException 
-	 * @throws InterruptedException 
-	 * @throws IOException 
-	 * @throws SQLException 
+	 * @throws NotConnectedException
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * @throws SQLException
 	 */
 	@SuppressWarnings("unused")
 	private void shoot() throws NotConnectedException, IOException, InterruptedException, SQLException {
@@ -135,11 +142,11 @@ public class Controller implements Runnable {
 			ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, s.pitch);
 			//harit to change velocity -> ifs and elses
 			double vel = getVelocityTemp(s.yLoc);
-			
+
 			shooter.adjustSpeed(vel);
 			pan.shoot(sd.getYaw(), s.rollAngle);
 			shooter.shoot(s.pitch);
-			
+
 			boolean returned = cvController.start();
 			System.out.println(returned ? "Ball Returned" : "Ball Not Returned");
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -151,20 +158,20 @@ public class Controller implements Runnable {
 				Thread.sleep(10);
 			}
 		}
-		
+
 		// if connected, init shutdown prod
 		if(shooter.test(SHOOT_PORT, SHOOT_SERIAL)) {
 			shooter.adjustSpeed(0.0f);
 		}
 	}
-	
+
 	/**
 	 * starts the training loop
 	 * @param id - the shot to shoot
-	 * @throws NotConnectedException 
-	 * @throws InterruptedException 
-	 * @throws IOException 
-	 * @throws SQLException 
+	 * @throws NotConnectedException
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * @throws SQLException
 	 */
 	@SuppressWarnings("unused")
 	private void shoot(int id) throws NotConnectedException, IOException, InterruptedException, SQLException {
@@ -174,16 +181,16 @@ public class Controller implements Runnable {
 			ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, s.pitch);
 			//harit to change velocity -> ifs and elses
 			double vel = getVelocityTemp(s.yLoc);
-			
+
 			shooter.adjustSpeed(vel);
 			pan.shoot(sd.getYaw(), s.rollAngle);
 			shooter.shoot(s.pitch);
-			
+
 			boolean returned = cvController.start();
 			System.out.println(returned ? "Ball Returned" : "Ball Not Returned");
 		}
 	}
-	
+
 	private double getVelocityTemp(double yLoc) {
 		double velocity;
 		if(yLoc <= 0.2) {
@@ -197,7 +204,7 @@ public class Controller implements Runnable {
 		}
 		return velocity;
 	}
-	
+
 	/**
 	 * Close all connections
 	 */
@@ -205,16 +212,16 @@ public class Controller implements Runnable {
 		this.pan.closeConnection();
 		this.shooter.closeConnection();
 	}
-	
+
 	public void begin() { this.state = RunState.RUNNING; }
-	
+
 	public void pause() { this.state = RunState.PAUSED; }
-	
+
 	public void resume() { this.state = RunState.RUNNING; }
-	
+
 	public void terminate() { this.state = RunState.TERMINATE; }
 
 	public void setMode(Mode m) { this.m = m; }
-	
+
 	public void setShots(int... id) { this.shotIds = id; }
 }
