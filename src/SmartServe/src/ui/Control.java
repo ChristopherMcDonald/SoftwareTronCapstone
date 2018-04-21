@@ -8,6 +8,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.mysql.jdbc.StringUtils;
+
 import enums.Mode;
 import runnables.Controller;
 
@@ -30,8 +32,11 @@ public class Control extends JFrame {
 
 	private static Controller control;
 	private static boolean paused = true;
+	private Object currentMode;
 	private JLabel lblZone;
+	private JLabel lblError;
 	private JTextField zoneInput;
+	private static int zone;
 	/**
 	 * Launch the application.
 	 */
@@ -95,6 +100,7 @@ public class Control extends JFrame {
 
 	    modeDropDown.addActionListener (new ActionListener () {
 	        public void actionPerformed(ActionEvent e) {
+	        	currentMode = modeDropDown.getSelectedItem();
 	        	if (modeDropDown.getSelectedItem().equals("ONESHOT")){
 	        		lblZone.setVisible(true);
 	        		zoneInput.setVisible(true);
@@ -106,19 +112,34 @@ public class Control extends JFrame {
 		modeDropDown.setBounds(160, 127, 100, 20);
 		contentPane.add(modeDropDown);
 
+		JLabel lblError = new JLabel("Please enter valid zone!");
+		lblError.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblError.setBounds(140, 213, 209, 14);
+		contentPane.add(lblError);
+		lblError.setVisible(false);
+
 		startBtn.addActionListener(new ActionListener() { // buttons active when start is pressed
 		     public void actionPerformed(ActionEvent ae) {
-		        startBtn.setEnabled(false);
-		        pauseBtn.setEnabled(true);
-		        stopBtn.setEnabled(true);
-		        modeDropDown.setEnabled(false);
+		        if (currentMode.equals("ONESHOT") && !(isValid(zoneInput.getText()))) {
+		        	lblError.setVisible(true);
+		        }
+		        else {
+		        	if (currentMode.equals("ONESHOT")) {
+		        		control = new Controller(View.getUserid(),zone);
+		        	}
+		        	else {
+		        		control = new Controller(View.getUserid());
 
-//		        control = new Controller(View.getUserid());
-		        control = new Controller(35);
-		        control.setMode(Mode.valueOf(modeDropDown.getSelectedItem().toString()));
-				Thread t = new Thread(control);
-				t.start();
-
+		        	}
+		        	control.setMode(Mode.valueOf(modeDropDown.getSelectedItem().toString()));
+					Thread t = new Thread(control);
+					t.start();
+					lblError.setVisible(false);
+					startBtn.setEnabled(false);
+			        pauseBtn.setEnabled(true);
+			        stopBtn.setEnabled(true);
+			        modeDropDown.setEnabled(false);
+		        }
 		     }
 		   }
 		 );
@@ -199,4 +220,24 @@ public class Control extends JFrame {
         return menuBar;
 
 	}
+
+	public static boolean isValid(String input) {
+		boolean isNum;
+		int number;
+
+		isNum = StringUtils.isStrictlyNumeric(input);
+
+		if(isNum) {
+			number = Integer.parseInt(input);
+			if (number >= 2 && number <= 17) {
+				zone = number;
+				return true;
+			}
+		}
+		return false;
+	}
+
+
+
+
 }
