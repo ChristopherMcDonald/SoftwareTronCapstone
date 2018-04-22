@@ -1,4 +1,5 @@
 package ui;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -20,12 +21,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 import javax.swing.JInternalFrame;
 
 public class Statistics extends JFrame {

@@ -76,6 +76,7 @@ public class Graph extends ApplicationFrame {
 		chartPanel = new ChartPanel(chart);
 		chartPanel.setPreferredSize(new java.awt.Dimension(403, 170));
 		setContentPane(chartPanel);
+		
 	}
 	
 	/**
