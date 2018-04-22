@@ -62,8 +62,8 @@ public class Statistics extends JFrame {
 	static JButton btnxRoll;
 	static JButton btnxPitch;
 
-	static boolean graphView = true;
-	static boolean chartView = false;
+	static boolean graphView = false;
+	static boolean chartView = true;
 
 
 	/**
@@ -173,6 +173,7 @@ public class Statistics extends JFrame {
 					graphView = false;
 					chartView = true;
 					showChart();
+					internalFrame.hide();
 				}
 				else {
 					noResults();
@@ -232,7 +233,8 @@ public class Statistics extends JFrame {
 	public static void showChart() {
 		model.setRowCount(0);
 	    model.addRow(cols);
-		internalFrame.add(statsTable);
+	    statsTable.setBounds(281, 87, 403, 170);
+	    contentPane.add(statsTable);
 		for(int i=0; i < outputData.length; i++) {
 			model.addRow(outputData[i]);
 		}
