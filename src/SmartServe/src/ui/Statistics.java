@@ -43,7 +43,7 @@ public class Statistics extends JFrame {
 	private static JTextField pitchInput0;
 	private static JTextField pitchInputF;
 	private static String zonesString = "";
-	private static JLabel lblNoResults = new JLabel("No Results Found!");
+	private static JLabel lblNoResults;
 
 	int zoneOutput;
 	double pitchOutput;
@@ -54,8 +54,12 @@ public class Statistics extends JFrame {
 
 	static int rowCount;
 	private static String[] cols = {"Zone", "Roll" , "Pitch", "Returned?","Date"};
-	private static DefaultTableModel model = new DefaultTableModel(cols,0);;
-	private static JTable statsTable = new JTable(model);;
+	private static DefaultTableModel model = new DefaultTableModel(cols,0);
+	private static JTable statsTable = new JTable(model);
+
+	static JButton btnxZone;
+	static JButton btnxRoll;
+	static JButton btnxPitch;
 
 	static boolean graphView = false;
 	static boolean chartView = true;
@@ -195,11 +199,20 @@ public class Statistics extends JFrame {
 		btnGraphView.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnGraphView);
 
-		JLabel lblZoneSelection = new JLabel("Zone Selection");
-		lblZoneSelection.setHorizontalAlignment(SwingConstants.CENTER);
-		lblZoneSelection.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblZoneSelection.setBounds(10, 55, 113, 14);
-		contentPane.add(lblZoneSelection);
+		btnxZone = new JButton("Zone");
+		btnxZone.setBounds(374, 254, 89, 23);
+		contentPane.add(btnxZone);
+		btnxZone.setVisible(false);
+
+		btnxRoll = new JButton("Roll");
+		btnxRoll.setBounds(473, 254, 89, 23);
+		contentPane.add(btnxRoll);
+		btnxRoll.setVisible(false);
+
+		btnxPitch = new JButton("Pitch");
+		btnxPitch.setBounds(572, 254, 89, 23);
+		contentPane.add(btnxPitch);
+		btnxPitch.setVisible(false);
 
 //		JInternalFrame internalFrame = new JInternalFrame("");
 //		internalFrame.setBounds(278, 67, 366, 157);
@@ -209,11 +222,8 @@ public class Statistics extends JFrame {
 	}
 
 	public static void noResults() {
-		lblNoResults.setFont(new Font("Century", Font.PLAIN, 20));
-		lblNoResults.setBounds(421, 130, 200, 23);
-		contentPane.add(lblNoResults);
-		lblNoResults.setVisible(true);
 		statsTable.setVisible(false);
+		lblNoResults.setVisible(true);
 	}
 
 	public static void showChart() {
@@ -228,34 +238,97 @@ public class Statistics extends JFrame {
 	}
 
 	public static void showGraph() {
-
-		Graph statsGraph = new Graph("Graph",zoneReturn());
+		//default
+		Graph statsGraph = new Graph("Graph",dataReturn("zone"),"zone",1);
 		contentPane.add(statsGraph.chartPanel);
 		statsGraph.pack();
+
+		btnxZone.setVisible(true);
+		btnxZone.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Graph statsGraph = new Graph("Graph",dataReturn("zone"),"zone",1);
+				contentPane.add(statsGraph.chartPanel);
+				statsGraph.pack();
+			}
+		});
+
+		btnxRoll.setVisible(true);
+		btnxRoll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Graph statsGraph = new Graph("Graph",dataReturn("roll"),"roll",90);
+				contentPane.add(statsGraph.chartPanel);
+				statsGraph.pack();
+			}
+		});
+
+		btnxPitch.setVisible(true);
+		btnxPitch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Graph statsGraph = new Graph("Graph",dataReturn("pitch"),"pitch",10);
+				contentPane.add(statsGraph.chartPanel);
+				statsGraph.pack();
+			}
+		});
+
+
 	}
 
-	public static Double[] zoneReturn() {
-		Double zoneReturnRate[] = new Double[16];
-		for(int zone=2; zone<18; zone++) {
-			double zoneCount = 0.0; //avoid integer division
+	public static Double[] dataReturn(String xAxis) {
+		int initial;
+		int last;
+		int step;
+		int size;
+		int pos;
+
+		if(xAxis.equals("zone")) {
+			initial = 2;
+			last = 17+1;
+			step = 1;
+			size = 16;
+			pos = 0;
+		}
+		else if(xAxis.equals("roll")) {
+			initial = 0;
+			last = 270+1;
+			step = 90;
+			size = 4;
+			pos = 1;
+		}
+		else if(xAxis.equals("pitch")) {
+			initial = 0;
+			last = 30+1;
+			step = 10;
+			size = 4;
+			pos = 2;
+		}
+		else {
+			return null;
+		}
+
+		Double returnRate[] = new Double[size];
+		int iterator = 0;
+		for(int i=initial; i<last; i+=step) {
+			double xCount = 0.0;
 			int trueCount = 0;
-			for(int i=0; i < outputData.length; i++) {
-				if(Integer.parseInt(outputData[i][0].toString())==zone){
-					zoneCount++;
-					if(outputData[i][3].toString() == "true") {
+			for(int j=0; j < outputData.length; j++) {
+				if(Double.parseDouble(outputData[j][pos].toString())==i){
+					xCount++;
+					if(outputData[j][3].toString() == "true") {
 						trueCount++;
 					}
 				}
 			}
 
-			if(zoneCount==0) {
-				zoneReturnRate[zone-2] = 0.0;
+			if(xCount==0) {
+				returnRate[iterator] = 0.0;
+				iterator++;
 			}
 			else{
-				zoneReturnRate[zone-2] = trueCount/zoneCount*100;
+				returnRate[iterator] = trueCount/xCount*100.0;
+				iterator++;
 			}
 		}
-		return zoneReturnRate;
+		return returnRate;
 	}
 
 	public static void createLbls() {
@@ -264,7 +337,6 @@ public class Statistics extends JFrame {
 		lblStats.setFont(new Font("Century", Font.PLAIN, 35));
 		lblStats.setBounds(241, 0, 153, 69);
 		contentPane.add(lblStats);
-
 
 		JLabel dash0 = new JLabel("-");
 		dash0.setHorizontalAlignment(SwingConstants.CENTER);
@@ -281,6 +353,12 @@ public class Statistics extends JFrame {
 		dash2.setBounds(174, 170, 9, 14);
 		contentPane.add(dash2);
 
+		JLabel lblZoneSelection = new JLabel("Zone Selection");
+		lblZoneSelection.setHorizontalAlignment(SwingConstants.CENTER);
+		lblZoneSelection.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblZoneSelection.setBounds(10, 55, 113, 14);
+		contentPane.add(lblZoneSelection);
+
 		JLabel rollLbl = new JLabel("Roll Range");
 		rollLbl.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		rollLbl.setBounds(138, 72, 113, 23);
@@ -295,6 +373,12 @@ public class Statistics extends JFrame {
 		dateLbl.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		dateLbl.setBounds(20, 195, 190, 23);
 		contentPane.add(dateLbl);
+
+		lblNoResults = new JLabel("No Results Found!");
+		lblNoResults.setFont(new Font("Century", Font.PLAIN, 20));
+		lblNoResults.setBounds(421, 130, 200, 23);
+		contentPane.add(lblNoResults);
+		lblNoResults.setVisible(false);
 	}
 
 	public static void createZoneBtns() {

@@ -40,6 +40,7 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.NumberTickUnit;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
@@ -66,11 +67,11 @@ public class Graph extends ApplicationFrame {
 	*
 	* @param title the frame title.
 	*/
-	public Graph(final String title, Double[] data) {
+	public Graph(final String title, Double[] data, String xAxis, int step) {
 	
 		super(title);
-		final XYDataset dataset = createDataset(data);
-		final JFreeChart chart = createChart(dataset, "xAxis String");
+		final XYDataset dataset = createDataset(data, step,xAxis);
+		final JFreeChart chart = createChart(dataset, xAxis);
 		
 		chartPanel = new ChartPanel(chart);
 		chartPanel.setPreferredSize(new java.awt.Dimension(363, 170));
@@ -83,11 +84,15 @@ public class Graph extends ApplicationFrame {
 	*
 	* @return a sample dataset.
 	*/
-	private XYDataset createDataset(Double[] data) {
+	private XYDataset createDataset(Double[] data, int step, String xAxis) {
 		
 		final XYSeries line = new XYSeries("Stats");
 		for(int i=0; i<data.length;i++) {
-			line.add(i+2, data[i]);
+			if(xAxis.equals("zone")) {
+				line.add(i+2, data[i]);
+			}else {
+				line.add(i*step, data[i]);
+			}
 		}
 		
 		final XYSeriesCollection dataset = new XYSeriesCollection();
@@ -123,6 +128,30 @@ public class Graph extends ApplicationFrame {
 		
 		// get a reference to the plot for further customisation
 		final XYPlot plot = chart.getXYPlot();
+		
+		NumberAxis range = (NumberAxis) plot.getRangeAxis();
+        range.setRange(0, 100);
+        range.setTickUnit(new NumberTickUnit(20));
+        
+        if (xAxis.equals("zone")){
+        	 NumberAxis domain = (NumberAxis) plot.getDomainAxis();
+             domain.setRange(2, 17);
+             domain.setTickUnit(new NumberTickUnit(1));
+             domain.setVerticalTickLabels(true);
+        }
+        else if(xAxis.equals("roll")){
+        	 NumberAxis domain = (NumberAxis) plot.getDomainAxis();
+             domain.setRange(0, 270);
+             domain.setTickUnit(new NumberTickUnit(90));
+             domain.setVerticalTickLabels(true);
+        }
+        else if(xAxis.equals("pitch")){
+        	 NumberAxis domain = (NumberAxis) plot.getDomainAxis();
+             domain.setRange(0, 30);
+             domain.setTickUnit(new NumberTickUnit(10));
+             domain.setVerticalTickLabels(true);
+        }
+        
 		plot.setBackgroundPaint(Color.lightGray);
 		plot.setDomainGridlinePaint(Color.white);
 		plot.setRangeGridlinePaint(Color.white);
