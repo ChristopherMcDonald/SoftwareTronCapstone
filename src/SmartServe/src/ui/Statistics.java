@@ -50,7 +50,7 @@ public class Statistics extends JFrame {
 	double rollOutput;
 	boolean returnOutput;
 	Date dateOutput;
-	private static Object[][] outputData; //row, values
+	private static Object[][] outputData; //row#, values(0:zone, 1:pitch, 2:roll, 3: returned, 4:date)
 
 	static int rowCount;
 	private static String[] cols = {"Zone", "Roll" , "Pitch", "Returned?","Date"};
@@ -83,7 +83,7 @@ public class Statistics extends JFrame {
 	public Statistics() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(200, 200, 670, 297);
+		setBounds(200, 200, 731, 350);
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -158,7 +158,7 @@ public class Statistics extends JFrame {
 
 			}
 		});
-		btnGetStats.setBounds(66, 204, 125, 23);
+		btnGetStats.setBounds(66, 254, 125, 23);
 		contentPane.add(btnGetStats);
 
 		JButton btnChartView = new JButton("Chart View");
@@ -174,7 +174,7 @@ public class Statistics extends JFrame {
 				}
 			}
 		});
-		btnChartView.setBounds(555, 33, 89, 23);
+		btnChartView.setBounds(616, 53, 89, 23);
 		btnChartView.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnChartView);
 
@@ -191,9 +191,15 @@ public class Statistics extends JFrame {
 				}
 			}
 		});
-		btnGraphView.setBounds(467, 33, 89, 23);
+		btnGraphView.setBounds(527, 53, 89, 23);
 		btnGraphView.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnGraphView);
+
+		JLabel lblZoneSelection = new JLabel("Zone Selection");
+		lblZoneSelection.setHorizontalAlignment(SwingConstants.CENTER);
+		lblZoneSelection.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblZoneSelection.setBounds(10, 55, 113, 14);
+		contentPane.add(lblZoneSelection);
 
 //		JInternalFrame internalFrame = new JInternalFrame("");
 //		internalFrame.setBounds(278, 67, 366, 157);
@@ -202,11 +208,18 @@ public class Statistics extends JFrame {
 
 	}
 
+	public static void noResults() {
+		lblNoResults.setFont(new Font("Century", Font.PLAIN, 20));
+		lblNoResults.setBounds(421, 130, 200, 23);
+		contentPane.add(lblNoResults);
+		lblNoResults.setVisible(true);
+		statsTable.setVisible(false);
+	}
 
 	public static void showChart() {
 		model.setRowCount(0);
 	    model.addRow(cols);
-	    statsTable.setBounds(281, 57, 363, 170);
+	    statsTable.setBounds(281, 87, 403, 170);
 		contentPane.add(statsTable);
 		for(int i=0; i < outputData.length; i++) {
 			model.addRow(outputData[i]);
@@ -215,17 +228,34 @@ public class Statistics extends JFrame {
 	}
 
 	public static void showGraph() {
-		final Graph statsGraph = new Graph("Graph");
+
+		Graph statsGraph = new Graph("Graph",zoneReturn());
 		contentPane.add(statsGraph.chartPanel);
 		statsGraph.pack();
 	}
 
-	public static void noResults() {
-		lblNoResults.setFont(new Font("Century", Font.PLAIN, 20));
-		lblNoResults.setBounds(421, 130, 200, 23);
-		contentPane.add(lblNoResults);
-		lblNoResults.setVisible(true);
-		statsTable.setVisible(false);
+	public static Double[] zoneReturn() {
+		Double zoneReturnRate[] = new Double[16];
+		for(int zone=2; zone<18; zone++) {
+			double zoneCount = 0.0; //avoid integer division
+			int trueCount = 0;
+			for(int i=0; i < outputData.length; i++) {
+				if(Integer.parseInt(outputData[i][0].toString())==zone){
+					zoneCount++;
+					if(outputData[i][3].toString() == "true") {
+						trueCount++;
+					}
+				}
+			}
+
+			if(zoneCount==0) {
+				zoneReturnRate[zone-2] = 0.0;
+			}
+			else{
+				zoneReturnRate[zone-2] = trueCount/zoneCount*100;
+			}
+		}
+		return zoneReturnRate;
 	}
 
 	public static void createLbls() {
@@ -238,29 +268,32 @@ public class Statistics extends JFrame {
 
 		JLabel dash0 = new JLabel("-");
 		dash0.setHorizontalAlignment(SwingConstants.CENTER);
-		dash0.setBounds(184, 179, 9, 14);
+		dash0.setBounds(119, 221, 9, 14);
 		contentPane.add(dash0);
 
 		JLabel dash1 = new JLabel("-");
 		dash1.setHorizontalAlignment(SwingConstants.CENTER);
-		dash1.setBounds(166, 86, 9, 14);
+		dash1.setBounds(174, 106, 9, 14);
 		contentPane.add(dash1);
 
 		JLabel dash2 = new JLabel("-");
 		dash2.setHorizontalAlignment(SwingConstants.CENTER);
-		dash2.setBounds(170, 134, 9, 14);
+		dash2.setBounds(174, 170, 9, 14);
 		contentPane.add(dash2);
 
 		JLabel rollLbl = new JLabel("Roll Range");
-		rollLbl.setBounds(127, 71, 113, 14);
+		rollLbl.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		rollLbl.setBounds(138, 72, 113, 23);
 		contentPane.add(rollLbl);
 
 		JLabel pitchLbl = new JLabel("Pitch Range");
-		pitchLbl.setBounds(127, 114, 124, 14);
+		pitchLbl.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		pitchLbl.setBounds(138, 139, 89, 20);
 		contentPane.add(pitchLbl);
 
 		JLabel dateLbl = new JLabel("Date Range (YYYY-MM-DD)");
-		dateLbl.setBounds(127, 162, 190, 14);
+		dateLbl.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		dateLbl.setBounds(20, 195, 190, 23);
 		contentPane.add(dateLbl);
 	}
 
@@ -637,32 +670,32 @@ public class Statistics extends JFrame {
 
 	public static void createTextInputs() {
 		dateInput0 = new JTextField();
-		dateInput0.setBounds(127, 176, 47, 20);
+		dateInput0.setBounds(138, 218, 89, 20);
 		contentPane.add(dateInput0);
 		dateInput0.setColumns(10);
 
 		dateInputF = new JTextField();
-		dateInputF.setBounds(200, 176, 47, 20);
+		dateInputF.setBounds(20, 218, 89, 20);
 		contentPane.add(dateInputF);
 		dateInputF.setColumns(10);
 
 		rollInput0 = new JTextField();
-		rollInput0.setBounds(127, 84, 29, 20);
+		rollInput0.setBounds(138, 103, 29, 20);
 		contentPane.add(rollInput0);
 		rollInput0.setColumns(10);
 
 		rollInputF = new JTextField();
-		rollInputF.setBounds(189, 84, 29, 20);
+		rollInputF.setBounds(193, 103, 29, 20);
 		contentPane.add(rollInputF);
 		rollInputF.setColumns(10);
 
 		pitchInput0 = new JTextField();
-		pitchInput0.setBounds(127, 131, 29, 20);
+		pitchInput0.setBounds(138, 167, 29, 20);
 		contentPane.add(pitchInput0);
 		pitchInput0.setColumns(10);
 
 		pitchInputF = new JTextField();
-		pitchInputF.setBounds(189, 131, 29, 20);
+		pitchInputF.setBounds(193, 167, 29, 20);
 		contentPane.add(pitchInputF);
 		pitchInputF.setColumns(10);
 	}
