@@ -66,14 +66,14 @@ public class Graph extends ApplicationFrame {
 	*
 	* @param title the frame title.
 	*/
-	public Graph(final String title) {
+	public Graph(final String title, Double[] data) {
 	
 		super(title);
-		final XYDataset dataset = createDataset();
+		final XYDataset dataset = createDataset(data);
 		final JFreeChart chart = createChart(dataset, "xAxis String");
+		
 		chartPanel = new ChartPanel(chart);
 		chartPanel.setPreferredSize(new java.awt.Dimension(363, 170));
-		
 		setContentPane(chartPanel);
 	
 	}
@@ -83,21 +83,15 @@ public class Graph extends ApplicationFrame {
 	*
 	* @return a sample dataset.
 	*/
-	private XYDataset createDataset() {
+	private XYDataset createDataset(Double[] data) {
 		
-		final XYSeries series2 = new XYSeries("Second");
-		series2.add(1.0, 5.0);
-		series2.add(2.0, 7.0);
-		series2.add(3.0, 6.0);
-		series2.add(4.0, 8.0);
-		series2.add(5.0, 4.0);
-		series2.add(6.0, 4.0);
-		series2.add(7.0, 2.0);
-		series2.add(8.0, 1.0);
-		
+		final XYSeries line = new XYSeries("Stats");
+		for(int i=0; i<data.length;i++) {
+			line.add(i+2, data[i]);
+		}
 		
 		final XYSeriesCollection dataset = new XYSeriesCollection();
-		dataset.addSeries(series2);
+		dataset.addSeries(line);
 		
 		return dataset;
 	
@@ -114,12 +108,12 @@ public class Graph extends ApplicationFrame {
 		
 		// create the chart
 		final JFreeChart chart = ChartFactory.createXYLineChart(
-		"Line Chart Demo 6", // chart title
+		"", // chart title
 		xAxis, // x axis label
-		"Y", // y axis label
+		"% Return", // y axis label
 		dataset, // data
 		PlotOrientation.VERTICAL,
-		true, // include legend
+		false, // include legend
 		true, // tooltips
 		false // urls
 		);
@@ -132,6 +126,11 @@ public class Graph extends ApplicationFrame {
 		plot.setBackgroundPaint(Color.lightGray);
 		plot.setDomainGridlinePaint(Color.white);
 		plot.setRangeGridlinePaint(Color.white);
+		
+		final XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
+		renderer.setSeriesLinesVisible(0, false);
+		renderer.setSeriesShapesVisible(1, false);
+		plot.setRenderer(renderer);
 		
 		// change the auto tick unit selection to integer units only
 		final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
