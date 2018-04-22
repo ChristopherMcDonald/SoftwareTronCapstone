@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -56,14 +57,15 @@ public class Statistics extends JFrame {
 	private static String[] cols = {"Zone", "Roll" , "Pitch", "Returned?","Date"};
 	private static DefaultTableModel model = new DefaultTableModel(cols,0);
 	private static JTable statsTable = new JTable(model);
+	private static JScrollPane tableScroll = new JScrollPane(statsTable);
 
 	static Graph statsGraph;
 	static JButton btnxZone;
 	static JButton btnxRoll;
 	static JButton btnxPitch;
 
-	static boolean graphView = false;
-	static boolean chartView = true;
+	static boolean graphView = true;
+	static boolean chartView = false;
 
 
 	/**
@@ -173,7 +175,6 @@ public class Statistics extends JFrame {
 					graphView = false;
 					chartView = true;
 					showChart();
-					internalFrame.hide();
 				}
 				else {
 					noResults();
@@ -232,16 +233,25 @@ public class Statistics extends JFrame {
 
 	public static void showChart() {
 		model.setRowCount(0);
-	    model.addRow(cols);
-	    statsTable.setBounds(281, 87, 403, 170);
-	    contentPane.add(statsTable);
+	    internalFrame.setVisible(false);
+	    internalFrame.remove(0);
+	    contentPane.add(tableScroll);
 		for(int i=0; i < outputData.length; i++) {
 			model.addRow(outputData[i]);
 		}
+		tableScroll.setVisible(true);
+		tableScroll.setBounds(281, 87, 403, 170);
+		
+		btnxZone.setVisible(false);
+		btnxRoll.setVisible(false);
+		btnxPitch.setVisible(false);
 	}
 
 	public static void showGraph() {
 		//default
+		tableScroll.setVisible(false);
+		internalFrame.setVisible(true);
+		
 		statsGraph = new Graph("Graph",dataReturn("zone"),"zone",1);
 		internalFrame.add(statsGraph.chartPanel);
 		statsGraph.pack();
