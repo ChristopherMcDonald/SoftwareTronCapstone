@@ -74,9 +74,8 @@ public class Graph extends ApplicationFrame {
 		final JFreeChart chart = createChart(dataset, xAxis);
 		
 		chartPanel = new ChartPanel(chart);
-		chartPanel.setPreferredSize(new java.awt.Dimension(363, 170));
+		chartPanel.setPreferredSize(new java.awt.Dimension(403, 170));
 		setContentPane(chartPanel);
-	
 	}
 	
 	/**
@@ -85,7 +84,6 @@ public class Graph extends ApplicationFrame {
 	* @return a sample dataset.
 	*/
 	private XYDataset createDataset(Double[] data, int step, String xAxis) {
-		
 		final XYSeries line = new XYSeries("Stats");
 		for(int i=0; i<data.length;i++) {
 			if(xAxis.equals("zone")) {
