@@ -35,6 +35,7 @@ public class Statistics extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static JPanel contentPane;
+	static JInternalFrame internalFrame;
 
 	private static JTextField dateInput0;
 	private static JTextField dateInputF;
@@ -57,12 +58,13 @@ public class Statistics extends JFrame {
 	private static DefaultTableModel model = new DefaultTableModel(cols,0);
 	private static JTable statsTable = new JTable(model);
 
+	static Graph statsGraph;
 	static JButton btnxZone;
 	static JButton btnxRoll;
 	static JButton btnxPitch;
 
-	static boolean graphView = false;
-	static boolean chartView = true;
+	static boolean graphView = true;
+	static boolean chartView = false;
 
 
 	/**
@@ -214,40 +216,40 @@ public class Statistics extends JFrame {
 		contentPane.add(btnxPitch);
 		btnxPitch.setVisible(false);
 
-//		JInternalFrame internalFrame = new JInternalFrame("");
-//		internalFrame.setBounds(278, 67, 366, 157);
-//		contentPane.add(internalFrame);
-//		internalFrame.setVisible(true);
+		internalFrame = new JInternalFrame("");
+		internalFrame.setLayout(null);
+		internalFrame.setBounds(281, 87, 403, 170);
+		internalFrame.setBorder(null);
+		((javax.swing.plaf.basic.BasicInternalFrameUI)internalFrame.getUI()).setNorthPane(null);
+		contentPane.add(internalFrame);
+		internalFrame.setVisible(true);
 
 	}
 
 	public static void noResults() {
-		statsTable.setVisible(false);
 		lblNoResults.setVisible(true);
 	}
 
 	public static void showChart() {
 		model.setRowCount(0);
 	    model.addRow(cols);
-	    statsTable.setBounds(281, 87, 403, 170);
-		contentPane.add(statsTable);
+		internalFrame.add(statsTable);
 		for(int i=0; i < outputData.length; i++) {
 			model.addRow(outputData[i]);
 		}
-    	statsTable.setVisible(true);
 	}
 
 	public static void showGraph() {
 		//default
-		Graph statsGraph = new Graph("Graph",dataReturn("zone"),"zone",1);
-		contentPane.add(statsGraph.chartPanel);
+		statsGraph = new Graph("Graph",dataReturn("zone"),"zone",1);
+		internalFrame.add(statsGraph.chartPanel);
 		statsGraph.pack();
 
 		btnxZone.setVisible(true);
 		btnxZone.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Graph statsGraph = new Graph("Graph",dataReturn("zone"),"zone",1);
-				contentPane.add(statsGraph.chartPanel);
+				statsGraph = new Graph("Graph",dataReturn("zone"),"zone",1);
+				internalFrame.add(statsGraph.chartPanel);
 				statsGraph.pack();
 			}
 		});
@@ -255,8 +257,8 @@ public class Statistics extends JFrame {
 		btnxRoll.setVisible(true);
 		btnxRoll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Graph statsGraph = new Graph("Graph",dataReturn("roll"),"roll",90);
-				contentPane.add(statsGraph.chartPanel);
+				statsGraph = new Graph("Graph",dataReturn("roll"),"roll",90);
+				internalFrame.add(statsGraph.chartPanel);
 				statsGraph.pack();
 			}
 		});
@@ -264,8 +266,8 @@ public class Statistics extends JFrame {
 		btnxPitch.setVisible(true);
 		btnxPitch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Graph statsGraph = new Graph("Graph",dataReturn("pitch"),"pitch",10);
-				contentPane.add(statsGraph.chartPanel);
+				statsGraph = new Graph("Graph",dataReturn("pitch"),"pitch",10);
+				internalFrame.add(statsGraph.chartPanel);
 				statsGraph.pack();
 			}
 		});
