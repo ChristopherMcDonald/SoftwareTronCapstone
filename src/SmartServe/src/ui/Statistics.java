@@ -234,7 +234,6 @@ public class Statistics extends JFrame {
 	public static void showChart() {
 		model.setRowCount(0);
 	    internalFrame.setVisible(false);
-	    internalFrame.remove(0);
 	    contentPane.add(tableScroll);
 		for(int i=0; i < outputData.length; i++) {
 			model.addRow(outputData[i]);
@@ -249,12 +248,12 @@ public class Statistics extends JFrame {
 
 	public static void showGraph() {
 		//default
-		tableScroll.setVisible(false);
-		internalFrame.setVisible(true);
-		
 		statsGraph = new Graph("Graph",dataReturn("zone"),"zone",1);
 		internalFrame.add(statsGraph.chartPanel);
 		statsGraph.pack();
+		
+		tableScroll.setVisible(false);
+		internalFrame.setVisible(true);
 
 		btnxZone.setVisible(true);
 		btnxZone.addActionListener(new ActionListener() {
