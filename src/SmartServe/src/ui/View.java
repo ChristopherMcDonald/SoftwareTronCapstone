@@ -63,8 +63,6 @@ public class View {
 			mntmStatistics.setBackground(SystemColor.activeCaption);
 		}
 		
-		
-		
 		mntmProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentPage.setVisible(false);

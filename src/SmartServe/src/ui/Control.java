@@ -93,7 +93,7 @@ public class Control extends JFrame {
 		String[] modes = { Mode.TRAIN.toString(), Mode.SINGLEZONE.toString(), Mode.RANDOM.toString()};
 	    final JComboBox<String> modeDropDown = new JComboBox<String>(modes);
 
-		//for design view
+		//for design view testing
 //		String[] modes = { "TRAIN", "SINGLEZONE", "RANDOM"};
 //	    final JComboBox modeDropDown = new JComboBox(modes);
 
