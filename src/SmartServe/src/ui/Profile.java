@@ -82,7 +82,7 @@ public class Profile extends JFrame {
 		contentPane.add(btnLogOut);
 
 		//todo: change name
-		lblUserName.setText("Welcome " + "Sharon Platkin");
+		lblUserName.setText("Welcome " + "Janak");
 
 		setJMenuBar(createMenu());
 
