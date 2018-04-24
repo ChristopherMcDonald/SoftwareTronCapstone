@@ -203,22 +203,28 @@ public class Statistics extends JFrame {
 		contentPane.add(btnGraphView);
 
 		btnxZone = new JButton("Zone");
-		btnxZone.setBounds(374, 254, 89, 23);
+		btnxZone.setBounds(374, 264, 89, 23);
 		contentPane.add(btnxZone);
 		btnxZone.setVisible(false);
 
 		btnxRoll = new JButton("Roll");
-		btnxRoll.setBounds(473, 254, 89, 23);
+		btnxRoll.setBounds(473, 264, 89, 23);
 		contentPane.add(btnxRoll);
 		btnxRoll.setVisible(false);
 
 		btnxPitch = new JButton("Pitch");
-		btnxPitch.setBounds(572, 254, 89, 23);
+		btnxPitch.setBounds(572, 264, 89, 23);
 		contentPane.add(btnxPitch);
 		btnxPitch.setVisible(false);
 
 		internalFrame = new JInternalFrame("");
-		internalFrame.setLayout(null);
+		internalFrame.getContentPane().setLayout(null);
+		
+				lblNoResults = new JLabel("No Results Found!");
+				lblNoResults.setBounds(127, 57, 177, 23);
+				internalFrame.getContentPane().add(lblNoResults);
+				lblNoResults.setFont(new Font("Century", Font.PLAIN, 20));
+				lblNoResults.setVisible(false);
 		internalFrame.setBounds(281, 87, 403, 170);
 		internalFrame.setBorder(null);
 		((javax.swing.plaf.basic.BasicInternalFrameUI)internalFrame.getUI()).setNorthPane(null);
@@ -249,7 +255,7 @@ public class Statistics extends JFrame {
 	public static void showGraph() {
 		//default
 		statsGraph = new Graph("Graph",dataReturn("zone"),"zone",1);
-		internalFrame.add(statsGraph.chartPanel);
+		internalFrame.getContentPane().add(statsGraph.chartPanel);
 		statsGraph.pack();
 		
 		tableScroll.setVisible(false);
@@ -259,7 +265,7 @@ public class Statistics extends JFrame {
 		btnxZone.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				statsGraph = new Graph("Graph",dataReturn("zone"),"zone",1);
-				internalFrame.add(statsGraph.chartPanel);
+				internalFrame.getContentPane().add(statsGraph.chartPanel);
 				statsGraph.pack();
 			}
 		});
@@ -268,7 +274,7 @@ public class Statistics extends JFrame {
 		btnxRoll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				statsGraph = new Graph("Graph",dataReturn("roll"),"roll",90);
-				internalFrame.add(statsGraph.chartPanel);
+				internalFrame.getContentPane().add(statsGraph.chartPanel);
 				statsGraph.pack();
 			}
 		});
@@ -277,7 +283,7 @@ public class Statistics extends JFrame {
 		btnxPitch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				statsGraph = new Graph("Graph",dataReturn("pitch"),"pitch",10);
-				internalFrame.add(statsGraph.chartPanel);
+				internalFrame.getContentPane().add(statsGraph.chartPanel);
 				statsGraph.pack();
 			}
 		});
@@ -347,7 +353,7 @@ public class Statistics extends JFrame {
 		JLabel lblStats = new JLabel("Statistics");
 		lblStats.setHorizontalAlignment(SwingConstants.CENTER);
 		lblStats.setFont(new Font("Century", Font.PLAIN, 35));
-		lblStats.setBounds(241, 0, 153, 69);
+		lblStats.setBounds(287, 0, 153, 69);
 		contentPane.add(lblStats);
 
 		JLabel dash0 = new JLabel("-");
@@ -385,12 +391,6 @@ public class Statistics extends JFrame {
 		dateLbl.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		dateLbl.setBounds(20, 195, 190, 23);
 		contentPane.add(dateLbl);
-
-		lblNoResults = new JLabel("No Results Found!");
-		lblNoResults.setFont(new Font("Century", Font.PLAIN, 20));
-		lblNoResults.setBounds(421, 130, 200, 23);
-		contentPane.add(lblNoResults);
-		lblNoResults.setVisible(false);
 	}
 
 	public static void createZoneBtns() {

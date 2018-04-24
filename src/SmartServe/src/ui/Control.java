@@ -83,7 +83,7 @@ public class Control extends JFrame {
 		contentPane.add(stopBtn);
 		stopBtn.setEnabled(false);
 
-		String[] modes = { Mode.TRAIN.toString(), Mode.ONESHOT.toString(), Mode.RANDOM.toString()};
+		String[] modes = { Mode.TRAIN.toString(), Mode.SINGLEZONE.toString(), Mode.RANDOM.toString()};
 	    final JComboBox<String> modeDropDown = new JComboBox<String>(modes);
 
         lblZone = new JLabel("Which Zone? (2-17)");
@@ -101,9 +101,13 @@ public class Control extends JFrame {
 	    modeDropDown.addActionListener (new ActionListener () {
 	        public void actionPerformed(ActionEvent e) {
 	        	currentMode = modeDropDown.getSelectedItem();
-	        	if (modeDropDown.getSelectedItem().equals("ONESHOT")){
+	        	if (modeDropDown.getSelectedItem().equals("SINGLEZONE")){
 	        		lblZone.setVisible(true);
 	        		zoneInput.setVisible(true);
+	        	}
+	        	else {
+	        		lblZone.setVisible(false);
+	        		zoneInput.setVisible(false);
 	        	}
 	        }
 	    });
