@@ -61,7 +61,7 @@ public class ShotRecommendationController {
 	}
 	
 	public static Shot getRecommendation(int shotId) throws MalformedURLException {
-		return makeRequest(new URL(nextShotURL + "?mode=" + Mode.ONESHOT + "&shot=" + shotId));
+		return makeRequest(new URL(nextShotURL + "?mode=" + Mode.SINGLEZONE + "&shot=" + shotId));
 	}
 	
 	public static boolean setModel() {

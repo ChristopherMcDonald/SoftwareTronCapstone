@@ -9,13 +9,17 @@ import controllers.SQLConnector;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class Login extends JFrame {
 
@@ -26,6 +30,7 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JTextField userNameInput;
 	private JTextField passwordInput;
+	JLabel lblError;
 	
 
 	public static int user_id;
@@ -61,31 +66,38 @@ public class Login extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Email");
-		lblNewLabel.setBounds(118, 93, 98, 14);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel.setBounds(187, 32, 41, 14);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Password");
-		lblNewLabel_1.setBounds(118, 117, 98, 14);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setBounds(187, 57, 98, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		userNameInput = new JTextField();
-		userNameInput.setBounds(226, 90, 86, 20);
+		userNameInput.setBounds(238, 31, 137, 20);
 		contentPane.add(userNameInput);
 		userNameInput.setColumns(10);
 		
 		passwordInput = new JTextField();
-		passwordInput.setBounds(226, 114, 86, 20);
+		passwordInput.setBounds(269, 56, 106, 20);
 		contentPane.add(passwordInput);
 		passwordInput.setColumns(10);
 		
-		JLabel errorMsg = new JLabel();
-		errorMsg.setHorizontalAlignment(SwingConstants.CENTER);
-		errorMsg.setBounds(118, 187, 194, 20);
-		contentPane.add(errorMsg);
+		JLabel lblLogIn = new JLabel("Log In");
+		lblLogIn.setForeground(Color.WHITE);
+		lblLogIn.setFont(new Font("Century", Font.PLAIN, 35));
+		lblLogIn.setBounds(28, 11, 137, 69);
+		contentPane.add(lblLogIn);
 		
-		JButton btnNewButton = new JButton("Login");
-		btnNewButton.setBounds(166, 153, 89, 23);
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnLogin = new JButton("Login");
+		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnLogin.setForeground(Color.BLACK);
+		btnLogin.setBounds(286, 98, 89, 23);
+		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 					Object[] loginObj = new Object[]{userNameInput.getText(), passwordInput.getText()};
 					String[] loginTypes = new String[] {"String", "String"};
@@ -103,8 +115,7 @@ public class Login extends JFrame {
 							View.profilef.setVisible(true);
 						}
 						else {
-							
-							errorMsg.setText("Incorrect Email or Password");
+							lblError.setText("Incorrect Email or Password");
 						}
 					} catch (SQLException e) {
 						e.printStackTrace();
@@ -114,13 +125,35 @@ public class Login extends JFrame {
 			}
 		});
 		
-		contentPane.add(btnNewButton);
-		JLabel lblLogIn = new JLabel("Log In");
-		lblLogIn.setFont(new Font("Century", Font.PLAIN, 35));
-		lblLogIn.setBounds(149, 4, 137, 69);
-		contentPane.add(lblLogIn);		
+		contentPane.add(btnLogin);		
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnBack.setBounds(187, 98, 89, 23);
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				View.loginf.setVisible(false);
+				View.welcomef.setVisible(true);
+			}
+		});
+		contentPane.add(btnBack);
+		
+		lblError = new JLabel("");
+		lblError.setHorizontalAlignment(SwingConstants.CENTER);
+		lblError.setForeground(Color.WHITE);
+		lblError.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblError.setBounds(187, 82, 188, 14);
+		contentPane.add(lblError);
+		
+		JLabel background = new JLabel("");
+		background.setBackground(Color.WHITE);
+		background.setBounds(0, 0, 434, 262);
+		contentPane.add(background);
+		ImageIcon bg_old = new ImageIcon(Welcome.class.getResource("/ui/img/loginBg.jpg"));
+		Image img_old = bg_old.getImage();
+		Image img_new = img_old.getScaledInstance(background.getWidth(), background.getHeight(), Image.SCALE_SMOOTH);
+		ImageIcon bg_new = new ImageIcon(img_new);
+		background.setIcon(bg_new);
 
 	}
-	
-	
 }
