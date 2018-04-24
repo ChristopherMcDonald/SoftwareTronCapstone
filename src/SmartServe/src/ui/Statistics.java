@@ -1,15 +1,11 @@
 package ui;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Insets;
-import java.awt.SystemColor;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
@@ -20,6 +16,7 @@ import controllers.SQLConnector;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -100,9 +97,10 @@ public class Statistics extends JFrame {
 		createLbls();
 		createZoneBtns();
 		createTextInputs();
-		setJMenuBar(createMenu());
+		setJMenuBar(View.createMenu(this));
 
 		JButton btnGetStats = new JButton("Get Statistics");
+		btnGetStats.setBackground(Color.WHITE);
 		btnGetStats.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Object[] statsObj = new Object[]{
@@ -128,7 +126,6 @@ public class Statistics extends JFrame {
 					ResultSet rs = SQLConnector.query("statistics", statsObj, statsTypes);
 					if(rs.last()) {
 						rowCount = rs.getRow();
-						lblNoResults.setVisible(false);
 						rs.beforeFirst();
 						outputData = new Object[rowCount][5];
 
@@ -169,6 +166,8 @@ public class Statistics extends JFrame {
 		contentPane.add(btnGetStats);
 
 		JButton btnChartView = new JButton("Chart View");
+		btnChartView.setBackground(Color.WHITE);
+		btnChartView.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnChartView.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(rowCount!=0) {
@@ -186,6 +185,8 @@ public class Statistics extends JFrame {
 		contentPane.add(btnChartView);
 
 		JButton btnGraphView = new JButton("Graph View");
+		btnGraphView.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnGraphView.setBackground(Color.WHITE);
 		btnGraphView.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(rowCount!=0) {
@@ -203,32 +204,48 @@ public class Statistics extends JFrame {
 		contentPane.add(btnGraphView);
 
 		btnxZone = new JButton("Zone");
+		btnxZone.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnxZone.setBackground(Color.WHITE);
 		btnxZone.setBounds(374, 264, 89, 23);
 		contentPane.add(btnxZone);
 		btnxZone.setVisible(false);
 
 		btnxRoll = new JButton("Roll");
+		btnxRoll.setBackground(Color.WHITE);
+		btnxRoll.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnxRoll.setBounds(473, 264, 89, 23);
 		contentPane.add(btnxRoll);
 		btnxRoll.setVisible(false);
 
 		btnxPitch = new JButton("Pitch");
+		btnxPitch.setBackground(Color.WHITE);
+		btnxPitch.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnxPitch.setBounds(572, 264, 89, 23);
 		contentPane.add(btnxPitch);
 		btnxPitch.setVisible(false);
 
 		internalFrame = new JInternalFrame("");
 		internalFrame.getContentPane().setLayout(null);
-		
-				lblNoResults = new JLabel("No Results Found!");
-				lblNoResults.setBounds(127, 57, 177, 23);
-				internalFrame.getContentPane().add(lblNoResults);
-				lblNoResults.setFont(new Font("Century", Font.PLAIN, 20));
-				lblNoResults.setVisible(false);
-		internalFrame.setBounds(281, 87, 403, 170);
+		internalFrame.setBounds(291, 80, 414, 173);
 		internalFrame.setBorder(null);
 		((javax.swing.plaf.basic.BasicInternalFrameUI)internalFrame.getUI()).setNorthPane(null);
 		contentPane.add(internalFrame);
+	
+		lblNoResults = new JLabel("No Results Found!");
+		lblNoResults.setBounds(102, 57, 217, 23);
+		lblNoResults.setFont(new Font("Century", Font.BOLD, 20));
+		internalFrame.getContentPane().add(lblNoResults);
+		lblNoResults.setVisible(false);
+				
+		JLabel background = new JLabel("");
+		background.setBounds(0, -12, 725, 299);
+		contentPane.add(background);
+		ImageIcon bg_old = new ImageIcon(Welcome.class.getResource("/ui/img/statsBg.jpg"));
+		Image img_old = bg_old.getImage();
+		Image img_new = img_old.getScaledInstance(background.getWidth(), background.getHeight(), Image.SCALE_SMOOTH);
+		ImageIcon bg_new = new ImageIcon(img_new);
+		background.setIcon(bg_new);
+		
 		internalFrame.setVisible(true);
 
 	}
@@ -238,8 +255,8 @@ public class Statistics extends JFrame {
 	}
 
 	public static void showChart() {
-		model.setRowCount(0);
 	    internalFrame.setVisible(false);
+		model.setRowCount(0);
 	    contentPane.add(tableScroll);
 		for(int i=0; i < outputData.length; i++) {
 			model.addRow(outputData[i]);
@@ -338,7 +355,7 @@ public class Statistics extends JFrame {
 			}
 
 			if(xCount==0) {
-				returnRate[iterator] = 0.0;
+				returnRate[iterator] = -1.0;
 				iterator++;
 			}
 			else{
@@ -351,46 +368,55 @@ public class Statistics extends JFrame {
 
 	public static void createLbls() {
 		JLabel lblStats = new JLabel("Statistics");
+		lblStats.setForeground(Color.WHITE);
 		lblStats.setHorizontalAlignment(SwingConstants.CENTER);
-		lblStats.setFont(new Font("Century", Font.PLAIN, 35));
-		lblStats.setBounds(287, 0, 153, 69);
+		lblStats.setFont(new Font("Century", Font.BOLD, 35));
+		lblStats.setBounds(235, 0, 176, 69);
 		contentPane.add(lblStats);
 
 		JLabel dash0 = new JLabel("-");
+		dash0.setForeground(Color.WHITE);
 		dash0.setHorizontalAlignment(SwingConstants.CENTER);
 		dash0.setBounds(119, 221, 9, 14);
 		contentPane.add(dash0);
 
 		JLabel dash1 = new JLabel("-");
+		dash1.setForeground(Color.WHITE);
 		dash1.setHorizontalAlignment(SwingConstants.CENTER);
 		dash1.setBounds(174, 106, 9, 14);
 		contentPane.add(dash1);
 
 		JLabel dash2 = new JLabel("-");
+		dash2.setForeground(Color.WHITE);
 		dash2.setHorizontalAlignment(SwingConstants.CENTER);
 		dash2.setBounds(174, 170, 9, 14);
 		contentPane.add(dash2);
 
 		JLabel lblZoneSelection = new JLabel("Zone Selection");
+		lblZoneSelection.setForeground(Color.WHITE);
 		lblZoneSelection.setHorizontalAlignment(SwingConstants.CENTER);
-		lblZoneSelection.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblZoneSelection.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblZoneSelection.setBounds(10, 55, 113, 14);
 		contentPane.add(lblZoneSelection);
 
 		JLabel rollLbl = new JLabel("Roll Range");
-		rollLbl.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		rollLbl.setForeground(Color.WHITE);
+		rollLbl.setFont(new Font("Tahoma", Font.BOLD, 15));
 		rollLbl.setBounds(138, 72, 113, 23);
 		contentPane.add(rollLbl);
 
 		JLabel pitchLbl = new JLabel("Pitch Range");
-		pitchLbl.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		pitchLbl.setBounds(138, 139, 89, 20);
+		pitchLbl.setForeground(Color.WHITE);
+		pitchLbl.setFont(new Font("Tahoma", Font.BOLD, 15));
+		pitchLbl.setBounds(138, 139, 99, 20);
 		contentPane.add(pitchLbl);
 
 		JLabel dateLbl = new JLabel("Date Range (YYYY-MM-DD)");
-		dateLbl.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		dateLbl.setBounds(20, 195, 190, 23);
+		dateLbl.setForeground(Color.WHITE);
+		dateLbl.setFont(new Font("Tahoma", Font.BOLD, 15));
+		dateLbl.setBounds(20, 195, 217, 23);
 		contentPane.add(dateLbl);
+		
 	}
 
 	public static void createZoneBtns() {
@@ -794,41 +820,5 @@ public class Statistics extends JFrame {
 		pitchInputF.setBounds(193, 167, 29, 20);
 		contentPane.add(pitchInputF);
 		pitchInputF.setColumns(10);
-	}
-	public static JMenuBar createMenu() {
-		JMenuBar menuBar = new JMenuBar();
-
-		JMenuItem mntmProfile = new JMenuItem("Profile");
-		mntmProfile.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				View.statsf.setVisible(false);
-				View.profilef.setVisible(true);
-			}
-		});
-		menuBar.add(mntmProfile);
-
-		JMenuItem mntmControl = new JMenuItem("Control");
-		mntmControl.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				View.statsf.setVisible(false);
-				View.controlf.setVisible(true);
-			}
-		});
-		menuBar.add(mntmControl);
-
-		JMenuItem mntmStatistics = new JMenuItem("Statistics");
-		mntmStatistics.setBackground(SystemColor.activeCaption);
-		menuBar.add(mntmStatistics);
-
-		JMenuItem mntmTests = new JMenuItem("Testing");
-		mntmTests.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				View.statsf.setVisible(false);
-				View.testf.setVisible(true);
-			}
-		});
-		menuBar.add(mntmTests);
-
-        return menuBar;
 	}
 }

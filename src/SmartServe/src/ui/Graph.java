@@ -87,10 +87,12 @@ public class Graph extends ApplicationFrame {
 	private XYDataset createDataset(Double[] data, int step, String xAxis) {
 		final XYSeries line = new XYSeries("Stats");
 		for(int i=0; i<data.length;i++) {
-			if(xAxis.equals("zone")) {
-				line.add(i+2, data[i]);
-			}else {
-				line.add(i*step, data[i]);
+			if(data[i] != -1.0) {
+				if(xAxis.equals("zone")) {
+					line.add(i+2, data[i]);
+				}else {
+					line.add(i*step, data[i]);
+				}
 			}
 		}
 		
