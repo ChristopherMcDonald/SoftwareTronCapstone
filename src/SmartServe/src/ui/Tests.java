@@ -76,7 +76,7 @@ public class Tests extends JFrame {
 		test1Btn.addActionListener(new ActionListener() { // buttons active when start is pressed
 			public void actionPerformed(ActionEvent ae) {
 				control = new Controller(35);
-				control.setMode(Mode.ONESHOT);
+				control.setMode(Mode.SINGLEZONE);
 				control.setShots(48);
 				Thread t = new Thread(control);
 				System.out.println("Zone: 17, Pitch: 20, Roll: 0");
@@ -87,7 +87,7 @@ public class Tests extends JFrame {
 		test2Btn.addActionListener(new ActionListener() { // buttons active when start is pressed
 			public void actionPerformed(ActionEvent ae) {
 				control = new Controller(35);
-				control.setMode(Mode.ONESHOT);
+				control.setMode(Mode.SINGLEZONE);
 				control.setShots(91);
 				Thread t = new Thread(control);
 				System.out.println("Zone: 12, Pitch: 10, Roll: 90");
@@ -98,7 +98,7 @@ public class Tests extends JFrame {
 		test3Btn.addActionListener(new ActionListener() { // buttons active when start is pressed
 			public void actionPerformed(ActionEvent ae) {
 				control = new Controller(35);
-				control.setMode(Mode.ONESHOT);
+				control.setMode(Mode.SINGLEZONE);
 				control.setShots(148,193);
 				Thread t = new Thread(control);
 				System.out.println("Zone: 5, Pitch: 10, Roll: 180");
@@ -110,7 +110,7 @@ public class Tests extends JFrame {
 		test4Btn.addActionListener(new ActionListener() { // buttons active when start is pressed
 			public void actionPerformed(ActionEvent ae) {
 				control = new Controller(35);
-				control.setMode(Mode.ONESHOT);
+				control.setMode(Mode.SINGLEZONE);
 				control.setShots(148,193,148);
 				Thread t = new Thread(control);
 				System.out.println("Zone: 5, Pitch: 10, Roll: 180");

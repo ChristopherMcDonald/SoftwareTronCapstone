@@ -5,5 +5,5 @@ package enums;
  * @author christophermcdonald
  */
 public enum Mode {
-	TRAIN, RANDOM, ONESHOT
+	TRAIN, RANDOM, SINGLEZONE
 }
