@@ -49,7 +49,7 @@ void FeedAndShoot::move_by_steps(int steps)
 	myStepper.step(steps);
 }
 
-void FeedAndShoot::stop_feed_shot()
+bool FeedAndShoot::stop_feed_shot()
 {
 	myStepper.setSpeed(0);
 	for(int i = dcspeed; i > 0; i--)
