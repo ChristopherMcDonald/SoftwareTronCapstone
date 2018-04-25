@@ -68,15 +68,12 @@ public class Graph extends ApplicationFrame {
 	* @param title the frame title.
 	*/
 	public Graph(final String title, Double[] data, String xAxis, int step) {
-	
 		super(title);
-		final XYDataset dataset = createDataset(data, step,xAxis);
-		final JFreeChart chart = createChart(dataset, xAxis);
-		
+		XYDataset dataset = createDataset(data, step, xAxis);
+		JFreeChart chart = createChart(dataset, xAxis);
 		chartPanel = new ChartPanel(chart);
 		chartPanel.setPreferredSize(new java.awt.Dimension(403, 170));
 		setContentPane(chartPanel);
-		
 	}
 	
 	/**
