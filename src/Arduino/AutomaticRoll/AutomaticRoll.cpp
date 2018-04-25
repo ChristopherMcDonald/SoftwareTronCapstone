@@ -139,3 +139,8 @@ void AutomaticRoll::set_current_location(double location)
 {
 	current_location = location;
 }
+
+bool AutomaticRoll::stop_roll()
+{
+	return home_assembly("CW");
+}
