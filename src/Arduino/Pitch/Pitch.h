@@ -10,6 +10,7 @@ class Pitch
 		bool move_to_location(double desired_location);
 		bool home_assembly();
 		double get_current_location();
+		bool stop_pitch();
 
 	private:
 		double current_location, target_location;
