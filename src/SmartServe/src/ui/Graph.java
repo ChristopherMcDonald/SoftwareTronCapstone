@@ -68,15 +68,12 @@ public class Graph extends ApplicationFrame {
 	* @param title the frame title.
 	*/
 	public Graph(final String title, Double[] data, String xAxis, int step) {
-	
 		super(title);
-		final XYDataset dataset = createDataset(data, step,xAxis);
-		final JFreeChart chart = createChart(dataset, xAxis);
-		
+		XYDataset dataset = createDataset(data, step, xAxis);
+		JFreeChart chart = createChart(dataset, xAxis);
 		chartPanel = new ChartPanel(chart);
 		chartPanel.setPreferredSize(new java.awt.Dimension(403, 170));
 		setContentPane(chartPanel);
-		
 	}
 	
 	/**
@@ -87,10 +84,12 @@ public class Graph extends ApplicationFrame {
 	private XYDataset createDataset(Double[] data, int step, String xAxis) {
 		final XYSeries line = new XYSeries("Stats");
 		for(int i=0; i<data.length;i++) {
-			if(xAxis.equals("zone")) {
-				line.add(i+2, data[i]);
-			}else {
-				line.add(i*step, data[i]);
+			if(data[i] != -1.0) {
+				if(xAxis.equals("zone")) {
+					line.add(i+2, data[i]);
+				}else {
+					line.add(i*step, data[i]);
+				}
 			}
 		}
 		

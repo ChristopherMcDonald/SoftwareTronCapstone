@@ -2,8 +2,6 @@ package ui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -12,11 +10,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Insets;
-import java.awt.SystemColor;
-
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class Profile extends JFrame {
 
@@ -53,24 +52,21 @@ public class Profile extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblProfile = new JLabel("Profile");
-		lblProfile.setHorizontalAlignment(SwingConstants.CENTER);
-		lblProfile.setFont(new Font("Century", Font.PLAIN, 35));
-		lblProfile.setBounds(144, 4, 137, 69);
-		contentPane.add(lblProfile);
-
 		JLabel lblUserName = new JLabel();
-		lblUserName.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblUserName.setForeground(Color.WHITE);
+		lblUserName.setFont(new Font("Tahoma", Font.BOLD, 35));
 		lblUserName.setHorizontalAlignment(SwingConstants.CENTER);
-		lblUserName.setBounds(125, 84, 156, 14);
+		lblUserName.setBounds(10, 11, 194, 128);
 		contentPane.add(lblUserName);
 
 		JButton btnChangePassword = new JButton("Change Password");
-		btnChangePassword.setBounds(144, 109, 119, 23);
+		btnChangePassword.setBackground(Color.WHITE);
+		btnChangePassword.setBounds(257, 96, 119, 23);
 		btnChangePassword.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnChangePassword);
 
 		JButton btnLogOut = new JButton("Log Out");
+		btnLogOut.setBackground(Color.WHITE);
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Log Out Successful", "Log Out", JOptionPane.PLAIN_MESSAGE);
@@ -78,51 +74,21 @@ public class Profile extends JFrame {
 				View.welcomef.setVisible(true);
 			}
 		});
-		btnLogOut.setBounds(154, 143, 89, 23);
+		btnLogOut.setBounds(287, 119, 89, 23);
 		contentPane.add(btnLogOut);
 
-		//todo: change name
-		lblUserName.setText("Welcome " + "Sharon Platkin");
-
-		setJMenuBar(createMenu());
-
-	}
-
-	public static JMenuBar createMenu() {
-		JMenuBar menuBar = new JMenuBar();
-
-		JMenuItem mntmProfile = new JMenuItem("Profile");
-		mntmProfile.setBackground(SystemColor.activeCaption);
-		menuBar.add(mntmProfile);
-
-		JMenuItem mntmControl = new JMenuItem("Control");
-		mntmControl.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				View.profilef.setVisible(false);
-				View.controlf.setVisible(true);
-			}
-		});
-		menuBar.add(mntmControl);
-
-		JMenuItem mntmStatistics = new JMenuItem("Statistics");
-		mntmStatistics.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				View.profilef.setVisible(false);
-				View.statsf.setVisible(true);
-			}
-		});
-		menuBar.add(mntmStatistics);
-
-		JMenuItem mntmTests = new JMenuItem("Testing");
-		mntmTests.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				View.profilef.setVisible(false);
-				View.testf.setVisible(true);
-			}
-		});
-		menuBar.add(mntmTests);
-
-        return menuBar;
+		lblUserName.setText("<html>Welcome<br/> Janak</html>");
+		
+		JLabel background = new JLabel("");
+		background.setBounds(0, 0, 434, 262);
+		contentPane.add(background);
+		ImageIcon bg_old = new ImageIcon(Welcome.class.getResource("/ui/img/profileBg.png"));
+		Image img_old = bg_old.getImage();
+		Image img_new = img_old.getScaledInstance(background.getWidth(), background.getHeight(), Image.SCALE_SMOOTH);
+		ImageIcon bg_new = new ImageIcon(img_new);
+		background.setIcon(bg_new);
+		
+		setJMenuBar(View.createMenu(this));
 
 	}
 }

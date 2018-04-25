@@ -5,26 +5,22 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-
-import controllers.SQLConnector;
 import enums.Mode;
 import runnables.Controller;
 
 public class Tests extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Controller control;
 	
@@ -76,7 +72,7 @@ public class Tests extends JFrame {
 		test1Btn.addActionListener(new ActionListener() { // buttons active when start is pressed
 			public void actionPerformed(ActionEvent ae) {
 				control = new Controller(35);
-				control.setMode(Mode.ONESHOT);
+				control.setMode(Mode.SINGLEZONE);
 				control.setShots(48);
 				Thread t = new Thread(control);
 				System.out.println("Zone: 17, Pitch: 20, Roll: 0");
@@ -87,7 +83,7 @@ public class Tests extends JFrame {
 		test2Btn.addActionListener(new ActionListener() { // buttons active when start is pressed
 			public void actionPerformed(ActionEvent ae) {
 				control = new Controller(35);
-				control.setMode(Mode.ONESHOT);
+				control.setMode(Mode.SINGLEZONE);
 				control.setShots(91);
 				Thread t = new Thread(control);
 				System.out.println("Zone: 12, Pitch: 10, Roll: 90");
@@ -98,7 +94,7 @@ public class Tests extends JFrame {
 		test3Btn.addActionListener(new ActionListener() { // buttons active when start is pressed
 			public void actionPerformed(ActionEvent ae) {
 				control = new Controller(35);
-				control.setMode(Mode.ONESHOT);
+				control.setMode(Mode.SINGLEZONE);
 				control.setShots(148,193);
 				Thread t = new Thread(control);
 				System.out.println("Zone: 5, Pitch: 10, Roll: 180");
@@ -110,7 +106,7 @@ public class Tests extends JFrame {
 		test4Btn.addActionListener(new ActionListener() { // buttons active when start is pressed
 			public void actionPerformed(ActionEvent ae) {
 				control = new Controller(35);
-				control.setMode(Mode.ONESHOT);
+				control.setMode(Mode.SINGLEZONE);
 				control.setShots(148,193,148);
 				Thread t = new Thread(control);
 				System.out.println("Zone: 5, Pitch: 10, Roll: 180");

@@ -1,25 +1,24 @@
 package ui;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import com.mysql.jdbc.StringUtils;
 
 import enums.Mode;
 import runnables.Controller;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.SystemColor;
-import javax.swing.JTextField;
 
 public class Control extends JFrame {
 
@@ -65,35 +64,49 @@ public class Control extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblControl = new JLabel("Control");
-		lblControl.setFont(new Font("Century", Font.PLAIN, 35));
-		lblControl.setBounds(149, 4, 137, 69);
+		lblControl.setForeground(Color.WHITE);
+		lblControl.setFont(new Font("Century", Font.BOLD, 33));
+		lblControl.setBounds(62, 21, 137, 69);
 		contentPane.add(lblControl);
 
 		JButton startBtn = new JButton("Start");
-		startBtn.setBounds(50,71,100, 40);
+		startBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
+		startBtn.setBackground(Color.WHITE);
+		startBtn.setForeground(Color.BLACK);
+		startBtn.setBounds(26,87,100, 40);
 		contentPane.add(startBtn);
 
 		JButton pauseBtn = new JButton("Pause");
-		pauseBtn.setBounds(159,71,100, 40);
+		pauseBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
+		pauseBtn.setBackground(Color.WHITE);
+		pauseBtn.setBounds(136,87,100, 40);
 		contentPane.add(pauseBtn);
 		pauseBtn.setEnabled(false);
 
 		JButton stopBtn = new JButton("Stop");
-		stopBtn.setBounds(270,71,100, 40);
+		stopBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
+		stopBtn.setBackground(Color.WHITE);
+		stopBtn.setBounds(246,87,100, 40);
 		contentPane.add(stopBtn);
 		stopBtn.setEnabled(false);
 
-		String[] modes = { Mode.TRAIN.toString(), Mode.ONESHOT.toString(), Mode.RANDOM.toString()};
+		String[] modes = { Mode.TRAIN.toString(), Mode.SINGLEZONE.toString(), Mode.RANDOM.toString()};
 	    final JComboBox<String> modeDropDown = new JComboBox<String>(modes);
+	    currentMode = Mode.TRAIN.toString();
+	    
+		//FOR TESTING
+		//String[] modes = { "TRAIN", "SINGLEZONE", "RANDOM"};
+	    //final JComboBox modeDropDown = new JComboBox(modes);
 
         lblZone = new JLabel("Which Zone? (2-17)");
-		lblZone.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblZone.setBounds(149, 158, 137, 14);
+        lblZone.setForeground(Color.WHITE);
+		lblZone.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblZone.setBounds(62, 169, 163, 14);
 		contentPane.add(lblZone);
 		lblZone.setVisible(false);
 
 		zoneInput = new JTextField();
-		zoneInput.setBounds(184, 183, 54, 20);
+		zoneInput.setBounds(219, 168, 54, 20);
 		contentPane.add(zoneInput);
 		zoneInput.setColumns(10);
 		zoneInput.setVisible(false);
@@ -101,30 +114,35 @@ public class Control extends JFrame {
 	    modeDropDown.addActionListener (new ActionListener () {
 	        public void actionPerformed(ActionEvent e) {
 	        	currentMode = modeDropDown.getSelectedItem();
-	        	if (modeDropDown.getSelectedItem().equals("ONESHOT")){
+	        	if (modeDropDown.getSelectedItem().equals("SINGLEZONE")){
 	        		lblZone.setVisible(true);
 	        		zoneInput.setVisible(true);
+	        	}
+	        	else {
+	        		lblZone.setVisible(false);
+	        		zoneInput.setVisible(false);
 	        	}
 	        }
 	    });
         
 		modeDropDown.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		modeDropDown.setBounds(160, 127, 100, 20);
+		modeDropDown.setBounds(62, 138, 100, 20);
 		contentPane.add(modeDropDown);
 
-		JLabel lblError = new JLabel("Please enter valid zone!");
-		lblError.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblError.setBounds(140, 213, 209, 14);
+		lblError = new JLabel("Please enter valid zone!");
+		lblError.setForeground(Color.WHITE);
+		lblError.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblError.setBounds(72, 194, 194, 14);
 		contentPane.add(lblError);
 		lblError.setVisible(false);
 
 		startBtn.addActionListener(new ActionListener() { // buttons active when start is pressed
 		     public void actionPerformed(ActionEvent ae) {
-		        if (currentMode.equals("ONESHOT") && !(isValid(zoneInput.getText()))) {
+		        if (currentMode.equals("SINGLEZONE") && !(isValid(zoneInput.getText()))) {
 		        	lblError.setVisible(true);
 		        }
 		        else {
-		        	if (currentMode.equals("ONESHOT")) {
+		        	if (currentMode.equals("SINGLEZONE")) {
 		        		control = new Controller(View.getUserid(),zone);
 		        	}
 		        	else {
@@ -178,46 +196,18 @@ public class Control extends JFrame {
 		 );
 
 
-		setJMenuBar(createMenu());
+		JLabel background = new JLabel("");
+		background.setBounds(0, 0, 434, 262);
+		contentPane.add(background);
+		ImageIcon bg_old = new ImageIcon(Welcome.class.getResource("/ui/img/controlBg.jpg"));
+		Image img_old = bg_old.getImage();
+		Image img_new = img_old.getScaledInstance(background.getWidth(), background.getHeight(), Image.SCALE_SMOOTH);
+		ImageIcon bg_new = new ImageIcon(img_new);
+		background.setIcon(bg_new);
+		
+		setJMenuBar(View.createMenu(this));
 
 
-
-	}
-
-	public static JMenuBar createMenu() {
-		JMenuBar menuBar = new JMenuBar();
-		JMenuItem mntmProfile = new JMenuItem("Profile");
-		mntmProfile.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				View.controlf.setVisible(false);
-				View.profilef.setVisible(true);
-			}
-		});
-		menuBar.add(mntmProfile);
-
-		JMenuItem mntmControl = new JMenuItem("Control");
-		mntmControl.setBackground(SystemColor.activeCaption);
-		menuBar.add(mntmControl);
-
-		JMenuItem mntmStatistics = new JMenuItem("Statistics");
-		mntmStatistics.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				View.controlf.setVisible(false);
-				View.statsf.setVisible(true);
-			}
-		});
-		menuBar.add(mntmStatistics);
-
-		JMenuItem mntmTests = new JMenuItem("Testing");
-		mntmTests.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				View.controlf.setVisible(false);
-				View.testf.setVisible(true);
-			}
-		});
-		menuBar.add(mntmTests);
-
-        return menuBar;
 
 	}
 
