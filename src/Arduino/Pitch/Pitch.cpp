@@ -71,5 +71,5 @@ void Pitch::set_current_location(double location)
 
 bool Pitch::stop_pitch() // Exit sequence, home the assembly upon power OFF
 {
-	home_assembly(); // Call the home method
+	return home_assembly(); // Call the home method
 }
