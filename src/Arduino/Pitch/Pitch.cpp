@@ -36,7 +36,7 @@ bool Pitch::move_to_location(double desired_location)
 	}	
 	else
 	{
-		//Serial.println("Target Location Out of Reach");
+		Serial.println("Target Location Out of Reach");
     	return false;
 	}
 }
@@ -49,12 +49,12 @@ bool Pitch::home_assembly()
 	}
 	else if (get_current_location() == HomeLocation)
 	{
-		//Serial.println("Pitch System is already home");
+		Serial.println("Pitch System is already home");
 		return true;
 	}
 	else
 	{
-		//Serial.println("Unable to Home the Servo Motor");
+		Serial.println("Unable to Home the Servo Motor");
 		return false;
 	}	
 }
