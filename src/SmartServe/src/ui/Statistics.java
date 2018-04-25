@@ -64,7 +64,6 @@ public class Statistics extends JFrame {
 	static boolean graphView = true;
 	static boolean chartView = false;
 
-
 	/**
 	 * Launch the application.
 	 */
@@ -171,9 +170,9 @@ public class Statistics extends JFrame {
 		btnChartView.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(rowCount!=0) {
+					showChart();
 					graphView = false;
 					chartView = true;
-					showChart();
 				}
 				else {
 					noResults();
@@ -190,9 +189,9 @@ public class Statistics extends JFrame {
 		btnGraphView.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(rowCount!=0) {
+					showGraph();
 					graphView = true;
 					chartView = false;
-					showGraph();
 				}
 				else {
 					noResults();
@@ -225,7 +224,7 @@ public class Statistics extends JFrame {
 		btnxPitch.setVisible(false);
 
 		internalFrame = new JInternalFrame("");
-		internalFrame.getContentPane().setLayout(null);
+		internalFrame.setLayout(null);
 		internalFrame.setBounds(291, 80, 414, 173);
 		internalFrame.setBorder(null);
 		((javax.swing.plaf.basic.BasicInternalFrameUI)internalFrame.getUI()).setNorthPane(null);
@@ -234,9 +233,13 @@ public class Statistics extends JFrame {
 		lblNoResults = new JLabel("No Results Found!");
 		lblNoResults.setBounds(102, 57, 217, 23);
 		lblNoResults.setFont(new Font("Century", Font.BOLD, 20));
-		internalFrame.getContentPane().add(lblNoResults);
+		internalFrame.add(lblNoResults);
 		lblNoResults.setVisible(false);
-				
+		
+		tableScroll.setBounds(281, 87, 403, 170);
+		contentPane.add(tableScroll);
+		tableScroll.setVisible(false);		
+		
 		JLabel background = new JLabel("");
 		background.setBounds(0, -12, 725, 299);
 		contentPane.add(background);
@@ -246,7 +249,7 @@ public class Statistics extends JFrame {
 		ImageIcon bg_new = new ImageIcon(img_new);
 		background.setIcon(bg_new);
 		
-		internalFrame.setVisible(true);
+		internalFrame.setVisible(false);
 
 	}
 
@@ -257,13 +260,10 @@ public class Statistics extends JFrame {
 	public static void showChart() {
 	    internalFrame.setVisible(false);
 		model.setRowCount(0);
-	    contentPane.add(tableScroll);
 		for(int i=0; i < outputData.length; i++) {
 			model.addRow(outputData[i]);
 		}
-		tableScroll.setVisible(true);
-		tableScroll.setBounds(281, 87, 403, 170);
-		
+		tableScroll.setVisible(true);		
 		btnxZone.setVisible(false);
 		btnxRoll.setVisible(false);
 		btnxPitch.setVisible(false);
@@ -272,17 +272,14 @@ public class Statistics extends JFrame {
 	public static void showGraph() {
 		//default
 		statsGraph = new Graph("Graph",dataReturn("zone"),"zone",1);
-		internalFrame.getContentPane().add(statsGraph.chartPanel);
+		internalFrame.add(statsGraph.chartPanel);
 		statsGraph.pack();
 		
-		tableScroll.setVisible(false);
-		internalFrame.setVisible(true);
-
 		btnxZone.setVisible(true);
 		btnxZone.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				statsGraph = new Graph("Graph",dataReturn("zone"),"zone",1);
-				internalFrame.getContentPane().add(statsGraph.chartPanel);
+				internalFrame.add(statsGraph.chartPanel);
 				statsGraph.pack();
 			}
 		});
@@ -291,7 +288,7 @@ public class Statistics extends JFrame {
 		btnxRoll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				statsGraph = new Graph("Graph",dataReturn("roll"),"roll",90);
-				internalFrame.getContentPane().add(statsGraph.chartPanel);
+				internalFrame.add(statsGraph.chartPanel);
 				statsGraph.pack();
 			}
 		});
@@ -300,12 +297,13 @@ public class Statistics extends JFrame {
 		btnxPitch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				statsGraph = new Graph("Graph",dataReturn("pitch"),"pitch",10);
-				internalFrame.getContentPane().add(statsGraph.chartPanel);
+				internalFrame.add(statsGraph.chartPanel);
 				statsGraph.pack();
 			}
 		});
 
-
+		tableScroll.setVisible(false);
+		internalFrame.setVisible(true);
 	}
 
 	public static Double[] dataReturn(String xAxis) {
@@ -353,7 +351,6 @@ public class Statistics extends JFrame {
 					}
 				}
 			}
-
 			if(xCount==0) {
 				returnRate[iterator] = -1.0;
 				iterator++;
