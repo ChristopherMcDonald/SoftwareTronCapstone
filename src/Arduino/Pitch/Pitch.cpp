@@ -5,6 +5,9 @@
 #define MaxPitchLimit 70.0
 #define MinPitchLimit 30.0
 #define HomeLocation 60.0
+#define ZeroLocation 65.0
+
+//Note: 0 means perfectly up or 90 degrees from the horizon. 180 deg means perfectly down or 90 degrees below the horizon
 
 Servo myservo; // create servo object to control a servo
 
@@ -40,6 +43,18 @@ bool Pitch::move_to_location(double desired_location)
     	return false;
 	}
 }
+
+bool Pitch::move_respect_to_horizon(double horizon_location)
+{
+	if (horizon_location >= 0) // Subtract from Horizon
+	{
+		return move_to_location(ZeroLocation - horizon_location);
+	}
+	else // Add from the horizon
+	{
+		return move_to_location(ZeroLocation + abs(horizon_location));
+	}
+}	
 
 bool Pitch::home_assembly()
 {

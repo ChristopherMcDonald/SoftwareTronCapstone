@@ -11,6 +11,7 @@ class Pitch
 		bool home_assembly();
 		double get_current_location();
 		bool stop_pitch();
+		bool move_respect_to_horizon(double horizon_location);
 
 	private:
 		double current_location, target_location;
