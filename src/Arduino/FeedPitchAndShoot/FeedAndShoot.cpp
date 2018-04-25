@@ -16,7 +16,7 @@ Stepper myStepper(stepsPerRevolution, 8, 9, 10, 11);
 
 FeedAndShoot::FeedAndShoot() // Constructor
 {
-	Serial.begin(9600);
+	//Serial.begin(9600);
 
 	stepperspeed = 100;
 	dcspeed = 0; // Speed stored as 0 - 255 PWM values
@@ -47,4 +47,21 @@ void FeedAndShoot::move_by_steps(int steps)
 {
 	myStepper.setSpeed(stepperspeed);
 	myStepper.step(steps);
+}
+
+void FeedAndShoot::stop_feed_shot()
+{
+	myStepper.setSpeed(0);
+	for(int i = dcspeed; i > 0; i--)
+	{
+		set_dcspeed(i);
+	}
+	if(dcspeed == 0 && stepperspeed == 0) // Speeds have reached 0 so set true
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
