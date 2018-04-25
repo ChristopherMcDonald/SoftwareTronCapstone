@@ -138,3 +138,8 @@ void AutomaticPanning::set_current_location(double location)
 {
 	current_location = location;
 }
+
+bool AutomaticPanning::stop_pan() // Exit sequence, home the assembly upon power OFF
+{
+	return home_assembly(); // Call the home method
+}

@@ -10,6 +10,7 @@ class AutomaticPanning
         bool move_to_location(double desired_location);
         bool home_assembly(String motor_direction); 
         double get_current_location();
+        bool stop_pan();
     private:
     	// Home Position -> 0 deg and measured CCW+
     	double current_location, target_location, location_diff; 
