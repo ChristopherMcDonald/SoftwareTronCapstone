@@ -1,13 +1,15 @@
 #include <FeedAndShoot.h>
-#include <Servo.h>
 #include <Pitch.h>
+#define Steps_For_1_REV 515
 
 Pitch* mypitch;
-FeedAndShoot* myfeedandshoot = new FeedAndShoot();
+FeedAndShoot* myfeedandshoot;
 String data;
 
-void setup() {
+void setup() 
+{
     mypitch = new Pitch();
+    myfeedandshoot = new FeedAndShoot();
     mypitch->home_assembly();
     // make sure this matches one in Java
     Serial.begin(9600);
@@ -25,9 +27,16 @@ void loop() {
 
         if(type == "V") {
             myfeedandshoot->set_dcspeed(val);
-        } else { // type == "P"
-            mypitch->move_to_location(65.0 - val);
-            myfeedandshoot->move_by_steps(515);
+        } 
+        else if (type == "S")
+        {
+        	myfeedandshoot->stop_feed_shot();
+        	mypitch->stop_pitch();
+        }
+        else 
+        { // type == "P"
+            mypitch->move_respect_to_horizon(val);
+            myfeedandshoot->move_by_steps(Steps_For_1_REV);
         }
     }
 }
