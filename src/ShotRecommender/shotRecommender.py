@@ -31,7 +31,7 @@ def getNextShot():
 								port=3306);
 	if(mode == "RANDOM"):
 		shotId = random.choice(model.shots.keys);
-	elif(mode == "ONESHOT"):
+	elif(mode == "SINGLEZONE"):
 		shotId = mode = request.args.get("shot");
 	else:
 		shotId = model.shots.getNext();

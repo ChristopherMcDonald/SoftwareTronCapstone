@@ -52,12 +52,12 @@ socketIn.listen(5);                     # enables server to accept incoming
 pts = deque(maxlen = args["buffer"])
 counter = 0
 (dX, dY) = (0,0)
-cap = cv2.VideoCapture(1);
+cap = cv2.VideoCapture(2);
 resizeX = 0.42;
 resizeY = 0.42;
 width  = cap.get(cv2.CAP_PROP_FRAME_WIDTH)*resizeX;
 height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)*resizeY;
-vs= WebcamVideoStream(src=1).start()
+vs= WebcamVideoStream(src=2).start()
 fps = FPS().start();
 backsub = cv2.createBackgroundSubtractorMOG2();
 backsub.setVarThreshold(1750);
@@ -129,7 +129,7 @@ while(True):
 
     if(fsm == 1 or fsm == 2 or fsm == 3):
 
-        if((datetime.now() - start).seconds > 30):
+        if((datetime.now() - start).seconds > 4):
             fps.stop()
             print("[INFO] elasped time: {:.2f}".format(fps.elapsed()))
             print("[INFO] approx. FPS: {:.2f}".format(fps.fps()))

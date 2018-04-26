@@ -93,10 +93,6 @@ public class Control extends JFrame {
 		String[] modes = { Mode.TRAIN.toString(), Mode.SINGLEZONE.toString(), Mode.RANDOM.toString()};
 	    final JComboBox<String> modeDropDown = new JComboBox<String>(modes);
 	    currentMode = Mode.TRAIN.toString();
-	    
-		//FOR TESTING
-		//String[] modes = { "TRAIN", "SINGLEZONE", "RANDOM"};
-	    //final JComboBox modeDropDown = new JComboBox(modes);
 
         lblZone = new JLabel("Which Zone? (2-17)");
         lblZone.setForeground(Color.WHITE);
@@ -124,7 +120,7 @@ public class Control extends JFrame {
 	        	}
 	        }
 	    });
-        
+
 		modeDropDown.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		modeDropDown.setBounds(62, 138, 100, 20);
 		contentPane.add(modeDropDown);
@@ -204,7 +200,7 @@ public class Control extends JFrame {
 		Image img_new = img_old.getScaledInstance(background.getWidth(), background.getHeight(), Image.SCALE_SMOOTH);
 		ImageIcon bg_new = new ImageIcon(img_new);
 		background.setIcon(bg_new);
-		
+
 		setJMenuBar(View.createMenu(this));
 
 

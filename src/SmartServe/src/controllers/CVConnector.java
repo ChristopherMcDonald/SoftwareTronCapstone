@@ -74,29 +74,26 @@ public class CVConnector {
 		
 		String fromClient;
 		Socket clientSocket;
+		ServerSocket server;
 		
 		try {
 			clientSocket = new Socket("localhost", port);
+			server = new ServerSocket(port + 1);
 			DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
 			
+			System.out.println("STARTING CV...");
 			outToServer.writeUTF("DETECT");
-			clientSocket.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new NotConnectedException("CVConnector", port);
-		}
-		
-		ServerSocket server;
-		try {
-			server = new ServerSocket(port + 1);
+			
 			Socket client = server.accept();
 	        BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 
 	        fromClient = in.readLine();
+	        clientSocket.close();
 	        server.close();
+	        System.out.println("GOT CV...");
 		} catch (IOException e) {
 			e.printStackTrace();
-			throw new NotConnectedException("CVConnector", port + 1);
+			throw new NotConnectedException("CVConnector", port);
 		}
 		return fromClient.equals("GOOD");
 	}

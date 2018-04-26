@@ -8,7 +8,7 @@ import errors.NotConnectedException;
 
 public class ArduinoController {
 	
-	protected Arduino arduino; // holds the port if successfully connects
+	public Arduino arduino; // holds the port if successfully connects
 	protected String port;
 	
 	/**

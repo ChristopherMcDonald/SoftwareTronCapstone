@@ -44,5 +44,20 @@ public class PitchAndShootArduinoController extends ArduinoController {
 		System.out.println("Sending Pitch:" + toSend);
 		arduino.serialWrite(toSend);
 	}
+	
+	/**
+	 * instructs Arduino to shoot a ball at a given speed, must be done after shoot(ShotDetail)
+	 * @param speed in m/s
+	 * @throws NotConnectedException
+	 */
+	public void stop() throws NotConnectedException {
+		if(arduino == null) {
+			throw new NotConnectedException("Arduino", port);
+		}
+		
+		String toSend = "S:0.0";
+		System.out.println("Closing:" + toSend);
+		arduino.serialWrite(toSend);
+	}
 
 }
