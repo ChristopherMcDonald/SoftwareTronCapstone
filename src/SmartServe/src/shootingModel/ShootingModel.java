@@ -63,7 +63,6 @@ public class ShootingModel {
 		} else {
 			yawAngle = 90 - yawAngle;
 		}
-		System.out.println("Angle in the X Plane: " + yawAngle);
 		return yawAngle;
     }
 

@@ -13,9 +13,9 @@ Servo myservo; // create servo object to control a servo
 
 Pitch::Pitch() // Constructor
 {
-	current_location = 0.0;
 	target_location = 90.0; // Go home position by default
 	myservo.attach(12);  // attaches the servo on pin 9 to the servo object
+    current_location = myservo.read(); // gets the current position
 }
 
 bool Pitch::move_to_location(double desired_location)
@@ -32,11 +32,11 @@ bool Pitch::move_to_location(double desired_location)
 			{
 				current_location++;
 			}
-			myservo.write(desired_location); // move the servo to the desired location
-			set_current_location(desired_location);
+			myservo.write(current_location); // move the servo to the desired location
+            // delay(30);
 		}
 		return true;
-	}	
+	}
 	else
 	{
 		Serial.println("Target Location Out of Reach");
@@ -54,7 +54,7 @@ bool Pitch::move_respect_to_horizon(double horizon_location)
 	{
 		return move_to_location(ZeroLocation + abs(horizon_location));
 	}
-}	
+}
 
 bool Pitch::home_assembly()
 {
@@ -71,7 +71,7 @@ bool Pitch::home_assembly()
 	{
 		Serial.println("Unable to Home the Servo Motor");
 		return false;
-	}	
+	}
 }
 
 double Pitch::get_current_location()

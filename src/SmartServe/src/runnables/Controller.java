@@ -33,6 +33,7 @@ public class Controller implements Runnable {
 
 	public Controller(int uID){
 		userId = uID;
+		singleZone = -1;
 	}
 
 	public Controller(int uID, int zone){
@@ -49,10 +50,15 @@ public class Controller implements Runnable {
 				if(shotIds != null) {
 					for(int id : shotIds)
 						shoot(id);
+					shooter.stop();
+				} else if(singleZone != -1) {
+					shoot(getXLoc(singleZone), getYLoc(singleZone));
 				} else {
 					shoot();
 				}
 			}
+			
+			close();
 		} catch (NotConnectedException | IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
@@ -80,7 +86,7 @@ public class Controller implements Runnable {
 	private static final int CV_PORT = 8013;
 	private static final int SQL_PORT = 3306;
 	private static final String PAN_PORT = "cu.usbserial-A700fk4c";
-	private static final String SHOOT_PORT = "cu.usbmodem14141";
+	private static final String SHOOT_PORT = "cu.usbmodem14431";
 	private static final int PAN_SERIAL = 19200;
 	private static final int SHOOT_SERIAL = 9600;
 
@@ -137,11 +143,11 @@ public class Controller implements Runnable {
 	@SuppressWarnings("unused")
 	private void shoot() throws NotConnectedException, IOException, InterruptedException, SQLException {
 		while(this.state != RunState.TERMINATE) {
-			System.out.println("Getting Next Shot...");
 			Shot s = ShotRecommendationController.getRecommendation(m);
+			System.out.println("Shooting at Zone: " + getZone(s.xLoc, s.yLoc));
 			ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, s.pitch);
 			//harit to change velocity -> ifs and elses
-			double vel = getVelocityTemp(s.yLoc);
+			double vel = getVelocityTemp(s.yLoc, s.pitch);
 
 			shooter.adjustSpeed(vel);
 			pan.shoot(sd.getYaw(), s.rollAngle);
@@ -153,15 +159,18 @@ public class Controller implements Runnable {
 			Object[] myReturns = new Object[]{userId, s.shotId, returned ? 1 : 0, sdf.format(new Date(System.currentTimeMillis()))};
 			String[] returnTypes = new String[] {"Integer", "Integer", "Integer", "String"};
 			SQLConnector.save("returned", myReturns, returnTypes);
-			while(this.state == RunState.PAUSED) {
-				System.out.println("System is Paused...");
-				Thread.sleep(10);
+			if(this.state == RunState.PAUSED) {
+				shooter.adjustSpeed(0.0f);
+				while(this.state == RunState.PAUSED) {
+					System.out.println("System is Paused...");
+					Thread.sleep(10);
+				}
 			}
 		}
 
 		// if connected, init shutdown prod
-		if(shooter.test(SHOOT_PORT, SHOOT_SERIAL)) {
-			shooter.adjustSpeed(0.0f);
+		if(shooter.arduino != null) {
+			shooter.stop();
 		}
 	}
 
@@ -175,34 +184,121 @@ public class Controller implements Runnable {
 	 */
 	@SuppressWarnings("unused")
 	private void shoot(int id) throws NotConnectedException, IOException, InterruptedException, SQLException {
-		while(this.state != RunState.TERMINATE) {
-			System.out.println("Getting Next Shot...");
-			Shot s = ShotRecommendationController.getRecommendation(id);
-			ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, s.pitch);
-			//harit to change velocity -> ifs and elses
-			double vel = getVelocityTemp(s.yLoc);
+		System.out.println("Getting Next Shot...");
+		Shot s = ShotRecommendationController.getRecommendation(id);
+		System.out.println("Shooting at Zone: " + getZone(s.xLoc, s.yLoc));
+		ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, s.pitch);
+		//harit to change velocity -> ifs and elses
+		double vel = getVelocityTemp(s.yLoc, s.pitch);
 
-			shooter.adjustSpeed(vel);
-			pan.shoot(sd.getYaw(), s.rollAngle);
-			shooter.shoot(s.pitch);
+		shooter.adjustSpeed(vel);
+		pan.shoot(sd.getYaw(), s.rollAngle);
+		shooter.shoot(s.pitch);
 
-			boolean returned = cvController.start();
-			System.out.println(returned ? "Ball Returned" : "Ball Not Returned");
-		}
+		boolean returned = cvController.start();
+		System.out.println(returned ? "Ball Returned" : "Ball Not Returned");
+	}
+	
+	/**
+	 * shoots at one place, at pitch 10
+	 * @param id - the shot to shoot
+	 * @throws NotConnectedException
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * @throws SQLException
+	 */
+	@SuppressWarnings("unused")
+	private void shoot(double xloc, double yloc) throws NotConnectedException, IOException, InterruptedException, SQLException {
+		System.out.println("Getting Next Shot...");
+		ShootingDetails sd = sm.getShootingDetails(xloc, yloc, 20.0f);
+		double vel = getVelocityTemp(yloc, 20.0f);
+
+		shooter.adjustSpeed(vel);
+		pan.shoot(sd.getYaw(), 0);
+		shooter.shoot(10.0f);
+
+		boolean returned = cvController.start();
+		System.out.println(returned ? "Ball Returned" : "Ball Not Returned");
 	}
 
-	private double getVelocityTemp(double yLoc) {
-		double velocity;
-		if(yLoc <= 0.2) {
-			velocity = 13;
-		} else if(yLoc <= 0.55) {
-			velocity = 15;
-		} else if(yLoc <= 0.9) {
-			velocity = 17;
-		} else {
-			velocity = 18;
+	private double getVelocityTemp(double yLoc, double pitch) {
+		if(pitch <= 10.1) {
+			if(yLoc <= 0.2) {
+				return 10;
+			} else if(yLoc <= 0.55) {
+				 return 18;
+			} else if(yLoc <= 0.9) {
+				return 21;
+			} else {
+				return 23;
+			}
+		} else if(pitch <= 20.1) {
+			if(yLoc <= 0.2) {
+				return 11;
+			} else if(yLoc <= 0.55) {
+				 return 16;
+			} else if(yLoc <= 0.9) {
+				return 18;
+			} else {
+				return 20;
+			}
+		} else { // pitch is 30
+			if(yLoc <= 0.2) {
+				return 7;
+			} else if(yLoc <= 0.55) {
+				 return 14;
+			} else if(yLoc <= 0.9) {
+				return 17;
+			} else {
+				return 18;
+			}
 		}
-		return velocity;
+	}
+	
+	private static int getZone(double xloc, double yloc) {
+		int id;
+		if(yloc <= 0.2) {
+			id = 2;
+		} else if(yloc <= 0.55) {
+			id = 3;
+		} else if(yloc <= 0.9) {
+			id = 4;
+		} else {
+			id = 5;
+		}
+		
+		if(xloc <= 0.2) {
+			id += 0;
+		} else if(xloc <= 0.58) {
+			id += 4;
+		} else if(xloc <= 1.0) {
+			id += 8;
+		} else {
+			id += 12;
+		}
+		
+		return id;
+	}
+	
+	private static double getYLoc(int id) {
+		switch(id % 4) {
+			case 0: return 0.856;
+			case 1: return 1.199;
+			case 2: return 0.171;
+			default: return 0.514;
+		}
+	}
+	
+	private static double getXLoc(int id) {
+		if(id <= 5)
+			return 0.191;
+		else if(id <= 9)
+			return 0.572;
+		else if(id <= 13)
+			return 0.953;
+		else
+			return 1.334;
+			
 	}
 
 	/**

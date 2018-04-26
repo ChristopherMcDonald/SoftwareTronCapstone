@@ -73,9 +73,8 @@ public class Tests extends JFrame {
 			public void actionPerformed(ActionEvent ae) {
 				control = new Controller(35);
 				control.setMode(Mode.SINGLEZONE);
-				control.setShots(48);
+				control.setShots(17,18,19,20,17,18,19,20);
 				Thread t = new Thread(control);
-				System.out.println("Zone: 17, Pitch: 20, Roll: 0");
 				t.start();
 			}
 		});
@@ -84,9 +83,8 @@ public class Tests extends JFrame {
 			public void actionPerformed(ActionEvent ae) {
 				control = new Controller(35);
 				control.setMode(Mode.SINGLEZONE);
-				control.setShots(91);
+				control.setShots(33, 34, 35, 36, 33, 34, 35, 36);
 				Thread t = new Thread(control);
-				System.out.println("Zone: 12, Pitch: 10, Roll: 90");
 				t.start();
 			}
 		});
@@ -95,10 +93,10 @@ public class Tests extends JFrame {
 			public void actionPerformed(ActionEvent ae) {
 				control = new Controller(35);
 				control.setMode(Mode.SINGLEZONE);
-				control.setShots(148,193);
+				control.setShots(57,58,59,60,57,58,59,60);
 				Thread t = new Thread(control);
 				System.out.println("Zone: 5, Pitch: 10, Roll: 180");
-				System.out.println("Zone: 2, Pitch: 0, Roll: 270");
+				System.out.println("Zone: 12, Pitch: 20, Roll: 180");
 				t.start();
 			}
 		});
@@ -107,10 +105,10 @@ public class Tests extends JFrame {
 			public void actionPerformed(ActionEvent ae) {
 				control = new Controller(35);
 				control.setMode(Mode.SINGLEZONE);
-				control.setShots(148,193,148);
+				control.setShots(49,50,51,52,49,50,51,52);
 				Thread t = new Thread(control);
 				System.out.println("Zone: 5, Pitch: 10, Roll: 180");
-				System.out.println("Zone: 2, Pitch: 0, Roll: 270");
+				System.out.println("Zone: 12, Pitch: 20, Roll: 180");
 				System.out.println("Zone: 5, Pitch: 10, Roll: 180");
 				t.start();
 			}
