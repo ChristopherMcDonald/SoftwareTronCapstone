@@ -55,8 +55,8 @@ counter = 0
 cap = cv2.VideoCapture(1);
 resizeX = 0.42;
 resizeY = 0.42;
-width  = cap.get(cv2.CAP_PROP_FRAME_WIDTH)*resizeX;
-height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)*resizeY;
+width  = cap.get(cv2.CAP_PROP_FRAME_WIDTH);
+height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT);
 vs= WebcamVideoStream(src=1).start()
 fps = FPS().start();
 backsub = cv2.createBackgroundSubtractorMOG2();
@@ -70,10 +70,11 @@ def checkLeft(deque):
     return False
 
 def checkRight(deque):
-    for i in range(1,10):
-        d = deque[0][0]-deque[i][0]
-        if(d>30):
-            return True
+    if(len(deque)>=10):
+        for i in range(1,10):
+            d = deque[0][0]-deque[i][0]
+            if(d>30):
+                return True
     return False
 
 def checkDown(deque):
@@ -106,12 +107,12 @@ while(True):
 
     if(fsm == 0):                           # waiting on connection
 
-        conn, addr = socketIn.accept();     # loop will freeze on this command, runs when SmartServe
-        print("Got connection from", addr); # sends a request
-        msg = conn.recv(1024);              # parses msg... could be "TEST", "DETECT"
-
-        # DEBUGGING
-        # msg = b'DETECT'
+        # conn, addr = socketIn.accept();     # loop will freeze on this command, runs when SmartServe
+        # print("Got connection from", addr); # sends a request
+        # msg = conn.recv(1024);              # parses msg... could be "TEST", "DETECT"
+        #
+        # # DEBUGGING
+        msg = b'DETECT'
         # print(msg);
 
         if("TEST" in msg.decode("UTF8")):
@@ -271,7 +272,7 @@ while(True):
             #     borderType = cv2.BORDER_CONSTANT,
             #     value = borderColour)
             # cv2.imshow('border', border)
-           ## cv2.imshow("shape",thresh)
+           # cv2.imshow("shape",thresh)
             key = cv2.waitKey(1) & 0xFF
             counter += 1
 
