@@ -12,7 +12,7 @@ int AzimuthErrorFlag = 1; // 1 = Error, 0 = No Error
 
 AutomaticPanning::AutomaticPanning() // Constructor
 {
-  // Serial.begin(9600); 
+  // Serial.begin(9600);
 
   target_location = 0.0;
   location_diff = 0.0;
@@ -137,9 +137,4 @@ double AutomaticPanning::get_current_location()
 void AutomaticPanning::set_current_location(double location)
 {
 	current_location = location;
-}
-
-bool AutomaticPanning::stop_pan() // Exit sequence, home the assembly upon power OFF
-{
-	return home_assembly(); // Call the home method
 }

@@ -13,7 +13,7 @@ Servo myservo; // create servo object to control a servo
 
 Pitch::Pitch() // Constructor
 {
-	target_location = 90.0; // Go home position by default
+	target_location = 60.0; // Go home position by default
 	myservo.attach(12);  // attaches the servo on pin 9 to the servo object
     current_location = myservo.read(); // gets the current position
 }
@@ -33,7 +33,7 @@ bool Pitch::move_to_location(double desired_location)
 				current_location++;
 			}
 			myservo.write(current_location); // move the servo to the desired location
-            // delay(30);
+            delay(20);
 		}
 		return true;
 	}

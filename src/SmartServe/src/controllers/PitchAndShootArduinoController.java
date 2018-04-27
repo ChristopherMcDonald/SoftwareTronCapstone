@@ -6,13 +6,13 @@ public class PitchAndShootArduinoController extends ArduinoController {
 	
 	public static void main(String[] args) throws NotConnectedException, InterruptedException {
 		PitchAndShootArduinoController shooter = new PitchAndShootArduinoController();
-		if(!shooter.test("cu.usbmodem14441", 9600)) {
+		if(!shooter.test("cu.usbmodem14431", 9600)) {
 			System.out.println("NOT Connected to Shooter");
 		} else {
 			System.out.println("Connected to Shooter");
 		}
 		
-		shooter.adjustSpeed(70.0f);
+		shooter.adjustSpeed(0.0f);
 	}
 	
 	/**
@@ -26,7 +26,7 @@ public class PitchAndShootArduinoController extends ArduinoController {
 		}
 		
 		String toSend = "V:" + Double.toString(speed);
-		System.out.println("Sending Speed:" + toSend);
+		System.out.print("Speed: " + speed + ", ");
 		arduino.serialWrite(toSend);
 	}
 	
@@ -41,7 +41,7 @@ public class PitchAndShootArduinoController extends ArduinoController {
 		}
 		
 		String toSend = "P:" + Double.toString(pitch);
-		System.out.println("Sending Pitch:" + toSend);
+		System.out.println("Pitch:" + pitch);
 		arduino.serialWrite(toSend);
 	}
 	

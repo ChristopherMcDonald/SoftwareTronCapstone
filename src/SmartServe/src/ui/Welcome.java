@@ -87,11 +87,11 @@ public class Welcome extends JFrame {
 		lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWelcome.setForeground(Color.WHITE);
 		lblWelcome.setFont(new Font("Andalus", Font.PLAIN, 22));
-		lblWelcome.setBounds(15, 0, 120, 23);
+		lblWelcome.setBounds(15, 0, 130, 23);
 		contentPane.add(lblWelcome);
 		
 		JLabel background = new JLabel("");
-		background.setBounds(0, 0, 434, 262);
+		background.setBounds(0, 0, 450, 300);
 		contentPane.add(background);
 		ImageIcon bg_old = new ImageIcon(Welcome.class.getResource("/ui/img/welcomeBg.jpg"));
 		Image img_old = bg_old.getImage();

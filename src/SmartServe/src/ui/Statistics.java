@@ -86,7 +86,7 @@ public class Statistics extends JFrame {
 	public Statistics() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(200, 200, 731, 350);
+		setBounds(200, 200, 781, 335);
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -236,12 +236,12 @@ public class Statistics extends JFrame {
 		internalFrame.add(lblNoResults);
 		lblNoResults.setVisible(false);
 		
-		tableScroll.setBounds(281, 87, 403, 170);
+		tableScroll.setBounds(281, 87, 453, 170);
 		contentPane.add(tableScroll);
 		tableScroll.setVisible(false);		
 		
 		JLabel background = new JLabel("");
-		background.setBounds(0, -12, 725, 299);
+		background.setBounds(0, -12, 781, 309);
 		contentPane.add(background);
 		ImageIcon bg_old = new ImageIcon(Welcome.class.getResource("/ui/img/statsBg.jpg"));
 		Image img_old = bg_old.getImage();
@@ -423,7 +423,9 @@ public class Statistics extends JFrame {
 			int index;
 			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
-					btnZone2.setBackground(new Color(200,200,200));
+					btnZone2.setBackground(Color.BLUE);
+					btnZone2.setOpaque(true);
+					btnZone2.setBorderPainted(false);
 					selected = false;
 					zonesString += "2,";
 				}
@@ -446,7 +448,9 @@ public class Statistics extends JFrame {
 			int index;
 			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
-					btnZone3.setBackground(new Color(200,200,200));
+					btnZone3.setBackground(Color.BLUE);
+					btnZone3.setOpaque(true);
+					btnZone3.setBorderPainted(false);
 					selected = false;
 					zonesString += "3,";
 				}
@@ -469,7 +473,9 @@ public class Statistics extends JFrame {
 			int index;
 			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
-					btnZone4.setBackground(new Color(200,200,200));
+					btnZone4.setBackground(Color.BLUE);
+					btnZone4.setOpaque(true);
+					btnZone4.setBorderPainted(false);
 					selected = false;
 					zonesString += "4,";
 				}
@@ -492,7 +498,9 @@ public class Statistics extends JFrame {
 			int index;
 			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
-					btnZone5.setBackground(new Color(200,200,200));
+					btnZone5.setBackground(Color.BLUE);
+					btnZone5.setOpaque(true);
+					btnZone5.setBorderPainted(false);
 					selected = false;
 					zonesString += "5,";
 				}
@@ -515,7 +523,9 @@ public class Statistics extends JFrame {
 			int index;
 			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
-					btnZone6.setBackground(new Color(200,200,200));
+					btnZone6.setBackground(Color.BLUE);
+					btnZone6.setOpaque(true);
+					btnZone6.setBorderPainted(false);
 					selected = false;
 					zonesString += "6,";
 				}
@@ -538,7 +548,9 @@ public class Statistics extends JFrame {
 			int index;
 			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
-					btnZone7.setBackground(new Color(200,200,200));
+					btnZone7.setBackground(Color.BLUE);
+					btnZone7.setOpaque(true);
+					btnZone7.setBorderPainted(false);
 					selected = false;
 					zonesString += "7,";
 				}
@@ -561,7 +573,9 @@ public class Statistics extends JFrame {
 			int index;
 			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
-					btnZone8.setBackground(new Color(200,200,200));
+					btnZone8.setBackground(Color.BLUE);
+					btnZone8.setOpaque(true);
+					btnZone8.setBorderPainted(false);
 					selected = false;
 					zonesString += "8,";
 				}
@@ -584,7 +598,9 @@ public class Statistics extends JFrame {
 			int index;
 			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
-					btnZone9.setBackground(new Color(200,200,200));
+					btnZone9.setBackground(Color.BLUE);
+					btnZone9.setOpaque(true);
+					btnZone9.setBorderPainted(false);
 					selected = false;
 					zonesString += "9,";
 				}
@@ -607,7 +623,9 @@ public class Statistics extends JFrame {
 			int index;
 			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
-					btnZone10.setBackground(new Color(200,200,200));
+					btnZone10.setBackground(Color.BLUE);
+					btnZone10.setOpaque(true);
+					btnZone10.setBorderPainted(false);
 					selected = false;
 					zonesString += "10,";
 				}
@@ -630,7 +648,9 @@ public class Statistics extends JFrame {
 			int index;
 			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
-					btnZone11.setBackground(new Color(200,200,200));
+					btnZone11.setBackground(Color.BLUE);
+					btnZone11.setOpaque(true);
+					btnZone11.setBorderPainted(false);
 					selected = false;
 					zonesString += "11,";
 				}
@@ -653,7 +673,9 @@ public class Statistics extends JFrame {
 			int index;
 			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
-					btnZone12.setBackground(new Color(200,200,200));
+					btnZone12.setBackground(Color.BLUE);
+					btnZone12.setOpaque(true);
+					btnZone12.setBorderPainted(false);
 					selected = false;
 					zonesString += "12,";
 				}
@@ -676,7 +698,9 @@ public class Statistics extends JFrame {
 			int index;
 			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
-					btnZone13.setBackground(new Color(200,200,200));
+					btnZone13.setBackground(Color.BLUE);
+					btnZone13.setOpaque(true);
+					btnZone13.setBorderPainted(false);
 					selected = false;
 					zonesString += "13,";
 				}
@@ -699,7 +723,9 @@ public class Statistics extends JFrame {
 			int index;
 			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
-					btnZone14.setBackground(new Color(200,200,200));
+					btnZone14.setBackground(Color.BLUE);
+					btnZone14.setOpaque(true);
+					btnZone14.setBorderPainted(false);
 					selected = false;
 					zonesString += "14,";
 				}
@@ -722,7 +748,9 @@ public class Statistics extends JFrame {
 			int index;
 			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
-					btnZone15.setBackground(new Color(200,200,200));
+					btnZone15.setBackground(Color.BLUE);
+					btnZone15.setOpaque(true);
+					btnZone15.setBorderPainted(false);
 					selected = false;
 					zonesString += "15,";
 				}
@@ -745,7 +773,9 @@ public class Statistics extends JFrame {
 			int index;
 			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
-					btnZone16.setBackground(new Color(200,200,200));
+					btnZone16.setBackground(Color.BLUE);
+					btnZone16.setOpaque(true);
+					btnZone16.setBorderPainted(false);
 					selected = false;
 					zonesString += "16,";
 				}
@@ -768,7 +798,9 @@ public class Statistics extends JFrame {
 			int index;
 			public void actionPerformed(ActionEvent arg0) {
 				if(selected) {
-					btnZone17.setBackground(new Color(200,200,200));
+					btnZone17.setBackground(Color.BLUE);
+					btnZone17.setOpaque(true);
+					btnZone17.setBorderPainted(false);
 					selected = false;
 					zonesString += "17,";
 				}

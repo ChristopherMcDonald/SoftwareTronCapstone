@@ -57,7 +57,7 @@ public class Control extends JFrame {
 	 */
 	public Control() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 434, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -66,7 +66,7 @@ public class Control extends JFrame {
 		JLabel lblControl = new JLabel("Control");
 		lblControl.setForeground(Color.WHITE);
 		lblControl.setFont(new Font("Century", Font.BOLD, 33));
-		lblControl.setBounds(62, 21, 137, 69);
+		lblControl.setBounds(120, 21, 137, 69);
 		contentPane.add(lblControl);
 
 		JButton startBtn = new JButton("Start");
@@ -122,7 +122,7 @@ public class Control extends JFrame {
 	    });
 
 		modeDropDown.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		modeDropDown.setBounds(62, 138, 100, 20);
+		modeDropDown.setBounds(136, 138, 100, 20);
 		contentPane.add(modeDropDown);
 
 		lblError = new JLabel("Please enter valid zone!");
@@ -143,7 +143,6 @@ public class Control extends JFrame {
 		        	}
 		        	else {
 		        		control = new Controller(View.getUserid());
-
 		        	}
 		        	control.setMode(Mode.valueOf(modeDropDown.getSelectedItem().toString()));
 					Thread t = new Thread(control);

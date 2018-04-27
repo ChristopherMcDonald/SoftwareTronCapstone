@@ -35,6 +35,7 @@ void loop() {
         }
         else 
         { // type == "P"
+            delay(1000);
             mypitch->move_respect_to_horizon(val);
             myfeedandshoot->move_by_steps(Steps_For_1_REV);
         }

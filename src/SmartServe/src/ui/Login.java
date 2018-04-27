@@ -68,13 +68,13 @@ public class Login extends JFrame {
 		JLabel lblNewLabel = new JLabel("Email");
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel.setBounds(187, 32, 41, 14);
+		lblNewLabel.setBounds(187, 32, 61, 14);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Password");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewLabel_1.setForeground(Color.WHITE);
-		lblNewLabel_1.setBounds(187, 57, 98, 14);
+		lblNewLabel_1.setBounds(187, 57, 118, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		userNameInput = new JTextField();
@@ -147,7 +147,7 @@ public class Login extends JFrame {
 		
 		JLabel background = new JLabel("");
 		background.setBackground(Color.WHITE);
-		background.setBounds(0, 0, 434, 262);
+		background.setBounds(0, 0, 450, 300);
 		contentPane.add(background);
 		ImageIcon bg_old = new ImageIcon(Welcome.class.getResource("/ui/img/loginBg.jpg"));
 		Image img_old = bg_old.getImage();
