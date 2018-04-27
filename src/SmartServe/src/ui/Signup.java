@@ -164,7 +164,7 @@ public class Signup extends JFrame {
 		contentPane.add(btnBack);
 		
 		JLabel background = new JLabel("");
-		background.setBounds(0, 0, 434, 262);
+		background.setBounds(0, 0, 450, 300);
 		contentPane.add(background);
 		ImageIcon bg_old = new ImageIcon(Welcome.class.getResource("/ui/img/signupBg.jpg"));
 		Image img_old = bg_old.getImage();

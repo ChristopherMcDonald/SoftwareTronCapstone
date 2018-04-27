@@ -39,11 +39,15 @@ import java.awt.Color;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.axis.NumberTickUnit;
+import org.jfree.chart.plot.Plot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -69,7 +73,7 @@ public class Graph extends ApplicationFrame {
 	*/
 	public Graph(final String title, Double[] data, String xAxis, int step) {
 		super(title);
-		XYDataset dataset = createDataset(data, step, xAxis);
+		CategoryDataset dataset = createDataset(data, step, xAxis);
 		JFreeChart chart = createChart(dataset, xAxis);
 		chartPanel = new ChartPanel(chart);
 		chartPanel.setPreferredSize(new java.awt.Dimension(403, 170));
@@ -81,20 +85,17 @@ public class Graph extends ApplicationFrame {
 	*
 	* @return a sample dataset.
 	*/
-	private XYDataset createDataset(Double[] data, int step, String xAxis) {
-		final XYSeries line = new XYSeries("Stats");
+	private CategoryDataset createDataset(Double[] data, int step, String xAxis) {
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		for(int i=0; i<data.length;i++) {
 			if(data[i] != -1.0) {
 				if(xAxis.equals("zone")) {
-					line.add(i+2, data[i]);
+					dataset.setValue((Number)data[i], "Returns", i+2);
 				}else {
-					line.add(i*step, data[i]);
+					dataset.setValue((Number)data[i],"Returns", i*step);
 				}
 			}
 		}
-		
-		final XYSeriesCollection dataset = new XYSeriesCollection();
-		dataset.addSeries(line);
 		
 		return dataset;
 	
@@ -107,10 +108,10 @@ public class Graph extends ApplicationFrame {
 	*
 	* @return a chart.
 	*/
-	private JFreeChart createChart(final XYDataset dataset, String xAxis) {
+	private JFreeChart createChart(final CategoryDataset dataset, String xAxis) {
 		
 		// create the chart
-		final JFreeChart chart = ChartFactory.createXYLineChart(
+		final JFreeChart chart = ChartFactory.createBarChart(
 		"", // chart title
 		xAxis, // x axis label
 		"% Return", // y axis label
@@ -125,44 +126,49 @@ public class Graph extends ApplicationFrame {
 		chart.setBackgroundPaint(Color.white);
 		
 		// get a reference to the plot for further customisation
-		final XYPlot plot = chart.getXYPlot();
+		//final Plot plot = chart.getPlot();
 		
-		NumberAxis range = (NumberAxis) plot.getRangeAxis();
-        range.setRange(0, 100);
-        range.setTickUnit(new NumberTickUnit(20));
+//		NumberAxis range = (NumberAxis) plot.getRangeAxis();
+//        range.setRange(0, 100);
+//        range.setTickUnit(new NumberTickUnit(20));
+		chart.getCategoryPlot().getRangeAxis().setLowerBound(0.0);
+		chart.getCategoryPlot().getRangeAxis().setUpperBound(100.0);
         
-        if (xAxis.equals("zone")){
-        	 NumberAxis domain = (NumberAxis) plot.getDomainAxis();
-             domain.setRange(2, 17);
-             domain.setTickUnit(new NumberTickUnit(1));
-             domain.setVerticalTickLabels(true);
-        }
-        else if(xAxis.equals("roll")){
-        	 NumberAxis domain = (NumberAxis) plot.getDomainAxis();
-             domain.setRange(0, 270);
-             domain.setTickUnit(new NumberTickUnit(90));
-             domain.setVerticalTickLabels(true);
-        }
-        else if(xAxis.equals("pitch")){
-        	 NumberAxis domain = (NumberAxis) plot.getDomainAxis();
-             domain.setRange(0, 30);
-             domain.setTickUnit(new NumberTickUnit(10));
-             domain.setVerticalTickLabels(true);
-        }
+//		CategoryAxis axis = new CategoryAxis();
+//		chart.getCategoryPlot().setDomainAxis(axis);
+//		axis.setPlot(plot);
+//        if (xAxis.equals("zone")){
+//        	 NumberAxis domain = (NumberAxis) plot.getDomainAxis();
+//             plot.setRange(2, 17);
+//             domain.setTickUnit(new NumberTickUnit(1));
+//             domain.setVerticalTickLabels(true);
+//        }
+//        else if(xAxis.equals("roll")){
+//        	 NumberAxis domain = (NumberAxis) plot.getDomainAxis();
+//             domain.setRange(0, 270);
+//             domain.setTickUnit(new NumberTickUnit(90));
+//             domain.setVerticalTickLabels(true);
+//        }
+//        else if(xAxis.equals("pitch")){
+//        	 NumberAxis domain = (NumberAxis) plot.getDomainAxis();
+//             domain.setRange(0, 30);
+//             domain.setTickUnit(new NumberTickUnit(10));
+//             domain.setVerticalTickLabels(true);
+//        }
         
-		plot.setBackgroundPaint(Color.lightGray);
-		plot.setDomainGridlinePaint(Color.white);
-		plot.setRangeGridlinePaint(Color.white);
-		
-		final XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
-		renderer.setSeriesLinesVisible(0, false);
-		renderer.setSeriesShapesVisible(1, false);
-		plot.setRenderer(renderer);
-		
+//		plot.setBackgroundPaint(Color.lightGray);
+//		plot.setDomainGridlinePaint(Color.white);
+//		plot.setRangeGridlinePaint(Color.white);
+//		
+//		final XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
+//		renderer.setSeriesLinesVisible(0, false);
+//		renderer.setSeriesShapesVisible(1, false);
+//		plot.setRenderer(renderer);
+//		
 		// change the auto tick unit selection to integer units only
-		final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-		rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
-		
+//		final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+//		rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+//		
 		return chart;	
 	}
 }

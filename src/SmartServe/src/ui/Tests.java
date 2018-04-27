@@ -105,7 +105,7 @@ public class Tests extends JFrame {
 			public void actionPerformed(ActionEvent ae) {
 				control = new Controller(35);
 				control.setMode(Mode.SINGLEZONE);
-				control.setShots(49,50,51,52,49,50,51,52);
+				control.setShots(22,42,43,59,91,106,118,170);
 				Thread t = new Thread(control);
 				System.out.println("Zone: 5, Pitch: 10, Roll: 180");
 				System.out.println("Zone: 12, Pitch: 20, Roll: 180");

@@ -48,6 +48,7 @@ public class Controller implements Runnable {
 			if(boot()) {
 				begin();
 				if(shotIds != null) {
+					shooter.adjustSpeed(15);
 					for(int id : shotIds)
 						shoot(id);
 					shooter.stop();
@@ -86,7 +87,7 @@ public class Controller implements Runnable {
 	private static final int CV_PORT = 8013;
 	private static final int SQL_PORT = 3306;
 	private static final String PAN_PORT = "cu.usbserial-A700fk4c";
-	private static final String SHOOT_PORT = "cu.usbmodem14431";
+	private static final String SHOOT_PORT = "cu.usbmodem14441";
 	private static final int PAN_SERIAL = 19200;
 	private static final int SHOOT_SERIAL = 9600;
 
@@ -142,9 +143,12 @@ public class Controller implements Runnable {
 	 */
 	@SuppressWarnings("unused")
 	private void shoot() throws NotConnectedException, IOException, InterruptedException, SQLException {
+		shooter.adjustSpeed(15);	// on boot, speed it up
+		Thread.sleep(2000);			// give it time fam!
 		while(this.state != RunState.TERMINATE) {
 			Shot s = ShotRecommendationController.getRecommendation(m);
-			System.out.println("Shooting at Zone: " + getZone(s.xLoc, s.yLoc));
+			System.out.println();
+			System.out.print("Zone: " + getZone(s.xLoc, s.yLoc) + ", ");
 			ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, s.pitch);
 			//harit to change velocity -> ifs and elses
 			double vel = getVelocityTemp(s.yLoc, s.pitch);
@@ -184,9 +188,9 @@ public class Controller implements Runnable {
 	 */
 	@SuppressWarnings("unused")
 	private void shoot(int id) throws NotConnectedException, IOException, InterruptedException, SQLException {
-		System.out.println("Getting Next Shot...");
 		Shot s = ShotRecommendationController.getRecommendation(id);
-		System.out.println("Shooting at Zone: " + getZone(s.xLoc, s.yLoc));
+		System.out.println();
+		System.out.print("Zone: " + getZone(s.xLoc, s.yLoc) + ", ");
 		ShootingDetails sd = sm.getShootingDetails(s.xLoc, s.yLoc, s.pitch);
 		//harit to change velocity -> ifs and elses
 		double vel = getVelocityTemp(s.yLoc, s.pitch);
@@ -209,16 +213,33 @@ public class Controller implements Runnable {
 	 */
 	@SuppressWarnings("unused")
 	private void shoot(double xloc, double yloc) throws NotConnectedException, IOException, InterruptedException, SQLException {
-		System.out.println("Getting Next Shot...");
+		shooter.adjustSpeed(15);	// on boot, speed it up
+		Thread.sleep(2000);			// give it time fam!
 		ShootingDetails sd = sm.getShootingDetails(xloc, yloc, 20.0f);
-		double vel = getVelocityTemp(yloc, 20.0f);
-
-		shooter.adjustSpeed(vel);
-		pan.shoot(sd.getYaw(), 0);
-		shooter.shoot(10.0f);
-
-		boolean returned = cvController.start();
-		System.out.println(returned ? "Ball Returned" : "Ball Not Returned");
+		while(this.state != RunState.TERMINATE) {
+			System.out.println();
+			System.out.print("Zone: " + getZone(xloc, yloc) + ", ");
+			double vel = getVelocityTemp(yloc, 20.0f);
+	
+			shooter.adjustSpeed(vel);
+			pan.shoot(sd.getYaw(), 0);
+			shooter.shoot(10.0f);
+	
+			boolean returned = cvController.start();
+			System.out.println(returned ? "Ball Returned" : "Ball Not Returned");
+			if(this.state == RunState.PAUSED) {
+				shooter.adjustSpeed(0.0f);
+				while(this.state == RunState.PAUSED) {
+					System.out.println("System is Paused...");
+					Thread.sleep(10);
+				}
+			}
+		}
+		
+		// if connected, init shutdown prod
+		if(shooter.arduino != null) {
+			shooter.stop();
+		}
 	}
 
 	private double getVelocityTemp(double yLoc, double pitch) {
@@ -248,9 +269,9 @@ public class Controller implements Runnable {
 			} else if(yLoc <= 0.55) {
 				 return 14;
 			} else if(yLoc <= 0.9) {
-				return 17;
+				return 15;
 			} else {
-				return 18;
+				return 16;
 			}
 		}
 	}

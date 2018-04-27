@@ -61,7 +61,7 @@ public class Profile extends JFrame {
 
 		JButton btnChangePassword = new JButton("Change Password");
 		btnChangePassword.setBackground(Color.WHITE);
-		btnChangePassword.setBounds(257, 96, 119, 23);
+		btnChangePassword.setBounds(237, 96, 139, 23);
 		btnChangePassword.setMargin(new Insets(2, 2, 2, 2));
 		contentPane.add(btnChangePassword);
 

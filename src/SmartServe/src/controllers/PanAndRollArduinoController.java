@@ -14,10 +14,18 @@ public class PanAndRollArduinoController extends ArduinoController {
 		} else {
 			System.out.println("Connected to Panning");
 		}
+//		
+		pan.shoot(45.0f, 0.0f);
+		pan.shoot(90.0f, 0.0f);
+		pan.shoot(135.0f, 0.0f);
+		pan.shoot(175.0f, 0.0f);
 		
-		pan.shoot(90.0f, 90.0f);
+		Thread.sleep(5000);
 		
-		Thread.sleep(10000);
+		pan.shoot(45.0f, 0.0f);
+		pan.shoot(45.0f, 90.0f);
+		pan.shoot(45.0f, 180.0f);
+		pan.shoot(45.0f, 270.0f);
 	}
 	
 	/**
@@ -36,7 +44,7 @@ public class PanAndRollArduinoController extends ArduinoController {
 		String toSend = Double.toString(yaw) + "," + Double.toString(roll);
 
 		// DEBUGGING
-		System.out.println("Sending to Panner " + Double.toString(yaw) + "," + Double.toString(roll));
+		System.out.print("Pan: " + Double.toString(yaw) + ", Roll: " + Double.toString(roll) + ", ");
 		
 		arduino.serialWrite(toSend);
 		
@@ -47,8 +55,6 @@ public class PanAndRollArduinoController extends ArduinoController {
 			b = new byte[1];
 			arduino.getSerialPort().readBytes(b, 1);
 		}
-		
-		System.out.println("Panning Completed");
 		
 		return 0;
 	}

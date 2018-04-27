@@ -53,8 +53,8 @@ pts = deque(maxlen = args["buffer"])
 counter = 0
 (dX, dY) = (0,0)
 cap = cv2.VideoCapture(2);
-resizeX = 0.42;
-resizeY = 0.42;
+resizeX = 0.35;
+resizeY = 0.35;
 width  = cap.get(cv2.CAP_PROP_FRAME_WIDTH)*resizeX;
 height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)*resizeY;
 vs= WebcamVideoStream(src=2).start()
@@ -64,30 +64,45 @@ backsub.setVarThreshold(1750);
 
 def checkLeft(deque):
     for i in range(1,10):
-        d = deque[0][0]-deque[i][0]
-        if(d<-30):
-            return True
+        try:
+            d = deque[0][0]-deque[i][0]
+            if(d<-30):
+                return True
+        except TypeError:
+            return False
     return False
 
 def checkRight(deque):
-    for i in range(1,10):
-        d = deque[0][0]-deque[i][0]
-        if(d>30):
-            return True
+    if(len(deque)>=10):
+        for i in range(1,10):
+            d = 0;
+            try:
+                if(deque[i][0]!=None):
+                    d = deque[0][0]-deque[i][0]
+                if(d>30):
+                    return True
+            except TypeError:
+                return False
     return False
 
 def checkDown(deque):
     for i in range(1,10):
-        d = deque[0][1]-deque[i][1]
-        if(d>30):
-            return True
+        try:
+            d = deque[0][1]-deque[i][1]
+            if(d>30):
+                return True
+        except TypeError:
+            return False
     return False
 
 def checkUp(deque):
     for i in range(1,10):
-        d = deque[0][1]-deque[i][1]
-        if(d<-30):
-            return True
+        try:
+            d = deque[0][1]-deque[i][1]
+            if(d<-30):
+                return True
+        except TypeError:
+            return False
     return False
 
 def validateBounce(deque):
@@ -109,8 +124,8 @@ while(True):
         conn, addr = socketIn.accept();     # loop will freeze on this command, runs when SmartServe
         print("Got connection from", addr); # sends a request
         msg = conn.recv(1024);              # parses msg... could be "TEST", "DETECT"
-
-        # DEBUGGING
+        #
+        # # DEBUGGING
         # msg = b'DETECT'
         # print(msg);
 
@@ -144,6 +159,7 @@ while(True):
         else:
             # grab the current frame
             frame = vs.read();
+            fps.update();
             frame = cv2.resize(frame,(0,0), fx = resizeX, fy = resizeY);
             # resize the frame, blur it, and convert it to the HSV
             # color space
@@ -271,11 +287,9 @@ while(True):
             #     borderType = cv2.BORDER_CONSTANT,
             #     value = borderColour)
             # cv2.imshow('border', border)
-           ## cv2.imshow("shape",thresh)
+           # cv2.imshow("shape",thresh)
             key = cv2.waitKey(1) & 0xFF
             counter += 1
-
-            fps.update()
 
             # if the 'q' key is pressed, stop the l3oop
             if key == ord("q"):

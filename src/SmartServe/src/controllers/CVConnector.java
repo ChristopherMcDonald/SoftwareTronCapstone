@@ -81,7 +81,7 @@ public class CVConnector {
 			server = new ServerSocket(port + 1);
 			DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
 			
-			System.out.println("STARTING CV...");
+			System.out.print("STARTING CV... ");
 			outToServer.writeUTF("DETECT");
 			
 			Socket client = server.accept();
@@ -90,7 +90,7 @@ public class CVConnector {
 	        fromClient = in.readLine();
 	        clientSocket.close();
 	        server.close();
-	        System.out.println("GOT CV...");
+	        System.out.print("GOT CV... ");
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new NotConnectedException("CVConnector", port);

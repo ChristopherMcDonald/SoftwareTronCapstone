@@ -85,14 +85,14 @@ public class View {
 		});
 
 		//testing
-//		mntmTests = new JMenuItem("Testing");
-//		mntmTests.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				statsf.setVisible(false);
-//				testf.setVisible(true);
-//			}
-//		});
-//		menuBar.add(mntmTests);
+		mntmTests = new JMenuItem("Testing");
+		mntmTests.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				statsf.setVisible(false);
+				testf.setVisible(true);
+			}
+		});
+		menuBar.add(mntmTests);
 
         return menuBar;
 	}
